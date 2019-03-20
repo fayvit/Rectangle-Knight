@@ -11,8 +11,9 @@ public class UmaOpcaoDeImage : UmaOpcao
     public Image ImgDaOpcao { get => imgDaOpcao; set => imgDaOpcao = value; }
     public Image ImgDoEncaixado { get => imgDoEncaixado; set => imgDoEncaixado = value; }
 
-    public void SetarOpcoes(Sprite S)
+    public void SetarOpcoes(Sprite S,System.Action<int> A)
     {
+        Acao += A;
         imgDaOpcao.sprite = S;
     }
 }

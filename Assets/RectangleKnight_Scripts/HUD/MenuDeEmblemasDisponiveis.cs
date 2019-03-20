@@ -6,9 +6,10 @@ using UnityEngine.UI;
 [System.Serializable]
 public class MenuDeEmblemasDisponiveis : MenusDeEmblemabase
 {
-
-    public void IniciarHud()
+    System.Action<int> Acao;
+    public void IniciarHud(System.Action<int> acaoDeFora)
     {
+        Acao += acaoDeFora;
         DadosDoJogador dj = GameController.g.Manager.Dados;
 
         IniciarHUD(dj.MeusEmblemas.Count, TipoDeRedimensionamento.emGrade);
@@ -22,7 +23,7 @@ public class MenuDeEmblemasDisponiveis : MenusDeEmblemabase
         Texture2D t2d = (Texture2D)Resources.Load(E.NomeId.ToString());
         Sprite S = Sprite.Create(t2d, new Rect(0, 0, t2d.width, t2d.height), t2d.texelSize);
 
-        uma.SetarOpcoes(S);
+        uma.SetarOpcoes(S,Acao);
 
         if(E.EstaEquipado)
             uma.ImgDoEncaixado.gameObject.SetActive(true);
@@ -32,7 +33,7 @@ public class MenuDeEmblemasDisponiveis : MenusDeEmblemabase
 
     protected override void FinalizarEspecifico()
     {
-
+        Acao = null;
     }
 
     int LineCellCount()

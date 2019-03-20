@@ -118,6 +118,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\HUD\MenuDeEncaixesDeEmblemas.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\HUD\MenuDosUpdates.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\HUD\MenuOrganizadorDeEmblemas.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\HUD\MenuPentagonosHexagonos.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\HUD\MenusDeEmblemabase.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\HUD\PainelDeConfirmacao.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\HUD\PainelUmaMensagem.cs" />

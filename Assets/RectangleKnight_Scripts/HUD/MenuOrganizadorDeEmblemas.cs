@@ -17,6 +17,7 @@ public class MenuOrganizadorDeEmblemas
 
     private EstadoDaqui estado = EstadoDaqui.sobreDisponiveis;
     private DadosDoJogador dj;
+    private bool estaNoCheckPoint = false;
 
     private enum EstadoDaqui
     {
@@ -25,15 +26,16 @@ public class MenuOrganizadorDeEmblemas
         negativa
     }
 
-    public void IniciarHud()
+    public void IniciarHud(bool estaNoCheckPoint)
     {
+        this.estaNoCheckPoint = estaNoCheckPoint;
         numEncaixes.transform.parent.gameObject.SetActive(true);
 
         estado = EstadoDaqui.sobreDisponiveis;
         dj = GameController.g.Manager.Dados;
 
-        emblemasD.IniciarHud();
-        emblemasE.IniciarHud();
+        emblemasE.IniciarHud(EncaixeDeEmblemaSelecionado);
+        emblemasD.IniciarHud(EmblemaDisponivelSelecionado);
 
         emblemasE.RetirarDestaques();
 
@@ -94,7 +96,95 @@ public class MenuOrganizadorDeEmblemas
         emblemasE.FinalizarHud();
     }
 
-    public void Update(bool estaNoCheckPoint)
+    void EmblemaDisponivelSelecionado(int qual)
+    {
+        if (estaNoCheckPoint)
+        {
+            Emblema E = dj.MeusEmblemas[qual];
+
+            if (!E.EstaEquipado)
+            {
+                if (E.EspacosNecessarios <= dj.EspacosDeEmblemas - Emblema.NumeroDeEspacosOcupados(dj.MeusEmblemas))
+                {
+                    E.EstaEquipado = true;
+                    E.OnEquip();
+                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.triedToChangeEmblemNoSuccessfull));
+                    GlobalController.g.UmaMensagem.ConstroiPainelUmaMensagem(OnCheckPanel,
+                        string.Format(
+                        BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.frasesDeEmblema)[0],
+                        E.NomeEmLinguas
+                        )
+                        );
+
+                    int opcaoGuardada = qual;
+
+                    ReiniciarVisaoDaHud();
+                    emblemasD.SelecionarOpcaoEspecifica(opcaoGuardada);
+
+                    ColocaInfoTexts((int)dj.MeusEmblemas[0].NomeId);
+                    numEncaixes.text = Emblema.NumeroDeEspacosOcupados(dj.MeusEmblemas) + " / " + dj.EspacosDeEmblemas;
+
+                }
+                else
+                {
+                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.triedToChangeEmblemNoSuccessfull));
+                    GlobalController.g.UmaMensagem.ConstroiPainelUmaMensagem(OnCheckPanel,
+                        string.Format(
+                        BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.frasesDeEmblema)[1],
+                        E.EspacosNecessarios,
+                        E.NomeEmLinguas,
+                        (dj.EspacosDeEmblemas - Emblema.NumeroDeEspacosOcupados(dj.MeusEmblemas)).ToString()));
+                }
+            }
+            else
+            {
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.triedToChangeEmblemNoSuccessfull));
+                GlobalController.g.UmaMensagem.ConstroiPainelUmaMensagem(OnCheckPanel,
+                    BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.frasesDeEmblema)[2]);
+            }
+        }
+        else
+        {
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.triedToChangeEmblemNoSuccessfull));
+            painelDeInfoEmblema.ConstroiPainelUmaMensagem(OnCheckPanel);
+        }
+    }
+
+    void EncaixeDeEmblemaSelecionado(int qual)
+    {
+        if (estaNoCheckPoint)
+        {
+            int opcaoGuardada = qual;
+
+            if (Emblema.VerificarOcupacaoDoEncaixe(dj.MeusEmblemas, opcaoGuardada) != NomesEmblemas.nulo)
+            {
+
+                Emblema E = Emblema.ListaDeEncaixados(dj.MeusEmblemas)[opcaoGuardada];
+                E.OnUnequip();
+                E.EstaEquipado = false;
+
+                ReiniciarVisaoDaHud();
+
+                emblemasE.SelecionarOpcaoEspecifica(opcaoGuardada);
+
+                ColocaInfoTexts((int)dj.MeusEmblemas[0].NomeId);
+                numEncaixes.text = Emblema.NumeroDeEspacosOcupados(dj.MeusEmblemas) + " / " + dj.EspacosDeEmblemas;
+            }
+            else
+            {
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.triedToChangeEmblemNoSuccessfull));
+                GlobalController.g.UmaMensagem.ConstroiPainelUmaMensagem(OnCheckPanel,
+                    BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.frasesDeEmblema)[3]);
+            }
+        }
+        else
+        {
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.triedToChangeEmblemNoSuccessfull));
+            painelDeInfoEmblema.ConstroiPainelUmaMensagem(OnCheckPanel);
+        }
+    }
+
+    public void Update()
     {
         switch (estado)
         {
@@ -103,55 +193,7 @@ public class MenuOrganizadorDeEmblemas
 
                 if (ActionManager.ButtonUp(0, GlobalController.g.Control))
                 {
-                    if (estaNoCheckPoint)
-                    {
-                        Emblema E = dj.MeusEmblemas[emblemasD.OpcaoEscolhida];
-
-                        if (!E.EstaEquipado)
-                        {
-                            if (E.EspacosNecessarios <= dj.EspacosDeEmblemas - Emblema.NumeroDeEspacosOcupados(dj.MeusEmblemas))
-                            {
-                                E.EstaEquipado = true;
-                                E.OnEquip();
-                                EventAgregator.Publish(new StandardSendGameEvent(EventKey.triedToChangeEmblemNoSuccessfull));
-                                GlobalController.g.UmaMensagem.ConstroiPainelUmaMensagem(OnCheckPanel,
-                                    string.Format(
-                                    BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.frasesDeEmblema)[0],
-                                    E.NomeEmLinguas
-                                    )
-                                    );
-
-                                int opcaoGuardada = emblemasD.OpcaoEscolhida;
-
-                                ReiniciarVisaoDaHud();
-                                emblemasD.SelecionarOpcaoEspecifica(opcaoGuardada);
-
-                                ColocaInfoTexts((int)dj.MeusEmblemas[0].NomeId);
-                                numEncaixes.text = Emblema.NumeroDeEspacosOcupados(dj.MeusEmblemas) + " / " + dj.EspacosDeEmblemas;
-
-                            }
-                            else
-                            {
-                                EventAgregator.Publish(new StandardSendGameEvent(EventKey.triedToChangeEmblemNoSuccessfull));
-                                GlobalController.g.UmaMensagem.ConstroiPainelUmaMensagem(OnCheckPanel,
-                                    string.Format(
-                                    BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.frasesDeEmblema)[1],
-                                    E.EspacosNecessarios,
-                                    E.NomeEmLinguas,
-                                    (dj.EspacosDeEmblemas - Emblema.NumeroDeEspacosOcupados(dj.MeusEmblemas)).ToString()));
-                            }
-                        }
-                        else
-                        {
-                            EventAgregator.Publish(new StandardSendGameEvent(EventKey.triedToChangeEmblemNoSuccessfull));
-                            GlobalController.g.UmaMensagem.ConstroiPainelUmaMensagem(OnCheckPanel,
-                                BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.frasesDeEmblema)[2]);
-                        }
-                    }
-                    else {
-                        EventAgregator.Publish(new StandardSendGameEvent(EventKey.triedToChangeEmblemNoSuccessfull));
-                        painelDeInfoEmblema.ConstroiPainelUmaMensagem(OnCheckPanel);
-                    }
+                    EmblemaDisponivelSelecionado(emblemasD.OpcaoEscolhida);
                 }
             break;
             case EstadoDaqui.sobreEncaixes:
@@ -159,35 +201,7 @@ public class MenuOrganizadorDeEmblemas
 
                 if (ActionManager.ButtonUp(0, GlobalController.g.Control))
                 {
-                    if (estaNoCheckPoint)
-                    {
-                        int opcaoGuardada = emblemasE.OpcaoEscolhida;
-
-                        if (Emblema.VerificarOcupacaoDoEncaixe(dj.MeusEmblemas, opcaoGuardada) != NomesEmblemas.nulo)
-                        {
-
-                            Emblema E = Emblema.ListaDeEncaixados(dj.MeusEmblemas)[opcaoGuardada];
-                            E.OnUnequip();
-                            E.EstaEquipado = false;
-
-                            ReiniciarVisaoDaHud();
-
-                            emblemasE.SelecionarOpcaoEspecifica(opcaoGuardada);
-
-                            ColocaInfoTexts((int)dj.MeusEmblemas[0].NomeId);
-                            numEncaixes.text = Emblema.NumeroDeEspacosOcupados(dj.MeusEmblemas) + " / " + dj.EspacosDeEmblemas;
-                        }
-                        else {
-                            EventAgregator.Publish(new StandardSendGameEvent(EventKey.triedToChangeEmblemNoSuccessfull));
-                            GlobalController.g.UmaMensagem.ConstroiPainelUmaMensagem(OnCheckPanel,
-                                BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.frasesDeEmblema)[3]);
-                        }
-                    }
-                    else
-                    {
-                        EventAgregator.Publish(new StandardSendGameEvent(EventKey.triedToChangeEmblemNoSuccessfull));
-                        painelDeInfoEmblema.ConstroiPainelUmaMensagem(OnCheckPanel);
-                    }
+                    EncaixeDeEmblemaSelecionado(emblemasE.OpcaoEscolhida);
                 }
 
             break;
@@ -197,9 +211,9 @@ public class MenuOrganizadorDeEmblemas
     void ReiniciarVisaoDaHud()
     {
         emblemasD.FinalizarHud();
-        emblemasD.IniciarHud();
+        emblemasD.IniciarHud(EmblemaDisponivelSelecionado);
         emblemasE.FinalizarHud();
-        emblemasE.IniciarHud();
+        emblemasE.IniciarHud(EncaixeDeEmblemaSelecionado);
 
         emblemasE.RetirarDestaques();
         emblemasD.RetirarDestaques();

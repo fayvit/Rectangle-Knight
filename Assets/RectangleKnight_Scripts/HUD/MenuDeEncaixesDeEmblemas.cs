@@ -9,10 +9,12 @@ public class MenuDeEncaixesDeEmblemas : MenusDeEmblemabase
     [SerializeField] private Sprite encaixeLivre = default;
     #endregion
 
-    List<Emblema> emblemasEquipados = new List<Emblema>();
+    private System.Action<int> Acao;
+    private List<Emblema> emblemasEquipados = new List<Emblema>();
 
-    public void IniciarHud()
+    public void IniciarHud(System.Action<int> acaoStandard)
     {
+        Acao += acaoStandard;
         emblemasEquipados = new List<Emblema>();
         DadosDoJogador dados = GameController.g.Manager.Dados;
         int ocupado = 0;
@@ -40,11 +42,11 @@ public class MenuDeEncaixesDeEmblemas : MenusDeEmblemabase
             Texture2D t2d = (Texture2D)Resources.Load(E.NomeId.ToString());
             Sprite S = Sprite.Create(t2d, new Rect(0, 0, t2d.width, t2d.height), t2d.texelSize);
 
-            uma.SetarOpcoes(S);
+            uma.SetarOpcoes(S,Acao);
             
         }
         else
-            uma.SetarOpcoes(encaixeLivre);
+            uma.SetarOpcoes(encaixeLivre,Acao);
     }
 
     public override void MudarOpcao()
@@ -65,6 +67,6 @@ public class MenuDeEncaixesDeEmblemas : MenusDeEmblemabase
 
     protected override void FinalizarEspecifico()
     {
-        
+        Acao = null;
     }
 }

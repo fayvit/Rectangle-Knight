@@ -24,6 +24,10 @@ public class DadosDoJogador : DadosDoPersonagem
     public bool EspadaVermelha { get => _espadaVermelha; set => _espadaVermelha = value; }
     public int Dinheiro { get; set; } = 0;
     public int EspacosDeEmblemas { get; set; } = 2;
+    public int PartesDeHexagonoObtidas { get; set; } = 0;
+    public int PartesDePentagonosObtidas { get; set; } = 0;
+    public int HexagonosCompletados { get; set; } = 0;
+    public int PentagonosCompletados { get; set; } = 0;
 
     public List<Emblema> MeusEmblemas{get;set;} = new List<Emblema>() { new Emblema(NomesEmblemas.dinheiroMagnetico,1),
         new Emblema(NomesEmblemas.dinheiroMagnetico,1),

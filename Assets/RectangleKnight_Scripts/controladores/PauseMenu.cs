@@ -12,6 +12,7 @@ public class PauseMenu
     [SerializeField] private MenuDeOpcoes menuO = default;
     [SerializeField] private MenuDosUpdates menuU = default;
     [SerializeField] private MenuOrganizadorDeEmblemas menuOE = default;
+    [SerializeField] private MenuPentagonosHexagonos pentagonosHexagonos = default;
     [SerializeField] private Image[] abas = default;
     [SerializeField] private Sprite destaque = default;
     [SerializeField] private Sprite padrao = default;
@@ -29,7 +30,8 @@ public class PauseMenu
         emblemasAberto,
         mapaAberto,
         menuDeOpcoesAberto,
-        menuSuspensoAberto
+        menuSuspensoAberto,
+        pentagonosHexagonosAberto
     }
 
     public void IniciarMenuDePause()
@@ -87,7 +89,7 @@ public class PauseMenu
     void VerificaMudarAba()
     {
         Controlador Control = GlobalController.g.Control;
-        if (estado != EstadoDaqui.menuDeOpcoesAberto)
+        if (estado != EstadoDaqui.menuDeOpcoesAberto && estado !=EstadoDaqui.menuSuspensoAberto)
         {
             int qualSelecionado = qualMenu;
             if (CommandReader.ButtonDown(4, Control))
@@ -100,6 +102,17 @@ public class PauseMenu
             if (qualSelecionado != qualMenu)
                 BtnTrocarAba(qualSelecionado);
         }
+    }
+
+    void VerificarSaidaDoPause()
+    {
+        
+        if (ActionManager.ButtonUp(6, GlobalController.g.Control) || ActionManager.ButtonUp(7, GlobalController.g.Control))
+        {
+            BtnPauseMenu();
+        }
+        
+
     }
 
     void FinalizarMenuDepause()
@@ -116,7 +129,7 @@ public class PauseMenu
     {
         if (estado == EstadoDaqui.emEspera)
             IniciarMenuDePause();
-        else
+        else if (estado != EstadoDaqui.menuDeOpcoesAberto && estado != EstadoDaqui.menuSuspensoAberto)
             FinalizarMenuDepause();
     }
 
@@ -147,6 +160,7 @@ public class PauseMenu
         menuDePauseBasico.FinalizarHud();
         menuU.FinalizarHud();
         menuOE.FinalizarHud();
+        pentagonosHexagonos.FinalizarHud();
     }
 
     void IniciarQualMenu(int qual)
@@ -156,48 +170,45 @@ public class PauseMenu
             case 0:
                 estado = EstadoDaqui.configuracoesAberto;
                 menuDePauseBasico.IniciarHud(OnBasicPauseOptionSelect, BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.menuDePause).ToArray());
-                break;
+            break;
             case 1:
                 menuU.IniciarHud();
                 estado = EstadoDaqui.updatesAberto;
-                break;
+            break;
             case 2:
-                menuOE.IniciarHud();
+                menuOE.IniciarHud(estadoAoPausar == EstadoDePersonagem.inCheckPoint);
                 estado = EstadoDaqui.emblemasAberto;
-                break;
+            break;
+            case 3:
+                pentagonosHexagonos.IniciarHud();
+                estado = EstadoDaqui.pentagonosHexagonosAberto;
+            break;
         }
     }
 
     public void Update()
     {
         VerificaMudarAba();
+        VerificarSaidaDoPause();
 
         switch (estado)
         {
             case EstadoDaqui.configuracoesAberto:
+                #region configuracoesAberto
                 menuDePauseBasico.MudarOpcao();
 
                 if (ActionManager.ButtonUp(0, GlobalController.g.Control))
                 {
                     OnBasicPauseOptionSelect(menuDePauseBasico.OpcaoEscolhida);
                 }
-
-                if (ActionManager.ButtonUp(6, GlobalController.g.Control) || ActionManager.ButtonUp(7, GlobalController.g.Control))
-                {
-                    BtnPauseMenu();
-                }
-                break;
+                #endregion
+            break;
+            
             case EstadoDaqui.updatesAberto:
-
                 menuU.MudarOpcao();
-
-                if (ActionManager.ButtonUp(6, GlobalController.g.Control) || ActionManager.ButtonUp(7, GlobalController.g.Control))
-                {
-                    BtnPauseMenu();
-                }
-                break;
+            break;
             case EstadoDaqui.emblemasAberto:
-                menuOE.Update(estadoAoPausar==EstadoDePersonagem.inCheckPoint);
+                menuOE.Update();
             break;
         }
     }
