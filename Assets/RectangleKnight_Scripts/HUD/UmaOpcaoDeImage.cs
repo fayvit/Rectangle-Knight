@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class UmaOpcaoDeImage : UmaOpcao
 {
     [SerializeField] private Image imgDaOpcao;
+    [SerializeField] private Image imgDoEncaixado;
 
     public Image ImgDaOpcao { get => imgDaOpcao; set => imgDaOpcao = value; }
+    public Image ImgDoEncaixado { get => imgDoEncaixado; set => imgDoEncaixado = value; }
 
     public void SetarOpcoes(Sprite S)
     {

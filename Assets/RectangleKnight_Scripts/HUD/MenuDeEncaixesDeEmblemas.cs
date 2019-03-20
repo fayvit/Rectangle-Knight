@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class MenuDeEncaixesDeEmblemas : UiDeOpcoes
+public class MenuDeEncaixesDeEmblemas : MenusDeEmblemabase
 {
     #region inspector
     [SerializeField] private Sprite encaixeLivre = default;
@@ -21,7 +21,7 @@ public class MenuDeEncaixesDeEmblemas : UiDeOpcoes
         {
             if (dados.MeusEmblemas[i].EstaEquipado)
             {
-                ocupado = dados.MeusEmblemas[i].EspacosNecessarios;
+                ocupado += dados.MeusEmblemas[i].EspacosNecessarios;
                 emblemasEquipados.Add(dados.MeusEmblemas[i]);
             }
         }
@@ -36,10 +36,31 @@ public class MenuDeEncaixesDeEmblemas : UiDeOpcoes
 
         if (indice < emblemasEquipados.Count)
         {
-            uma.SetarOpcoes(default);
+            Emblema E = emblemasEquipados[indice];
+            Texture2D t2d = (Texture2D)Resources.Load(E.NomeId.ToString());
+            Sprite S = Sprite.Create(t2d, new Rect(0, 0, t2d.width, t2d.height), t2d.texelSize);
+
+            uma.SetarOpcoes(S);
+            
         }
         else
             uma.SetarOpcoes(encaixeLivre);
+    }
+
+    public override void MudarOpcao()
+    {
+        int quanto = CommandReader.ValorDeGatilhos("VDpad", GameController.g.Manager.Control);
+
+        if (quanto == 0)
+            quanto = CommandReader.ValorDeGatilhosTeclado("vertical", GameController.g.Manager.Control);
+
+        bool mudou = quanto!=0;
+
+        int opcaoGuardada = OpcaoEscolhida;
+        base.MudarOpcao_H(true);
+
+        if(opcaoGuardada!=OpcaoEscolhida|| mudou)
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.UiDeEmblemasChange, "encaixes", mudou, OpcaoEscolhida));
     }
 
     protected override void FinalizarEspecifico()

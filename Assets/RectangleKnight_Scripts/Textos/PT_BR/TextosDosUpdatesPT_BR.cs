@@ -38,21 +38,31 @@ public class TextosDosUpdatesPT_BR {
             "Você pode quebrar barreiras verdes com essa espada, selecione a espada pressionando ",
             "Você pode quebrar barreiras douradas com essa espada, selecione a espada pressionando ",
             "Você pode quebrar barreiras vermelhas com essa espada, selecione a espada pressionando "
-            /*"movimentação,
-             * attack,
-    downAttack,
-    upAttack,
-    pulo,
-    magicRecovery,
-    magicAttack,
-    dash,
-    downArrowJump,
-    doubleJump,
-    blueSword,
-    greenSword,
-    goldSword,
-    redSword"*/
         }
-        }
+        },
+        {
+            ChaveDeTexto.emblemasInfo,new List<string>()
+            {
+                "Você pode adicionar emblemas na sua espada enquanto tiver encaixes disponiveis",
+                "As moedas deixadas pelos inimigos são atraidas pelo personagem"
+            }
+        },
+        {
+            ChaveDeTexto.emblemasTitle,new List<string>()
+            {
+                "Encaixe Disponivel",
+                "Dinheiro Magnetico"
+            }
+        },
+         {
+            ChaveDeTexto.frasesDeEmblema,new List<string>()
+            {
+                "Você colocou na espada o emblema {0}",
+                "São necessários {0} espaços de emblemas para equipar {1}. Você não tem espaço suficiente",
+                "Este emblema já está na espada",
+                "Isso é um espaço vazio para inserir um emblema"
+            }
+        },
+
     };
 }

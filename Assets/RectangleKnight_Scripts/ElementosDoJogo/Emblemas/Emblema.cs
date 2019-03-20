@@ -26,6 +26,48 @@ public class Emblema
     {
         EventAgregator.Publish(new StandardSendGameEvent(EventKey.emblemUnequip, NomeId));
     }
+
+    public static int NumeroDeEspacosOcupados(List<Emblema> L)
+    {
+        int cont = 0;
+        for (int i = 0; i < L.Count; i++)
+        {
+            if (L[i].EstaEquipado)
+                cont += L[i].EspacosNecessarios;
+        }
+
+        return cont;
+    }
+
+    public static NomesEmblemas VerificarOcupacaoDoEncaixe(List<Emblema> L,int indice)
+    {
+        List<Emblema> encaixados = ListaDeEncaixados(L);
+        if (encaixados.Count > indice)
+            return encaixados[indice].NomeId;
+        else
+            return NomesEmblemas.nulo;
+        
+    }
+
+    public static List<Emblema> ListaDeEncaixados(List<Emblema> L)
+    {
+        List<Emblema> encaixados = new List<Emblema>();
+
+        for (int i = 0; i < L.Count; i++)
+        {
+            if (L[i].EstaEquipado)
+            {
+                encaixados.Add(L[i]);
+            }
+        }
+
+        return encaixados;
+    }
+
+    public string NomeEmLinguas
+    {
+        get => BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.emblemasTitle)[(int)NomeId];
+    }
 }
 
 public enum NomesEmblemas

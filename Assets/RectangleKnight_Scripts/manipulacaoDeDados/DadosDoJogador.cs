@@ -23,9 +23,12 @@ public class DadosDoJogador : DadosDoPersonagem
     public bool EspadaDourada { get => _espadaDourada; set => _espadaDourada = value; }
     public bool EspadaVermelha { get => _espadaVermelha; set => _espadaVermelha = value; }
     public int Dinheiro { get; set; } = 0;
-    public int EspacosDeEmblemas { get; set; } = 1;
+    public int EspacosDeEmblemas { get; set; } = 2;
 
-    public List<Emblema> MeusEmblemas{get;set;} = new List<Emblema>() { new Emblema(NomesEmblemas.dinheiroMagnetico,1)};
+    public List<Emblema> MeusEmblemas{get;set;} = new List<Emblema>() { new Emblema(NomesEmblemas.dinheiroMagnetico,1),
+        new Emblema(NomesEmblemas.dinheiroMagnetico,1),
+        new Emblema(NomesEmblemas.dinheiroMagnetico,1)
+    };
 
     public DinheiroCaido DinheiroCaido { get; set; } = new DinheiroCaido();
 

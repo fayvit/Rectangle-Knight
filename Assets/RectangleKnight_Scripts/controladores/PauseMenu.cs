@@ -18,6 +18,7 @@ public class PauseMenu
     #endregion
 
     private int qualMenu = 0;
+    private EstadoDePersonagem estadoAoPausar;
     private EstadoDaqui estado = EstadoDaqui.emEspera;
 
     private enum EstadoDaqui
@@ -27,17 +28,31 @@ public class PauseMenu
         updatesAberto,
         emblemasAberto,
         mapaAberto,
-        menuDeOpcoesAberto
+        menuDeOpcoesAberto,
+        menuSuspensoAberto
     }
 
     public void IniciarMenuDePause()
     {
         Time.timeScale = 0;
+        estadoAoPausar = GameController.g.Manager.Estado;
         EventAgregator.Publish(new StandardSendGameEvent(EventKey.enterPause));
         containerDoMenuDePause.SetActive(true);
         IniciarQualMenu(qualMenu);
 
         EventAgregator.AddListener(EventKey.returnToMainMenu, OnReturnToMainMenu);
+        EventAgregator.AddListener(EventKey.triedToChangeEmblemNoSuccessfull, OnTriedEmblem);
+        EventAgregator.AddListener(EventKey.requestReturnToEmblemMenu, OnRequestEmblemMenu);
+    }
+
+    private void OnRequestEmblemMenu(IGameEvent e)
+    {
+        estado = EstadoDaqui.emblemasAberto;
+    }
+
+    private void OnTriedEmblem(IGameEvent e)
+    {
+        estado = EstadoDaqui.menuSuspensoAberto;
     }
 
     private void OnReturnToMainMenu(IGameEvent obj)
@@ -93,7 +108,7 @@ public class PauseMenu
         FinalizarTodasAsAbas();
         Time.timeScale = 1;
         containerDoMenuDePause.SetActive(false);
-        EventAgregator.Publish(new StandardSendGameEvent(EventKey.exitPause));
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.exitPause,estadoAoPausar));
         EventAgregator.RemoveListener(EventKey.returnToMainMenu, OnReturnToMainMenu);
     }
 
@@ -182,7 +197,7 @@ public class PauseMenu
                 }
                 break;
             case EstadoDaqui.emblemasAberto:
-                menuOE.Update();
+                menuOE.Update(estadoAoPausar==EstadoDePersonagem.inCheckPoint);
             break;
         }
     }

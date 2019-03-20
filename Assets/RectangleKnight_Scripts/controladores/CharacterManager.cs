@@ -25,8 +25,6 @@ public class CharacterManager : MonoBehaviour
 #pragma warning restore 0649
     #endregion
 
-    private EstadoDePersonagem estadoGuardao;
-
     public Controlador Control { get => GlobalController.g.Control;}
     public DadosDoJogador Dados { get => dados; set => dados = value; }
     public EstadoDePersonagem Estado { get => estado; private set => estado = value; }
@@ -81,12 +79,12 @@ public class CharacterManager : MonoBehaviour
 
     private void OnExitPause(IGameEvent obj)
     {
-        estado = estadoGuardao;
+        StandardSendGameEvent ssge = (StandardSendGameEvent)obj;
+        estado = (EstadoDePersonagem)ssge.MyObject[0];
     }
 
     private void OnEnterPause(IGameEvent e)
     {
-        estadoGuardao = estado;
         estado = EstadoDePersonagem.parado;
     }
 

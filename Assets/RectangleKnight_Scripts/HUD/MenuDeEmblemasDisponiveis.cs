@@ -4,22 +4,35 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class MenuDeEmblemasDisponiveis : UiDeOpcoes
+public class MenuDeEmblemasDisponiveis : MenusDeEmblemabase
 {
 
     public void IniciarHud()
     {
-        IniciarHUD(25, TipoDeRedimensionamento.emGrade);
+        DadosDoJogador dj = GameController.g.Manager.Dados;
+
+        IniciarHUD(dj.MeusEmblemas.Count, TipoDeRedimensionamento.emGrade);
     }
 
     public override void SetarComponenteAdaptavel(GameObject G, int indice)
     {
-        
+        UmaOpcaoDeImage uma = G.GetComponent<UmaOpcaoDeImage>();
+
+        Emblema E = GameController.g.Manager.Dados.MeusEmblemas[indice];
+        Texture2D t2d = (Texture2D)Resources.Load(E.NomeId.ToString());
+        Sprite S = Sprite.Create(t2d, new Rect(0, 0, t2d.width, t2d.height), t2d.texelSize);
+
+        uma.SetarOpcoes(S);
+
+        if(E.EstaEquipado)
+            uma.ImgDoEncaixado.gameObject.SetActive(true);
+        else
+            uma.ImgDoEncaixado.gameObject.SetActive(false);
     }
 
     protected override void FinalizarEspecifico()
     {
-        
+
     }
 
     int LineCellCount()
@@ -40,6 +53,8 @@ public class MenuDeEmblemasDisponiveis : UiDeOpcoes
 
     public override void MudarOpcao()
     {
+        int opcaoEscolhidaAnterior = OpcaoEscolhida;
+
         int quanto = -LineCellCount() * CommandReader.ValorDeGatilhos("VDpad", GameController.g.Manager.Control);
 
         if (quanto == 0)
@@ -49,5 +64,23 @@ public class MenuDeEmblemasDisponiveis : UiDeOpcoes
             quanto = CommandReader.ValorDeGatilhos("HDpad", GameController.g.Manager.Control) + CommandReader.ValorDeGatilhos("horizontal", GameController.g.Manager.Control);
 
         MudarOpcaoComVal(quanto, LineCellCount());
+
+        if (quanto != 0)
+        {
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.UiDeEmblemasChange, "disponivel",
+                VerificaMudouDepainel(quanto, opcaoEscolhidaAnterior), OpcaoEscolhida));
+        }
+    }
+
+    bool VerificaMudouDepainel(int quanto,int opcaoEscolhidaAnterior)
+    {
+        bool retorno = false;
+
+        if (opcaoEscolhidaAnterior + quanto != OpcaoEscolhida && Mathf.Abs(quanto) > 1)
+        {
+            SelecionarOpcaoEspecifica(opcaoEscolhidaAnterior);
+            retorno = true;
+        }
+        return retorno;
     }
 }

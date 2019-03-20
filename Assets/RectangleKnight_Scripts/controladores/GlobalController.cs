@@ -12,6 +12,7 @@ public class GlobalController : MonoBehaviour
     [SerializeField] private MusicaDeFundo musica;
     [SerializeField] private MyFadeView fadeV;
     [SerializeField] private PainelDeConfirmacao confirmacao;
+    [SerializeField] private PainelUmaMensagem umaMensagem;
     [SerializeField] private Controlador control = Controlador.Android;
     [SerializeField] private ContainerDeDadosDeCena sceneDates;
     [SerializeField] private bool emTeste = true;
@@ -23,6 +24,8 @@ public class GlobalController : MonoBehaviour
     public Controlador Control { get => control; }
 
     public PainelDeConfirmacao Confirmacao { get => confirmacao;}
+
+    public PainelUmaMensagem UmaMensagem { get => umaMensagem; }
 
     public MyFadeView FadeV { get => fadeV; }
 

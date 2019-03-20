@@ -44,15 +44,15 @@ public abstract class UiDeOpcoes
 
             if (i == OpcaoEscolhida)
             {
-                
-                //if (GameController.g != null)
+                ColocarDestaqueNoSelecionado(G.GetComponent<UmaOpcao>());
+                /*if (GameController.g != null)
                   //  G.GetComponent<UmaOpcao>().SpriteDoItem.sprite = GameController.g.El.UiDestaque;
                 //else
                 {
                     Color C;
                     ColorUtility.TryParseHtmlString("#FFFFFFFF", out C);
                     G.GetComponent<UmaOpcao>().SpriteDoItem.color = C;
-                }
+                }*/
                         
 
             }
@@ -71,14 +71,47 @@ public abstract class UiDeOpcoes
 
     }
 
-    
     void AgendaScrollPos()
     {
         if (GlobalController.g)
             GlobalController.g.StartCoroutine(ScrollPos());
         
     }
-    
+
+    void VerificarDestaque(UmaOpcao[] umaS)
+    {
+        for (int i = 0; i < umaS.Length; i++)
+        {
+            if (i == OpcaoEscolhida)
+            {
+                ColocarDestaqueNoSelecionado(umaS[i]);
+            }
+            else
+            {
+                RetirarDestaqueDoSelecionado(umaS[i]);
+            }
+        }
+    }
+
+    public void RetirarTodosOsDestaques(UmaOpcao[] umaS)
+    {
+        for (int i = 0; i < umaS.Length; i++)
+        {
+            RetirarDestaqueDoSelecionado(umaS[i]);
+        }
+    }
+
+    public virtual void RetirarDestaqueDoSelecionado(UmaOpcao uma)
+    {
+        uma.SpriteDoItem.color = new Color(1, 1, 1, 0);
+    }
+
+    public virtual void ColocarDestaqueNoSelecionado(UmaOpcao uma)
+    {
+        Color C;
+        ColorUtility.TryParseHtmlString("#ffffffFF", out C);
+        uma.SpriteDoItem.color = C;
+    }
 
     public void MudarOpcaoComVal(int quanto,int rowCellCount = -1)
     {
@@ -101,23 +134,7 @@ public abstract class UiDeOpcoes
                     OpcaoEscolhida = umaS.Length - 1;
             }
 
-            for (int i = 0; i < umaS.Length; i++)
-            {
-                if (i == OpcaoEscolhida)
-                {
-                    Color C;
-                    ColorUtility.TryParseHtmlString("#ffffffFF", out C);
-                    umaS[i].GetComponent<UmaOpcao>().SpriteDoItem.color = C;
-                }
-                else
-                {
-                   // Color C;
-                    //ColorUtility.TryParseHtmlString("##B61B1B00", out C);
-                    umaS[i].GetComponent<UmaOpcao>().SpriteDoItem.color = new Color(1,1,1,0);
-                }
-
-                   
-            }
+            VerificarDestaque(umaS);
 
             if (sr != null)
                 if (sr.verticalScrollbar || sr.horizontalScrollbar)
@@ -165,10 +182,10 @@ public abstract class UiDeOpcoes
         MudarOpcaoComVal(VerificaMudarOpcao());
     }
 
-    public virtual void MudarOpcao_H()
+    public virtual void MudarOpcao_H(bool negativar = false)
     {
 
-        MudarOpcaoComVal(VerificaMudarOpcao(false));
+        MudarOpcaoComVal((negativar?-1:1)*VerificaMudarOpcao(false));
     }
 
     void AjeitaScroll(UmaOpcao[] umaS,int rowCellCount)
@@ -179,25 +196,45 @@ public abstract class UiDeOpcoes
         
     }
 
+    public void SelecionarOpcaoEspecifica(int qual)
+    {
+        OpcaoEscolhida = qual;
+        UmaOpcao uma = painelDeTamanhoVariavel.GetChild(qual + 1).GetComponent<UmaOpcao>();
+        ColocarDestaqueNoSelecionado(uma);
+    }
+
     protected virtual IEnumerator MovendoScroll(UmaOpcao[] umaS, int rowCellCount)
     {
-        yield return new WaitForEndOfFrame();//WaitForSecondsRealtime(0.01f);
+      
+        yield return new WaitForSecondsRealtime(0.01f);
+        yield return new WaitForEndOfFrame();
 
         int val = (rowCellCount==-1)?umaS.Length: Mathf.CeilToInt((float)umaS.Length / rowCellCount);
         int opc = OpcaoEscolhida /( (rowCellCount==-1)?1:rowCellCount);
         
         contadorDeTempo += 0.01f;
         float destiny = Mathf.Clamp((float)(val - opc-1) / Mathf.Max(val-1, 1), 0, 1);
-        
 
-        sr.verticalScrollbar.value = Mathf.Lerp(sr.verticalScrollbar.value,
-            destiny, contadorDeTempo / TEMPO_DE_SCROLL);
-        
-        if (sr.verticalScrollbar.value != destiny)  
-            if (GlobalController.g)
-            {
-                GlobalController.g.StartCoroutine(MovendoScroll(umaS, rowCellCount));
-            }
+        Scrollbar s = null;
+        if (sr != null)
+        {
+            if (sr.verticalScrollbar != null)
+                s = sr.verticalScrollbar;
+            else if (sr.horizontalScrollbar != null)
+                s = sr.horizontalScrollbar;
+        }
+
+        if (s != null)
+        {
+            s.value = Mathf.Lerp(s.value,
+                destiny, contadorDeTempo / TEMPO_DE_SCROLL);
+
+            if (s.value != destiny)
+                if (GlobalController.g)
+                {
+                    GlobalController.g.StartCoroutine(MovendoScroll(umaS, rowCellCount));
+                }
+        }
 
         GlobalController.g.StartCoroutine(MovendoScroll(umaS, rowCellCount));
     }

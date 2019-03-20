@@ -98,5 +98,8 @@ public enum EventKey
     changeMoneyAmount,
     getCoinBag,
     enterPause,
-    exitPause
+    exitPause,
+    UiDeEmblemasChange,
+    triedToChangeEmblemNoSuccessfull,
+    requestReturnToEmblemMenu
 }

@@ -88,7 +88,11 @@ public enum ChaveDeTexto
     certezaDeletarJogo,
     menuDePause,
     androidUpdateMenu,
-    androidUpdateInfo
+    androidUpdateInfo,
+    emblemasTitle,
+    emblemasInfo,
+    frasesDeEmblema,
+    nomeDeEmblemas
 }
 
 public enum ChaveDeTextoDosUpdates
