@@ -10,11 +10,11 @@ public class DisparaTexto
 
 #pragma warning disable 0649
     [SerializeField] private RectTransform painelDaMens;
-    [SerializeField] private GameObject painelDaPressa;
+ //   [SerializeField] private GameObject painelDaPressa;
 #pragma warning restore 0649
 
     private Text textoDaUI;
-    private Image img;
+    //private Image img;
 
     private Vector2 posOriginal;
     private FasesDaMensagem fase = FasesDaMensagem.caixaIndo;
@@ -22,8 +22,6 @@ public class DisparaTexto
     private string texto = "";
     private float contadorDeTempo = 0;
     private bool dispara = false;
-    private int indiceDaConversa = 0;
-
     private const float tempoDeIreVir = .25f;
 
 
@@ -36,46 +34,41 @@ public class DisparaTexto
         caixaSaiu
     }
 
-    public int IndiceDaConversa
-    {
-        get { return indiceDaConversa; }
-        set { indiceDaConversa = value; }
-    }
+    public int IndiceDaConversa { get; set; } = 0;
 
     public void IniciarDisparadorDeTextos(bool pressa = false)
     {
-
-        painelDaPressa.SetActive(pressa);
+        //painelDaPressa.SetActive(pressa);
 
         dispara = false;
         SetarComponetes();
-        indiceDaConversa = 0;
+        IndiceDaConversa = 0;
     }
 
-    public bool UpdateDeTextos(string[] conversa, Sprite foto = null)
+    public bool UpdateDeTextos(string[] conversa/*, Sprite foto = null*/)
     {
-        if (indiceDaConversa < conversa.Length)
+        if (IndiceDaConversa < conversa.Length)
         {
-            Dispara(conversa[indiceDaConversa], foto);
+            Dispara(conversa[IndiceDaConversa]/*, foto*/);
         }
         else
         {
-            painelDaPressa.SetActive(false);
+            //painelDaPressa.SetActive(false);
             return true;
         }
 
         if (LendoMensagem() == FasesDaMensagem.caixaSaiu)
         {
-            indiceDaConversa++;
+            IndiceDaConversa++;
         }
 
 
-        if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
+        if (ActionManager.ButtonUp(0, GameController.g.Manager.Control)||Input.GetMouseButtonDown(0))
         {
             Toque();
         }
 
-        if (ActionManager.ButtonUp(1, GameController.g.Manager.Control) && painelDaPressa.activeSelf)
+        if (ActionManager.ButtonUp(1, GameController.g.Manager.Control)/* && painelDaPressa.activeSelf*/)
         {
             ActionManager.useiCancel = true;
             DesligarPaineis();
@@ -87,16 +80,17 @@ public class DisparaTexto
 
     void SetarComponetes()
     {
+       
         if (textoDaUI == null)
         {
             textoDaUI = painelDaMens.GetComponentInChildren<Text>();
-            img = painelDaMens.transform.GetChild(1).GetComponent<Image>();
+            //img = painelDaMens.transform.GetChild(1).GetComponent<Image>();
 
             posOriginal = painelDaMens.anchoredPosition;
         }
     }
 
-    public void Dispara(string texto, Sprite sDaFoto = null)
+    public void Dispara(string texto/*, Sprite sDaFoto = null*/)
     {
         if (!dispara)
         {
@@ -105,12 +99,13 @@ public class DisparaTexto
             painelDaMens.gameObject.SetActive(true);
             painelDaMens.anchoredPosition = new Vector2(posOriginal.x, Screen.height);
             textoDaUI.text = "";
+            /*
             if (sDaFoto != null)
             {
                 img.sprite = sDaFoto;
             }
             else
-                img.enabled = false;
+                img.enabled = false;*/
 
             fase = FasesDaMensagem.caixaIndo;
             this.texto = texto;
@@ -122,7 +117,7 @@ public class DisparaTexto
     {
         if (LendoMensagem() != FasesDaMensagem.mensagemCheia)
         {
-            if (ActionManager.ButtonUp(0, GameController.g.Manager.Control))
+            if (ActionManager.ButtonUp(0, GameController.g.Manager.Control)||Input.GetMouseButtonDown(0))
             {
                 Toque();
             }
@@ -205,7 +200,7 @@ public class DisparaTexto
             case FasesDaMensagem.caixaSaindo:
                 dispara = false;
                 fase = FasesDaMensagem.caixaSaiu;
-                indiceDaConversa++;
+                IndiceDaConversa++;
             break;
                 /*
                 EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, SoundEffectID.Book1.ToString(), EventKey.disparaSom));
@@ -218,13 +213,13 @@ public class DisparaTexto
     public void ReligarPaineis()
     {
         dispara = false;
-        indiceDaConversa = 0;
+        IndiceDaConversa = 0;
         painelDaMens.gameObject.SetActive(true);
     }
 
     public void DesligarPaineis()
     {
-        painelDaPressa.SetActive(false);
+        //painelDaPressa.SetActive(false);
         painelDaMens.gameObject.SetActive(false);
     }
 }

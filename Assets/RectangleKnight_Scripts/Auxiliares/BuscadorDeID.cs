@@ -19,8 +19,9 @@ public class BuscadorDeID
             foi = e.commandName == "Duplicate" || e.commandName == "Paste";
         }
 
-        if ((ID == "0" || ID == "" || foi) && m.gameObject.scene.name != null)
+        if ((ID == "0" || ID == "" || foi) && m.gameObject.scene.name != null && m.gameObject.scene.name!=m.gameObject.name)
         {
+            Debug.Log(m.gameObject.scene.name);
 
             ID = m.GetInstanceID() + "_" + m.gameObject.scene.name;
             SetUniqueIdProperty(m, ID, "ID");

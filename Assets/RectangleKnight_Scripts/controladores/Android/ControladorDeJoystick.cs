@@ -57,6 +57,24 @@ public class ControladorDeJoystick : MonoBehaviour, IDragHandler, IPointerUpHand
             bgImage.rectTransform.position = bgImageStartPosition; 
         }
 
+        EventAgregator.AddListener(EventKey.inicializaDisparaTexto, OnStartTalk);
+        EventAgregator.AddListener(EventKey.finalizaDisparaTexto, OnFinishTalk);
+    }
+
+    private void OnDestroy()
+    {
+        EventAgregator.RemoveListener(EventKey.inicializaDisparaTexto, OnStartTalk);
+        EventAgregator.RemoveListener(EventKey.finalizaDisparaTexto, OnFinishTalk);
+    }
+
+    void OnFinishTalk(IGameEvent e)
+    {
+        transform.parent.gameObject.SetActive(true);
+    }
+
+    void OnStartTalk(IGameEvent e)
+    {
+        transform.parent.gameObject.SetActive(false);
     }
 
     public void OnDrag(PointerEventData ped)

@@ -14,6 +14,7 @@ public class ListaDeTextosPT_BR
 
                 ColocaTextos(ref txt, TextosChaveEmPT_BR.txt);
                 ColocaTextos(ref txt, TextosDosUpdatesPT_BR.txt);
+                ColocaTextos(ref txt, ConversasDaArea1PT_BR.txt);
                 /*
                 ColocaTextos(ref txt, TextosDeBarreirasPT_BR.txt);
                 ColocaTextos(ref txt, TextosDaCavernaInicialPT_BR.txt);

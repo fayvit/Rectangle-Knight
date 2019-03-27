@@ -20,9 +20,10 @@ public abstract class AtivadorDeBotao : MonoBehaviour
     {
        // GameController.EntrarNoFluxoDeTexto();
 
+        /*
         GameController.g.Manager.transform.rotation = Quaternion.LookRotation(
             Vector3.ProjectOnPlane(transform.position - GameController.g.Manager.transform.position, Vector3.up));
-
+            */
 
         Update();
     }
@@ -36,8 +37,8 @@ public abstract class AtivadorDeBotao : MonoBehaviour
                 if (Vector3.Distance(GameController.g.Manager.transform.position, transform.position) < distanciaParaAcionar
                     &&
                     estaNoTrigger
-                   // &&
-                   // GameController.g.Manager.Estado == EstadoDePersonagem.aPasseio
+                    &&
+                    GameController.g.Manager.Estado == EstadoDePersonagem.aPasseio
                     &&
                     ActionManager.PodeVisualizarEste(this)
                   //  &&

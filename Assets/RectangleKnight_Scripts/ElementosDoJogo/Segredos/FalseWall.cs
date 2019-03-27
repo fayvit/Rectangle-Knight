@@ -19,7 +19,6 @@ public class FalseWall : MonoBehaviour
     {
         emEspera,
         fade
-        
     }
 
     private void OnValidate()
@@ -55,7 +54,7 @@ public class FalseWall : MonoBehaviour
                     myTile.color = new Color(C.r, C.g, C.b, (TEMPO_DA_DESTRUICAO - tempoDecorrido) / TEMPO_DA_DESTRUICAO);
                 }
                 else
-                    Destroy(gameObject);
+                    Destroy(gameObject,4);
             break;
         }
     }

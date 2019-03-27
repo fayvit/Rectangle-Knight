@@ -80,6 +80,7 @@ public class MudeCena : MonoBehaviour
         Time.timeScale = 1;
 
         GameController.g.Manager.transform.position = posAlvo;
+        GameController.g.VerifiqueDinheiroCaido(GameController.g.Manager.Dados.DinheiroCaido);
         GlobalController.g.FadeV.IniciarFadeInComAction(OnFadeInComplete);
         FindObjectOfType<Camera2D>().AposMudarDeCena(posAlvo + new Vector3(0, 0, -10));
     }

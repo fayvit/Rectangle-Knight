@@ -101,5 +101,13 @@ public enum EventKey
     exitPause,
     UiDeEmblemasChange,
     triedToChangeEmblemNoSuccessfull,
-    requestReturnToEmblemMenu
+    requestReturnToEmblemMenu,
+    abriuPainelSuspenso,
+    fechouPainelSuspenso,
+    requestInfoEmblemPanel,
+    getEmblem,
+    getHexagon,
+    getPentagon,
+    finalizaDisparaTexto,
+    inicializaDisparaTexto
 }

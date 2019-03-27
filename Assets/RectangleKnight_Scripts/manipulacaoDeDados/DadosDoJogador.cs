@@ -28,6 +28,7 @@ public class DadosDoJogador : DadosDoPersonagem
     public int PartesDePentagonosObtidas { get; set; } = 0;
     public int HexagonosCompletados { get; set; } = 0;
     public int PentagonosCompletados { get; set; } = 0;
+    public SwordColor CorDeEspadaSelecionada { get; set; } = SwordColor.grey;
 
     public List<Emblema> MeusEmblemas{get;set;} = new List<Emblema>() { new Emblema(NomesEmblemas.dinheiroMagnetico,1),
         new Emblema(NomesEmblemas.dinheiroMagnetico,1),
@@ -41,6 +42,16 @@ public class DadosDoJogador : DadosDoPersonagem
         nomesDasCenas = new NomesCenas[1] { NomesCenas.TutoScene},
         Pos = new Vector3(-8, -2, 0)
     };
+
+    public void SomaHexagono()
+    {
+        PartesDeHexagonoObtidas++;
+    }
+
+    public void SomaPentagono()
+    {
+        PartesDePentagonosObtidas++;
+    }
 
 }
 

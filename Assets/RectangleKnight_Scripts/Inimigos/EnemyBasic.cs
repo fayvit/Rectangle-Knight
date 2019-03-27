@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBasic : EnemyBase
+public class EnemyBasic : TargedEnemy
 {
     [SerializeField] private float tempoEsperando = .75f;
-    [SerializeField] private float tempoDeDeslocamento = 1.25f;
+    [SerializeField] private float velocidadeDoDeslocamento = 1.25f;
 
-#pragma warning disable 0649
-    [SerializeField] private Transform[] movePoints;
-#pragma warning restore 0649
-
-    private int moveTarget = 0;
-    private Vector3 previousMoveTarget;
+    private float distanciaDeDeslocamento = 1;
     private float tempoDecorrido = 0;
     private FasesDaMovimentacao fase = FasesDaMovimentacao.esperandoMove;
 
@@ -24,7 +19,7 @@ public class EnemyBasic : EnemyBase
 
     protected override void Start()
     {
-        previousMoveTarget = transform.position;
+        PreviousMoveTarget = transform.position;
         base.Start();
         
     }
@@ -37,15 +32,18 @@ public class EnemyBasic : EnemyBase
             case FasesDaMovimentacao.esperandoMove:
                 if (tempoDecorrido > tempoEsperando)
                 {
+                    distanciaDeDeslocamento = Vector3.Distance(PreviousMoveTarget, MovePoints[MoveTarget].position);
                     fase = FasesDaMovimentacao.move;
+
                     tempoDecorrido = 0;
                 }
             break;
             case FasesDaMovimentacao.move:
-                if(movePoints.Length>0)
-                    transform.position = Vector3.Lerp(previousMoveTarget,movePoints[moveTarget].position,tempoDecorrido/tempoDeDeslocamento);
+                if(MovePoints.Length>0)
+                    transform.position = Vector3.Lerp(PreviousMoveTarget,MovePoints[MoveTarget].position,
+                        tempoDecorrido * velocidadeDoDeslocamento / distanciaDeDeslocamento);
 
-                if (tempoDecorrido > tempoDeDeslocamento)
+                if (tempoDecorrido * velocidadeDoDeslocamento > distanciaDeDeslocamento)
                 {
                     fase = FasesDaMovimentacao.esperandoMove;
                     tempoDecorrido = 0;
@@ -54,15 +52,6 @@ public class EnemyBasic : EnemyBase
             break;
         }
 
-        void TrocaMoveTarget()
-        {
-            if (movePoints.Length > 0)
-                previousMoveTarget = movePoints[moveTarget].position;
-
-            if (movePoints.Length > moveTarget + 1)
-                moveTarget++;
-            else
-                moveTarget = 0;
-        }
+        
     }
 }

@@ -21,17 +21,25 @@ public class Camera2D : MonoBehaviour
     private Vector3 ultimaPosicaoDoAlvo;
     private Vector3 velocidadeDeReferencia;
     private Vector3 posicaoDeOlharFrente;
+    private float wordWidthOfScreen;
+    private float wordheightOfScreen;
 
     // Use this for initialization
     void Start()
     {
         Camera cam = GetComponent<Camera>();
+        Vector3 V1 = cam.ViewportToWorldPoint(Vector3.zero);
+        Vector3 V2 = cam.ScreenToWorldPoint(new Vector3(Screen.width/2,Screen.height/2,0));
+        wordWidthOfScreen = V2.x - V1.x;
+        wordheightOfScreen = V2.y - V1.y;
+
         fatorCima = 0;// Vector3.Distance(cam.ScreenPointToRay(Vector3.zero).origin, cam.ScreenPointToRay(new Vector3(0, cam.pixelHeight, 0)).origin)/4;
         
         ultimaPosicaoDoAlvo = alvo.position;
         distanciaZ = (transform.position - alvo.position).z;
         transform.parent = null;
 
+        
 
         EventAgregator.AddListener(EventKey.requestToFillDates, OnRequestFillDates);
     }
@@ -64,11 +72,22 @@ public class Camera2D : MonoBehaviour
         SetarLimitantes();
     }
 
+    DadosDeCena.LimitantesDaCena CalcularLimitantes(DadosDeCena c)
+    {
+        return new DadosDeCena.LimitantesDaCena()
+        {
+            xMin = c.limitantes.xMin + (int)wordWidthOfScreen,
+            xMax = c.limitantes.xMax - (int)wordWidthOfScreen,
+            yMin = c.limitantes.yMin + (int)wordheightOfScreen,
+            yMax = c.limitantes.yMax - (int)wordheightOfScreen
+        };
+    }
+
     void SetarLimitantes()
     {
         DadosDeCena c = GlobalController.g.SceneDates.GetCurrentSceneDates();
 
-        limitantes = c?.limitantes;
+        limitantes = c!=null?CalcularLimitantes(c):null;
 
         if (limitantes != null)
             useLimitsCam = true;

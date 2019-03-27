@@ -370,7 +370,11 @@ public enum NomesCenas
 {
     nula = 0,
     TutoScene,
-    GreyScaleScene
+    GreyScaleScene,
+    FirstCheckPointZone,
+    AcampamentoDosRejeitados,
+    primeiroSubsolo,
+    descidaDasProfundezas
 }
 
 public enum NomesCenasEspeciais
@@ -379,5 +383,5 @@ public enum NomesCenasEspeciais
     valorDefaultNoZero,
     ComunsDeFase,
     CenaDeCarregamento,
-    menuInicial
+    menuInicial    
 }

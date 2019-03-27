@@ -8,9 +8,10 @@ public class GameController : MonoBehaviour
     public static GameController g;
 
     #region inspector
-    [SerializeField] private DisparaTexto dispataT;
+    [SerializeField] private DisparaTexto disparaT;
     [SerializeField] private PauseMenu pauseM = default;
     [SerializeField] private GameObject sacoDeDinheiro = default;
+    [SerializeField] private PainelUmaMensagem painelDeInfoEmblema = default;
     #endregion
 
     private EstadoDoJogo estado = EstadoDoJogo.emGame;
@@ -24,6 +25,7 @@ public class GameController : MonoBehaviour
     public KeyVar MyKeys { get; private set; } = new KeyVar();
 
     public CharacterManager Manager { get; set; }
+    public DisparaTexto DisparaT { get => disparaT; set => disparaT = value; }
 
     private void Awake()
     {
@@ -51,6 +53,11 @@ public class GameController : MonoBehaviour
         EventAgregator.AddListener(EventKey.requestChangeShiftKey, OnRequestChangeShiftKey);
         EventAgregator.AddListener(EventKey.enterPause, OnEnterPause);
         EventAgregator.AddListener(EventKey.exitPause, OnExitPause);
+        EventAgregator.AddListener(EventKey.requestInfoEmblemPanel, OnRequestInfoEmbelmPanel);
+
+        disparaT.IniciarDisparadorDeTextos();
+        MyKeys.MudaShift(KeyShift.sempretrue, true);
+
     }
 
     private void OnDestroy()
@@ -62,6 +69,14 @@ public class GameController : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.requestChangeShiftKey, OnRequestChangeShiftKey);
         EventAgregator.RemoveListener(EventKey.enterPause, OnEnterPause);
         EventAgregator.RemoveListener(EventKey.exitPause, OnExitPause);
+        EventAgregator.RemoveListener(EventKey.requestInfoEmblemPanel, OnRequestInfoEmbelmPanel);
+    }
+
+    private void OnRequestInfoEmbelmPanel(IGameEvent e)
+    {
+        SendMethodEvent sme = (SendMethodEvent)e;
+
+        painelDeInfoEmblema.ConstroiPainelUmaMensagem(sme.Acao);
     }
 
     private void OnExitPause(IGameEvent obj)
@@ -111,16 +126,25 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            DinheiroCaido d = S.Dados.DinheiroCaido;
+            VerifiqueDinheiroCaido(S.Dados.DinheiroCaido);
 
-            if (d.estaCaido 
-                && 
-                UnityEngine.SceneManagement.SceneManager.GetActiveScene().name==S.VariaveisChave.CenaAtiva.ToString())
-            {
-               GameObject G = Instantiate(sacoDeDinheiro,MelhoraPos.NovaPos(d.Pos,2.5f),Quaternion.identity);
-                G.SetActive(true);
-            }
             MyKeys = S.VariaveisChave;
+        }
+        
+    }
+
+    public void VerifiqueDinheiroCaido(DinheiroCaido d)
+    {
+        
+
+        Debug.Log(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + " : " + d.cenaOndeCaiu.ToString());
+
+        if (d.estaCaido
+            &&
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == d.cenaOndeCaiu.ToString())
+        {
+            GameObject G = Instantiate(sacoDeDinheiro, MelhoraPos.NovaPos(d.Pos, 2.5f), Quaternion.identity);
+            G.SetActive(true);
         }
     }
 

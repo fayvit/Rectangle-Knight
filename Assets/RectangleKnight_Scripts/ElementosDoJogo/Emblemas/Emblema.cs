@@ -68,10 +68,32 @@ public class Emblema
     {
         get => BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.emblemasTitle)[(int)NomeId];
     }
+
+    public static Emblema GetEmblem(NomesEmblemas nome)
+    {
+        Emblema retorno = null;
+        switch (nome)
+        {
+            case NomesEmblemas.nulo:
+                Debug.LogError("o valor de emblema era nulo");
+            break;
+            case NomesEmblemas.dinheiroMagnetico:
+                retorno = new Emblema(nome,1);
+            break;
+            case NomesEmblemas.ataqueAprimorado:
+                retorno = new Emblema(nome, 2);
+            break;
+            default:
+                Debug.LogError("o valor de emblema não está no switch case");
+            break;
+        }
+        return retorno;
+    }
 }
 
 public enum NomesEmblemas
 {
     nulo,
-    dinheiroMagnetico
+    dinheiroMagnetico,
+    ataqueAprimorado
 }

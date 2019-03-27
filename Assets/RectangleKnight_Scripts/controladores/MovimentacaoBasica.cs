@@ -7,7 +7,7 @@ public class MovimentacaoBasica
 {
     [SerializeField] private float m_MaxSpeed = 10f;
     [SerializeField] private float m_JumpForce = 400f;
-    [SerializeField] private bool m_AirControl = false;
+    [SerializeField] private bool m_AirControl = true;
 #pragma warning disable 0649
     [SerializeField] private JumpManager myJump;
     [SerializeField] private bool jumpType;
@@ -32,6 +32,9 @@ public class MovimentacaoBasica
 
             for (int i = 0; i < colliders.Length; i++)
             {
+                if(transform.gameObject.name=="teste")
+                    Debug.Log(colliders[i].name);
+
                 if (colliders[i].gameObject != transform.gameObject)
                     noChao = true;
             }
@@ -48,7 +51,7 @@ public class MovimentacaoBasica
         myJump.IniciarCampos(m_Rigidbody2D);
     }
 
-    public void AplicadorDeMovimentos(Vector3 V,bool m_jump,bool temPuloDuplo)
+    public void AplicadorDeMovimentos(Vector3 V,bool m_jump = false,bool temPuloDuplo = false)
     {
         m_Grounded = false;
        // m_Jump = m_jump;
@@ -120,6 +123,11 @@ public class MovimentacaoBasica
             m_Rigidbody2D.AddForce(new Vector2(0f, 1.5f * m_JumpForce));
         else
             myJump.IniciaAplicaPulo(m_Rigidbody2D.transform.position.y);
+    }
+
+    public void ChangeSpeed(float newSpeed)
+    {
+        m_MaxSpeed = newSpeed;
     }
 
     public void GravityScaled(float val)

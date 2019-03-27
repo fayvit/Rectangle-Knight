@@ -28,6 +28,7 @@ public class CharacterManager : MonoBehaviour
     public Controlador Control { get => GlobalController.g.Control;}
     public DadosDoJogador Dados { get => dados; set => dados = value; }
     public EstadoDePersonagem Estado { get => estado; private set => estado = value; }
+    public int CorDaEspadaselecionada { get => atk.CorDeEspadaSelecionada; }
 
     // Start is called before the first frame update
     void Start()
@@ -52,8 +53,15 @@ public class CharacterManager : MonoBehaviour
         EventAgregator.AddListener(EventKey.checkPointLoad, OnCheckPointLoad);
         EventAgregator.AddListener(EventKey.getCoin, OnGetCoin);
         EventAgregator.AddListener(EventKey.getCoinBag, OnGetCoinBag);
-        EventAgregator.AddListener(EventKey.enterPause, OnEnterPause);
+        EventAgregator.AddListener(EventKey.enterPause, OnOpenExternalPanel);
         EventAgregator.AddListener(EventKey.exitPause, OnExitPause);
+        EventAgregator.AddListener(EventKey.abriuPainelSuspenso, OnOpenExternalPanel);
+        EventAgregator.AddListener(EventKey.fechouPainelSuspenso, OnCloseExternalPanel);
+        EventAgregator.AddListener(EventKey.getEmblem, OnGetEmblem);
+        EventAgregator.AddListener(EventKey.getHexagon, OnGetHexagon);
+        EventAgregator.AddListener(EventKey.getPentagon, OnGetPentagon);
+        EventAgregator.AddListener(EventKey.inicializaDisparaTexto, OnOpenExternalPanel);
+        EventAgregator.AddListener(EventKey.finalizaDisparaTexto, OnCloseExternalPanel);
 
 
         GameController.g.Manager = this;
@@ -73,8 +81,41 @@ public class CharacterManager : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.checkPointLoad, OnCheckPointLoad);
         EventAgregator.RemoveListener(EventKey.getCoin, OnGetCoin);
         EventAgregator.RemoveListener(EventKey.getCoinBag, OnGetCoinBag);
-        EventAgregator.RemoveListener(EventKey.enterPause, OnEnterPause);
+        EventAgregator.RemoveListener(EventKey.enterPause, OnOpenExternalPanel);
         EventAgregator.RemoveListener(EventKey.exitPause, OnExitPause);
+        EventAgregator.RemoveListener(EventKey.abriuPainelSuspenso, OnOpenExternalPanel);
+        EventAgregator.RemoveListener(EventKey.fechouPainelSuspenso, OnCloseExternalPanel);
+        EventAgregator.RemoveListener(EventKey.getEmblem, OnGetEmblem);
+        EventAgregator.RemoveListener(EventKey.getHexagon, OnGetHexagon);
+        EventAgregator.RemoveListener(EventKey.getPentagon, OnGetPentagon);
+        EventAgregator.RemoveListener(EventKey.inicializaDisparaTexto, OnOpenExternalPanel);
+        EventAgregator.RemoveListener(EventKey.finalizaDisparaTexto, OnCloseExternalPanel);
+    }
+
+    private void OnGetPentagon(IGameEvent e)
+    {
+        dados.SomaPentagono();
+    }
+
+    private void OnGetHexagon(IGameEvent e)
+    {
+        dados.SomaHexagono();
+    }
+
+    private void OnGetEmblem(IGameEvent e)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)e;
+        dados.MeusEmblemas.Add(Emblema.GetEmblem((NomesEmblemas)ssge.MyObject[0]));
+    }
+
+    private void OnCloseExternalPanel(IGameEvent e)
+    {
+        estado = EstadoDePersonagem.aPasseio;
+    }
+
+    private void OnOpenExternalPanel(IGameEvent e)
+    {
+        estado = EstadoDePersonagem.parado;
     }
 
     private void OnExitPause(IGameEvent obj)
@@ -83,10 +124,11 @@ public class CharacterManager : MonoBehaviour
         estado = (EstadoDePersonagem)ssge.MyObject[0];
     }
 
+    /*
     private void OnEnterPause(IGameEvent e)
     {
         estado = EstadoDePersonagem.parado;
-    }
+    }*/
 
     private void OnGetCoinBag(IGameEvent obj)
     {
@@ -236,12 +278,14 @@ public class CharacterManager : MonoBehaviour
             }
             else
             {
+                string nomeCena = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+                Debug.Log("cena onde dinehiro caiu: "+nomeCena);
                 dados.DinheiroCaido = new DinheiroCaido()
                 {
                     valor = dados.Dinheiro,
                     Pos = ssge.Sender.transform.position,
                     estaCaido = true,
-                    cenaOndeCaiu = GameController.g.MyKeys.CenaAtiva
+                    cenaOndeCaiu = StringParaEnum.ObterEnum <NomesCenas>(nomeCena)
                 };
 
                 dados.Dinheiro = 0;

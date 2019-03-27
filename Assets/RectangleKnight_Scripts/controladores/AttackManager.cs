@@ -9,8 +9,6 @@ public class AttackManager
     [SerializeField] private GameObject colisorDoAtaqueComum;
     [SerializeField] private GameObject colisorDoAtaquePraCima;
     [SerializeField] private GameObject colisorDoAtaquePrabaixo;
-#pragma warning restore 0649
-    private int corDeEspadaSelecionada = 0;
     private float tempoDecorrido = 0;
     private bool estouAtacando = false;
     private AttacksTipes tipo = AttacksTipes.neutro;
@@ -19,6 +17,8 @@ public class AttackManager
     private const float tempoDoAtaqueCimaBaixo = 0.25f;
     private const float tempoDoAtaquePraCIma = 0.2f;
     private const float INTERVALO_DE_ATAQUE = .12f;
+
+    public int CorDeEspadaSelecionada { get; private set; } = 0;
 
     private enum AttacksTipes
     {
@@ -32,7 +32,7 @@ public class AttackManager
     public void ChangeSwirdColor(int cor)
     {
         Color C = Color.white;
-        corDeEspadaSelecionada = cor;
+        CorDeEspadaSelecionada = cor;
 
         switch (cor)
         {
@@ -62,14 +62,14 @@ public class AttackManager
 
     public void ModificouCorDaEspada(int plus,DadosDoJogador dados)
     {
-        if (corDeEspadaSelecionada + plus < 5 && corDeEspadaSelecionada + plus > -1)
-            corDeEspadaSelecionada += plus;
-        else if (corDeEspadaSelecionada + plus >= 5)
-            corDeEspadaSelecionada = 0;
-        else if (corDeEspadaSelecionada + plus <= -1)
-            corDeEspadaSelecionada = 4;
+        if (CorDeEspadaSelecionada + plus < 5 && CorDeEspadaSelecionada + plus > -1)
+            CorDeEspadaSelecionada += plus;
+        else if (CorDeEspadaSelecionada + plus >= 5)
+            CorDeEspadaSelecionada = 0;
+        else if (CorDeEspadaSelecionada + plus <= -1)
+            CorDeEspadaSelecionada = 4;
 
-        switch (corDeEspadaSelecionada)
+        switch (CorDeEspadaSelecionada)
         {
             case 1:
                 if (!dados.EspadaAzul)
@@ -89,7 +89,7 @@ public class AttackManager
             break;
         }
 
-        ChangeSwirdColor(corDeEspadaSelecionada);
+        ChangeSwirdColor(CorDeEspadaSelecionada);
     }
 
     public void AttackIntervalUpdate()

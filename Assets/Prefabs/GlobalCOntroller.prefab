@@ -92,7 +92,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &289898104
 RectTransform:
   m_ObjectHideFlags: 0
@@ -728,8 +728,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: BotaoSim
+      - m_Target: {fileID: 289898105}
+        m_MethodName: BotaoEntendi
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1808,12 +1808,19 @@ MonoBehaviour:
     meusDados:
     - nomeDaCena: 1
       limitantes:
-        xMin: -4
-        xMax: 146
-        yMin: -39
-        yMax: 11
+        xMin: -18
+        xMax: 162
+        yMin: -48
+        yMax: 32
       bkColor: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 0}
-  emTeste: 1
+    - nomeDaCena: 3
+      limitantes:
+        xMin: 158
+        xMax: 210
+        yMin: -24
+        yMax: 1
+      bkColor: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 0}
+  emTeste: 0
 --- !u!114 &1598610332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1848,7 +1855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1239483708625586795
 RectTransform:
   m_ObjectHideFlags: 0

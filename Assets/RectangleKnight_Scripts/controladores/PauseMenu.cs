@@ -122,7 +122,10 @@ public class PauseMenu
         Time.timeScale = 1;
         containerDoMenuDePause.SetActive(false);
         EventAgregator.Publish(new StandardSendGameEvent(EventKey.exitPause,estadoAoPausar));
+
         EventAgregator.RemoveListener(EventKey.returnToMainMenu, OnReturnToMainMenu);
+        EventAgregator.RemoveListener(EventKey.triedToChangeEmblemNoSuccessfull, OnTriedEmblem);
+        EventAgregator.RemoveListener(EventKey.requestReturnToEmblemMenu, OnRequestEmblemMenu);
     }
 
     public void BtnPauseMenu()

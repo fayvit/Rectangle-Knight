@@ -4,15 +4,15 @@ using System.Collections;
 
 public class PainelUmaMensagem : MonoBehaviour
 {
-    public delegate void RetornarParaAntecessor();
-    public event RetornarParaAntecessor retornar;
+    
+    private System.Action retornar;
 
 #pragma warning disable 0649
     [SerializeField] private Text textoDaMensagem;
     [SerializeField] private Text textoDoBotao;
 #pragma warning restore 0649
     // Use this for initialization
-    public void ConstroiPainelUmaMensagem(RetornarParaAntecessor r, string textoDaMensagem)
+    public void ConstroiPainelUmaMensagem(System.Action r, string textoDaMensagem)
     {
         //ActionManager.ModificarAcao(transform, BotaoEntendi);
         gameObject.SetActive(true);
@@ -20,7 +20,7 @@ public class PainelUmaMensagem : MonoBehaviour
         retornar = r;
     }
 
-    public void ConstroiPainelUmaMensagem(RetornarParaAntecessor r)
+    public void ConstroiPainelUmaMensagem(System.Action r)
     {
         gameObject.SetActive(true);
         retornar = r;
@@ -44,6 +44,7 @@ public class PainelUmaMensagem : MonoBehaviour
 
     public void BotaoEntendi()
     {
+
         ActionManager.ModificarAcao(null, null);
         gameObject.SetActive(false);
         if (retornar != null)

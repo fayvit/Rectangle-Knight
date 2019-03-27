@@ -81,20 +81,6 @@ public enum idioma
     en_google
 }
 
-public enum ChaveDeTexto
-{
-    bomDia,
-    opcoesDeMenu,
-    certezaDeletarJogo,
-    menuDePause,
-    androidUpdateMenu,
-    androidUpdateInfo,
-    emblemasTitle,
-    emblemasInfo,
-    frasesDeEmblema,
-    nomeDeEmblemas
-}
-
 public enum ChaveDeTextoDosUpdates
 {
     movimentacao,
@@ -112,3 +98,23 @@ public enum ChaveDeTextoDosUpdates
     goldSword,
     redSword
 }
+
+public enum ChaveDeTexto
+{
+    bomDia,
+    opcoesDeMenu,
+    certezaDeletarJogo,
+    menuDePause,
+    androidUpdateMenu,
+    androidUpdateInfo,
+    emblemasTitle,
+    emblemasInfo,
+    frasesDeEmblema,
+    nomeDeEmblemas,//deve mudar
+    hexagonPentagonTips,
+    conhecendoTyron,
+    TyronSobreAsProfundezas,
+    tyronUmCaminhoEmFrente
+}
+
+

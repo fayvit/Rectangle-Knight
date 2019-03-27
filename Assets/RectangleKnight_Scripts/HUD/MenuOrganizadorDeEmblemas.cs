@@ -9,7 +9,6 @@ public class MenuOrganizadorDeEmblemas
     #region inspector
     [SerializeField] private MenuDeEmblemasDisponiveis emblemasD = default;
     [SerializeField] private MenuDeEncaixesDeEmblemas emblemasE = default;
-    [SerializeField] private PainelUmaMensagem painelDeInfoEmblema = default;
     [SerializeField] private Text numEncaixes = default;
     [SerializeField] private Text infoTitle = default;
     [SerializeField] private Text infoArea = default;
@@ -146,7 +145,8 @@ public class MenuOrganizadorDeEmblemas
         else
         {
             EventAgregator.Publish(new StandardSendGameEvent(EventKey.triedToChangeEmblemNoSuccessfull));
-            painelDeInfoEmblema.ConstroiPainelUmaMensagem(OnCheckPanel);
+            EventAgregator.Publish(new SendMethodEvent(EventKey.requestInfoEmblemPanel, OnCheckPanel));
+            //painelDeInfoEmblema.ConstroiPainelUmaMensagem(OnCheckPanel);
         }
     }
 
@@ -180,7 +180,8 @@ public class MenuOrganizadorDeEmblemas
         else
         {
             EventAgregator.Publish(new StandardSendGameEvent(EventKey.triedToChangeEmblemNoSuccessfull));
-            painelDeInfoEmblema.ConstroiPainelUmaMensagem(OnCheckPanel);
+            EventAgregator.Publish(new SendMethodEvent(EventKey.requestInfoEmblemPanel, OnCheckPanel));
+            //painelDeInfoEmblema.ConstroiPainelUmaMensagem(OnCheckPanel);
         }
     }
 

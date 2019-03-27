@@ -9,6 +9,7 @@ public class AtivadorDoCheckPoint : AtivadorDeBotao
     [SerializeField] private GameObject particles;
     [SerializeField] private GameObject standparticles;
     [SerializeField] private NomesCenas[] cenasparaLoad = new NomesCenas[1] { NomesCenas.TutoScene};
+    [SerializeField] private NomesCenas cenaAtivaNoLoad = NomesCenas.nula;
 #pragma warning restore 0649
 
     public override void FuncaoDoBotao()
@@ -25,7 +26,11 @@ public class AtivadorDoCheckPoint : AtivadorDeBotao
 
             EventAgregator.Publish(new StandardSendGameEvent(gameObject, EventKey.startCheckPoint,cenasparaLoad));
             SceneManager.LoadScene(NomesCenasEspeciais.ComunsDeFase.ToString());
-            SceneManager.LoadSceneAsync(NomesCenas.TutoScene.ToString(), LoadSceneMode.Additive);
+
+            for (int i = 0; i < cenasparaLoad.Length; i++)
+            {
+                SceneManager.LoadSceneAsync(cenasparaLoad[i].ToString(), LoadSceneMode.Additive);
+            }
             SceneManager.sceneLoaded += OnLoadedScene;
         }
     }
@@ -34,16 +39,20 @@ public class AtivadorDoCheckPoint : AtivadorDeBotao
     {
         if (arg0.name != NomesCenasEspeciais.ComunsDeFase.ToString())
         {
-            SceneManager.SetActiveScene(arg0);
-            SceneManager.sceneLoaded -= OnLoadedScene;
+            if (cenaAtivaNoLoad == NomesCenas.nula || arg0.name == cenaAtivaNoLoad.ToString())
+            {
+                SceneManager.SetActiveScene(arg0);
+                SceneManager.sceneLoaded -= OnLoadedScene;
 
-            //Debug.Log(SaveDatesManager.s.CurrentSaveDate);
+                //Debug.Log(SaveDatesManager.s.CurrentSaveDate);
 
-            GlobalController.g.StartCoroutine(AtivadorDoCheckPoint.FillDates());
+                GlobalController.g.StartCoroutine(AtivadorDoCheckPoint.FillDates());
+
+                
+            }
 
             FindObjectOfType<CharacterManager>().transform.position = SaveDatesManager.s.CurrentSaveDate.Posicao;
-            FindObjectOfType<Camera2D>().transform.position = SaveDatesManager.s.CurrentSaveDate.Posicao+new Vector3(0,0,-10);
-
+            FindObjectOfType<Camera2D>().transform.position = SaveDatesManager.s.CurrentSaveDate.Posicao + new Vector3(0, 0, -10);
         }
     }
 

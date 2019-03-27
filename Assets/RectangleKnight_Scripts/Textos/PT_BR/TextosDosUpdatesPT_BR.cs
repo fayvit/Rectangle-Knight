@@ -44,14 +44,16 @@ public class TextosDosUpdatesPT_BR {
             ChaveDeTexto.emblemasInfo,new List<string>()
             {
                 "Você pode adicionar emblemas na sua espada enquanto tiver encaixes disponiveis",
-                "As moedas deixadas pelos inimigos são atraidas pelo personagem"
+                "As moedas deixadas pelos inimigos são atraidas pelo personagem",
+                "Aumenta em 25% seu poder de ataque"
             }
         },
         {
             ChaveDeTexto.emblemasTitle,new List<string>()
             {
                 "Encaixe Disponivel",
-                "Dinheiro Magnetico"
+                "Dinheiro Magnetico",
+                "Ataque Aprimorado"
             }
         },
          {
@@ -63,6 +65,14 @@ public class TextosDosUpdatesPT_BR {
                 "Isso é um espaço vazio para inserir um emblema"
             }
         },
-
+         {
+            ChaveDeTexto.hexagonPentagonTips,new List<string>()
+            {
+                "Você coletou um fragmento de Hexagono",
+                "Ao completar o hexagono a barra de vida é aumentada",
+                "Você coletou um fragmento de Pentagono",
+                "Ao completar o pentagono a barra de magia é aumentada"
+            }
+        },
     };
 }
