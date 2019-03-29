@@ -36,15 +36,18 @@ public class PauseMenu
 
     public void IniciarMenuDePause()
     {
-        Time.timeScale = 0;
-        estadoAoPausar = GameController.g.Manager.Estado;
-        EventAgregator.Publish(new StandardSendGameEvent(EventKey.enterPause));
-        containerDoMenuDePause.SetActive(true);
-        IniciarQualMenu(qualMenu);
+        if (GameController.g.Manager.Estado != EstadoDePersonagem.derrotado)
+        {
+            Time.timeScale = 0;
+            estadoAoPausar = GameController.g.Manager.Estado;
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.enterPause));
+            containerDoMenuDePause.SetActive(true);
+            IniciarQualMenu(qualMenu);
 
-        EventAgregator.AddListener(EventKey.returnToMainMenu, OnReturnToMainMenu);
-        EventAgregator.AddListener(EventKey.triedToChangeEmblemNoSuccessfull, OnTriedEmblem);
-        EventAgregator.AddListener(EventKey.requestReturnToEmblemMenu, OnRequestEmblemMenu);
+            EventAgregator.AddListener(EventKey.returnToMainMenu, OnReturnToMainMenu);
+            EventAgregator.AddListener(EventKey.triedToChangeEmblemNoSuccessfull, OnTriedEmblem);
+            EventAgregator.AddListener(EventKey.requestReturnToEmblemMenu, OnRequestEmblemMenu);
+        }
     }
 
     private void OnRequestEmblemMenu(IGameEvent e)

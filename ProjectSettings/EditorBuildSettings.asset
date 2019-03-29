@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/descidaDasProfundezas.unity
     guid: d1eb7b9255a09804787f9288a084ab89
+  - enabled: 1
+    path: Assets/Scenes/zonaDosLosangulos.unity
+    guid: abaf313970acc914d8dda7c7e7b30938
   m_configObjects: {}

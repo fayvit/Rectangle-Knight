@@ -12,7 +12,8 @@ public class PainelPentagonoHexagono : PainelUmaMensagem
     public enum Forma
     {
         pentagono,
-        hexagono
+        hexagono,
+        naoForma
     }
 
     public void ConstroiPainelDosPentagonosOuHexagonos(System.Action r,Forma f)
@@ -24,11 +25,14 @@ public class PainelPentagonoHexagono : PainelUmaMensagem
             textoDaDescricao.text = s[1];
             imgDaqui.sprite = labelImages[GameController.g.Manager.Dados.PartesDeHexagonoObtidas];
         }
-        else
+        else if (f == Forma.pentagono)
         {
             ConstroiPainelUmaMensagem(r, s[2]);
             textoDaDescricao.text = s[3];
             imgDaqui.sprite = labelImages[GameController.g.Manager.Dados.PartesDePentagonosObtidas];
+        }
+        else {
+            ConstroiPainelUmaMensagem(r);
         }
     }
 }

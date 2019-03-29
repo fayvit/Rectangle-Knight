@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InimigoZigZag : CharacterBase
+public class InimigoZigZag : EnemyBase
 {
     [SerializeField] private float vel = 5;
-    [SerializeField] private int premioEmDinheiro = 4;
     private Vector3 moveDirection;
+    
 
     // Start is called before the first frame update
-    void Start()
+     protected override void Start()
     {
+        
+
         if (gameObject.layer == 11)
         {
             moveDirection = new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), 0);
@@ -21,10 +23,10 @@ public class InimigoZigZag : CharacterBase
                 moveDirection = new Vector3(1, 0, 0);
         }
 
-        EventAgregator.AddListener(EventKey.sendDamageForEnemy, OnReceivedDamageAmount);
+        base.Start();
     }
 
-    void OnReceivedDamageAmount(IGameEvent e)
+    protected override void OnReceivedDamageAmount(IGameEvent e)
     {
         StandardSendGameEvent ssge = (StandardSendGameEvent)e;
 
@@ -32,27 +34,15 @@ public class InimigoZigZag : CharacterBase
 
         if (gameObject.layer == 11 && e.Sender.transform.IsChildOf(transform))
         {
-            Dados.AplicaDano((int)ssge.MyObject[0]);
-
-            if (Dados.PontosDeVida <= 0)
-            {
-                SpawnMoedas.Spawn(transform.position, premioEmDinheiro);
-                
-                Destroy(gameObject);
-            }
+            AplicaDano((int)ssge.MyObject[0]);
         }
-    }
-
-    protected virtual void OnDestroy()
-    {
-        EventAgregator.RemoveListener(EventKey.sendDamageForEnemy, OnReceivedDamageAmount);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (gameObject.layer == 11)
-            transform.position += vel * moveDirection*Time.deltaTime;
+            transform.position += vel * moveDirection *Time.deltaTime;
 
         Debug.DrawRay(nPoint, preDir,Color.blue);
         Debug.DrawRay(nPoint, -antDir,Color.red);

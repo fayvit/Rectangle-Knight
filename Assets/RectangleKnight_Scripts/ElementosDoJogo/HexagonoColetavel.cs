@@ -65,7 +65,7 @@ public class HexagonoColetavel : AtivadorDeBotao
     {
         particulaDaAcao.SetActive(true);
 
-        if( (GameController.g.Manager.Dados.PartesDeHexagonoObtidas < 6&&!ePentagono)
+        if( (GameController.g.Manager.Dados.PartesDeHexagonoObtidas < 6 && !ePentagono)
             || (GameController.g.Manager.Dados.PartesDePentagonosObtidas < 6 && ePentagono))
         {
             StartCoroutine(PainelAoFimDoQuadro());

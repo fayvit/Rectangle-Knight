@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargedEnemy : EnemyBase
+public class TargedEnemy : NonRespawnOnLoadEnemy
 {
 
 #pragma warning disable 0649

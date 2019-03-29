@@ -181,5 +181,7 @@ public enum KeyShift
 
 public enum KeyCont
 {
-    nula = -1
+    nula = -1,
+    losangulosPegos,
+    losangulosConfirmados
 }

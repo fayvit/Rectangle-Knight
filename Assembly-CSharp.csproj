@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\BuscadorDeID.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\ContadorCiclico.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\DesativarRelativoAoContador.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\MelhoraPos.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\MyFadeView.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\PiscaInvunerabilidade.cs" />
@@ -93,18 +94,26 @@
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\SceneLoader.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\SoundEffectsManager.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\SwordColorManager.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\controladores\TeleportDamage.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\CofreDosLosangulos.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\ColetavelBasse.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Emblemas\Emblema.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Emblemas\EmblemaColetavel.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\EncaixeColetavel.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\HexagonoColetavel.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\LosanguloManager.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\MoedaDeDinheiro.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Perigos\DanoQueTelePorta.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Perigos\EstalactiteQueCai.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Perigos\EstalactiteTrigger.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Perigos\SendPositionTriggerChild.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\PorquinhoDeMoedas.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\SacoDeDinheiro.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\ActiveFalseForShift.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\CollorBarrage.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\DestructibleWithAttack.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\FalseWall.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\SouUmLosanguloGerenciavel.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\EventAgregator\EventAgregator.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\EventAgregator\IGameEvent.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\EventAgregator\SendMethodEvent.cs" />
@@ -148,9 +157,11 @@
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\AccelerateEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\EnemyBase.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\EnemyBasic.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\FlyingPursuerEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\InimigoZigZag.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\InvestEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\JumperStandardEnemy.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\NonRespawnOnLoadEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\RigidbodyMoveEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\TargedEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\manipulacaoDeDados\DadosDeCena.cs" />

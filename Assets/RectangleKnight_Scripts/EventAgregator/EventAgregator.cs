@@ -109,5 +109,10 @@ public enum EventKey
     getHexagon,
     getPentagon,
     finalizaDisparaTexto,
-    inicializaDisparaTexto
+    inicializaDisparaTexto,
+    cofreRequisitado,
+    getNotch,
+    changeTeleportPosition,
+    requestHideControllers,
+    requestShowControllers
 }

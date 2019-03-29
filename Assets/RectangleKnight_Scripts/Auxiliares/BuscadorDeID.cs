@@ -4,6 +4,7 @@ using System.Collections;
 
 #if UNITY_EDITOR
 using UnityEditor;
+using UnityEditor.Experimental.SceneManagement;
 #endif
 
 
@@ -19,7 +20,9 @@ public class BuscadorDeID
             foi = e.commandName == "Duplicate" || e.commandName == "Paste";
         }
 
-        if ((ID == "0" || ID == "" || foi) && m.gameObject.scene.name != null && m.gameObject.scene.name!=m.gameObject.name)
+        bool ePrefabStage = PrefabStageUtility.GetCurrentPrefabStage() != null;
+
+        if ((ID == "0" || ID == "" || foi) && m.gameObject.scene.name != null && !ePrefabStage)
         {
             Debug.Log(m.gameObject.scene.name);
 

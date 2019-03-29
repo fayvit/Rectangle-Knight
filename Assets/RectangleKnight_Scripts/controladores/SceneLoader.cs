@@ -374,7 +374,10 @@ public enum NomesCenas
     FirstCheckPointZone,
     AcampamentoDosRejeitados,
     primeiroSubsolo,
-    descidaDasProfundezas
+    descidaDasProfundezas,
+    zonaDosLosangulos,
+    hexagonoDabarreiraAzul,
+    area1ParaArea9
 }
 
 public enum NomesCenasEspeciais

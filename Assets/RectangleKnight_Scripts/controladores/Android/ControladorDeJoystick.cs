@@ -59,12 +59,16 @@ public class ControladorDeJoystick : MonoBehaviour, IDragHandler, IPointerUpHand
 
         EventAgregator.AddListener(EventKey.inicializaDisparaTexto, OnStartTalk);
         EventAgregator.AddListener(EventKey.finalizaDisparaTexto, OnFinishTalk);
+        EventAgregator.AddListener(EventKey.requestHideControllers, OnStartTalk);
+        EventAgregator.AddListener(EventKey.requestShowControllers, OnFinishTalk);
     }
 
     private void OnDestroy()
     {
         EventAgregator.RemoveListener(EventKey.inicializaDisparaTexto, OnStartTalk);
         EventAgregator.RemoveListener(EventKey.finalizaDisparaTexto, OnFinishTalk);
+        EventAgregator.RemoveListener(EventKey.requestHideControllers, OnStartTalk);
+        EventAgregator.RemoveListener(EventKey.requestShowControllers, OnFinishTalk);
     }
 
     void OnFinishTalk(IGameEvent e)

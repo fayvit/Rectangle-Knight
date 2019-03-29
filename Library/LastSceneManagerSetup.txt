@@ -1,19 +1,16 @@
 sceneSetups:
-- path: Assets/Scenes/TutoScene.unity
-  isLoaded: 0
-  isActive: 0
-- path: Assets/Scenes/FirstCheckPointZone.unity
-  isLoaded: 0
-  isActive: 0
-- path: Assets/Scenes/AcampamentoDosRejeitados.unity
+- path: Assets/Scenes/hexagonoDabarreiraAzul.unity
   isLoaded: 0
   isActive: 0
 - path: Assets/Scenes/ComunsDeFase.unity
   isLoaded: 1
   isActive: 0
+- path: Assets/Scenes/descidaDasProfundezas.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scenes/area1ParaArea9.unity
+  isLoaded: 1
+  isActive: 1
 - path: Assets/Scenes/primeiroSubsolo.unity
   isLoaded: 0
   isActive: 0
-- path: Assets/Scenes/descidaDasProfundezas.unity
-  isLoaded: 1
-  isActive: 1

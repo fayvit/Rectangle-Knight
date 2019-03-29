@@ -25,6 +25,8 @@ public class CharacterManager : MonoBehaviour
 #pragma warning restore 0649
     #endregion
 
+    private TeleportDamage tDamage = new TeleportDamage();
+
     public Controlador Control { get => GlobalController.g.Control;}
     public DadosDoJogador Dados { get => dados; set => dados = value; }
     public EstadoDePersonagem Estado { get => estado; private set => estado = value; }
@@ -62,6 +64,7 @@ public class CharacterManager : MonoBehaviour
         EventAgregator.AddListener(EventKey.getPentagon, OnGetPentagon);
         EventAgregator.AddListener(EventKey.inicializaDisparaTexto, OnOpenExternalPanel);
         EventAgregator.AddListener(EventKey.finalizaDisparaTexto, OnCloseExternalPanel);
+        EventAgregator.AddListener(EventKey.getNotch, OnGetNotch);
 
 
         GameController.g.Manager = this;
@@ -90,6 +93,12 @@ public class CharacterManager : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.getPentagon, OnGetPentagon);
         EventAgregator.RemoveListener(EventKey.inicializaDisparaTexto, OnOpenExternalPanel);
         EventAgregator.RemoveListener(EventKey.finalizaDisparaTexto, OnCloseExternalPanel);
+        EventAgregator.RemoveListener(EventKey.getNotch, OnGetNotch);
+    }
+
+    private void OnGetNotch(IGameEvent e)
+    {
+        dados.EspacosDeEmblemas++;
     }
 
     private void OnGetPentagon(IGameEvent e)
@@ -275,9 +284,17 @@ public class CharacterManager : MonoBehaviour
             {
                 piscaI.Start(1);
                 estado = EstadoDePersonagem.emDano;
+
+                if (ssge.MyObject.Length > 2)
+                {
+                    tDamage.agendado = true;
+                    tDamage.pos = (Vector3)ssge.MyObject[2];
+                }
             }
             else
             {
+                EventAgregator.Publish(EventKey.requestHideControllers, null);
+
                 string nomeCena = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
                 Debug.Log("cena onde dinehiro caiu: "+nomeCena);
                 dados.DinheiroCaido = new DinheiroCaido()
@@ -363,7 +380,13 @@ public class CharacterManager : MonoBehaviour
                     #region emDano
                     if (emDano.Update(mov, CommandReader.VetorDirecao(Control)))
                     {
-                        estado = EstadoDePersonagem.aPasseio;
+                        if (tDamage.agendado)
+                        {
+                            mov.AplicadorDeMovimentos(Vector3.zero);
+                            estado = EstadoDePersonagem.parado;
+                            tDamage.Iniciar();
+                        }else
+                            estado = EstadoDePersonagem.aPasseio;
                     }
                     #endregion
                 break;
@@ -421,7 +444,11 @@ public class CharacterManager : MonoBehaviour
                             dados.SetarManaMax();
                             SaveDatesManager.SalvarAtualizandoDados(dados.ultimoCheckPoint.nomesDasCenas);
                             SceneLoader.IniciarCarregamento(SaveDatesManager.s.IndiceDoJogoAtualSelecionado,
-                                ()=> { estado = EstadoDePersonagem.aPasseio; });
+                                ()=> {
+                                    estado = EstadoDePersonagem.aPasseio;
+                                    EventAgregator.Publish(EventKey.requestShowControllers, null);
+                                    derrota.DesligarLosangulo();
+                                });
                             estado = EstadoDePersonagem.naoIniciado;
                         }
                     }

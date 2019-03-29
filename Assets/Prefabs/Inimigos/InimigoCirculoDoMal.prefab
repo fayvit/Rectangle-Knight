@@ -176,13 +176,13 @@ MonoBehaviour:
     maxMana: 100
     ataqueBasico: 25
     ataqueMagico: 30
-  ID: -14062_ComunsDeFase
   premioEmDinheiro: 5
+  ID: 
   movePoints:
   - {fileID: 4935806253816821639}
   - {fileID: 4935806253714652890}
   tempoEsperando: 2
-  tempoDeDeslocamento: 3
+  velocidadeDoDeslocamento: 1.25
 --- !u!1 &4935806255713883110
 GameObject:
   m_ObjectHideFlags: 0
