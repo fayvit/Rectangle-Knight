@@ -11,12 +11,23 @@ public class DadosDeCena {
     public Color bkColor;
 
     [System.Serializable]
-    public class LimitantesDaCena
+    public class LimitantesDaCena:System.ICloneable
     {
-        public int xMin;
-        public int xMax;
-        public int yMin;
-        public int yMax;
+        public float xMin;
+        public float xMax;
+        public float yMin;
+        public float yMax;
+
+        public object Clone()
+        {
+            return new LimitantesDaCena()
+            {
+                xMax = xMax,
+                xMin = xMin,
+                yMin = yMin,
+                yMax = yMax
+            };
+        }
     }
 }
 
@@ -27,7 +38,10 @@ public class ContainerDeDadosDeCena
 
     public DadosDeCena GetCurrentSceneDates()
     {
+        
         string s = SceneManager.GetActiveScene().name;
+
+        Debug.Log(s);
         return GetSceneDates(s);
     }
 

@@ -18,11 +18,17 @@ public class Camera2D : MonoBehaviour
     private float fatorCima;
     private float limiteCimaBaixo = 4;
     private DadosDeCena.LimitantesDaCena limitantes;
+    private DadosDeCena.LimitantesDaCena lerpLimitantes;
+    private DadosDeCena.LimitantesDaCena lerpLimitantesTransitorio;
     private Vector3 ultimaPosicaoDoAlvo;
     private Vector3 velocidadeDeReferencia;
     private Vector3 posicaoDeOlharFrente;
     private float wordWidthOfScreen;
     private float wordheightOfScreen;
+
+    private float tempoDecorrido = 0;
+    [SerializeField]private float tempoDeLerpLimits = 30;
+    private bool pedindoLimiteLerp = false;
 
     // Use this for initialization
     void Start()
@@ -42,11 +48,51 @@ public class Camera2D : MonoBehaviour
         
 
         EventAgregator.AddListener(EventKey.requestToFillDates, OnRequestFillDates);
+        EventAgregator.AddListener(EventKey.requestChangeCamLimits, OnRequestChangeCamLimits);
+        EventAgregator.AddListener(EventKey.requestSceneCamLimits, OnRequestStandardLimits);
     }
 
     private void OnDestroy()
     {
         EventAgregator.RemoveListener(EventKey.requestToFillDates, OnRequestFillDates);
+        EventAgregator.RemoveListener(EventKey.requestChangeCamLimits, OnRequestChangeCamLimits);
+        EventAgregator.RemoveListener(EventKey.requestSceneCamLimits, OnRequestStandardLimits);
+    }
+
+    void OnRequestStandardLimits(IGameEvent e)
+    {
+        SetarLimitantesTransitorio();
+
+        if (lerpLimitantesTransitorio != null)
+        {
+            tempoDecorrido = 0;
+            pedindoLimiteLerp = true;
+            
+        }else
+            limitantes = lerpLimitantesTransitorio;
+    }
+
+    private void OnRequestChangeCamLimits(IGameEvent obj)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)obj;
+
+        lerpLimitantes = CalcularLimitantes((DadosDeCena.LimitantesDaCena)ssge.MyObject[0]);
+
+        Vector3 pos = transform.position;
+        if (!useLimitsCam)
+            limitantes = new DadosDeCena.LimitantesDaCena()
+            {
+                xMax = (pos.x + wordWidthOfScreen),
+                xMin = (pos.x - wordWidthOfScreen),
+                yMin = (pos.y - wordheightOfScreen),
+                yMax = (pos.y + wordheightOfScreen)
+            };
+
+        lerpLimitantesTransitorio = (DadosDeCena.LimitantesDaCena)limitantes.Clone();
+
+        tempoDecorrido = 0;
+        useLimitsCam = true;
+        pedindoLimiteLerp = true;
     }
 
     private void OnRequestFillDates(IGameEvent e)
@@ -63,41 +109,73 @@ public class Camera2D : MonoBehaviour
             transform.position = S.Posicao + new Vector3(0,0,-10);
         }
 
-        SetarLimitantes();
+        SetarLimitantesTransitorio();
+        limitantes = lerpLimitantes;
     }
 
     public void AposMudarDeCena(Vector3 pos)
     {
         transform.position = pos;
-        SetarLimitantes();
+        SetarLimitantesTransitorio();
+        limitantes = lerpLimitantes;
     }
 
-    DadosDeCena.LimitantesDaCena CalcularLimitantes(DadosDeCena c)
+    DadosDeCena.LimitantesDaCena CalcularLimitantes(DadosDeCena.LimitantesDaCena c)
     {
         return new DadosDeCena.LimitantesDaCena()
         {
-            xMin = c.limitantes.xMin + (int)wordWidthOfScreen,
-            xMax = c.limitantes.xMax - (int)wordWidthOfScreen,
-            yMin = c.limitantes.yMin + (int)wordheightOfScreen,
-            yMax = c.limitantes.yMax - (int)wordheightOfScreen
+            xMin = (c.xMax - c.xMin) > 2*(int)wordWidthOfScreen? c.xMin + (int)wordWidthOfScreen:ValorDeAjuste(c.xMin,c.xMax)-1,
+            xMax = (c.xMax - c.xMin) > 2*(int)wordWidthOfScreen ? c.xMax - (int)wordWidthOfScreen: ValorDeAjuste(c.xMin, c.xMax)+1,
+            yMin = (c.yMax-c.yMin)>2*(int)wordheightOfScreen? c.yMin + (int)wordheightOfScreen:ValorDeAjuste(c.yMin,c.yMax)-1,
+            yMax = (c.yMax - c.yMin) > 2*(int)wordheightOfScreen ? c.yMax - (int)wordheightOfScreen: ValorDeAjuste(c.yMin, c.yMax)+1
         };
     }
 
-    void SetarLimitantes()
+    float ValorDeAjuste(float xI,float xF)
+    {
+        return (xI + xF) / 2f;
+    }
+
+    void SetarLimitantesTransitorio()
     {
         DadosDeCena c = GlobalController.g.SceneDates.GetCurrentSceneDates();
 
-        limitantes = c!=null?CalcularLimitantes(c):null;
+        /*
+        DadosDeCena.LimitantesDaCena dl = c.limitantes;
+        Debug.Log(dl.xMin+" : "+dl.xMax+" : "+dl.yMin+" : "+dl.yMax);
+        */
 
-        if (limitantes != null)
+        lerpLimitantes = c!=null?CalcularLimitantes(c.limitantes):null;
+
+
+        if (lerpLimitantes != null)
             useLimitsCam = true;
         else
             useLimitsCam = false;
     }
 
+    void VerifiqueLimiteLerp()
+    {
+        if (pedindoLimiteLerp)
+        {
+            tempoDecorrido += Time.deltaTime;
+
+            limitantes.xMax = Mathf.Lerp(lerpLimitantesTransitorio.xMax, lerpLimitantes.xMax, tempoDecorrido / tempoDeLerpLimits);
+            limitantes.xMin = Mathf.Lerp(lerpLimitantesTransitorio.xMin, lerpLimitantes.xMin, tempoDecorrido / tempoDeLerpLimits);
+            limitantes.yMax = Mathf.Lerp(lerpLimitantesTransitorio.yMax, lerpLimitantes.yMax, tempoDecorrido / tempoDeLerpLimits);
+            limitantes.yMin = Mathf.Lerp(lerpLimitantesTransitorio.yMin, lerpLimitantes.yMin, tempoDecorrido / tempoDeLerpLimits);
+
+            if (tempoDecorrido > tempoDeLerpLimits)
+                pedindoLimiteLerp = false;
+
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        VerifiqueLimiteLerp();
+
         float variacaoDaPosicaoX = (alvo.position - ultimaPosicaoDoAlvo).x;
 
         bool atualizarCamerafrente = Mathf.Abs(variacaoDaPosicaoX) > limiteDeVariacaoParaCameraFrente;

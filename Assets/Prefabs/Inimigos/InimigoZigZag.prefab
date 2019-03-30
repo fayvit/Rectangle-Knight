@@ -274,8 +274,8 @@ MonoBehaviour:
     maxMana: 50
     ataqueBasico: 25
     ataqueMagico: 30
-  vel: 5
   premioEmDinheiro: 4
+  vel: 5
 --- !u!1 &2851365649201010062
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 2851365649201010061}
   m_Layer: 11
   m_Name: InimigoZigZag
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -417,8 +417,8 @@ MonoBehaviour:
     maxMana: 50
     ataqueBasico: 25
     ataqueMagico: 30
-  vel: 5
   premioEmDinheiro: 4
+  vel: 5
 --- !u!50 &2851365649201010061
 Rigidbody2D:
   serializedVersion: 4

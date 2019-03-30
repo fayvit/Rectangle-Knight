@@ -377,7 +377,9 @@ public enum NomesCenas
     descidaDasProfundezas,
     zonaDosLosangulos,
     hexagonoDabarreiraAzul,
-    area1ParaArea9
+    area1ParaArea9,
+    PassagemDosRefugiados,
+    CheckPointNaGargantaDasProfundezas
 }
 
 public enum NomesCenasEspeciais

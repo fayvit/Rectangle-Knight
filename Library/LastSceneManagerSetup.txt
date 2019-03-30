@@ -9,8 +9,14 @@ sceneSetups:
   isLoaded: 0
   isActive: 0
 - path: Assets/Scenes/area1ParaArea9.unity
-  isLoaded: 1
-  isActive: 1
+  isLoaded: 0
+  isActive: 0
 - path: Assets/Scenes/primeiroSubsolo.unity
   isLoaded: 0
   isActive: 0
+- path: Assets/Scenes/PassagemDosRefugiados.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scenes/CheckPointNaGargantaDasProfundezas.unity
+  isLoaded: 1
+  isActive: 1

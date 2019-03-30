@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - attackCollisor
+  - triggerGeral
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - heroi
   - andadorDeInimigo
   - containerDeInimigos
-  - 
+  - enemyDamageSender
   - 
   - 
   - 

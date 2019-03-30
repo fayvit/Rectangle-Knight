@@ -21,8 +21,6 @@ public class FlyingPursuerEnemy : EnemyBase
         r2 = GetComponent<Rigidbody2D>();
         Invoke("DistanciaDoJogador", 2);
         base.Start();
-
-        Debug.Log(r2);
     }
 
     void DistanciaDoJogador()
@@ -97,11 +95,12 @@ public class FlyingPursuerEnemy : EnemyBase
             EventAgregator.Publish(new StandardSendGameEvent(gameObject, EventKey.enemyContactDamage, collision.name));
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 8 || collision.gameObject.layer == 12)
         {
-            Debug.Log("redirecionador");
+            
             redirecionador = multiplicadorDoRedirecionamento*collision.contacts[0].normal;
         }
     }

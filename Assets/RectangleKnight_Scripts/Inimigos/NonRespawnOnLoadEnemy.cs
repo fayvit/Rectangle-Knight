@@ -6,6 +6,8 @@ public class NonRespawnOnLoadEnemy : EnemyBase
 {
     [SerializeField] private string ID;
 
+    public string GetID { get=> ID; }
+
     protected override void Start()
     {
 
@@ -26,6 +28,6 @@ public class NonRespawnOnLoadEnemy : EnemyBase
 
     protected override void OnDefeated()
     {
-        EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestChangeEnemyKey, ID));
+        EventAgregator.Publish(new StandardSendGameEvent(gameObject,EventKey.requestChangeEnemyKey, ID));
     }
 }

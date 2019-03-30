@@ -24396,7 +24396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783860c3a7e52244d8a58ca9f24f7787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -139720_primeiroSubsolo
+  ID: 
   particuladaAcao: {fileID: 6527284499893547529}
   containerDasImagens: {fileID: 6527284499182634022}
   thisCollider: {fileID: 6527284499966604366}

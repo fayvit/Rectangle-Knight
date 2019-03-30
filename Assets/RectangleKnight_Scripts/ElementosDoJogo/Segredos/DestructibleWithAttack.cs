@@ -15,12 +15,17 @@ public class DestructibleWithAttack : ActiveFalseForShift
     {
         if (collision.tag == "attackCollisor")
         {
-            thisCollider.enabled = false;
-            containerDasImagens.SetActive(false);
-            particuladaAcao.SetActive(true);
-            EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestChangeShiftKey, ID));
-            Destroy(gameObject, 5);
+            Destruicao();
         }
+    }
+
+    public void Destruicao()
+    {
+        thisCollider.enabled = false;
+        containerDasImagens.SetActive(false);
+        particuladaAcao.SetActive(true);
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestChangeShiftKey, ID));
+        Destroy(gameObject, 5);
     }
 
 }

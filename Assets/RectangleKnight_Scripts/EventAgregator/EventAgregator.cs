@@ -114,5 +114,9 @@ public enum EventKey
     getNotch,
     changeTeleportPosition,
     requestHideControllers,
-    requestShowControllers
+    requestShowControllers,
+    colisorNoQuicavel,
+    destroyIdCheck,
+    requestChangeCamLimits,
+    requestSceneCamLimits
 }

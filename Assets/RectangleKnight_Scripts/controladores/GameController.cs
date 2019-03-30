@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour
 
         EventAgregator.AddListener(EventKey.requestToFillDates, OnRequestFillDates);
         EventAgregator.AddListener(EventKey.enemyDefeatedCheck, OnEnemyDefeatedCheck);
+        EventAgregator.AddListener(EventKey.destroyIdCheck, OnIdDestroyCheck);
         EventAgregator.AddListener(EventKey.requestChangeEnemyKey, OnRequestChangeEnemyKey);
         EventAgregator.AddListener(EventKey.destroyShiftCheck, MyDestroyShiftCheck);
         EventAgregator.AddListener(EventKey.requestChangeShiftKey, OnRequestChangeShiftKey);
@@ -64,6 +65,7 @@ public class GameController : MonoBehaviour
     {
         EventAgregator.RemoveListener(EventKey.requestToFillDates, OnRequestFillDates);
         EventAgregator.RemoveListener(EventKey.enemyDefeatedCheck, OnEnemyDefeatedCheck);
+        EventAgregator.RemoveListener(EventKey.destroyIdCheck, OnIdDestroyCheck);
         EventAgregator.RemoveListener(EventKey.requestChangeEnemyKey, OnRequestChangeEnemyKey);
         EventAgregator.RemoveListener(EventKey.destroyShiftCheck, MyDestroyShiftCheck);
         EventAgregator.RemoveListener(EventKey.requestChangeShiftKey, OnRequestChangeShiftKey);
@@ -93,6 +95,13 @@ public class GameController : MonoBehaviour
     {
         StandardSendGameEvent ssge = (StandardSendGameEvent)obj;
         MyKeys.MudaAutoShift((string)ssge.MyObject[0], true);
+    }
+
+    private void OnIdDestroyCheck(IGameEvent e)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)e;
+        if (MyKeys.VerificaAutoShift((string)ssge.MyObject[0]))
+            Destroy((GameObject)ssge.MyObject[1]);
     }
 
     private void MyDestroyShiftCheck(IGameEvent obj)

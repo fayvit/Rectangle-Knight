@@ -30,7 +30,7 @@ public class InimigoZigZag : EnemyBase
     {
         StandardSendGameEvent ssge = (StandardSendGameEvent)e;
 
-        Debug.Log(e.Sender.transform.IsChildOf(transform) + " : " + transform.IsChildOf(e.Sender.transform));
+        //Debug.Log(e.Sender.transform.IsChildOf(transform) + " : " + transform.IsChildOf(e.Sender.transform));
 
         if (gameObject.layer == 11 && e.Sender.transform.IsChildOf(transform))
         {

@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 5225980412750135756}
   m_Layer: 0
   m_Name: inimigoCirculador
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -271,8 +271,8 @@ MonoBehaviour:
     maxMana: 100
     ataqueBasico: 25
     ataqueMagico: 30
-  ID: 
   premioEmDinheiro: 5
+  ID: 
   movePoints:
   - {fileID: 5225980412999902638}
   - {fileID: 5225980413103910131}

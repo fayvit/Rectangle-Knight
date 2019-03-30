@@ -65,6 +65,7 @@ public class CharacterManager : MonoBehaviour
         EventAgregator.AddListener(EventKey.inicializaDisparaTexto, OnOpenExternalPanel);
         EventAgregator.AddListener(EventKey.finalizaDisparaTexto, OnCloseExternalPanel);
         EventAgregator.AddListener(EventKey.getNotch, OnGetNotch);
+        EventAgregator.AddListener(EventKey.colisorNoQuicavel, OnRequestKick);
 
 
         GameController.g.Manager = this;
@@ -94,6 +95,18 @@ public class CharacterManager : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.inicializaDisparaTexto, OnOpenExternalPanel);
         EventAgregator.RemoveListener(EventKey.finalizaDisparaTexto, OnCloseExternalPanel);
         EventAgregator.RemoveListener(EventKey.getNotch, OnGetNotch);
+        EventAgregator.RemoveListener(EventKey.colisorNoQuicavel, OnRequestKick);
+    }
+
+    private void OnRequestKick(IGameEvent e)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)e;
+
+        if ((string)ssge.MyObject[0] == "colisorDoAtaquebaixo")
+        {
+
+            mov.JumpForce();
+        }
     }
 
     private void OnGetNotch(IGameEvent e)
@@ -268,9 +281,11 @@ public class CharacterManager : MonoBehaviour
 
     private void OnHeroDamage(IGameEvent obj)
     {
-        if (!piscaI.Invuneravel && Dados.PontosDeVida>0)
+        StandardSendGameEvent ssge = (StandardSendGameEvent)obj;
+
+        if ((!piscaI.Invuneravel||ssge.MyObject.Length>2) && Dados.PontosDeVida>0)
         {
-            StandardSendGameEvent ssge = (StandardSendGameEvent)obj;
+            
 
             Dados.AplicaDano((int)ssge.MyObject[1]);
             EventAgregator.Publish(new StandardSendGameEvent(gameObject, EventKey.changeLifePoints, Dados.PontosDeVida, Dados.MaxVida));
