@@ -6,6 +6,7 @@ public class Camera2D : MonoBehaviour
 {
 #pragma warning disable 0649
     [SerializeField] private Transform alvo;
+    [SerializeField] private ShakeCam shake = default;
 #pragma warning restore 0649
 
     [SerializeField] private float amortecimento = 0.2f;
@@ -27,7 +28,7 @@ public class Camera2D : MonoBehaviour
     private float wordheightOfScreen;
 
     private float tempoDecorrido = 0;
-    [SerializeField]private float tempoDeLerpLimits = 30;
+    [SerializeField]private float tempoDeLerpLimits = 4;
     private bool pedindoLimiteLerp = false;
 
     // Use this for initialization
@@ -39,6 +40,7 @@ public class Camera2D : MonoBehaviour
         wordWidthOfScreen = V2.x - V1.x;
         wordheightOfScreen = V2.y - V1.y;
 
+        shake.Construir(transform);
         fatorCima = 0;// Vector3.Distance(cam.ScreenPointToRay(Vector3.zero).origin, cam.ScreenPointToRay(new Vector3(0, cam.pixelHeight, 0)).origin)/4;
         
         ultimaPosicaoDoAlvo = alvo.position;
@@ -50,6 +52,7 @@ public class Camera2D : MonoBehaviour
         EventAgregator.AddListener(EventKey.requestToFillDates, OnRequestFillDates);
         EventAgregator.AddListener(EventKey.requestChangeCamLimits, OnRequestChangeCamLimits);
         EventAgregator.AddListener(EventKey.requestSceneCamLimits, OnRequestStandardLimits);
+        EventAgregator.AddListener(EventKey.requestShakeCam, OnRequestShakeCam);
     }
 
     private void OnDestroy()
@@ -57,13 +60,35 @@ public class Camera2D : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.requestToFillDates, OnRequestFillDates);
         EventAgregator.RemoveListener(EventKey.requestChangeCamLimits, OnRequestChangeCamLimits);
         EventAgregator.RemoveListener(EventKey.requestSceneCamLimits, OnRequestStandardLimits);
+        EventAgregator.RemoveListener(EventKey.requestShakeCam, OnRequestShakeCam);
     }
 
-    void OnRequestStandardLimits(IGameEvent e)
+    private void OnRequestShakeCam(IGameEvent e)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)e;
+        int totalShake = 5;
+        float angle = 1;
+        ShakeAxis axis = ShakeAxis.x;
+
+        if (ssge.MyObject.Length > 0)
+        {
+            axis = (ShakeAxis)ssge.MyObject[0];
+            if (ssge.MyObject.Length > 1)
+            {
+                totalShake = (int)ssge.MyObject[1];
+                angle = (float)ssge.MyObject[2];
+            }
+        }
+
+        shake.IniciarShake(axis, totalShake, angle);
+
+    }
+
+    private void OnRequestStandardLimits(IGameEvent e)
     {
         SetarLimitantesTransitorio();
 
-        if (lerpLimitantesTransitorio != null)
+        if (lerpLimitantes != null)
         {
             tempoDecorrido = 0;
             pedindoLimiteLerp = true;
@@ -87,6 +112,8 @@ public class Camera2D : MonoBehaviour
                 yMin = (pos.y - wordheightOfScreen),
                 yMax = (pos.y + wordheightOfScreen)
             };
+
+        tempoDeLerpLimits = (float)ssge.MyObject[1];
 
         lerpLimitantesTransitorio = (DadosDeCena.LimitantesDaCena)limitantes.Clone();
 
@@ -140,6 +167,9 @@ public class Camera2D : MonoBehaviour
     {
         DadosDeCena c = GlobalController.g.SceneDates.GetCurrentSceneDates();
 
+        if(c!=null)
+            GetComponent<Camera>().backgroundColor = c.bkColor;
+
         /*
         DadosDeCena.LimitantesDaCena dl = c.limitantes;
         Debug.Log(dl.xMin+" : "+dl.xMax+" : "+dl.yMin+" : "+dl.yMax);
@@ -166,7 +196,10 @@ public class Camera2D : MonoBehaviour
             limitantes.yMin = Mathf.Lerp(lerpLimitantesTransitorio.yMin, lerpLimitantes.yMin, tempoDecorrido / tempoDeLerpLimits);
 
             if (tempoDecorrido > tempoDeLerpLimits)
+            {
                 pedindoLimiteLerp = false;
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.limitCamOk, limitantes));
+            }
 
         }
     }
@@ -174,6 +207,8 @@ public class Camera2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        shake.Update();
+
         VerifiqueLimiteLerp();
 
         float variacaoDaPosicaoX = (alvo.position - ultimaPosicaoDoAlvo).x;

@@ -12,11 +12,6 @@ public class PorquinhoDeMoedas : ActiveFalseForShift
     [SerializeField] private GameObject particulaDaFinalizacao = default;
     #endregion
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -42,6 +37,10 @@ public class PorquinhoDeMoedas : ActiveFalseForShift
 
         
             SpawnMoedas.Spawn(transform.position,moedasAgora);
+            new MyInvokeMethod().InvokeNoTempoDeJogo(() =>
+            {
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, "Break"));
+            },.3f);
 
             if (!foi)
             {

@@ -17,11 +17,25 @@ public class SwordColorManager : MonoBehaviour
     void Start()
     {
         EventAgregator.AddListener(EventKey.colorChanged, OnColorChanged);
+        EventAgregator.AddListener(EventKey.getColorSword, OnGetColorSword);
+        EventAgregator.AddListener(EventKey.requestToFillDates, OnRequestFillDates);
     }
 
     private void OnDestroy()
     {
         EventAgregator.RemoveListener(EventKey.colorChanged, OnColorChanged);
+        EventAgregator.RemoveListener(EventKey.getColorSword, OnGetColorSword);
+        EventAgregator.RemoveListener(EventKey.requestToFillDates, OnRequestFillDates);
+    }
+
+    void OnRequestFillDates(IGameEvent e)
+    {
+        EscolheQualCorMostrar();
+    }
+
+    void OnGetColorSword(IGameEvent e)
+    {
+        StartCoroutine(EscolheQualCorMostrarNoProximoQuadro());
     }
 
     void OnColorChanged(IGameEvent e)
@@ -35,6 +49,36 @@ public class SwordColorManager : MonoBehaviour
                 colorButtons[i].GetComponent<Image>().sprite = doPadrao;
 
         }
+    }
+
+    IEnumerator EscolheQualCorMostrarNoProximoQuadro()
+    {
+        yield return new WaitForEndOfFrame();
+        EscolheQualCorMostrar();
+    }
+
+    void EscolheQualCorMostrar()
+    {
+
+        bool foi = false;
+        for (int i = 1; i < colorButtons.Length; i++)
+        {
+            //Debug.Log(GameController.g.Manager.Dados.SwordAvailable((SwordColor)i)+" : "+(SwordColor)i);
+            if (GameController.g.Manager.Dados.SwordAvailable((SwordColor)i))
+            {
+                colorButtons[i].gameObject.SetActive(true);
+                foi = true;
+            }
+            else
+            {
+                colorButtons[i].gameObject.SetActive(false);
+            }
+        }
+
+        
+        colorButtons[0].gameObject.SetActive(foi);
+        
+            
     }
 
     // Update is called once per frame

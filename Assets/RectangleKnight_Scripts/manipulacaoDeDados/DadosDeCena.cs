@@ -9,9 +9,14 @@ public class DadosDeCena {
     public NomesCenas nomeDaCena;
     public LimitantesDaCena limitantes;
     public Color bkColor;
+    public NameMusicaComVolumeConfig musicName = new NameMusicaComVolumeConfig()
+    {
+        Musica = NameMusic.initialAdventureTheme,
+        Volume = 1
+    };
 
     [System.Serializable]
-    public class LimitantesDaCena:System.ICloneable
+    public class LimitantesDaCena : System.ICloneable,System.IComparable
     {
         public float xMin;
         public float xMax;
@@ -27,6 +32,19 @@ public class DadosDeCena {
                 yMin = yMin,
                 yMax = yMax
             };
+        }
+
+        public int CompareTo(LimitantesDaCena obj)
+        {
+            return CompareTo((object)obj);
+        }
+
+        public int CompareTo(object obj)
+        {
+            LimitantesDaCena l = (LimitantesDaCena)obj;
+            int retorno = Mathf.RoundToInt(Mathf.Abs(l.xMax - xMax) + Mathf.Abs(l.xMin - xMin) + Mathf.Abs(l.yMax - yMax) + Mathf.Abs(l.yMin - yMin));
+            Debug.Log("comparação de limitantes: " + retorno + " : " + Mathf.Abs(l.xMax - xMax) + " : " + Mathf.Abs(l.xMin - xMin) + " : " + Mathf.Abs(l.yMax - yMax) + " : " + Mathf.Abs(l.yMin - yMin));
+            return retorno;
         }
     }
 }
@@ -58,6 +76,7 @@ public class ContainerDeDadosDeCena
 
         return null;
     }
+
     public DadosDeCena GetSceneDates(NomesCenas nome)
     {
         for (int i = 0; i < meusDados.Count; i++)

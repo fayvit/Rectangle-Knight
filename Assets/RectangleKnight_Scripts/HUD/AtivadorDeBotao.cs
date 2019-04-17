@@ -29,9 +29,10 @@ public abstract class AtivadorDeBotao : MonoBehaviour
     }
 
     // Update is called once per frame
-    protected void Update()
+    protected virtual void Update()
     {
-        
+        //if (name == "Hexagonos")
+            //Debug.Log(Vector3.Distance(GameController.g.Manager.transform.position, transform.position) +" : "+ distanciaParaAcionar+" : "+estaNoTrigger+" : "+ ActionManager.PodeVisualizarEste(this));
         if (GameController.g)
             if (GameController.g.Manager)
                 if (Vector3.Distance(GameController.g.Manager.transform.position, transform.position) < distanciaParaAcionar
@@ -71,7 +72,7 @@ public abstract class AtivadorDeBotao : MonoBehaviour
         estaNoTrigger = true;
     }
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
         {
@@ -79,7 +80,7 @@ public abstract class AtivadorDeBotao : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider col)
+    void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
         {

@@ -11,6 +11,7 @@ public class MovimentacaoBasica
 #pragma warning disable 0649
     [SerializeField] private JumpManager myJump;
     [SerializeField] private bool jumpType;
+    [SerializeField] private AudioClip somDoPulo;
 #pragma warning restore 0649
     private Transform transform;
     private Transform m_GroundCheck;
@@ -20,6 +21,7 @@ public class MovimentacaoBasica
     private Rigidbody2D m_Rigidbody2D;
     private bool m_Jump;
     private bool m_FacingRight = true;
+    private bool aplicandoForca;
 
     const float k_GroundedRadius = .2f;
     const float k_CeilingRadius = .01f;
@@ -53,16 +55,19 @@ public class MovimentacaoBasica
 
     public void AplicadorDeMovimentos(Vector3 V,bool m_jump = false,bool temPuloDuplo = false)
     {
-        m_Grounded = false;
-       // m_Jump = m_jump;
+        if (!aplicandoForca)
+        {
+            m_Grounded = false;
+            // m_Jump = m_jump;
 
-        if(NoChao)
-            m_Grounded = true;
-        
+            if (NoChao)
+                m_Grounded = true;
 
-        Move( V.x,m_Jump||m_jump,temPuloDuplo);
 
-        m_Jump = false;
+            Move(V.x, m_Jump || m_jump, temPuloDuplo);
+
+            m_Jump = false;
+        }
     }
 
     public void Move(float move, bool jump,bool temPuloDuplo)
@@ -92,6 +97,8 @@ public class MovimentacaoBasica
                     m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                 else
                     myJump.IniciaAplicaPulo(m_Rigidbody2D.transform.position.y);
+
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, somDoPulo));
             }
             else if (!m_Grounded && jump && myJump.PodePuloDuplo && temPuloDuplo)
             {
@@ -125,6 +132,22 @@ public class MovimentacaoBasica
             myJump.IniciaAplicaPulo(m_Rigidbody2D.transform.position.y);
     }
 
+    public void ApplyForce(Vector2 f,float tempoAplicando = 0.25f)
+    {
+        aplicandoForca = true;
+
+        Debug.Log("aplicou");
+
+        m_Rigidbody2D.AddForce(f);
+        GameController.g.StartCoroutine(RetornaAplicandoForca(tempoAplicando));
+    }
+
+    IEnumerator RetornaAplicandoForca(float t)
+    {
+        yield return new WaitForSeconds(t);
+        aplicandoForca = false;
+    }
+
     public void ChangeSpeed(float newSpeed)
     {
         m_MaxSpeed = newSpeed;
@@ -133,6 +156,11 @@ public class MovimentacaoBasica
     public void GravityScaled(float val)
     {
         m_Rigidbody2D.AddForce(new Vector2(0, -val));
+    }
+
+    public void ChangeGravityScale(float val)
+    {
+        m_Rigidbody2D.gravityScale = val;
     }
 
     public void Pulo()

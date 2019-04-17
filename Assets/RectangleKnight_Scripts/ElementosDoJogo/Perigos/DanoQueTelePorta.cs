@@ -21,7 +21,8 @@ public class DanoQueTelePorta : MonoBehaviour
     {
         if (e.Sender.transform.IsChildOf(transform))
         {
-            teleportPosition = e.Sender.transform.position;
+            StandardSendGameEvent ssge = (StandardSendGameEvent)e;
+            teleportPosition = (Vector3)ssge.MyObject[0];
         }
     }
 

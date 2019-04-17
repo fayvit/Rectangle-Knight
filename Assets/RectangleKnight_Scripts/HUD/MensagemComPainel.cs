@@ -12,19 +12,24 @@ public class MensagemComPainel : AtivadorDeBotao
     {
         SempreEstaNoTrigger();
     }
+
     public override void FuncaoDoBotao()
     {
         if (GameController.g.Manager.Estado == EstadoDePersonagem.aPasseio)
         {
             Time.timeScale = 0;
             EventAgregator.Publish(EventKey.abriuPainelSuspenso, null);
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.stopMusic,2.5f));
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.painelAbrindo));
             essePainel.ConstroiPainelUmaMensagem(RetornoDoPainel);
         }
     }
 
-    public void RetornoDoPainel()
+    public virtual void RetornoDoPainel()
     {
         Time.timeScale = 1;
         EventAgregator.Publish(EventKey.fechouPainelSuspenso, null);
+        EventAgregator.Publish(EventKey.restartMusic, null);
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.Book1));
     }
 }

@@ -35,6 +35,14 @@ public class TextosChaveEmPT_BR
                "Opções",
                "Voltar ao menu principal"
             }
+        },
+        {
+            ChaveDeTexto.nomesParaViagensDeCapsula, new List<string>()
+            {
+               "Garganta das profundezas",
+               "Acampamento dos Rejeitados",
+               "Aquifero do buscador"
+            }
         }
 
     };

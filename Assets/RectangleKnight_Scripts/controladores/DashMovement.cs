@@ -8,10 +8,12 @@ public class DashMovement
 #pragma warning disable 0649
     [SerializeField] private ParticleSystem particulaDoInicio;
     [SerializeField] private ParticleSystem particulaDoMovomento;
+    [SerializeField] private AudioClip somDoDash;
 #pragma warning restore 0649
     [SerializeField] private float vel = 24;
     [SerializeField] private float tempoNoDash = 0.75f;
     [SerializeField] private float intervaloDeRecuperacao = 2;
+    
 
     private bool esteveNochao = false;
     private float tempoDecorrido = 0;
@@ -68,6 +70,8 @@ public class DashMovement
         particulaDoMovomento.gameObject.SetActive(true);
         tempoDecorrido = 0;
         esteveNochao = chao;
+
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, somDoDash));
     }
 
     // Update is called once per frame

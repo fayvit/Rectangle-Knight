@@ -114,7 +114,15 @@ public enum ChaveDeTexto
     hexagonPentagonTips,
     conhecendoTyron,
     TyronSobreAsProfundezas,
-    tyronUmCaminhoEmFrente
+    tyronUmCaminhoEmFrente,
+    conhecendoHerika,
+    meuNomeHerika,
+    algoEmComum,
+    souOttoOctagono,
+    fascinadoPelasCapsulas,
+    prazerEmConhecerCapsulas,
+    locomoverComACapsula,
+    nomesParaViagensDeCapsula
 }
 
 

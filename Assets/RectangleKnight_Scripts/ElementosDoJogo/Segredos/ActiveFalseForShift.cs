@@ -6,7 +6,7 @@ public class ActiveFalseForShift : MonoBehaviour
 {
     [SerializeField] protected string ID;
 
-    private void Start()
+    protected virtual void Start()
     {
         if (ExistenciaDoController.AgendaExiste(Start, this))
         {
@@ -19,11 +19,11 @@ public class ActiveFalseForShift : MonoBehaviour
         BuscadorDeID.Validate(ref ID, this);
     }
 
-    public static void StaticStart(System.Action a,MonoBehaviour m,string ID,GameObject gameObject)
+    public static void StaticStart(System.Action a,MonoBehaviour m,string ID)
     {
         if (ExistenciaDoController.AgendaExiste(a, m))
         {
-            EventAgregator.Publish(new StandardSendGameEvent(EventKey.destroyShiftCheck, ID, gameObject));
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.destroyShiftCheck, ID, m.gameObject));
         }
     }
 }

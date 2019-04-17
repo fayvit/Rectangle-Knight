@@ -90,10 +90,10 @@ public class NPCdeConversa
                 {
                     FinalizaConversa();
                 }
-                break;
+            break;
             case EstadoDoNPC.finalizadoComBotao:
                 estado = EstadoDoNPC.parado;
-                return true;
+            return true;
         }
 
         return false;

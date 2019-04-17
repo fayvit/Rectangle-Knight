@@ -70,6 +70,7 @@ public class MyFadeView : MonoBehaviour
                 {
                     fase = FaseDaqui.emEspera;
                     EventAgregator.Publish(EventKey.fadeInComplete, null);
+
                     ChamarAcao();
 
                     escurecedorLower.gameObject.SetActive(false);
@@ -110,6 +111,12 @@ public class MyFadeView : MonoBehaviour
     {
         this.tempoDeEscurecimento = tempoDeEscurecimento;
         ComunsDeFadeOut(corDoFade);
+        StartCoroutine(AcaoDequadro(acao));
+    }
+
+    IEnumerator AcaoDequadro(System.Action acao)
+    {
+        yield return new WaitForEndOfFrame();
         acaoDoFade += acao;
     }
 
@@ -131,7 +138,7 @@ public class MyFadeView : MonoBehaviour
     {
         this.tempoDeEscurecimento = tempoDeEscurecimento;
         ComunsDoFadeIn(corDoFade);
-        acaoDoFade += acao;
+        StartCoroutine(AcaoDequadro(acao));
     }
 
     void ComunsDoFadeIn(Color corDoFade)

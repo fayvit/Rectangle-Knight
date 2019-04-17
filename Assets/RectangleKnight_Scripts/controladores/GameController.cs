@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,13 +47,15 @@ public class GameController : MonoBehaviour
 
         EventAgregator.AddListener(EventKey.requestToFillDates, OnRequestFillDates);
         EventAgregator.AddListener(EventKey.enemyDefeatedCheck, OnEnemyDefeatedCheck);
-        EventAgregator.AddListener(EventKey.destroyIdCheck, OnIdDestroyCheck);
+        EventAgregator.AddListener(EventKey.destroyFixedShiftCheck, OnIdDestroyCheck);
         EventAgregator.AddListener(EventKey.requestChangeEnemyKey, OnRequestChangeEnemyKey);
         EventAgregator.AddListener(EventKey.destroyShiftCheck, MyDestroyShiftCheck);
         EventAgregator.AddListener(EventKey.requestChangeShiftKey, OnRequestChangeShiftKey);
         EventAgregator.AddListener(EventKey.enterPause, OnEnterPause);
         EventAgregator.AddListener(EventKey.exitPause, OnExitPause);
         EventAgregator.AddListener(EventKey.requestInfoEmblemPanel, OnRequestInfoEmbelmPanel);
+        EventAgregator.AddListener(EventKey.sumContShift, OnRequestSumContShift);
+        EventAgregator.AddListener(EventKey.getUpdateGeometry, OnGetUpdateGeometry);
 
         disparaT.IniciarDisparadorDeTextos();
         MyKeys.MudaShift(KeyShift.sempretrue, true);
@@ -65,13 +66,31 @@ public class GameController : MonoBehaviour
     {
         EventAgregator.RemoveListener(EventKey.requestToFillDates, OnRequestFillDates);
         EventAgregator.RemoveListener(EventKey.enemyDefeatedCheck, OnEnemyDefeatedCheck);
-        EventAgregator.RemoveListener(EventKey.destroyIdCheck, OnIdDestroyCheck);
+        EventAgregator.RemoveListener(EventKey.destroyFixedShiftCheck, OnIdDestroyCheck);
         EventAgregator.RemoveListener(EventKey.requestChangeEnemyKey, OnRequestChangeEnemyKey);
         EventAgregator.RemoveListener(EventKey.destroyShiftCheck, MyDestroyShiftCheck);
         EventAgregator.RemoveListener(EventKey.requestChangeShiftKey, OnRequestChangeShiftKey);
         EventAgregator.RemoveListener(EventKey.enterPause, OnEnterPause);
         EventAgregator.RemoveListener(EventKey.exitPause, OnExitPause);
         EventAgregator.RemoveListener(EventKey.requestInfoEmblemPanel, OnRequestInfoEmbelmPanel);
+        EventAgregator.RemoveListener(EventKey.sumContShift, OnRequestSumContShift);
+        EventAgregator.RemoveListener(EventKey.getUpdateGeometry, OnGetUpdateGeometry);
+    }
+
+    private void OnGetUpdateGeometry(IGameEvent e)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)e;
+        HexagonoColetavel.DadosDaGeometriaColetavel d = (HexagonoColetavel.DadosDaGeometriaColetavel)ssge.MyObject[0];
+
+        OnRequestChangeEnemyKey(new StandardSendGameEvent(EventKey.requestChangeShiftKey, d.ID));
+    }
+
+    private void OnRequestSumContShift(IGameEvent obj)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)obj;
+        MyKeys.SomaCont((KeyCont)ssge.MyObject[0], (int)ssge.MyObject[1]);
+        Debug.Log((KeyCont)ssge.MyObject[0] + " : " + (int)ssge.MyObject[1] + " : " + MyKeys.VerificaCont((KeyCont)ssge.MyObject[0]));
+        Debug.Log(MyKeys.VerificaCont(KeyCont.losangulosConfirmados));
     }
 
     private void OnRequestInfoEmbelmPanel(IGameEvent e)
@@ -94,13 +113,22 @@ public class GameController : MonoBehaviour
     private void OnRequestChangeShiftKey(IGameEvent obj)
     {
         StandardSendGameEvent ssge = (StandardSendGameEvent)obj;
-        MyKeys.MudaAutoShift((string)ssge.MyObject[0], true);
+        try
+        {
+            string key = (string)ssge.MyObject[0];
+            MyKeys.MudaAutoShift(key, true);
+        } catch
+        {
+            Debug.Log("O tratamento de erro levou para keyShift");
+            KeyShift keyS = (KeyShift)ssge.MyObject[0];
+            MyKeys.MudaShift(keyS, true);
+        }
     }
 
     private void OnIdDestroyCheck(IGameEvent e)
     {
         StandardSendGameEvent ssge = (StandardSendGameEvent)e;
-        if (MyKeys.VerificaAutoShift((string)ssge.MyObject[0]))
+        if (MyKeys.VerificaAutoShift((KeyShift)ssge.MyObject[0]))
             Destroy((GameObject)ssge.MyObject[1]);
     }
 
@@ -145,8 +173,7 @@ public class GameController : MonoBehaviour
     public void VerifiqueDinheiroCaido(DinheiroCaido d)
     {
         
-
-        Debug.Log(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + " : " + d.cenaOndeCaiu.ToString());
+       // Debug.Log(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + " : " + d.cenaOndeCaiu.ToString());
 
         if (d.estaCaido
             &&

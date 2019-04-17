@@ -11,7 +11,7 @@ public class CheckConclusionOfID : MonoBehaviour
 
         if (ExistenciaDoController.AgendaExiste(Start, this))
         {
-            EventAgregator.Publish(new StandardSendGameEvent(EventKey.destroyIdCheck, ID, gameObject));
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.destroyShiftCheck, ID, gameObject));
         }
     }
 

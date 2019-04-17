@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PrimeiraArmadilhaDoJogo : CheckConclusionOfID
 {
-    [SerializeField] private GameObject[] barreiras;
-    [SerializeField] private GameObject particulaDoInicio;
-    [SerializeField] private GameObject[] monitorado;
-    [SerializeField] private GameObject[] spawnaveis;
-    [SerializeField] private DadosDeCena.LimitantesDaCena limitantes;
+    #region inspector
+    [SerializeField] private GameObject[] barreiras = default;
+    [SerializeField] private GameObject particulaDoInicio = default;
+    [SerializeField] private GameObject[] monitorado = default;
+    [SerializeField] private GameObject[] spawnaveis = default;
+    [SerializeField] private DadosDeCena.LimitantesDaCena limitantes = default;
+    #endregion
 
     private string[] IdsMonitorados;
     private bool jaIniciaou = false;
@@ -52,6 +54,13 @@ public class PrimeiraArmadilhaDoJogo : CheckConclusionOfID
             if (ssge.Sender == quem[i])
             {
                 StartCoroutine(VerificaTodosSpawnadosDerrotados(quem));
+
+                new MyInvokeMethod().InvokeAoFimDoQuadro(() =>
+                {
+                    if (TodosDerrotados(quem))
+                        EventAgregator.Publish(EventKey.returnRememberedMusic, null);
+                });
+
 
             }
         }
@@ -115,6 +124,8 @@ public class PrimeiraArmadilhaDoJogo : CheckConclusionOfID
 
             spawnaveis[i].SetActive(true);
         }
+
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, "Fire1"));
     }
 
     private bool TodosDerrotados(GameObject[] quais)
@@ -151,7 +162,14 @@ public class PrimeiraArmadilhaDoJogo : CheckConclusionOfID
                     barreiras[i].SetActive(true);
                 }
 
-                EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestChangeCamLimits, limitantes));
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestChangeCamLimits, limitantes,3f));
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.pedrasQuebrando));
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.changeMusicWithRecovery,
+                    new NameMusicaComVolumeConfig()
+                    {
+                    Musica= NameMusic.trapMusic,
+                    Volume = 1
+                    }));
             }
         }
         

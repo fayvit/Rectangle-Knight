@@ -78,7 +78,7 @@ public class InimigoZigZag : EnemyBase
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
 
         //Debug.Log(collision.name + " : " + collision.tag);

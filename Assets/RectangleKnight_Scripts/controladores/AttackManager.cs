@@ -9,14 +9,15 @@ public class AttackManager
     [SerializeField] private GameObject colisorDoAtaqueComum;
     [SerializeField] private GameObject colisorDoAtaquePraCima;
     [SerializeField] private GameObject colisorDoAtaquePrabaixo;
+    [SerializeField] private AudioClip[] swordSound;
     private float tempoDecorrido = 0;
     private bool estouAtacando = false;
     private AttacksTipes tipo = AttacksTipes.neutro;
 
-    private const float tempoDoAtaqueComum = 0.15f;
+    private const float tempoDoAtaqueComum = 0.25f;
     private const float tempoDoAtaqueCimaBaixo = 0.25f;
     private const float tempoDoAtaquePraCIma = 0.2f;
-    private const float INTERVALO_DE_ATAQUE = .12f;
+    private const float INTERVALO_DE_ATAQUE = .4f;
 
     public int CorDeEspadaSelecionada { get; private set; } = 0;
 
@@ -102,6 +103,7 @@ public class AttackManager
     {
         if (tempoDecorrido > INTERVALO_DE_ATAQUE)
         {
+            InserirSomdaLamina();
             estouAtacando = true;
             tempoDecorrido = 0;
             return true;
@@ -112,7 +114,7 @@ public class AttackManager
 
     public void DisparaAtaqueComum()
     {
-        if (IniciarAtaqueSePodeAtacar())
+      //  if (IniciarAtaqueSePodeAtacar())
         {
             tipo = AttacksTipes.comum;
             colisorDoAtaqueComum.SetActive(true);
@@ -122,7 +124,7 @@ public class AttackManager
 
     public void DisparaAtaquePraCima()
     {
-        if (IniciarAtaqueSePodeAtacar())
+       // if (IniciarAtaqueSePodeAtacar())
         {
             tipo = AttacksTipes.praCima;
             colisorDoAtaquePraCima.SetActive(true);
@@ -131,11 +133,18 @@ public class AttackManager
 
     public void DisparaAtaquePuloPraBaixo()
     {
-        if (IniciarAtaqueSePodeAtacar())
+       // if (IniciarAtaqueSePodeAtacar())
         {
             tipo = AttacksTipes.puloPraBaixo;
             colisorDoAtaquePrabaixo.SetActive(true);
         }
+    }
+
+    public void InserirSomdaLamina()
+    {
+        int qual = Random.Range(0, swordSound.Length);
+
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom,swordSound[qual]));
     }
 
     public bool UpdateAttack()
@@ -175,5 +184,6 @@ public class AttackManager
         colisorDoAtaqueComum.SetActive(false);
         colisorDoAtaquePrabaixo.SetActive(false);
         colisorDoAtaquePraCima.SetActive(false);
+        tipo = AttacksTipes.neutro;
     }
 }

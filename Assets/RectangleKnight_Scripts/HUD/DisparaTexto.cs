@@ -180,19 +180,19 @@ public class DisparaTexto
         switch (fase)
         {
             case FasesDaMensagem.mensagemEnchendo:
-                EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, SoundEffectID.Book1.ToString(), EventKey.disparaSom));
+                EventAgregator.Publish(new StandardSendGameEvent(GameController.g.gameObject,  EventKey.disparaSom, SoundEffectID.Book1.ToString()));
                 textoDaUI.text = texto;
                 fase = FasesDaMensagem.mensagemCheia;
             break;
 
             case FasesDaMensagem.mensagemCheia:
-                EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, SoundEffectID.Book1.ToString(), EventKey.disparaSom));
+                EventAgregator.Publish(new StandardSendGameEvent(GameController.g.gameObject, EventKey.disparaSom, SoundEffectID.Book1.ToString()));
                 fase = FasesDaMensagem.caixaSaindo;
                 contadorDeTempo = 0;
             break;
 
             case FasesDaMensagem.caixaIndo:
-                EventAgregator.Publish(new StandardSendStringEvent(GameController.g.gameObject, SoundEffectID.Book1.ToString(), EventKey.disparaSom));
+                EventAgregator.Publish(new StandardSendGameEvent(GameController.g.gameObject, EventKey.disparaSom, SoundEffectID.Book1.ToString()));
                 painelDaMens.anchoredPosition = posOriginal;
                 fase = FasesDaMensagem.mensagemEnchendo;
             break;

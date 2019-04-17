@@ -8,6 +8,7 @@ public class DestructibleWithAttack : ActiveFalseForShift
     [SerializeField] private GameObject particuladaAcao = default;
     [SerializeField] private GameObject containerDasImagens =  default;
     [SerializeField] private Collider2D thisCollider = default;
+    [SerializeField] private SoundEffectID somDaDestruicao = SoundEffectID.pedrasQuebrando;
     #endregion
 
 
@@ -25,6 +26,10 @@ public class DestructibleWithAttack : ActiveFalseForShift
         containerDasImagens.SetActive(false);
         particuladaAcao.SetActive(true);
         EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestChangeShiftKey, ID));
+        new MyInvokeMethod().InvokeNoTempoDeJogo(() =>
+        {
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, somDaDestruicao));
+        }, 0.2f);
         Destroy(gameObject, 5);
     }
 

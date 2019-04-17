@@ -8,6 +8,7 @@ public class DerrotaDoJogador
 #pragma warning disable 0649
     [SerializeField]private GameObject losanguloFinalizador;
     [SerializeField] private Vector3 escalaFinal;
+    [SerializeField] private AudioClip somDoLosangulo;
 #pragma warning restore 0649
 
     private float tempoDecorrido = 0;
@@ -38,6 +39,7 @@ public class DerrotaDoJogador
                 {
                     tempoDecorrido = 0;
                     estado = EstadoDaqui.escalonandoLosangulo;
+                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, somDoLosangulo));
                 }
             break;
             case EstadoDaqui.escalonandoLosangulo:
@@ -47,6 +49,8 @@ public class DerrotaDoJogador
 
                 if (tempoDecorrido > tempoDoEscalonamentoDoRetangulo)
                 {
+                    tempoDecorrido = 0;
+                    estado = EstadoDaqui.iniciando;
                     return true;
                 }
             break;

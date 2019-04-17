@@ -11,6 +11,10 @@ public class KeyVar
     private Dictionary<string, bool> autoShift = new Dictionary<string, bool>();
     private Dictionary<string, bool> enemyShift = new Dictionary<string, bool>();
 
+
+
+    public  CapsuleList ListaDeCapsulas { get; private set; } = new CapsuleList();    
+
     public NomesCenas CenaAtiva { get; private set; } = NomesCenas.TutoScene;
 
     public List<NomesCenas> CenasAtivas { get; private set; } = new List<NomesCenas>();
@@ -175,8 +179,13 @@ public enum KeyShift
     nula = -1,
     pegouPrimeiroEmblema,
     conhecendoTyron,
-    tyronUmCaminhoEmFrente
-   
+    tyronUmCaminhoEmFrente,
+    conhecendoHerika,
+    algoEmComumComTyron,
+    conhecendoOtto,
+    fascinadoPelasCapsulas,
+    prazerEmConhecerCapsulas,
+    venceuCirculoImperfeito
 }
 
 public enum KeyCont

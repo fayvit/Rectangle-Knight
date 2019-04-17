@@ -13,54 +13,100 @@ public class MusicaDeFundo
     private string cenaIniciada = "";
     private bool parando;
     private float volumeAlvo = 0.5f;
+    private float volumeBase = 0.95f;
     private const float VELOCIDADE_DE_MUDANCA = 0.25f;
 
     public MusicaComVolumeConfig MusicaGuardada { get; private set; }
 
     public MusicaComVolumeConfig MusicaAtualAtiva { get; private set; }
 
-    public float VolumeBase { get; set; } = 0.95f;
-
     public float VelocidadeAtiva { get; set; } = 0.25f;
+
+    public float VolumeBase {
+        get => volumeBase;
+        set {
+            volumeBase = value;
+            for (int i = 0; i<audios.Length; i++)
+            {
+                audios[i].volume = MusicaAtualAtiva.Volume * volumeBase;
+            }
+        }
+    }
 
     public void ResetaVelAtiva()
     {
         VelocidadeAtiva = VELOCIDADE_DE_MUDANCA;
     }
 
-
-
-    public void IniciarMusicaGuardada()
+    public void IniciarMusicaDaCena(DadosDeCena d)
     {
+        //DadosDeCena d = SceneDates.GetCurrentSceneDates();
+
+        if (d != null)
+        {
+            IniciarMusica(d.musicName);
+        }
+    }
+
+    public void IniciarMusicaGuardada(float vel = -1)
+    {
+        if (vel <= 0)
+            vel = VELOCIDADE_DE_MUDANCA;
+
+        VelocidadeAtiva = vel;
+
         if (MusicaGuardada != null)
         {
             IniciarMusica(MusicaGuardada.Musica, MusicaGuardada.Volume);
         }
+        else
+            ReiniciarMusicas();
     }
 
-    public void IniciarMusicaGuardandoAtual(AudioClip esseClip, float volumeAlvo = 1)
+    public void IniciarMusicaGuardandoAtual(AudioClip esseClip, float volumeAlvo = 1,float vel = -1)
     {
         MusicaGuardada = MusicaAtualAtiva;
-        IniciarMusica(esseClip, volumeAlvo);
+        IniciarMusica(esseClip, volumeAlvo,vel);
     }
 
-    public void IniciarMusicaGuardandoAtual(NameMusic esseClip, float volumeAlvo = 1)
+    public void IniciarMusicaGuardandoAtual(NameMusicaComVolumeConfig n,float vel = -1)
+    {
+        IniciarMusicaGuardandoAtual(n.Musica, n.Volume,vel);
+    }
+
+    public void IniciarMusicaGuardandoAtual(MusicaComVolumeConfig n, float vel = -1)
+    {
+        IniciarMusicaGuardandoAtual(n.Musica, n.Volume);
+    }
+
+    public void IniciarMusicaGuardandoAtual(NameMusic esseClip, float volumeAlvo = 1, float vel = -1)
     {
         IniciarMusicaGuardandoAtual(esseClip.ToString(), volumeAlvo); ;
     }
 
-    public void IniciarMusicaGuardandoAtual(string esseClip, float volumeAlvo = 1)
+    public void IniciarMusicaGuardandoAtual(string esseClip, float volumeAlvo = 1, float vel = -1)
     {
         IniciarMusicaGuardandoAtual((AudioClip)Resources.Load(esseClip), volumeAlvo);
     }
 
-    public void IniciarMusica(NameMusic esseClip, float volumeAlvo = 1)
+    public void IniciarMusica(NameMusicaComVolumeConfig esseClip,  float vel = -1)
     {
-        IniciarMusica((AudioClip)Resources.Load(esseClip.ToString()), volumeAlvo);
+        IniciarMusica((AudioClip)Resources.Load(esseClip.Musica.ToString()), esseClip.Volume, vel);
     }
 
-    public void IniciarMusica(AudioClip esseClip, float volumeAlvo = 1)
+    public void IniciarMusica(NameMusic esseClip, float volumeAlvo = 1,float vel = -1)
     {
+        IniciarMusica((AudioClip)Resources.Load(esseClip.ToString()), volumeAlvo,vel);
+    }
+
+    public void IniciarMusica(AudioClip esseClip, float volumeAlvo = 1, float vel = -1)
+    {
+        if (vel <= 0)
+        {
+            vel = VELOCIDADE_DE_MUDANCA;
+        }
+
+        VelocidadeAtiva = vel;
 
         MusicaAtualAtiva = new MusicaComVolumeConfig()
         {
@@ -98,15 +144,20 @@ public class MusicaDeFundo
         
     }
 
-    public void PararMusicas(float vel)
+    public void PararMusicas(float vel = -1)
     {
+        if (vel <= 0)
+            vel = VELOCIDADE_DE_MUDANCA;
+
+        VelocidadeAtiva = vel;
         parando = true;
     }
 
+    /*
     public void PararMusicas()
     {
         parando = true;
-    }
+    }*/
 
     public void ReiniciarMusicas(bool doZero = false)
     {
@@ -177,36 +228,32 @@ public class MusicaDeFundo
 public enum NameMusic
 {
     nula = -1,
-    Field2,
-    Mushrooms,
-    Battle8,
-    Theme5
+    IntroTheme,//Theme2
+    initialAdventureTheme,//DUngeon3
+    acampamentoTheme,//Town4,
+    TyronTheme,//Theme
+    inCheckPointSound,
+    trapMusic//2003_Battle1
 }
 
 public enum SoundEffectID
 {
-    tuin_1ponto3,
-    tuimParaNivel,
-    XP_Heal01,
-    coisaBoaRebot,
-    XP_Swing03,
-    rajadaDeAgua,
-    Book1,
-    paraBau,
-    Collapse1,
-    chamadaParaAcao,
-    XP_Knock04,
-    XP_Knock01,
-    bemFeito,
+    Damage3,
     Decision1,
-    XP_Heal02,
-    Item,
-    encontro,
-    VinhetaDoEncontro,
-    Evasion1,
-    Slash2,
-    Shot3,
-    Slash1,
+    Book1,
+    Moeda,
+    VariasMoedas,
+    fakeWall,//XP050-Explosion03
+    CheckPointSound,//137-Light03
+    painelAbrindo,//Bell3
+    addUpdateGeometry,//Push
+    exitCheckPoint,//XP108-Heal04
+    pedrasQuebrando,//XP129-Earth01
+    rockFalseAttack,//XP097-Attack09
+    somParaGetLosangulo,//pacote de audios positivos
+    somParaEruptLosangulo,//pacote de audios positivos
+    vinhetinhaDoSite,
+    Wind1
 }
 
 [System.Serializable]
@@ -216,6 +263,25 @@ public class MusicaComVolumeConfig
     [SerializeField] private float volume = 1;
 
     public AudioClip Musica
+    {
+        get { return musica; }
+        set { musica = value; }
+    }
+
+    public float Volume
+    {
+        get { return volume; }
+        set { volume = value; }
+    }
+}
+
+[System.Serializable]
+public class NameMusicaComVolumeConfig
+{
+    [SerializeField] private NameMusic musica;
+    [SerializeField] private float volume = 1;
+
+    public NameMusic Musica
     {
         get { return musica; }
         set { musica = value; }

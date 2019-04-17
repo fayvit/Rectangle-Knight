@@ -53,6 +53,7 @@ public class MenuDoNovoJogoCarregarDeletar : UiDeOpcoes
 
     public void IniciarJogo(int qual)
     {
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.stopMusic,2f));
         SaveDatesManager.CarregaSaveDates(qual);
 
         GlobalController.g.FadeV.IniciarFadeOutComAction(() =>

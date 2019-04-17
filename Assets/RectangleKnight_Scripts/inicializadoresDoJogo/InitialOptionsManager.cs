@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class InitialOptionsManager : MonoBehaviour
 {
 #pragma warning disable 0649
@@ -24,9 +25,18 @@ public class InitialOptionsManager : MonoBehaviour
         menuDeLinguagensAberto
     }
 
+    IEnumerator PedirSomDoMenu()
+    {
+        yield return new WaitForEndOfFrame();
+
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.startMusic,NameMusic.IntroTheme));
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(PedirSomDoMenu());
+
         SaveDatesManager.Load();
 
         Debug.Log(SaveDatesManager.s.SavedGames.Count+" : "+SaveDatesManager.s.SaveProps.Count);

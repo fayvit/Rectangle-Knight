@@ -12,11 +12,21 @@ public class SoundEffectsManager
 
     public float VolumeBase { get; set; } = 0.5f;
 
+    public void DisparaAudio(SoundEffectID s)
+    {
+        DisparaAudio(s.ToString());
+    }
+
     public void DisparaAudio(string s)
+    {
+        DisparaAudio((AudioClip)Resources.Load(s));
+    }
+
+    public void DisparaAudio(AudioClip s)
     {
         AudioSource a = RetornaMelhorCandidato();
 
-        a.clip = (AudioClip)Resources.Load(s);
+        a.clip = s;
         a.volume = VolumeBase;
         a.Play();
     }

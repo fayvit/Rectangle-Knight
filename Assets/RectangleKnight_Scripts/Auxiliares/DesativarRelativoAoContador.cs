@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DesativarRelativoAoContador : MonoBehaviour
 {
-    [SerializeField] private KeyCont kCont;
-    [SerializeField] private int menorQue;
+    [SerializeField] private KeyCont kCont = default;
+    [SerializeField] private int menorQue = default;
     // Start is called before the first frame update
 
     void Start()

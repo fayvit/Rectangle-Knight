@@ -5,7 +5,7 @@ using UnityEngine;
 public class InvestEnemy : RigidbodyMoveEnemy
 {
     
-    [SerializeField] private GameObject particulaDaInvestida;
+    [SerializeField] private GameObject particulaDaInvestida = default;
 
     [SerializeField] private float TEMPO_DA_PAUSA_DA_INVESTIDA = 0.25F;
 

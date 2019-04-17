@@ -10,9 +10,9 @@ public class FlyingPursuerEnemy : EnemyBase
     private Vector3 dirDeMovimento;
     private Vector3 redirecionador = default;
 
-    [SerializeField] private float DISTANCIA_PERSEGUICAO = 10;
-    [SerializeField] private float DISTANCIA_ATIVACAO = 10;
-    [SerializeField] private float VARIACAO_DA_DIRECAO = 1.5F;
+    [SerializeField] private float DISTANCIA_PERSEGUICAO = 30;
+    [SerializeField] private float DISTANCIA_ATIVACAO = 17;
+    [SerializeField] private float VARIACAO_DA_DIRECAO = 0.5F;
     [SerializeField] private float VEL_DO_MOVIMENTO = 4;
     [SerializeField] private float multiplicadorDoRedirecionamento = 50;
 
@@ -76,8 +76,9 @@ public class FlyingPursuerEnemy : EnemyBase
        
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
+    
 
         //Debug.Log(collision.name + " : " + collision.tag);
         if (collision.tag == "Player")

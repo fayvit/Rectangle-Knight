@@ -6,9 +6,9 @@ public class LosanguloManager : MonoBehaviour
 {
     #region inspector
     [SerializeField] private Sprite spriteAmarelo = default;
-    [SerializeField] private GameObject particulaDaConfirmacao;
-    [SerializeField] private GameObject particulaPoeira;
-    [SerializeField] private CofreDosLosangulos[] cofres;
+    [SerializeField] private GameObject particulaDaConfirmacao = default;
+    [SerializeField] private GameObject particulaPoeira = default;
+    [SerializeField] private CofreDosLosangulos[] cofres = default;
     #endregion
 
     public static LosanguloManager l;
@@ -24,6 +24,8 @@ public class LosanguloManager : MonoBehaviour
         //losangulos = FindObjectsOfType<SouUmLosanguloGerenciavel>();
 
         //Debug.Log(losangulos.Length);
+
+        //GameController.g.MyKeys.MudaCont(KeyCont.losangulosPegos, 4);
 
         Invoke("ColocaLosangulosConfirmados",0.1f);
 
@@ -75,6 +77,15 @@ public class LosanguloManager : MonoBehaviour
                 SpawnMoedas.Spawn(s.transform.position, Mathf.Max(5, i));
                 sum++;
             }
+        }
+
+        if (sum > 0)
+        {
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.somParaGetLosangulo));
+            new MyInvokeMethod().InvokeNoTempoDeJogo(() =>
+            {
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.VariasMoedas));
+            }, .35f);
         }
 
         myKeys.SomaCont(KeyCont.losangulosConfirmados, sum);

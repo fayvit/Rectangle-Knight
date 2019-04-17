@@ -30,7 +30,10 @@ public class ControladorDeJoystick : MonoBehaviour, IDragHandler, IPointerUpHand
 
     private void Start()
     {
-        cj = this;
+        if (cj == null)
+            cj = this;
+        else
+            Destroy(gameObject);
 
         if (GetComponent<Image>() == null)
         {
@@ -61,6 +64,7 @@ public class ControladorDeJoystick : MonoBehaviour, IDragHandler, IPointerUpHand
         EventAgregator.AddListener(EventKey.finalizaDisparaTexto, OnFinishTalk);
         EventAgregator.AddListener(EventKey.requestHideControllers, OnStartTalk);
         EventAgregator.AddListener(EventKey.requestShowControllers, OnFinishTalk);
+        EventAgregator.AddListener(EventKey.startCheckPoint, OnStartCheckPoint);
     }
 
     private void OnDestroy()
@@ -69,6 +73,12 @@ public class ControladorDeJoystick : MonoBehaviour, IDragHandler, IPointerUpHand
         EventAgregator.RemoveListener(EventKey.finalizaDisparaTexto, OnFinishTalk);
         EventAgregator.RemoveListener(EventKey.requestHideControllers, OnStartTalk);
         EventAgregator.RemoveListener(EventKey.requestShowControllers, OnFinishTalk);
+        EventAgregator.RemoveListener(EventKey.startCheckPoint, OnStartCheckPoint);
+    }
+
+    void OnStartCheckPoint(IGameEvent e)
+    {
+        OnPointerUp(null);
     }
 
     void OnFinishTalk(IGameEvent e)
@@ -78,6 +88,7 @@ public class ControladorDeJoystick : MonoBehaviour, IDragHandler, IPointerUpHand
 
     void OnStartTalk(IGameEvent e)
     {
+        OnPointerUp(null);
         transform.parent.gameObject.SetActive(false);
     }
 

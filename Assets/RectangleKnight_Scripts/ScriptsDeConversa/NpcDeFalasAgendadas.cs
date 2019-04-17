@@ -4,7 +4,9 @@ using System.Collections;
 [System.Serializable]
 public class NpcDeFalasAgendadas : NPCdeConversa
 {
-    [SerializeField] private FalasAgendaveis[] falas;
+    #region inspector
+    [SerializeField] private FalasAgendaveis[] falas = default;
+    #endregion
 
     private int ultimoIndice = -1;
 
@@ -35,11 +37,15 @@ public class NpcDeFalasAgendadas : NPCdeConversa
     {
         KeyVar myKeys = GameController.g.MyKeys;
 
-        int indiceInicial = ultimoIndice < falas.Length ? Mathf.Max(ultimoIndice,0) : 0;
+        Debug.Log("ultimo indice no inicio: " + ultimoIndice);
 
-        for (int i = falas.Length - 1; i >= indiceInicial; i--)
+        //int indiceInicial = ultimoIndice < falas.Length ? Mathf.Max(ultimoIndice,0) : 0;
+        int indiceFinal = ultimoIndice >0 ? Mathf.Min(ultimoIndice,falas.Length) : falas.Length;
+        
+
+        for (int i=0;i<indiceFinal;i++)
+        //for (int i = falas.Length - 1; i >= indiceInicial; i--)
         {
-
             if (myKeys.VerificaAutoShift(falas[i].ChaveCondicionalDaConversa))
             {
 
@@ -47,6 +53,8 @@ public class NpcDeFalasAgendadas : NPCdeConversa
                 ultimoIndice = i;
             }
         }
+
+        Debug.Log(indiceFinal+" : "+ultimoIndice);
 
         if (falas[ultimoIndice].Repetir >= 0)
         {
@@ -58,7 +66,7 @@ public class NpcDeFalasAgendadas : NPCdeConversa
 
         }
 
-        ultimoIndice++;
+        //ultimoIndice--;
 
         /*
         if (!GameController.g.MyKeys.VerificaAutoShift(falas[i].ChaveCondicionalDaConversa))

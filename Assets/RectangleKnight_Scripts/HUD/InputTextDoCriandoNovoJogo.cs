@@ -53,6 +53,8 @@ public class InputTextDoCriandoNovoJogo : MonoBehaviour
         SaveDatesManager.s.IndiceDoJogoAtualSelecionado = prop.indiceDoSave;
 
         GlobalController.g.FadeV.IniciarFadeOutComAction(OnFadeOutComplete);
+
+        EventAgregator.Publish(EventKey.stopMusic, null);
         //EventAgregator.AddListener(EventKey.fadeOutComplete, OnFadeOutComplete);  
     }
 

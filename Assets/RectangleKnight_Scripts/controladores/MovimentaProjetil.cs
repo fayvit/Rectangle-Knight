@@ -5,8 +5,7 @@ using UnityEngine;
 public class MovimentaProjetil : MonoBehaviour
 {
     [SerializeField] private float velocidade = 20;
-
-    private Vector3 dir;
+    [SerializeField]private Vector3 dir = default;
 
     public GameObject Particle { get; set; }
 

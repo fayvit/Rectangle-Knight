@@ -1060,7 +1060,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1813,6 +1813,9 @@ MonoBehaviour:
         yMin: -48
         yMax: 32
       bkColor: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
     - nomeDaCena: 3
       limitantes:
         xMin: 158
@@ -1820,6 +1823,179 @@ MonoBehaviour:
         yMin: -24
         yMax: 1
       bkColor: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 5
+      limitantes:
+        xMin: 279
+        xMax: 492
+        yMin: -94
+        yMax: -38
+      bkColor: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 4
+      limitantes:
+        xMin: 207
+        xMax: 404
+        yMin: -38
+        yMax: 1
+      bkColor: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 0}
+      musicName:
+        musica: 2
+        volume: 1
+    - nomeDaCena: 6
+      limitantes:
+        xMin: 499
+        xMax: 531
+        yMin: -141
+        yMax: -72
+      bkColor: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 7
+      limitantes:
+        xMin: 538
+        xMax: 609
+        yMin: -87
+        yMax: -65
+      bkColor: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 8
+      limitantes:
+        xMin: 532
+        xMax: 575
+        yMin: -125
+        yMax: -107
+      bkColor: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 9
+      limitantes:
+        xMin: 539
+        xMax: 663
+        yMin: -141
+        yMax: -105
+      bkColor: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 10
+      limitantes:
+        xMin: 389
+        xMax: 500
+        yMin: -147
+        yMax: -126
+      bkColor: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 11
+      limitantes:
+        xMin: 353
+        xMax: 387
+        yMin: -137
+        yMax: -103
+      bkColor: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 12
+      limitantes:
+        xMin: 270
+        xMax: 388
+        yMin: -161
+        yMax: -92
+      bkColor: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 13
+      limitantes:
+        xMin: 98
+        xMax: 273
+        yMin: -160
+        yMax: -90
+      bkColor: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 14
+      limitantes:
+        xMin: 20
+        xMax: 94
+        yMin: -173
+        yMax: -138
+      bkColor: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 15
+      limitantes:
+        xMin: -46
+        xMax: 21
+        yMin: -199
+        yMax: -72
+      bkColor: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 17
+      limitantes:
+        xMin: 133
+        xMax: 159
+        yMin: -203
+        yMax: -191
+      bkColor: {r: 0.15294118, g: 0.15294118, b: 0.15294118, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 16
+      limitantes:
+        xMin: 26
+        xMax: 187
+        yMin: -218
+        yMax: -171
+      bkColor: {r: 0.4627451, g: 0.4627451, b: 0.4627451, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 18
+      limitantes:
+        xMin: 1
+        xMax: 40
+        yMin: -116
+        yMax: -133
+      bkColor: {r: 0.4627451, g: 0.4627451, b: 0.4627451, a: 0}
+      musicName:
+        musica: 0
+        volume: 0
+    - nomeDaCena: 19
+      limitantes:
+        xMin: 7
+        xMax: 159
+        yMin: -88
+        yMax: -51
+      bkColor: {r: 0.4627451, g: 0.4627451, b: 0.4627451, a: 0}
+      musicName:
+        musica: 0
+        volume: 0
+    - nomeDaCena: 20
+      limitantes:
+        xMin: 161
+        xMax: 312
+        yMin: -99
+        yMax: -57
+      bkColor: {r: 0.4627451, g: 0.4627451, b: 0.4627451, a: 0}
+      musicName:
+        musica: 0
+        volume: 0
   emTeste: 0
 --- !u!114 &1598610332
 MonoBehaviour:
@@ -2164,7 +2340,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2439,7 +2615,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2566,7 +2742,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2693,7 +2869,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2931,7 +3107,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3058,7 +3234,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3296,7 +3472,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

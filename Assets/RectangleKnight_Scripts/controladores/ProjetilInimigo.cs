@@ -12,9 +12,9 @@ public class ProjetilInimigo : MovimentaProjetil
             EventAgregator.Publish(new StandardSendGameEvent(EventKey.heroDamage, sentidoPositivo, 25));
         }
 
-        //Debug.Log(collision.tag);
+        //Debug.Log(collision.tag+" : "+collision.name);
 
-        if (collision.tag != "Enemy"  && collision.tag != "triggerGeral")
+        if (collision.tag != "Enemy"  && collision.tag != "triggerGeral" && collision.tag!="attackCollisor")
         {
             InstanciaLigando.Instantiate(Particle, transform.position, 2);
             Destroy(gameObject);

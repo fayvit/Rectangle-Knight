@@ -5,8 +5,11 @@ using UnityEngine;
 public class AtivadorDoBotaoConversaAgendada : AtivadorDoBotaoConversa
 {
     [SerializeField] private string ID;
-    [SerializeField] private NpcDeFalasAgendadas esseNpc;
-    [SerializeField] private KeyShift[] colocarTrue;
+
+    #region inspector
+    [SerializeField] private NpcDeFalasAgendadas esseNpc = default;
+    [SerializeField] private KeyShift[] colocarTrue = default;
+    #endregion
 
     // Use this for initialization
     new void Start()
@@ -18,6 +21,9 @@ public class AtivadorDoBotaoConversaAgendada : AtivadorDoBotaoConversa
             {
                 myKeys.MudaShift(colocarTrue[i], true);
             }
+
+        myKeys.MudaAutoShift(ID, true);
+
         npc = esseNpc;
         base.Start();
     }

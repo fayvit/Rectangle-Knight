@@ -29,5 +29,6 @@ public class NonRespawnOnLoadEnemy : EnemyBase
     protected override void OnDefeated()
     {
         EventAgregator.Publish(new StandardSendGameEvent(gameObject,EventKey.requestChangeEnemyKey, ID));
+        base.OnDefeated();
     }
 }

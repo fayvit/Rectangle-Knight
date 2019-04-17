@@ -21,6 +21,11 @@ public class MagicAttack
     [SerializeField] private ParticleSystem particulaDoCurou;
     [SerializeField] private GameObject downArrowJumpInGround;
     [SerializeField] private GameObject downArrowJumpCollider;
+    [SerializeField] private AudioClip somDisparaMagia;
+    [SerializeField] private AudioClip somDoCurou;
+    [SerializeField] private AudioClip somDoIniciaCura;
+    [SerializeField] private AudioClip somDisparaDownArrow;
+    [SerializeField] private AudioClip somDownArrowChao;
 
 #pragma warning restore 0649
 
@@ -64,6 +69,9 @@ public class MagicAttack
 
                 if (EmTempoDeRecarga && pontosDeMana >= custoParaRecarga)
                 {
+                    if(!particulaDaCura.activeSelf)
+                        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, somDoIniciaCura));
+
                     particulaDaCura.SetActive(true);
                 }
                 else if (pontosDeMana < custoParaRecarga)
@@ -117,7 +125,8 @@ public class MagicAttack
             tempoEmRecuperacao = coolDownRecharge;
             particulaDoCurou.gameObject.SetActive(true);
             particulaDoCurou.Play();
-            EventAgregator.Publish(new StandardSendGameEvent(null, EventKey.curaDisparada, custoParaRecarga,pontosQueSeraoCarregados));
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.curaDisparada, custoParaRecarga,pontosQueSeraoCarregados));
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, somDoCurou));
         }
     }
 
@@ -128,6 +137,7 @@ public class MagicAttack
             particulaDoCurou.gameObject.SetActive(true);
             particulaDoCurou.Play();
             EventAgregator.Publish(new StandardSendGameEvent(null, EventKey.requestMagicAttack,pontosParaMagia));
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, somDisparaMagia));
         }
         else
         {
@@ -142,6 +152,7 @@ public class MagicAttack
             particulaDoCurou.gameObject.SetActive(true);
             particulaDoCurou.Play();
             EventAgregator.Publish(new StandardSendGameEvent(null, EventKey.requestDownArrowMagic, custoParaDownArrow));
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, somDisparaDownArrow));
         }
         else
         {
@@ -159,6 +170,7 @@ public class MagicAttack
             downArrowJumpCollider.SetActive(false);
             downArrowJumpInGround.SetActive(true);
             tempoEmRecuperacao = tempoGroundDownArrow;
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, somDownArrowChao));
         }
         else if (chegouNoChao && jaTocou)
         {

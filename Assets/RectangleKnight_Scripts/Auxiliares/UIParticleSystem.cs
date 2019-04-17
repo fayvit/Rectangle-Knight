@@ -154,14 +154,14 @@ public class UIParticleSystem : MaskableGraphic
             ParticleSystem.Particle particle = _particles[i];
 
             // get particle properties
-            Vector2 position = (_particleSystem.simulationSpace == ParticleSystemSimulationSpace.Local ? particle.position : _transform.InverseTransformPoint(particle.position));
+            Vector2 position = (_particleSystem.main.simulationSpace == ParticleSystemSimulationSpace.Local ? particle.position : _transform.InverseTransformPoint(particle.position));
             float rotation = -particle.rotation * Mathf.Deg2Rad;
             float rotation90 = rotation + Mathf.PI / 2;
             Color32 color = particle.GetCurrentColor(_particleSystem);
             float size = particle.GetCurrentSize(_particleSystem) * 0.5f;
 
             // apply scale
-            if (_particleSystem.scalingMode == ParticleSystemScalingMode.Shape)
+            if (_particleSystem.main.scalingMode == ParticleSystemScalingMode.Shape)
             {
                 position /= canvas.scaleFactor;
             }

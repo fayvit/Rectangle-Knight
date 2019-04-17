@@ -9,33 +9,72 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
+    path: Assets/Scenes/menuInicial.unity
+    guid: 4eebdb8029865394abc65c12b9f14e72
+  - enabled: 1
+    path: Assets/Scenes/area1/ExilioDasProfundezas.unity
+    guid: 2783e542863e947468295ce3956c9eda
+  - enabled: 1
     path: Assets/Scenes/CenaDeCarregamento.unity
     guid: 281b3f203a7299f45af274e6984abc8a
+  - enabled: 1
+    path: Assets/Scenes/area1/barracaDeHerikaNoExilio.unity
+    guid: aea89416b423deb47976bcd50255a8bc
   - enabled: 1
     path: Assets/Scenes/ComunsDeFase.unity
     guid: 4622e66c3df62d14792775b7ebf399db
   - enabled: 1
-    path: Assets/Scenes/menuInicial.unity
-    guid: 4eebdb8029865394abc65c12b9f14e72
-  - enabled: 1
-    path: Assets/Scenes/TutoScene.unity
+    path: Assets/Scenes/area1/TutoScene.unity
     guid: c70c620a3d64ed2429855afab82527c0
   - enabled: 1
     path: Assets/Scenes/GreyScaleScene.unity
     guid: e31efce959f89d0428dc83bfcc6e6476
   - enabled: 1
-    path: Assets/Scenes/FirstCheckPointZone.unity
+    path: Assets/Scenes/area1/grandeSubida.unity
+    guid: eefcc659f7f45eb4ca243da8a434d86c
+  - enabled: 1
+    path: Assets/Scenes/area1/FirstCheckPointZone.unity
     guid: ccd4986046d90a74d937d439c694be0c
   - enabled: 1
-    path: Assets/Scenes/AcampamentoDosRejeitados.unity
+    path: Assets/Scenes/area1/AcampamentoDosRejeitados.unity
     guid: e4c7a7bd2f2c82144bb7b51997db7b23
   - enabled: 1
-    path: Assets/Scenes/primeiroSubsolo.unity
+    path: Assets/Scenes/area1/primeiroSubsolo.unity
     guid: f3dc64c9149994446a7a5a54313b8980
   - enabled: 1
-    path: Assets/Scenes/descidaDasProfundezas.unity
+    path: Assets/Scenes/area1/descidaDasProfundezas.unity
     guid: d1eb7b9255a09804787f9288a084ab89
   - enabled: 1
-    path: Assets/Scenes/zonaDosLosangulos.unity
+    path: Assets/Scenes/area1/zonaDosLosangulos.unity
     guid: abaf313970acc914d8dda7c7e7b30938
+  - enabled: 1
+    path: Assets/Scenes/area1/hexagonoDabarreiraAzul.unity
+    guid: 2b6d3b46470f36542a49dadc172a77be
+  - enabled: 1
+    path: Assets/Scenes/area1/area1ParaArea9.unity
+    guid: 10e8a9210ef51644a83c75aa8d9b1e07
+  - enabled: 1
+    path: Assets/Scenes/area1/preparacaoParaSubida.unity
+    guid: 72511444bd97c3540bc37e3d8813288f
+  - enabled: 1
+    path: Assets/Scenes/area1/PassagemDosRefugiados.unity
+    guid: ba70cf45add23fc4e8e8512ff3f929d8
+  - enabled: 1
+    path: Assets/Scenes/area1/obstaculosParaOsRefugiados.unity
+    guid: 5b0fc4f4cf87d23408528d1e7d513873
+  - enabled: 1
+    path: Assets/Scenes/area1/entroncamentoDosObstaculos.unity
+    guid: 62b7856a32cfc5b4ea45ca832eb20e69
+  - enabled: 1
+    path: Assets/Scenes/area1/CheckPointNaGargantaDasProfundezas.unity
+    guid: 9c1745ce6b4c10f4eab95eccc56e9f82
+  - enabled: 1
+    path: Assets/Scenes/area1/capsulaDaGargantaDasProfundezas.unity
+    guid: f189f6faf2169c9479f24d5e407a1f00
+  - enabled: 1
+    path: Assets/Scenes/area1/preparacaoParaChefe.unity
+    guid: d7e363fc19379a347bdc255a2df89cbb
+  - enabled: 1
+    path: Assets/Scenes/area1/zonaDoChefe.unity
+    guid: a46d06b7b90d96b418a939882c52e516
   m_configObjects: {}

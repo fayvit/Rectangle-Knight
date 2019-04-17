@@ -9,6 +9,7 @@ public class JumpManager
 
 #pragma warning disable 0649
     [SerializeField] private ParticleSystem doublejumpParticles;
+    [SerializeField] private AudioClip somDoPuloDuplo;
 #pragma warning restore 0649
 
     private float tempoDePulo = 0;
@@ -58,6 +59,8 @@ public class JumpManager
         PodePuloDuplo = false;
         doublejumpParticles.gameObject.SetActive(true);
         doublejumpParticles.Play();
+
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, somDoPuloDuplo));
     }
 
     public void VerificaPulo()

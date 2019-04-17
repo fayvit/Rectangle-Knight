@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,17 +14,23 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private PiscaInvunerabilidade piscaI;
     [SerializeField] private DashMovement dash;
     [SerializeField] private DerrotaDoJogador derrota;
+
     [SerializeField] private EstadoDePersonagem estado = EstadoDePersonagem.naoIniciado;
+
     [SerializeField] private GameObject heroParticleDamage;
     [SerializeField] private GameObject enemyParticleDamage;
     [SerializeField] private GameObject particulaDoDescanso;
     [SerializeField] private GameObject particulaDoDanoMortal;
     [SerializeField] private GameObject particulaDoMorrendo;
     [SerializeField] private ParticleSystem particulaSaiuDoDescanso;
+    [SerializeField] private AudioClip somDoDano;
+    [SerializeField] private AudioClip somDoDanoFatal;
+
 #pragma warning restore 0649
     #endregion
 
     private TeleportDamage tDamage = new TeleportDamage();
+    private ExternalPositionRequest positionRequest;
 
     public Controlador Control { get => GlobalController.g.Control;}
     public DadosDoJogador Dados { get => dados; set => dados = value; }
@@ -35,6 +40,7 @@ public class CharacterManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        positionRequest = new ExternalPositionRequest(transform, mov);
         mov.Iniciar(transform);
         dash.IniciarCampos(transform);
 
@@ -60,12 +66,16 @@ public class CharacterManager : MonoBehaviour
         EventAgregator.AddListener(EventKey.abriuPainelSuspenso, OnOpenExternalPanel);
         EventAgregator.AddListener(EventKey.fechouPainelSuspenso, OnCloseExternalPanel);
         EventAgregator.AddListener(EventKey.getEmblem, OnGetEmblem);
-        EventAgregator.AddListener(EventKey.getHexagon, OnGetHexagon);
-        EventAgregator.AddListener(EventKey.getPentagon, OnGetPentagon);
+        EventAgregator.AddListener(EventKey.getUpdateGeometry, OnGetUpdateGeometry);
+        //EventAgregator.AddListener(EventKey.getPentagon, OnGetPentagon);
         EventAgregator.AddListener(EventKey.inicializaDisparaTexto, OnOpenExternalPanel);
         EventAgregator.AddListener(EventKey.finalizaDisparaTexto, OnCloseExternalPanel);
         EventAgregator.AddListener(EventKey.getNotch, OnGetNotch);
         EventAgregator.AddListener(EventKey.colisorNoQuicavel, OnRequestKick);
+        EventAgregator.AddListener(EventKey.requestCharRepulse, OnRequestRepulse);
+        EventAgregator.AddListener(EventKey.requestHeroPosition, OnRequestPosition);
+        EventAgregator.AddListener(EventKey.getColorSword, OnGetColorSword);
+        EventAgregator.AddListener(EventKey.getStamp, OnGetStamp);
 
 
         GameController.g.Manager = this;
@@ -90,12 +100,50 @@ public class CharacterManager : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.abriuPainelSuspenso, OnOpenExternalPanel);
         EventAgregator.RemoveListener(EventKey.fechouPainelSuspenso, OnCloseExternalPanel);
         EventAgregator.RemoveListener(EventKey.getEmblem, OnGetEmblem);
-        EventAgregator.RemoveListener(EventKey.getHexagon, OnGetHexagon);
-        EventAgregator.RemoveListener(EventKey.getPentagon, OnGetPentagon);
+        EventAgregator.RemoveListener(EventKey.getUpdateGeometry, OnGetUpdateGeometry);
+      //  EventAgregator.RemoveListener(EventKey.getPentagon, OnGetPentagon);
         EventAgregator.RemoveListener(EventKey.inicializaDisparaTexto, OnOpenExternalPanel);
         EventAgregator.RemoveListener(EventKey.finalizaDisparaTexto, OnCloseExternalPanel);
         EventAgregator.RemoveListener(EventKey.getNotch, OnGetNotch);
         EventAgregator.RemoveListener(EventKey.colisorNoQuicavel, OnRequestKick);
+        EventAgregator.RemoveListener(EventKey.requestCharRepulse, OnRequestRepulse);
+        EventAgregator.RemoveListener(EventKey.requestHeroPosition, OnRequestPosition);
+        EventAgregator.RemoveListener(EventKey.getColorSword, OnGetColorSword);
+        EventAgregator.RemoveListener(EventKey.getStamp, OnGetStamp);
+    }
+
+    private void OnGetStamp(IGameEvent e)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)e;
+
+        dados.PegouSelo((SeloPositivista.TipoSelo)ssge.MyObject[0]);
+    }
+
+    private void OnGetColorSword(IGameEvent e)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)e;
+
+        Dados.GetSword((SwordColor)ssge.MyObject[0]);
+    }
+
+    private void OnRequestPosition(IGameEvent e)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)e;
+
+        estado = EstadoDePersonagem.movimentoRequerido;
+
+        positionRequest.RequererMovimento(ssge.Sender,(Vector3)ssge.MyObject[0],4);
+
+        atk.ResetaAttackManager();
+        magic.RetornarAoModoDeEspera();
+        dash.RetornarAoEstadoDeEspera();
+
+    }
+
+    private void OnRequestRepulse(IGameEvent obj)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)obj;
+        mov.ApplyForce((Vector3)ssge.MyObject[0],(float)ssge.MyObject[1]);
     }
 
     private void OnRequestKick(IGameEvent e)
@@ -114,14 +162,23 @@ public class CharacterManager : MonoBehaviour
         dados.EspacosDeEmblemas++;
     }
 
+    /*
     private void OnGetPentagon(IGameEvent e)
     {
         dados.SomaPentagono();
-    }
+    }*/
 
-    private void OnGetHexagon(IGameEvent e)
+    private void OnGetUpdateGeometry(IGameEvent e)
     {
-        dados.SomaHexagono();
+        StandardSendGameEvent ssge = (StandardSendGameEvent)e;
+        HexagonoColetavel.DadosDaGeometriaColetavel d = (HexagonoColetavel.DadosDaGeometriaColetavel)ssge.MyObject[0];
+
+        OnOpenExternalPanel(null);
+
+        if (d.ePentagono)
+            dados.SomaPentagono();
+        else
+            dados.SomaHexagono();
     }
 
     private void OnGetEmblem(IGameEvent e)
@@ -137,6 +194,8 @@ public class CharacterManager : MonoBehaviour
 
     private void OnOpenExternalPanel(IGameEvent e)
     {
+        RetornarComponentesAoPAdrao();
+        mov.AplicadorDeMovimentos(Vector3.zero);        
         estado = EstadoDePersonagem.parado;
     }
 
@@ -262,6 +321,7 @@ public class CharacterManager : MonoBehaviour
         else
         {
             EventAgregator.Publish(new StandardSendGameEvent(obj.Sender, EventKey.sendDamageForEnemy, Dados.AtaqueBasico));
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestShakeCam,ShakeAxis.z,2,1f));
 
             Dados.AdicionarMana(1);
             EventAgregator.Publish(new StandardSendGameEvent(gameObject, EventKey.changeMagicPoints, Dados.PontosDeMana, Dados.MaxMana));
@@ -289,16 +349,16 @@ public class CharacterManager : MonoBehaviour
 
             Dados.AplicaDano((int)ssge.MyObject[1]);
             EventAgregator.Publish(new StandardSendGameEvent(gameObject, EventKey.changeLifePoints, Dados.PontosDeVida, Dados.MaxVida));
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestShakeCam,ShakeAxis.y, 3,1f));
 
-            atk.ResetaAttackManager();
-            magic.RetornarAoModoDeEspera();
-            dash.RetornarAoEstadoDeEspera();
+            RetornarComponentesAoPAdrao();
             emDano.Start(transform.position, new Vector3((bool)ssge.MyObject[0] ? -1 : 1, 1, 0));
 
             if (dados.PontosDeVida > 0)
             {
                 piscaI.Start(1);
                 estado = EstadoDePersonagem.emDano;
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom,somDoDano));
 
                 if (ssge.MyObject.Length > 2)
                 {
@@ -309,6 +369,8 @@ public class CharacterManager : MonoBehaviour
             else
             {
                 EventAgregator.Publish(EventKey.requestHideControllers, null);
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestShakeCam,ShakeAxis.x,20,1f));
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, somDoDanoFatal));
 
                 string nomeCena = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
                 Debug.Log("cena onde dinehiro caiu: "+nomeCena);
@@ -322,6 +384,7 @@ public class CharacterManager : MonoBehaviour
 
                 dados.Dinheiro = 0;
                 particulaDoDanoMortal.SetActive(true);
+
                 estado = EstadoDePersonagem.derrotado;
             }
             
@@ -330,6 +393,13 @@ public class CharacterManager : MonoBehaviour
             
         }
         
+    }
+
+    void RetornarComponentesAoPAdrao()
+    {
+        atk.ResetaAttackManager();
+        magic.RetornarAoModoDeEspera();
+        dash.RetornarAoEstadoDeEspera();
     }
 
     // Update is called once per frame
@@ -349,6 +419,8 @@ public class CharacterManager : MonoBehaviour
                     bool noChao = mov.NoChao;
                     Vector3 V = CommandReader.VetorDirecao(Control);
                     mov.AplicadorDeMovimentos(V, CommandReader.ButtonDown(1, Control),dados.TemDoubleJump);
+
+                    atk.UpdateAttack();
 
                     if (CommandReader.ButtonDown(0, Control))
                     {
@@ -437,12 +509,14 @@ public class CharacterManager : MonoBehaviour
                 break;
                 case EstadoDePersonagem.inCheckPoint:
                     #region inCheckPoint
+
                     if (Mathf.Abs(CommandReader.VetorDirecao(GlobalController.g.Control).x) > 0.5f)
                     {
                         particulaSaiuDoDescanso.gameObject.SetActive(true);
                         particulaSaiuDoDescanso.Play();
                         particulaDoDescanso.SetActive(false);
                         estado = EstadoDePersonagem.aPasseio;
+                        EventAgregator.Publish(EventKey.checkPointExit,null);
                     }
                     #endregion
                 break;
@@ -457,6 +531,9 @@ public class CharacterManager : MonoBehaviour
                             transform.position = dados.ultimoCheckPoint.Pos;
                             dados.SetarVidaMax();
                             dados.SetarManaMax();
+
+                            GameController.g.MyKeys.ReviverInimigos();
+
                             SaveDatesManager.SalvarAtualizandoDados(dados.ultimoCheckPoint.nomesDasCenas);
                             SceneLoader.IniciarCarregamento(SaveDatesManager.s.IndiceDoJogoAtualSelecionado,
                                 ()=> {
@@ -469,6 +546,14 @@ public class CharacterManager : MonoBehaviour
                     }
                     #endregion
                 break;
+                case EstadoDePersonagem.movimentoRequerido:
+                    if (positionRequest.UpdateMove())
+                    {
+                        mov.AplicadorDeMovimentos(Vector3.zero);
+                        estado = EstadoDePersonagem.parado;
+                        EventAgregator.Publish(new StandardGameEvent(positionRequest.Requisitor, EventKey.positionRequeredOk));
+                    }
+                break;
             }
         }
     }
@@ -480,9 +565,8 @@ public class CharacterManager : MonoBehaviour
 
     public void BotaoAtacar()
     {
-        if (estado == EstadoDePersonagem.aPasseio)
+        if (estado == EstadoDePersonagem.aPasseio && atk.IniciarAtaqueSePodeAtacar())
         {
-
             if (CommandReader.VetorDirecao(Control).z > 0.5f)
             {
                 atk.DisparaAtaquePraCima();
@@ -493,6 +577,7 @@ public class CharacterManager : MonoBehaviour
             }
             else
                 atk.DisparaAtaqueComum();
+
             estado = EstadoDePersonagem.emAtk;
         }
     }
@@ -505,7 +590,7 @@ public enum EstadoDePersonagem
     parado,
     emAtk,
     emDano,
-    movimentoDeFora,
+    movimentoRequerido,
     derrotado,
     emCura,
     downArrowActive,

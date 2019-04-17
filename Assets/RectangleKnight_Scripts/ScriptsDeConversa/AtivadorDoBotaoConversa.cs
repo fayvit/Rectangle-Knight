@@ -4,6 +4,11 @@ using System.Collections;
 public class AtivadorDoBotaoConversa : AtivadorDeBotao
 {
     [SerializeField] protected NPCdeConversa npc;
+    [SerializeField] private NameMusicaComVolumeConfig nameMusic = new NameMusicaComVolumeConfig()
+    {
+        Musica = NameMusic.nula,
+        Volume = 1
+    };
     //private Vector3 forwardInicialDoBotao;
 
     // Use this for initialization
@@ -24,12 +29,17 @@ public class AtivadorDoBotaoConversa : AtivadorDeBotao
 
         if (npc.Update())
         {
+            EventAgregator.Publish(EventKey.returnRememberedMusic,null);
             //GameController.g.Manager.AoHeroi();
         }
     }
 
     void BotaoConversa()
     {
+        if (nameMusic.Musica != NameMusic.nula)
+        {
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.changeMusicWithRecovery, nameMusic));
+        }
         FluxoDeBotao();
 
         //Transform T = TransformPosDeConversa.MeAjude(transform);

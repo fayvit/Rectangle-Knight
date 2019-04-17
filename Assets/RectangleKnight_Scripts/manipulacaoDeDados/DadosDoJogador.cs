@@ -28,6 +28,9 @@ public class DadosDoJogador : DadosDoPersonagem
     public int PartesDePentagonosObtidas { get; set; } = 0;
     public int HexagonosCompletados { get; set; } = 0;
     public int PentagonosCompletados { get; set; } = 0;
+    public int SeloDoProgresso { get; set; } = 0;
+    public int SeloDoAmor { get; set; } = 0;
+    public int SeloDoOrdem { get; set; } = 0;
     public SwordColor CorDeEspadaSelecionada { get; set; } = SwordColor.grey;
 
     public List<Emblema> MeusEmblemas{get;set;} = new List<Emblema>() { new Emblema(NomesEmblemas.dinheiroMagnetico,1),
@@ -43,6 +46,22 @@ public class DadosDoJogador : DadosDoPersonagem
         Pos = new Vector3(-8, -2, 0)
     };
 
+    public void PegouSelo(SeloPositivista.TipoSelo tipo,int quantidade = 1)
+    {
+        switch (tipo)
+        {
+            case SeloPositivista.TipoSelo.progresso:
+                SeloDoProgresso += quantidade;
+            break;
+            case SeloPositivista.TipoSelo.amor:
+                SeloDoAmor += quantidade;
+            break;
+            case SeloPositivista.TipoSelo.ordem:
+                SeloDoOrdem += quantidade;
+            break;
+        }
+    }
+
     public void SomaHexagono()
     {
         PartesDeHexagonoObtidas++;
@@ -51,6 +70,47 @@ public class DadosDoJogador : DadosDoPersonagem
     public void SomaPentagono()
     {
         PartesDePentagonosObtidas++;
+    }
+
+    public void GetSword(SwordColor cor)
+    {
+        switch (cor)
+        {
+            case SwordColor.blue:
+                EspadaAzul = true;
+            break;
+            case SwordColor.green:
+                EspadaVerde = true;
+            break;
+            case SwordColor.gold:
+                EspadaDourada = true;
+            break;
+            case SwordColor.red:
+                EspadaVermelha = true;
+            break;
+        }
+    }
+
+    public bool SwordAvailable(SwordColor cor)
+    {
+        bool retorno = false;
+        switch (cor)
+        {
+            case SwordColor.blue:
+                retorno = EspadaAzul;
+            break;
+            case SwordColor.green:
+                retorno = EspadaVerde;
+            break;
+            case SwordColor.gold:
+                retorno = EspadaDourada;
+            break;
+            case SwordColor.red:
+                retorno = EspadaVermelha;
+            break;
+        }
+
+        return retorno;
     }
 
 }

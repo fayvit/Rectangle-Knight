@@ -144,7 +144,7 @@ public class SceneLoader : MonoBehaviour
         System.Collections.Generic.List<NomesCenas> retorno = new System.Collections.Generic.List<NomesCenas>();
         for (int i = 0; i < N.Length; i++)
         {
-            Debug.Log("nomes cenas por carregar: "+N[i]);
+            //Debug.Log("nomes cenas por carregar: "+N[i]);
             if (!SceneManager.GetSceneByName(N[i].ToString()).isLoaded)
             {
                 retorno.Add(N[i]);
@@ -379,7 +379,16 @@ public enum NomesCenas
     hexagonoDabarreiraAzul,
     area1ParaArea9,
     PassagemDosRefugiados,
-    CheckPointNaGargantaDasProfundezas
+    CheckPointNaGargantaDasProfundezas,
+    obstaculosParaOsRefugiados,
+    entroncamentoDosObstaculos,
+    preparacaoParaSubida,
+    grandeSubida,
+    ExilioDasProfundezas,
+    barracaDeHerikaNoExilio,
+    capsulaDaGargantaDasProfundezas,
+    preparacaoParaChefe,
+    zonaDoChefe
 }
 
 public enum NomesCenasEspeciais

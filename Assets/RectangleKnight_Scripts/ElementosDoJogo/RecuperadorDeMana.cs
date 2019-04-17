@@ -7,7 +7,10 @@ public class RecuperadorDeMana : MonoBehaviour
     private float tempoDecorrido = 0;
     [SerializeField] private float intervaloDeRecuperacao = 1;
     [SerializeField] private int taxaDeRecuperacao = 1;
-    [SerializeField] private GameObject particulaDaAcao;
+
+    #region inspector
+    [SerializeField] private GameObject particulaDaAcao = default;
+    #endregion
 
 
     private void OnTriggerStay2D(Collider2D collision)

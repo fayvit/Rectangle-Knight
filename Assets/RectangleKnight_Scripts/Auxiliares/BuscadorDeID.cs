@@ -24,7 +24,7 @@ public class BuscadorDeID
 
         if ((ID == "0" || ID == "" || foi) && m.gameObject.scene.name != null && !ePrefabStage)
         {
-            Debug.Log(m.gameObject.scene.name);
+            Debug.Log("quem foi? meu ID: " + ID + "foi?: "+foi + " : " + m.gameObject.scene.name+" e prefab stage: "+ePrefabStage);
 
             ID = m.GetInstanceID() + "_" + m.gameObject.scene.name;
             SetUniqueIdProperty(m, ID, "ID");
@@ -66,7 +66,7 @@ public class BuscadorDeID
         SerializedProperty localIdProp =
             serializedObject.FindProperty(nomeProperty);
 
-        Debug.Log(localIdProp.stringValue);
+        Debug.Log(localIdProp.stringValue+" : "+((MonoBehaviour)o).name);
         localIdProp.stringValue = id;
 #endif
     }

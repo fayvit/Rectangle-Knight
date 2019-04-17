@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JumperStandardEnemy : RigidbodyMoveEnemy
 {
-    [SerializeField] private GameObject particulaTelegrafista;
+    [SerializeField] private GameObject particulaTelegrafista = default;
     private EstadoDaqui estado = EstadoDaqui.movendo;
 
     [SerializeField] private float TEMPO_TELEGRAFANDO_PULO = 0.25F;

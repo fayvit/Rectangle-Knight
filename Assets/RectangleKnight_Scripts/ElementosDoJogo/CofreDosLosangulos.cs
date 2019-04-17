@@ -8,7 +8,7 @@ public class CofreDosLosangulos : MonoBehaviour
     [SerializeField, Range(0, 100)] private int inicioDeAcao = default;
     [SerializeField, Range(0, 100)] private int finalDeAcao = default;
     [SerializeField] private GameObject premio = default;
-    [SerializeField] private Sprite spriteAberto;
+    [SerializeField] private Sprite spriteAberto = default;
     #endregion
 
     public int InicioDeAcao { get => inicioDeAcao; private set => inicioDeAcao = value; }
@@ -32,7 +32,7 @@ public class CofreDosLosangulos : MonoBehaviour
         KeyVar myKeys = GameController.g.MyKeys;
         if (collision.tag == "Player")
         {
-            if(myKeys.VerificaCont(KeyCont.losangulosPegos)>InicioDeAcao
+            if(myKeys.VerificaCont(KeyCont.losangulosPegos) >= InicioDeAcao
                 &&
                 myKeys.VerificaCont(KeyCont.losangulosConfirmados)<FinalDeAcao 
                 && 
@@ -43,9 +43,14 @@ public class CofreDosLosangulos : MonoBehaviour
 
                     if (myKeys.VerificaCont(KeyCont.losangulosPegos) >= FinalDeAcao)
                     {
-                        premio.SetActive(true);
-                        GetComponent<SpriteRenderer>().sprite = spriteAberto;
-                        Destroy(Instantiate(LosanguloManager.l.ParticulaPoeira, transform.position, Quaternion.identity),5);
+                        new MyInvokeMethod().InvokeNoTempoDeJogo(() =>
+                        {
+                            premio.SetActive(true);
+                            GetComponent<SpriteRenderer>().sprite = spriteAberto;
+                            Destroy(Instantiate(LosanguloManager.l.ParticulaPoeira, transform.position, Quaternion.identity), 5);
+
+                            EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.rockFalseAttack));
+                        }, 1);
                     }
             }
 
