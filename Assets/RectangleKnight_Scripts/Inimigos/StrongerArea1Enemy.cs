@@ -63,20 +63,34 @@ public class StrongerArea1Enemy : NonRespawnOnLoadEnemy
         {
             
             StandardSendGameEvent ssge = (StandardSendGameEvent)obj;
+            string animationName = (string)ssge.MyObject[0];
 
-            Debug.Log((string)ssge.MyObject[0]);
+            Debug.Log("animation POint: "+(string)ssge.MyObject[0]);
 
-
-            if ((string)ssge.MyObject[0] == "strongerEnemyMagicAttack")
+            if (animationName == "strongerEnemyMagicAttack")
             {
+                string receivedInfo = (string)ssge.MyObject[1];
+
+
                 GameObject G = InstanciaLigando.Instantiate(projetil, projetilOrigim.position, 5,
-                    Quaternion.LookRotation(-Vector3.forward)
-                    );
-                G.AddComponent<ProjetilInimigo>().Iniciar(Vector3.right,particulaTelegrafista, 15);
+            Quaternion.LookRotation(-Vector3.forward)
+            );
+                G.AddComponent<ProjetilInimigo>().IniciarProjetilInimigo(Vector3.right, particulaTelegrafista, 15, SoundEffectID.lancaProjetilInimigo);
 
                 G = InstanciaLigando.Instantiate(projetil, projetilOrigim.position, 5);
-                
-                G.AddComponent<ProjetilInimigo>().Iniciar(-Vector3.right, particulaTelegrafista, 15);
+
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.lancaProjetilInimigo));
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestShakeCam, ShakeAxis.z, 3, 2f));
+
+                G.AddComponent<ProjetilInimigo>().IniciarProjetilInimigo(-Vector3.right, particulaTelegrafista, 15, SoundEffectID.lancaProjetilInimigo);
+
+
+
+
+            }
+            else if (animationName == "ataqueBasicoStrongerArea1_Enemy" || animationName== "padraoStrongerArea1_Enemy")
+            {
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.EnemySlash));
             }
         }
     }
@@ -91,6 +105,11 @@ public class StrongerArea1Enemy : NonRespawnOnLoadEnemy
             {
                 doHeroi = GameController.g.Manager.transform;
                 estado = EstadoDaqui.buscadorDeAcao;
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.changeMusicWithRecovery, new NameMusicaComVolumeConfig()
+                {
+                    Musica = NameMusic.miniBoss,
+                    Volume = 1
+                }));
             }
         }
     }
@@ -142,6 +161,7 @@ public class StrongerArea1Enemy : NonRespawnOnLoadEnemy
                     }
                     else
                     {
+                        EventAgregator.Publish(EventKey.returnRememberedMusic, null);
                         estado = EstadoDaqui.emEspera;
                     }
                 }
@@ -175,9 +195,12 @@ public class StrongerArea1Enemy : NonRespawnOnLoadEnemy
                 if (Vector3.Distance(doHeroi.position, transform.position) > distanciaDeDesligar)
                 {
                     if (Vector3.Distance(transform.position, posOriginal) < 0.5f)
+                    {
+                        EventAgregator.Publish(EventKey.returnRememberedMusic, null);
                         estado = EstadoDaqui.emEspera;
+                    }
                     else
-                        r2.velocity = velocidadeDoMovimento*DirecaoNoPlano.NoUpNormalizado(transform.position, posOriginal);
+                        r2.velocity = velocidadeDoMovimento * DirecaoNoPlano.NoUpNormalizado(transform.position, posOriginal);
                 }
                 else
                 {
@@ -206,7 +229,6 @@ public class StrongerArea1Enemy : NonRespawnOnLoadEnemy
                     estado = EstadoDaqui.buscadorDeAcao;
                     animador.SetBool("ataqueMagico", false);
                     tempoDecorrido = 0;
-
                 }
 
             break;
@@ -224,5 +246,11 @@ public class StrongerArea1Enemy : NonRespawnOnLoadEnemy
         animador.SetBool("ataqueMagico", true);
         estado = EstadoDaqui.porradaNoChao;
         
+    }
+
+    protected override void OnDefeated()
+    {
+        EventAgregator.Publish(EventKey.returnRememberedMusic, null);
+        base.OnDefeated();
     }
 }

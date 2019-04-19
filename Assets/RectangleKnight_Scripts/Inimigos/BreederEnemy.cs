@@ -41,7 +41,8 @@ public class BreederEnemy : StrategyMovementEnemy
         FlipDirection.Flip(transform, charPos.x - transform.position.x);
         GameObject G = InstanciaLigando.Instantiate(particulaDoSpawn, transform.position, 5);
         InstanciaLigando.Instantiate(breed, transform.position);
-        spawnados.Add(G);
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.lancaProjetilInimigo));
+        spawnados.Add(G);        
         RetornarParaEsperaZerandoTempo();
     }
 

@@ -56,6 +56,8 @@ public class GameController : MonoBehaviour
         EventAgregator.AddListener(EventKey.requestInfoEmblemPanel, OnRequestInfoEmbelmPanel);
         EventAgregator.AddListener(EventKey.sumContShift, OnRequestSumContShift);
         EventAgregator.AddListener(EventKey.getUpdateGeometry, OnGetUpdateGeometry);
+        EventAgregator.AddListener(EventKey.emblemEquip, OnEquipEmblem);
+        EventAgregator.AddListener(EventKey.emblemUnequip, OnUnequipEmblem);
 
         disparaT.IniciarDisparadorDeTextos();
         MyKeys.MudaShift(KeyShift.sempretrue, true);
@@ -75,6 +77,36 @@ public class GameController : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.requestInfoEmblemPanel, OnRequestInfoEmbelmPanel);
         EventAgregator.RemoveListener(EventKey.sumContShift, OnRequestSumContShift);
         EventAgregator.RemoveListener(EventKey.getUpdateGeometry, OnGetUpdateGeometry);
+        EventAgregator.RemoveListener(EventKey.emblemEquip, OnEquipEmblem);
+        EventAgregator.RemoveListener(EventKey.emblemUnequip, OnUnequipEmblem);
+    }
+
+    private void OnUnequipEmblem(IGameEvent obj)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)obj;
+
+        NomesEmblemas nomeID = (NomesEmblemas)ssge.MyObject[0];
+        switch (nomeID)
+        {
+            case NomesEmblemas.dinheiroMagnetico:
+            case NomesEmblemas.ataqueAprimorado:
+                MyKeys.MudaAutoShift("equiped_" + nomeID.ToString(), false);
+            break;
+        }
+    }
+
+    private void OnEquipEmblem(IGameEvent obj)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)obj;
+
+        NomesEmblemas nomeID = (NomesEmblemas)ssge.MyObject[0];
+        switch (nomeID)
+        {
+            case NomesEmblemas.dinheiroMagnetico:
+            case NomesEmblemas.ataqueAprimorado:
+                MyKeys.MudaAutoShift("equiped_" + nomeID.ToString(), true);
+            break;
+        }
     }
 
     private void OnGetUpdateGeometry(IGameEvent e)

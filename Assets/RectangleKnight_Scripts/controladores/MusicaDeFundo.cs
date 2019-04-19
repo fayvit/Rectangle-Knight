@@ -233,11 +233,13 @@ public enum NameMusic
     acampamentoTheme,//Town4,
     TyronTheme,//Theme
     inCheckPointSound,
-    trapMusic//2003_Battle1
+    trapMusic,//2003_Battle1
+    miniBoss,//XP006Boss02
 }
 
 public enum SoundEffectID
 {
+    nulo=-1,
     Damage3,
     Decision1,
     Book1,
@@ -253,7 +255,9 @@ public enum SoundEffectID
     somParaGetLosangulo,//pacote de audios positivos
     somParaEruptLosangulo,//pacote de audios positivos
     vinhetinhaDoSite,
-    Wind1
+    Wind1,
+    lancaProjetilInimigo,//Absorb1
+    EnemySlash,//100-Attack12
 }
 
 [System.Serializable]

@@ -45,10 +45,10 @@ e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.P
 201e3fde670b00545944bb3db215c80a UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 4ea1af827bea83a1e825708de259d6b4 Assembly-CSharp.dll:.LosanguloManager
 a2974817577a3d77fa8ec46628db1e8e Assembly-CSharp.dll:.ProjetilInimigo
-0c5468c382352a74b3962cce0d4c7e5b Assembly-CSharp.dll:.DestructibleWithAttack
+d50d269aeaf7b9d3e2d8e196dc0f2473 Assembly-CSharp.dll:.DestructibleWithAttack
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.DanoQueTelePorta
 d00a6c35cd020889f107ba4baf2bf1c0 Assembly-CSharp.dll:.BossCirculoImperfeito
-4eb995d4cbfe87d3f412fe52c17381f4 Assembly-CSharp.dll:.TimedMotionTrap
+5b5758f6c04c39ceca30ea8f72704df8 Assembly-CSharp.dll:.TimedMotionTrap
 14f1b413353e0b3b076e77efa459b80a Assembly-CSharp.dll:.AccelerateEnemy
 cf9f5cf2c3145a37ac07f00e50e460f9 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
@@ -154,13 +154,14 @@ e0ee4b3d4e27318934cc940a969d3d96 UnityEngine.Networking.dll:UnityEngine.Networki
 ad9173d3a69d99153f38ed4b62226129 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 9b895dcabbc1faf095c000c32d471fd0 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 5887ef1bc706b22b773d253fd443ceef UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
-04529c564b7def24897f169756f7a963 Assembly-CSharp.dll:.CollorBarrage
+4df22752a9217059eb46d0dfabdd45e8 Assembly-CSharp.dll:.CollorBarrage
 d5fdd468d304bc16e6229aa0ed8bbc89 Assembly-CSharp.dll:.PainelUmaMensagem
 ddf1095ed1c41d9069f437bab2967de2 Assembly-CSharp.dll:.LosanguloColetavel
 8f7c2208ee4872868a69e5885c8efa6a Assembly-CSharp.dll:.InvestEnemy
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 a0460b64d6e1f4716e81122362289a98 Assembly-CSharp.dll:.InimigoZigZag
 ebf2c018cedf7703bcd7b92c80a8a7ca Assembly-CSharp.dll:.DesativarRelativoAoContador
+a5adedab12bbdc481b4ffd6f9d819b33 Assembly-CSharp.dll:.SeloPositivista
 d756ae66bde38263bee4176ed4f4a77f Assembly-CSharp.dll:.CharacterManager
 e30cbf322f14bc2a5939b88723a9a050 Assembly-CSharp.dll:.FalseWall
 c2b851318d328d11f2ac810d122685cc Assembly-CSharp.dll:.CapsulaDeTransporte
@@ -198,6 +199,7 @@ a6ddd485518e9ccd2c02775b74bafa21 Assembly-CSharp.dll:.MoedaDeDinheiro
 7bed6d1ef392724d87cfbbc27d349ef0 Assembly-CSharp.dll:.NonRespawnOnLoadEnemy
 dc5b03fed47b4049809e522b1c8f6376 Assembly-CSharp.dll:.AtivadorDoBotaoConversaAgendada
 466fd9cda44622e2a1d047523f333b64 Assembly-CSharp.dll:.MyButtonEvents
+7c68a273e9693942c97420a64a3bc5df Assembly-CSharp.dll:.LocalNameExibition
 ebc45b754227362fa5ad9d424c751c4d Assembly-CSharp.dll:.SacoDeDinheiro
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -238,7 +240,7 @@ fe958521073fc27c7f98f90d053c9a3a Assembly-CSharp.dll:.GlobalController
 3ae480d918177db6e240b2ea31475aca Assembly-CSharp.dll:.PainelDeConfirmacao
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 745fafd626ee48fff45c3e26daf68c04 Assembly-CSharp.dll:.InterfaceLanguageConverter
-78225250917cf5c3b23b91e0a5eca67e Assembly-CSharp.dll:.EmblemaColetavel
+d9a5ee10dfd08e48e0764ffd88199d14 Assembly-CSharp.dll:.EmblemaColetavel
 b7468aec941b375a9c4b55a9141f2e18 Assembly-CSharp.dll:.ChangeCamLimits
 a06bc11fb0d07d95fc7818f5220784a5 Assembly-CSharp.dll:.HexagonoColetavel
 01a58d824edc35b1f06895fa7dcbbd6c Assembly-CSharp.dll:.GameController
@@ -252,6 +254,7 @@ dca00438540fa0874a2b3eb87f831f55 Assembly-CSharp.dll:.CheckConclusionOfID
 7e9782040b4941e14a6436e4c491236a Assembly-CSharp.dll:.UmaOpcaoDeImage
 564c415be9d5385b48f79e1bcaac36b0 Assembly-CSharp.dll:.CreditosDoJogo
 c0395cabddd8b041db2e919c53a953ed Assembly-CSharp.dll:.BreederEnemy
+71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.MagnetismoParaMoeda
 2552a81b294a4d5a4e452d31a1799be4 Assembly-CSharp.dll:.EstalactiteTrigger
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.EnemyDamageSender
 7e991fd08223610cd20f3e0d323af92d Assembly-CSharp.dll:.FinalBossManager

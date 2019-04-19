@@ -236,7 +236,7 @@ public abstract class UiDeOpcoes
                 }
         }
 
-        GlobalController.g.StartCoroutine(MovendoScroll(umaS, rowCellCount));
+        //GlobalController.g.StartCoroutine(MovendoScroll(umaS, rowCellCount));
     }
 
     protected virtual IEnumerator MovendoScroll_H(UmaOpcao[] umaS, int rowCellCount)
@@ -258,7 +258,7 @@ public abstract class UiDeOpcoes
                 GlobalController.g.StartCoroutine(MovendoScroll_H(umaS, rowCellCount));
             }
 
-        GlobalController.g.StartCoroutine(MovendoScroll(umaS, rowCellCount));
+       // GlobalController.g.StartCoroutine(MovendoScroll(umaS, rowCellCount));
     }
 
 

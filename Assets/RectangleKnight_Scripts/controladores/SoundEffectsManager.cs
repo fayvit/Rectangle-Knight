@@ -12,6 +12,18 @@ public class SoundEffectsManager
 
     public float VolumeBase { get; set; } = 0.5f;
 
+    public void Instantiate3dSound(Vector3 pos, SoundEffectID som, float spartial = 1)
+    {
+        AudioSource a = (AudioSource)MonoBehaviour.Instantiate(audios[0],pos,Quaternion.identity);
+
+        a.clip = (AudioClip)Resources.Load(som.ToString());
+        a.volume = VolumeBase;
+        a.Play();
+        a.spatialBlend = spartial;
+
+        MonoBehaviour.Destroy(a, 2*a.clip.length);
+    }
+
     public void DisparaAudio(SoundEffectID s)
     {
         DisparaAudio(s.ToString());

@@ -41,14 +41,18 @@ public class DefenderEnemy : BaseMoveRigidbody
             switch (info)
             {
                 case "a":
+                case "b":
+                case "c":
                     Mov.ApplyForce(forDesl * Mathf.Sign(-transform.localScale.x) * Vector3.right,1);
+                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.EnemySlash));
                 break;
+                    /*
                 case "b":
                     Mov.ApplyForce(forDesl * Mathf.Sign(-transform.localScale.x) * Vector3.right, 1);
                 break;
                 case "c":
                     Mov.ApplyForce(forDesl * Mathf.Sign(-transform.localScale.x) * Vector3.right, 1);
-                break;
+                break;*/
                 case "d":
                     TempoDecorrido = 0;
                     _Animator.SetTrigger("retornarAoPadrao");
@@ -111,6 +115,7 @@ public class DefenderEnemy : BaseMoveRigidbody
         else if (Mathf.Sign(posHeroi.x - transform.position.x) != Mathf.Sign(transform.localScale.x))
         {
             EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestCharRepulse,forcaDeRepulsa*Mathf.Sign(-transform.localScale.x)*Vector3.right,tempoNaRepulsao));
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.rockFalseAttack));
         }
 
 

@@ -136,5 +136,6 @@ public enum EventKey
     returnRememberedMusic,
     checkPointExit,
     getUpdateGeometry,
-    getStamp
+    getStamp,
+    request3dSound
 }

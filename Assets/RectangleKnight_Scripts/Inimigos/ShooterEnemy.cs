@@ -27,10 +27,11 @@ public class ShooterEnemy : StrategyMovementEnemy
             Quaternion.LookRotation(projetil.transform.forward,
             Vector3.Cross(dir, projetil.transform.forward)));
 
-        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.Wind1));
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.lancaProjetilInimigo));
 
         ProjetilInimigo P = G.AddComponent<ProjetilInimigo>();
         P.Iniciar(dir, particulaTelegrafista, 10f);
+        P.SomDeImpacto = SoundEffectID.lancaProjetilInimigo;
 
         RetornarParaEsperaZerandoTempo();
 

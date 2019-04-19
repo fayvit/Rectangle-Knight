@@ -33,9 +33,25 @@ public class DadosDoJogador : DadosDoPersonagem
     public int SeloDoOrdem { get; set; } = 0;
     public SwordColor CorDeEspadaSelecionada { get; set; } = SwordColor.grey;
 
+    public override int AtaqueBasico {
+        get {
+            float modificador = 1;
+            float adicional = 0;
+
+            if (GameController.g.MyKeys.VerificaAutoShift("equiped_" + NomesEmblemas.ataqueAprimorado.ToString()))
+            {
+                adicional = 10;
+            }
+
+            return Mathf.RoundToInt(modificador*base.AtaqueBasico+adicional);
+
+        }
+        set => base.AtaqueBasico = value;
+    }
+
     public List<Emblema> MeusEmblemas{get;set;} = new List<Emblema>() { new Emblema(NomesEmblemas.dinheiroMagnetico,1),
         new Emblema(NomesEmblemas.dinheiroMagnetico,1),
-        new Emblema(NomesEmblemas.dinheiroMagnetico,1)
+        new Emblema(NomesEmblemas.ataqueAprimorado,1)
     };
 
     public DinheiroCaido DinheiroCaido { get; set; } = new DinheiroCaido();

@@ -13,8 +13,8 @@ public class DadosDoPersonagem
     [SerializeField] private int ataqueBasico = 25;
     [SerializeField] private int ataqueMagico = 30;
 
-    public int AtaqueMagico { get => ataqueMagico; set => ataqueMagico = value; }
-    public int AtaqueBasico { get => ataqueBasico; set => ataqueBasico = value; }
+    public virtual int AtaqueMagico { get => ataqueMagico; set => ataqueMagico = value; }
+    public virtual int AtaqueBasico { get => ataqueBasico; set => ataqueBasico = value; }
 
     public int PontosDeVida
     {

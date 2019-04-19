@@ -23,7 +23,7 @@ public class GlobalController : MonoBehaviour
     private List<AudioSource> ativos = new List<AudioSource>();
 
     public Controlador Control { get => control; }
-    public PainelDeConfirmacao Confirmacao { get => confirmacao;}
+    public PainelDeConfirmacao Confirmacao { get => confirmacao; }
     public PainelUmaMensagem UmaMensagem { get => umaMensagem; }
     public MyFadeView FadeV { get => fadeV; }
     public float VolumeDaMusica { get => musica.VolumeBase; set { musica.VolumeBase = value; } }
@@ -53,7 +53,7 @@ public class GlobalController : MonoBehaviour
 
         musica.IniciarMusicaDaCena(sceneDates.GetCurrentSceneDates());
 
-        EventAgregator.AddListener(EventKey.disparaSom,OnRequestSoundEffects);
+        EventAgregator.AddListener(EventKey.disparaSom, OnRequestSoundEffects);
         EventAgregator.AddListener(EventKey.startMusic, OnRequestStartMusic);
         EventAgregator.AddListener(EventKey.stopMusic, OnRequestStopMusic);
         EventAgregator.AddListener(EventKey.restartMusic, OnRequestRestartMusic);
@@ -65,6 +65,7 @@ public class GlobalController : MonoBehaviour
         EventAgregator.AddListener(EventKey.checkPointLoad, OnCheckPointLoad);
         EventAgregator.AddListener(EventKey.checkPointExit, OnCheckPointExit);
         EventAgregator.AddListener(EventKey.getUpdateGeometry, OnGetUpdateGeometry);
+        EventAgregator.AddListener(EventKey.request3dSound, OnRequest3dSound);
 
     }
 
@@ -83,6 +84,13 @@ public class GlobalController : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.checkPointExit, OnChangeActiveScene);
         EventAgregator.RemoveListener(EventKey.getUpdateGeometry, OnGetUpdateGeometry);
         EventAgregator.RemoveListener(EventKey.checkPointExit, OnCheckPointExit);
+        EventAgregator.RemoveListener(EventKey.request3dSound, OnRequest3dSound);
+    }
+
+    private void OnRequest3dSound(IGameEvent e)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)e;
+        sfx.Instantiate3dSound(e.Sender.transform.position,(SoundEffectID)ssge.MyObject[0],(float)ssge.MyObject[1]);
     }
 
     private void OnCheckPointExit(IGameEvent e)
@@ -134,6 +142,7 @@ public class GlobalController : MonoBehaviour
         DadosDeCena d = sceneDates.GetCurrentSceneDates();
         bool foi = true;
 
+        //Debug.Log(d + " : " + musica + " : " + musica.MusicaAtualAtiva + " : " + d.musicName+" : "+d.musicName.Musica);
         if (musica.MusicaAtualAtiva != null)
             if (musica.MusicaAtualAtiva.Musica.name == d.musicName.Musica.ToString())
             {

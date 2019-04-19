@@ -45,7 +45,7 @@ public class TextosDosUpdatesPT_BR {
             {
                 "Você pode adicionar emblemas na sua espada enquanto tiver encaixes disponiveis",
                 "As moedas deixadas pelos inimigos são atraidas pelo personagem",
-                "Aumenta em 25% seu poder de ataque"
+                "Aumenta seu potencial de attack"
             }
         },
         {
