@@ -114,7 +114,7 @@ public class GameController : MonoBehaviour
         StandardSendGameEvent ssge = (StandardSendGameEvent)e;
         HexagonoColetavel.DadosDaGeometriaColetavel d = (HexagonoColetavel.DadosDaGeometriaColetavel)ssge.MyObject[0];
 
-        OnRequestChangeEnemyKey(new StandardSendGameEvent(EventKey.requestChangeShiftKey, d.ID));
+        OnRequestChangeShiftKey(new StandardSendGameEvent(EventKey.requestChangeShiftKey, d.ID));
     }
 
     private void OnRequestSumContShift(IGameEvent obj)

@@ -388,7 +388,9 @@ public enum NomesCenas
     barracaDeHerikaNoExilio,
     capsulaDaGargantaDasProfundezas,
     preparacaoParaChefe,
-    zonaDoChefe
+    zonaDoChefe,
+    armadilhasAzuis,
+    barracaDeHerikaNoAcampamento
 }
 
 public enum NomesCenasEspeciais

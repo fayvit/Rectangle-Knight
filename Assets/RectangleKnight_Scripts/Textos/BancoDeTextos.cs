@@ -122,7 +122,12 @@ public enum ChaveDeTexto
     fascinadoPelasCapsulas,
     prazerEmConhecerCapsulas,
     locomoverComACapsula,
-    nomesParaViagensDeCapsula
+    nomesParaViagensDeCapsula,
+    nomesItens,
+    descricaoDosItensNoInventario,
+    descricaoDosItensVendidos,
+    nomeParaItensVendidos,
+    TyronSobreOsInimigos
 }
 
 

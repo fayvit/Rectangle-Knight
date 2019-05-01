@@ -66,6 +66,7 @@ public class GlobalController : MonoBehaviour
         EventAgregator.AddListener(EventKey.checkPointExit, OnCheckPointExit);
         EventAgregator.AddListener(EventKey.getUpdateGeometry, OnGetUpdateGeometry);
         EventAgregator.AddListener(EventKey.request3dSound, OnRequest3dSound);
+        EventAgregator.AddListener(EventKey.startSceneMusic, OnChangeActiveScene);
 
     }
 
@@ -81,10 +82,10 @@ public class GlobalController : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.startCheckPoint, OnStartCheckPoint);
         EventAgregator.RemoveListener(EventKey.requestToFillDates, OnChangeActiveScene);
         EventAgregator.RemoveListener(EventKey.checkPointLoad, OnCheckPointLoad);
-        EventAgregator.RemoveListener(EventKey.checkPointExit, OnChangeActiveScene);
         EventAgregator.RemoveListener(EventKey.getUpdateGeometry, OnGetUpdateGeometry);
         EventAgregator.RemoveListener(EventKey.checkPointExit, OnCheckPointExit);
         EventAgregator.RemoveListener(EventKey.request3dSound, OnRequest3dSound);
+        EventAgregator.RemoveListener(EventKey.startSceneMusic, OnChangeActiveScene);
     }
 
     private void OnRequest3dSound(IGameEvent e)
@@ -143,13 +144,13 @@ public class GlobalController : MonoBehaviour
         bool foi = true;
 
         //Debug.Log(d + " : " + musica + " : " + musica.MusicaAtualAtiva + " : " + d.musicName+" : "+d.musicName.Musica);
-        if (musica.MusicaAtualAtiva != null)
+        if (musica.MusicaAtualAtiva != null && d!=null)
             if (musica.MusicaAtualAtiva.Musica.name == d.musicName.Musica.ToString())
             {
                 foi = false;
             }
 
-        if (foi)
+        if (foi && d!=null)
             musica.IniciarMusica(d.musicName.Musica, d.musicName.Volume);
     }
 
@@ -193,14 +194,19 @@ public class GlobalController : MonoBehaviour
         if (ssge.MyObject.Length >= 2)
             vol = (float)ssge.MyObject[1];
 
-        try
+        if (ssge.MyObject[0] is NameMusic)
         {
             NameMusic n = (NameMusic)ssge.MyObject[0];
             musica.IniciarMusica(n, vol);
         }
-        catch {
+        else if (ssge.MyObject[0] is AudioClip)
+        {
             AudioClip a = (AudioClip)ssge.MyObject[0];
             musica.IniciarMusica(a, vol);
+        }
+        else if (ssge.MyObject[0] is NameMusicaComVolumeConfig)
+        {
+            musica.IniciarMusica((NameMusicaComVolumeConfig)ssge.MyObject[0]);
         }
     }
 

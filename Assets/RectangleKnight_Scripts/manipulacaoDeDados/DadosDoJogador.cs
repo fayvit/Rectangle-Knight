@@ -13,6 +13,7 @@ public class DadosDoJogador : DadosDoPersonagem
     [SerializeField] private bool _espadaVerde = false;
     [SerializeField] private bool _espadaDourada = false;
     [SerializeField] private bool _espadaVermelha = false;
+    [SerializeField] private int _dinheiro = 0;
 
     public bool TemDash { get => _temDash; set => _temDash = value; }
     public bool TemDoubleJump { get => _temDoubleJump; set => _temDoubleJump = value; }
@@ -22,7 +23,7 @@ public class DadosDoJogador : DadosDoPersonagem
     public bool EspadaVerde { get => _espadaVerde; set => _espadaVerde = value; }
     public bool EspadaDourada { get => _espadaDourada; set => _espadaDourada = value; }
     public bool EspadaVermelha { get => _espadaVermelha; set => _espadaVermelha = value; }
-    public int Dinheiro { get; set; } = 0;
+    public int Dinheiro { get =>_dinheiro; set => _dinheiro=value; }
     public int EspacosDeEmblemas { get; set; } = 2;
     public int PartesDeHexagonoObtidas { get; set; } = 0;
     public int PartesDePentagonosObtidas { get; set; } = 0;
@@ -32,6 +33,12 @@ public class DadosDoJogador : DadosDoPersonagem
     public int SeloDoAmor { get; set; } = 0;
     public int SeloDoOrdem { get; set; } = 0;
     public SwordColor CorDeEspadaSelecionada { get; set; } = SwordColor.grey;
+    public List<ItemBase> MeusItens { get; set; } = new List<ItemBase>()
+    {
+        new ItemBase(){ Nome=NomeItem.anelDeIntegridade,Quantidade=1},
+        new ItemBase(){ Nome=NomeItem.CQD,Quantidade=1}
+    };
+    public DinheiroCaido DinheiroCaido { get; set; } = new DinheiroCaido();
 
     public override int AtaqueBasico {
         get {
@@ -54,13 +61,42 @@ public class DadosDoJogador : DadosDoPersonagem
         new Emblema(NomesEmblemas.ataqueAprimorado,1)
     };
 
-    public DinheiroCaido DinheiroCaido { get; set; } = new DinheiroCaido();
-
     public UltimoCheckPoint ultimoCheckPoint = new UltimoCheckPoint()
     {
         nomesDasCenas = new NomesCenas[1] { NomesCenas.TutoScene},
         Pos = new Vector3(-8, -2, 0)
     };
+
+    public int QuantidadeNoInventarioDoItem(NomeItem indice)
+    {
+        for (int i = 0; i < MeusItens.Count; i++)
+        {
+            if (MeusItens[i].Nome == indice)
+                return MeusItens[i].Quantidade;
+        }
+
+        return 0;
+    }
+
+    public int NumberedPositivistStamp(int indice)
+    {
+        SeloPositivista.TipoSelo s = (SeloPositivista.TipoSelo)indice;
+        int retorno = 0;
+        switch (s)
+        {
+            case SeloPositivista.TipoSelo.progresso:
+                retorno = SeloDoProgresso;
+                break;
+            case SeloPositivista.TipoSelo.amor:
+                retorno = SeloDoAmor;
+                break;
+            case SeloPositivista.TipoSelo.ordem:
+                retorno = SeloDoOrdem;
+                break;
+        }
+
+        return retorno;
+    }
 
     public void PegouSelo(SeloPositivista.TipoSelo tipo,int quantidade = 1)
     {

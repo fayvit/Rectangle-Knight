@@ -47,7 +47,7 @@ e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.P
 a2974817577a3d77fa8ec46628db1e8e Assembly-CSharp.dll:.ProjetilInimigo
 d50d269aeaf7b9d3e2d8e196dc0f2473 Assembly-CSharp.dll:.DestructibleWithAttack
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.DanoQueTelePorta
-d00a6c35cd020889f107ba4baf2bf1c0 Assembly-CSharp.dll:.BossCirculoImperfeito
+20af06066cc47fd16323c63dd7886a43 Assembly-CSharp.dll:.BossCirculoImperfeito
 5b5758f6c04c39ceca30ea8f72704df8 Assembly-CSharp.dll:.TimedMotionTrap
 14f1b413353e0b3b076e77efa459b80a Assembly-CSharp.dll:.AccelerateEnemy
 cf9f5cf2c3145a37ac07f00e50e460f9 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
@@ -83,7 +83,7 @@ fc108ce7d98c40ac0907e8ca7f500c76 UnityEngine.UI.dll:UnityEngine.UI.Text
 abf1930d8126d0b2e00e9449129a0190 UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 64e54c0cbb0177c5ea26f340efb9ff85 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 04d81013fa463fe7a501c525b01fbb8e Assembly-CSharp.dll:.InitialOptionsManager
-d1cdbf795f7324cf9f705d3ffb5b3c15 Assembly-CSharp.dll:.CirculoImperfeitoTrigger
+becb620855ce4cc7a1e5c282638cdf56 Assembly-CSharp.dll:.CirculoImperfeitoTrigger
 8565c8ce93d8790246a3a7c0be11aa5b Assembly-CSharp.dll:.MenuDeOpcoes
 5fc14eec4c58aef2e2d23b5925f0cbaa Assembly-CSharp.dll:.EnemyBase
 b7798e2b67ecab9f10248bf9118787a1 Assembly-CSharp.dll:.SwordColorManager

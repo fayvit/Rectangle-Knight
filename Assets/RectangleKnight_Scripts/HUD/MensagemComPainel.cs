@@ -8,7 +8,7 @@ public class MensagemComPainel : AtivadorDeBotao
     [SerializeField] private PainelUmaMensagem essePainel = default;
     #endregion
 
-    private void Start()
+    protected virtual void Start()
     {
         SempreEstaNoTrigger();
     }

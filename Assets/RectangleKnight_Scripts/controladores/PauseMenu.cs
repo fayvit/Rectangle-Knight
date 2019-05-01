@@ -13,6 +13,7 @@ public class PauseMenu
     [SerializeField] private MenuDosUpdates menuU = default;
     [SerializeField] private MenuOrganizadorDeEmblemas menuOE = default;
     [SerializeField] private MenuPentagonosHexagonos pentagonosHexagonos = default;
+    [SerializeField] private MenuDoInventario menuI = default;
     [SerializeField] private Image[] abas = default;
     [SerializeField] private Sprite destaque = default;
     [SerializeField] private Sprite padrao = default;
@@ -31,7 +32,23 @@ public class PauseMenu
         mapaAberto,
         menuDeOpcoesAberto,
         menuSuspensoAberto,
-        pentagonosHexagonosAberto
+        pentagonosHexagonosAberto,
+        inventarioAberto
+    }
+
+    private void OnRequestEmblemMenu(IGameEvent e)
+    {
+        estado = EstadoDaqui.emblemasAberto;
+    }
+
+    private void OnTriedEmblem(IGameEvent e)
+    {
+        estado = EstadoDaqui.menuSuspensoAberto;
+    }
+
+    private void OnReturnToMainMenu(IGameEvent obj)
+    {
+        estado = EstadoDaqui.configuracoesAberto;
     }
 
     public void IniciarMenuDePause()
@@ -50,19 +67,23 @@ public class PauseMenu
         }
     }
 
-    private void OnRequestEmblemMenu(IGameEvent e)
+    public void BtnPauseMenu()
     {
-        estado = EstadoDaqui.emblemasAberto;
+        if (estado == EstadoDaqui.emEspera)
+            IniciarMenuDePause();
+        else if (estado != EstadoDaqui.menuDeOpcoesAberto && estado != EstadoDaqui.menuSuspensoAberto)
+            FinalizarMenuDepause();
     }
 
-    private void OnTriedEmblem(IGameEvent e)
+    public void BtnTrocarAba(int qual)
     {
-        estado = EstadoDaqui.menuSuspensoAberto;
-    }
-
-    private void OnReturnToMainMenu(IGameEvent obj)
-    {
-        estado = EstadoDaqui.configuracoesAberto;
+        if (estado != EstadoDaqui.menuDeOpcoesAberto && qual != qualMenu)
+        {
+            FinalizarTodasAsAbas();
+            DestacarAba(qual);
+            qualMenu = qual;
+            IniciarQualMenu(qual);
+        }
     }
 
     void OnBasicPauseOptionSelect(int option)
@@ -97,10 +118,10 @@ public class PauseMenu
             int qualSelecionado = qualMenu;
             if (CommandReader.ButtonDown(4, Control))
             {
-                qualSelecionado = ContadorCiclico.AlteraContador(-1, qualSelecionado, 5);
+                qualSelecionado = ContadorCiclico.AlteraContador(-1, qualSelecionado, 6);
             }
             else if (CommandReader.ButtonDown(5, Control))
-                qualSelecionado = ContadorCiclico.AlteraContador(1, qualSelecionado, 5);
+                qualSelecionado = ContadorCiclico.AlteraContador(1, qualSelecionado, 6);
 
             if (qualSelecionado != qualMenu)
                 BtnTrocarAba(qualSelecionado);
@@ -131,25 +152,6 @@ public class PauseMenu
         EventAgregator.RemoveListener(EventKey.requestReturnToEmblemMenu, OnRequestEmblemMenu);
     }
 
-    public void BtnPauseMenu()
-    {
-        if (estado == EstadoDaqui.emEspera)
-            IniciarMenuDePause();
-        else if (estado != EstadoDaqui.menuDeOpcoesAberto && estado != EstadoDaqui.menuSuspensoAberto)
-            FinalizarMenuDepause();
-    }
-
-    public void BtnTrocarAba(int qual)
-    {
-        if (estado != EstadoDaqui.menuDeOpcoesAberto && qual!=qualMenu)
-        {
-            FinalizarTodasAsAbas();
-            DestacarAba(qual);
-            qualMenu = qual;
-            IniciarQualMenu(qual);
-        }
-    }
-
     void DestacarAba(int qual)
     {
         for (int i = 0; i < abas.Length;i++)
@@ -166,6 +168,7 @@ public class PauseMenu
         menuDePauseBasico.FinalizarHud();
         menuU.FinalizarHud();
         menuOE.FinalizarHud();
+        menuI.FinalizarHud();
         pentagonosHexagonos.FinalizarHud();
     }
 
@@ -178,8 +181,8 @@ public class PauseMenu
                 menuDePauseBasico.IniciarHud(OnBasicPauseOptionSelect, BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.menuDePause).ToArray());
             break;
             case 1:
-                menuU.IniciarHud();
-                estado = EstadoDaqui.updatesAberto;
+                menuI.IniciarHud();
+                estado = EstadoDaqui.inventarioAberto;
             break;
             case 2:
                 menuOE.IniciarHud(estadoAoPausar == EstadoDePersonagem.inCheckPoint);
@@ -188,6 +191,10 @@ public class PauseMenu
             case 3:
                 pentagonosHexagonos.IniciarHud();
                 estado = EstadoDaqui.pentagonosHexagonosAberto;
+            break;
+            case 4:
+                menuU.IniciarHud();
+                estado = EstadoDaqui.updatesAberto;
             break;
         }
     }
@@ -209,12 +216,14 @@ public class PauseMenu
                 }
                 #endregion
             break;
-            
             case EstadoDaqui.updatesAberto:
                 menuU.MudarOpcao();
             break;
             case EstadoDaqui.emblemasAberto:
                 menuOE.Update();
+            break;
+            case EstadoDaqui.inventarioAberto:
+                menuI.MudarOpcao();
             break;
         }
     }

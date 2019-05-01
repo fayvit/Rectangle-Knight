@@ -4,12 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class MenuDosUpdates : UiDeOpcoes
+public class MenuDosUpdates : MenuComInfo
 {
     #region inspector
     [SerializeField] private ImagemDeUpdate[] imgU = default;
-    [SerializeField] private Text titleUpdate = default;
-    [SerializeField] private Text infoUpdate = default;
     [SerializeField] private Image imgRodape = default;
     #endregion
 
@@ -27,28 +25,19 @@ public class MenuDosUpdates : UiDeOpcoes
         public ChaveDeTextoDosUpdates Chave { get => chave; set => chave = value; }
     }
 
-    public void IniciarHud()
+    public override void IniciarHud()
     {
-        titleUpdate.transform.parent.gameObject.SetActive(true);
-        SetarOpcoes();
-        IniciarHUD(Opcoes.Length, TipoDeRedimensionamento.vertical);
-        EventAgregator.AddListener(EventKey.UiDeOpcoesChange, OnChangeOption);
+        base.IniciarHud();
     }
 
-    void OnChangeOption(IGameEvent e)
-    {
-        ChangeOption(OpcaoEscolhida);
-    }
-
-    void SetarOpcoes()
+    protected override int SetarOpcoes()
     {
         DadosDoJogador J = GameController.g.Manager.Dados;
         bool[] updates = new bool[14]
             {
                 true,true,true,true,true,true,J.TemMagicAttack,J.TemDash,J.TemDownArrowJump,J.TemDoubleJump,J.EspadaAzul,
                 J.EspadaVerde,J.EspadaDourada,J.EspadaVermelha
-            }
-            ;
+            };
 
         int cont = 0;
         for (int i = 0; i < 14; i++)
@@ -61,6 +50,7 @@ public class MenuDosUpdates : UiDeOpcoes
 
         
         Opcoes = new ChaveDeTextoDosUpdates[cont];
+        
 
         int localCont = 0;
         for (int i = 0; i < cont; i++)
@@ -74,6 +64,9 @@ public class MenuDosUpdates : UiDeOpcoes
             localCont++;
             //Opcoes[i] = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.androidUpdateMenu)[localCont];
         }
+
+        ChangeOption(0);
+        return Opcoes.Length;
     }
 
     public override void SetarComponenteAdaptavel(GameObject G, int indice)
@@ -84,16 +77,10 @@ public class MenuDosUpdates : UiDeOpcoes
             imgU[indiceDeInteresse].Img,ChangeOption);
     }
 
-    void ChangeOption(int qual)
+    protected override void ChangeOption(int qual)
     {
-        titleUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.androidUpdateMenu)[(int)imgU[qual].Chave];
-        infoUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.androidUpdateInfo)[(int)imgU[qual].Chave];
+        TitleUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.androidUpdateMenu)[(int)imgU[qual].Chave];
+        InfoUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.androidUpdateInfo)[(int)imgU[qual].Chave];
         imgRodape.sprite = imgU[qual].RodaPeInfo;
-    }
-
-    protected override void FinalizarEspecifico()
-    {
-        titleUpdate.transform.parent.gameObject.SetActive(false);
-        EventAgregator.RemoveListener(EventKey.UiDeOpcoesChange, OnChangeOption);
     }
 }

@@ -77,4 +77,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/area1/zonaDoChefe.unity
     guid: a46d06b7b90d96b418a939882c52e516
+  - enabled: 1
+    path: Assets/Scenes/area1/armadilhasAzuis.unity
+    guid: 0525825ea5118724e9708bfa75194d75
   m_configObjects: {}

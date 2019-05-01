@@ -76,6 +76,7 @@ public class CharacterManager : MonoBehaviour
         EventAgregator.AddListener(EventKey.requestHeroPosition, OnRequestPosition);
         EventAgregator.AddListener(EventKey.getColorSword, OnGetColorSword);
         EventAgregator.AddListener(EventKey.getStamp, OnGetStamp);
+        EventAgregator.AddListener(EventKey.getItem, OnGetItem);
 
 
         GameController.g.Manager = this;
@@ -110,6 +111,13 @@ public class CharacterManager : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.requestHeroPosition, OnRequestPosition);
         EventAgregator.RemoveListener(EventKey.getColorSword, OnGetColorSword);
         EventAgregator.RemoveListener(EventKey.getStamp, OnGetStamp);
+        EventAgregator.RemoveListener(EventKey.getItem, OnGetItem);
+    }
+
+    private void OnGetItem(IGameEvent e)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)e;
+        ItemBase.AddItem(dados,(NomeItem)ssge.MyObject[0],(int)ssge.MyObject[1]);
     }
 
     private void OnGetStamp(IGameEvent e)

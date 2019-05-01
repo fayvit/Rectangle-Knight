@@ -15,6 +15,12 @@ public class BossCirculoImperfeito : EnemyBase
     [SerializeField] private GameObject particulaDoAtaqueReto = default;
     [SerializeField] private GameObject particulaDoAtaqueAlto = default;
     [SerializeField] private GameObject particulaEnfaseDoBoss = default;
+    [SerializeField] private AudioClip[] uhuhah = default;
+    [SerializeField] private AudioClip urroDeAtaque = default;
+    [SerializeField] private AudioClip gritoDaFuria = default;
+    [SerializeField] private AudioClip preparaEspinhos = default;
+    [SerializeField] private AudioClip lancaEspinhos = default;
+    [SerializeField] private AudioClip gritoDoDanoFatal = default;
 
     private float distancia = 0;
     private float tempoDecorrido = 0;
@@ -84,11 +90,14 @@ public class BossCirculoImperfeito : EnemyBase
         estado = EstadoDaqui.finalizado;
 
         EventAgregator.Publish(EventKey.abriuPainelSuspenso, null);
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, gritoDoDanoFatal));
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.stopMusic));
         FindObjectOfType<FinalBossManager>().IniciarFinalizacao(transform);
     }
 
     void FinalizaGiro()
     {
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.pedrasQuebrando));
         EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestShakeCam, ShakeAxis.z, 10, 2f));
         transform.rotation = Quaternion.identity;
         mov.ChangeGravityScale(5);
@@ -129,12 +138,16 @@ public class BossCirculoImperfeito : EnemyBase
                 {
                     _Animator.SetTrigger("queda");
                     InstanciaLigando.Instantiate(particulaEnfaseDoBoss, transform.position, 5);
+                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, gritoDaFuria));
                     EventAgregator.Publish(EventKey.abriuPainelSuspenso, null);
                     estado = EstadoDaqui.prepararGiroDeFuria;
                 }
                 else
                 if (tempoDecorrido > TEMPO_ENTRE_PULINHO && contDePulinhos < PULINHOS_ATE_ATAQUE)
                 {
+                    int qual = Random.Range(0, uhuhah.Length);
+
+                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, uhuhah[qual]));
                     _Animator.SetTrigger("preparaPulo");
                     estado = EstadoDaqui.preparaPulinho;
                     tempoDecorrido = 0;
@@ -164,6 +177,7 @@ public class BossCirculoImperfeito : EnemyBase
                         Debug.Log("numero não esperado: " + qual);
                     }
 
+                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, urroDeAtaque));
                     tempoDecorrido = 0;
                 }
                 #endregion
@@ -190,6 +204,7 @@ public class BossCirculoImperfeito : EnemyBase
 
                 if (tempoDecorrido * velocidadeGiroFuria > distancia)
                 {
+                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.pedrasQuebrando));
                     EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestShakeCam, ShakeAxis.z, 5, 2f));
                     tempoDecorrido = 0;
                     posInicial = targets[indice];
@@ -276,6 +291,7 @@ public class BossCirculoImperfeito : EnemyBase
                         _Animator.SetTrigger("retornaAoPadrao");
                         _Animator.SetTrigger("queda");
 
+                        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, preparaEspinhos));
                         estado = EstadoDaqui.preparaEspinhos;
                         requisicaoDeEspinhos = false;
                     }
@@ -293,6 +309,7 @@ public class BossCirculoImperfeito : EnemyBase
                 #region preparaEspinhos
                 if (tempoDecorrido>TEMPO_PREPARANDO_ESPINHOS)
                 {
+                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, lancaEspinhos));
                     _Animator.SetTrigger("tocouChao");
                     mov.JumpForce();
                     tempoDecorrido = 0;

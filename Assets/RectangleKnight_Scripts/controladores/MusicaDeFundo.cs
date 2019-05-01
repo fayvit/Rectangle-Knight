@@ -13,7 +13,7 @@ public class MusicaDeFundo
     private string cenaIniciada = "";
     private bool parando;
     private float volumeAlvo = 0.5f;
-    private float volumeBase = 0.95f;
+    private float volumeBase = 0.75f;
     private const float VELOCIDADE_DE_MUDANCA = 0.25f;
 
     public MusicaComVolumeConfig MusicaGuardada { get; private set; }
@@ -235,6 +235,8 @@ public enum NameMusic
     inCheckPointSound,
     trapMusic,//2003_Battle1
     miniBoss,//XP006Boss02
+    XPboss3,
+    HerikaTheme,//B->Marigold__QuincasMoreira_youtubeAudioLibrary//New_Year_s_Anthem_QuincasMoreira_youtubeAudioLIbarry
 }
 
 public enum SoundEffectID
@@ -258,6 +260,7 @@ public enum SoundEffectID
     Wind1,
     lancaProjetilInimigo,//Absorb1
     EnemySlash,//100-Attack12
+    ItemImportante, //ROGM2003_JEnd of Battle 3
 }
 
 [System.Serializable]

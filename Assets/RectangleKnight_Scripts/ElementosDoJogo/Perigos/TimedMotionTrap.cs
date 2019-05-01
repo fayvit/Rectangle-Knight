@@ -6,7 +6,8 @@ public class TimedMotionTrap : MonoBehaviour
 {
     #region inpector
     [SerializeField] private float loopTime = 2;
-    [SerializeField] private float standTime = 0.25f;    
+    [SerializeField] private float standTime = 0.25f;
+    [SerializeField] private float startDelay = 0;
     [SerializeField] private Transform[] pos = default;
     [SerializeField] private AudioSource doSomUm = default;
     [SerializeField] private AudioSource doSomDois = default;
@@ -28,6 +29,7 @@ public class TimedMotionTrap : MonoBehaviour
     void Start()
     {
         posAuxGuardada = transform.position;
+        tempoDecorrido = -startDelay;
     }
 
     // Update is called once per frame

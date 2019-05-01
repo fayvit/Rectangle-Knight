@@ -30,7 +30,12 @@ public class ConversasDaArea1PT_BR
             {
                 "Parece que aqui é onde converge o caminho dos rejeitados.",
                 "Me contaram que as profundezas desse lugar chamam por formas geométricas rejeitadas e esquecidas como nós.",
-                "A maioria que recebe esse chamado desce pelos caminhos que encontram tentando atende-lo e terminam por esquecer até mesmo o que são.",
+                "A maioria que recebe esse chamado desce pelos caminhos que encontram tentando atende-lo e terminam por esquecer até mesmo o que são."
+            }
+        },
+        {
+            ChaveDeTexto.TyronSobreOsInimigos,new List<string>()
+            {
                 "Me disseram que as geometrias agressivas que encontramos vagando por ai foram formas geométricas rejeitadas que tiveram suas consciências consumidas pelo chamado.",
                 "Você também está sentindo um chamado para as profundezas desse lugar? Eu estou resistindo bravamente!!",
             }

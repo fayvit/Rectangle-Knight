@@ -11,6 +11,7 @@ public class CirculoImperfeitoTrigger : MonoBehaviour
     [SerializeField] private GameObject[] barreiras = default;
     [SerializeField] private GameObject particulaDabarreira = default;
     [SerializeField] private GameObject particulaEnfaseDoBoss = default;
+    [SerializeField] private AudioClip somEnfaseDoBoss = default;
     [SerializeField] private float changeCamLimitsTime = 0.5f;
     [SerializeField] private float TEMPO_QUEDA_BOSS = 1;
     [SerializeField] private float TEMPO_ATE_INTIMIDACAO = 1;
@@ -62,6 +63,7 @@ public class CirculoImperfeitoTrigger : MonoBehaviour
                 else
                 {
                     EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestShakeCam, ShakeAxis.z, 10, 2f));
+                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom,SoundEffectID.pedrasQuebrando));
                     boss.transform.position = posDeDeslinicialDoBoss.position;
                     boss._Animator.SetTrigger("tocouChao");
                     estado = EstadoDaqui.animaIntimidacao;
@@ -73,6 +75,18 @@ public class CirculoImperfeitoTrigger : MonoBehaviour
                 if (TempoDecorrido > 0.25f)
                 {
                     InstanciaLigando.Instantiate(particulaEnfaseDoBoss, boss.transform.position, 5);
+                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, somEnfaseDoBoss));
+
+                    new MyInvokeMethod().InvokeNoTempoDeJogo(
+                        () => {
+                            EventAgregator.Publish(new StandardSendGameEvent(EventKey.startMusic, new NameMusicaComVolumeConfig()
+                            {
+                                Musica = NameMusic.XPboss3,
+                                Volume = 1
+                            }
+                                ));
+                        },1
+                        );
                     estado = EstadoDaqui.gritando;
                     TempoDecorrido = 0;
                 }
@@ -106,6 +120,7 @@ public class CirculoImperfeitoTrigger : MonoBehaviour
         {
             if (UnicidadeDoPlayer.Verifique(collision))
             {
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.stopMusic));
                 EventAgregator.Publish(new StandardSendGameEvent(gameObject,EventKey.requestHeroPosition, posicionadorDoHeroi.position));
                 EventAgregator.Publish(new StandardSendGameEvent(gameObject,EventKey.requestChangeCamLimits, limitantes,changeCamLimitsTime));
 
@@ -129,13 +144,15 @@ public class CirculoImperfeitoTrigger : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.positionRequeredOk, OnHeroPositionOk);
         EventAgregator.RemoveListener(EventKey.limitCamOk, OnLimitCamOk);
     }
-
     private void VerificaIniciaQuedaDoBoss()
     {
 
         if (limitanteOk && heroPositionOk)
         {
-            OnDestroy();
+            new MyInvokeMethod().InvokeAoFimDoQuadro(() =>
+            {
+                OnDestroy();
+            });
             boss._Animator.SetTrigger("queda");
             estado = EstadoDaqui.caindoBoss;
         }

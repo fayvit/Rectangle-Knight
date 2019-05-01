@@ -95,5 +95,6 @@ public enum NomesEmblemas
 {
     nulo,
     dinheiroMagnetico,
-    ataqueAprimorado
+    ataqueAprimorado,
+    suspiroLongo
 }

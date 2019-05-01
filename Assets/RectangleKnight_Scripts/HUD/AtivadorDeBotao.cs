@@ -88,10 +88,11 @@ public abstract class AtivadorDeBotao : MonoBehaviour
         }
     }
 
+    /*
     public virtual void SomDoIniciar()
     {
         EventAgregator.Publish(new StandardSendStringEvent(gameObject, SoundEffectID.Decision1.ToString(), EventKey.disparaSom));
-    }
+    }*/
 
     public abstract void FuncaoDoBotao();
 }

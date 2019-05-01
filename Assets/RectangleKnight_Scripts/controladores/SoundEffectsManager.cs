@@ -10,7 +10,7 @@ public class SoundEffectsManager
 #pragma warning restore 0649
     private List<AudioSource> ativos = new List<AudioSource>();
 
-    public float VolumeBase { get; set; } = 0.5f;
+    public float VolumeBase { get; set; } = 0.95f;
 
     public void Instantiate3dSound(Vector3 pos, SoundEffectID som, float spartial = 1)
     {

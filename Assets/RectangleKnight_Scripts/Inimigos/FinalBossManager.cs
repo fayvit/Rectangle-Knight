@@ -8,6 +8,8 @@ public class FinalBossManager: MonoBehaviour
     [SerializeField] private GameObject particulasPreparaAnimaMorte = default;
     [SerializeField] private GameObject particulasAnimaMorte = default;
     [SerializeField] private GameObject particulaFinalizaAnimaMorte = default;
+    [SerializeField] private AudioClip dasParticulasAnimaMorte = default;
+    [SerializeField] private AudioClip dasParticulasFinalizadora = default;
     [SerializeField] private GameObject premio = default;
     [SerializeField] private float TEMPO_ESCALONANDO_SPRITE = 2.5F;
     [SerializeField] private float TEMPO_AGUARDANDO_PARTICULAS = 1.5F;
@@ -52,6 +54,7 @@ public class FinalBossManager: MonoBehaviour
             case EstadoDaqui.spriteFinalizador:
                 if (tempoDecorrido > TEMPO_ESCALONANDO_SPRITE)
                 {
+                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom,SoundEffectID.Wind1));
                     interestObject = InstanciaLigando.Instantiate(particulasPreparaAnimaMorte, boss.position,5);
                     estado = EstadoDaqui.aguardandoParticulas;
                     tempoDecorrido = 0;
@@ -64,16 +67,20 @@ public class FinalBossManager: MonoBehaviour
             case EstadoDaqui.aguardandoParticulas:
                 if (tempoDecorrido > TEMPO_AGUARDANDO_PARTICULAS)
                 {
+                    
                     interestObject = InstanciaLigando.Instantiate(particulasAnimaMorte, boss.position);
                     estado = EstadoDaqui.visualizandoParticulas;
                     tempoDecorrido = 0;
+                    AudioDoAnimaMorte();
                 }
             break;
             case EstadoDaqui.visualizandoParticulas:
                 if (tempoDecorrido > TEMPO_DAS_PARTICULAS)
                 {
                     MonoBehaviour.Destroy(interestObject);
-                    
+
+                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, dasParticulasFinalizadora));
+                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.startSceneMusic));
                     InstanciaLigando.Instantiate(particulaFinalizaAnimaMorte, boss.position,5);
                     interestObject = InstanciaLigando.Instantiate(spriteFinalizador, boss.position);
                     interestVector3 = interestObject.transform.localScale;
@@ -99,6 +106,16 @@ public class FinalBossManager: MonoBehaviour
                     estado = EstadoDaqui.animaPremio;
                 }
             break;
+        }
+    }
+
+    void AudioDoAnimaMorte()
+    {
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, dasParticulasAnimaMorte));
+
+        if (estado == EstadoDaqui.visualizandoParticulas)
+        {
+            Invoke("AudioDoAnimaMorte",0.25f);
         }
     }
 
