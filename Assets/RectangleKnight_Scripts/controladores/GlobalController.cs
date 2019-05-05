@@ -104,7 +104,7 @@ public class GlobalController : MonoBehaviour
     private void OnGetUpdateGeometry(IGameEvent obj)
     {
         StandardSendGameEvent ssge = (StandardSendGameEvent)obj;
-        HexagonoColetavel.DadosDaGeometriaColetavel d = (HexagonoColetavel.DadosDaGeometriaColetavel)ssge.MyObject[0];
+        HexagonoColetavelBase.DadosDaGeometriaColetavel d = (HexagonoColetavelBase.DadosDaGeometriaColetavel)ssge.MyObject[0];
 
         musica.PararMusicas(d.velocidadeNaQuedaDaMusica);
         sfx.DisparaAudio(SoundEffectID.painelAbrindo);

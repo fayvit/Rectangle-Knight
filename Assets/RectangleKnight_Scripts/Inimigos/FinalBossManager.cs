@@ -99,8 +99,8 @@ public class FinalBossManager: MonoBehaviour
                 }
                 else
                 {
-                    EventAgregator.Publish(EventKey.requestSceneCamLimits, null);
-                    EventAgregator.Publish(EventKey.fechouPainelSuspenso, null);
+                    EventAgregator.Publish(EventKey.requestSceneCamLimits);
+                    EventAgregator.Publish(EventKey.fechouPainelSuspenso);
                     premio.SetActive(true);
                     Destroy(interestObject);
                     estado = EstadoDaqui.animaPremio;

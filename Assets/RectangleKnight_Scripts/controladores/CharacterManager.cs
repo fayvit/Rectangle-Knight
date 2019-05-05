@@ -179,7 +179,7 @@ public class CharacterManager : MonoBehaviour
     private void OnGetUpdateGeometry(IGameEvent e)
     {
         StandardSendGameEvent ssge = (StandardSendGameEvent)e;
-        HexagonoColetavel.DadosDaGeometriaColetavel d = (HexagonoColetavel.DadosDaGeometriaColetavel)ssge.MyObject[0];
+        HexagonoColetavelBase.DadosDaGeometriaColetavel d = (HexagonoColetavelBase.DadosDaGeometriaColetavel)ssge.MyObject[0];
 
         OnOpenExternalPanel(null);
 

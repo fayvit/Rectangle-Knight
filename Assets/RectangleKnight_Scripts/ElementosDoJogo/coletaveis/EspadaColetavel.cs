@@ -62,7 +62,7 @@ public class EspadaColetavel : AtivadorDeBotao
     void OnCloseSecondPanel()
     {
         Time.timeScale = 1;
-        EventAgregator.Publish(EventKey.fechouPainelSuspenso, null);
+        EventAgregator.Publish(EventKey.fechouPainelSuspenso);
         Destroy(gameObject);
     }
     

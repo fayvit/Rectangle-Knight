@@ -187,7 +187,7 @@ public class BossCirculoImperfeito : EnemyBase
                 if (tempoDecorrido > TEMPO_PREPARANDO_FURIA)
                 {
                     _Animator.SetTrigger("tocouChao");
-                    EventAgregator.Publish(EventKey.fechouPainelSuspenso, null);
+                    EventAgregator.Publish(EventKey.fechouPainelSuspenso);
                     EscolheMelhorCantoAlto();
                     estado = EstadoDaqui.giroDeFuria;
                     tempoDecorrido = 0;

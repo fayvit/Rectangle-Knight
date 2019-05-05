@@ -30,7 +30,7 @@ public static class EventAgregator
         }
     }
 
-    public static void Publish(EventKey key, IGameEvent umEvento)
+    public static void Publish(EventKey key, IGameEvent umEvento = null)
     {
         List<Action<IGameEvent>> callbackList;
         if (_eventDictionary.TryGetValue(key, out callbackList))
@@ -139,5 +139,8 @@ public enum EventKey
     getStamp,
     request3dSound,
     startSceneMusic,
-    getItem
+    getItem,
+    hexCloseSecondPanel,
+    compraConcluida,
+    buyUpdateGeometry
 }

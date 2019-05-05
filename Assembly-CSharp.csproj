@@ -117,6 +117,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\coletaveis\EncaixeColetavel.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\coletaveis\EspadaColetavel.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\coletaveis\HexagonoColetavel.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\coletaveis\HexagonoColetavelBase.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\coletaveis\LosanguloColetavel.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\coletaveis\MoedaDeDinheiro.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\coletaveis\SacoDeDinheiro.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\EventAgregator\StandardSendStringEvent.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\HUD\ActionManager.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\HUD\AtivadorDaLoja.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\HUD\AtivadorDaLojaDeHerika.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\HUD\AtivadorDeBotao.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\HUD\AtivadorDoCheckPoint.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\HUD\DisparaTexto.cs" />
@@ -159,6 +161,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\HUD\LanguageMenu.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\HUD\LoadBar.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\HUD\MensagemComPainel.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\HUD\MensagemComPainelKey.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\HUD\MenuBasico.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\HUD\MenuComInfo.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\HUD\MenuDeEmblemasDisponiveis.cs" />
@@ -209,6 +212,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\TargedEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Itens\ItemBase.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Itens\Loja.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Itens\LojaDeHerika.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Itens\TradeManager.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\manipulacaoDeDados\CustomLimitantes.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\manipulacaoDeDados\DadosDeCena.cs" />
@@ -231,6 +235,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\Textos\InterfaceTextKey.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Textos\LanguageSwitcher.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Textos\PT_BR\ConversasDaArea1PT_BR.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Textos\PT_BR\ConversasDaArea2PT_BR.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Textos\PT_BR\InterfaceTextList.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Textos\PT_BR\ListaDeTextosPT_BR.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Textos\PT_BR\TextosChaveEmPT_BR.cs" />

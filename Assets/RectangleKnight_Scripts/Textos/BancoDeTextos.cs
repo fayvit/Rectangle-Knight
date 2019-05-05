@@ -127,7 +127,14 @@ public enum ChaveDeTexto
     descricaoDosItensNoInventario,
     descricaoDosItensVendidos,
     nomeParaItensVendidos,
-    TyronSobreOsInimigos
+    TyronSobreOsInimigos,
+    conhecendoTales,
+    talesCetico,
+    talesOuveChamado,
+    talesAindaNosVeremos,
+    placaUmaFiguraHeroica,
+    geometriaEscolhida,
+    buscadorTranscendeu
 }
 
 

@@ -3730,6 +3730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loopTime: 2
   standTime: 0.25
+  startDelay: 0
   pos:
   - {fileID: 611796679}
   - {fileID: 1275847971}
@@ -62783,6 +62784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loopTime: 2
   standTime: 0.25
+  startDelay: 0
   pos:
   - {fileID: 576262590}
   - {fileID: 1169800696}
@@ -63200,11 +63202,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4117146337576461597, guid: 7fa776c51322cf548a3cfd970dca700f,
-        type: 3}
-      propertyPath: ID
-      value: -42074_obstaculosParaOsRefugiados
-      objectReference: {fileID: 0}
     - target: {fileID: 4117146336688186720, guid: 7fa776c51322cf548a3cfd970dca700f,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -63224,6 +63221,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117146337576461597, guid: 7fa776c51322cf548a3cfd970dca700f,
+        type: 3}
+      propertyPath: ID
+      value: -42074_obstaculosParaOsRefugiados
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fa776c51322cf548a3cfd970dca700f, type: 3}
@@ -73649,6 +73651,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loopTime: 2
   standTime: 0.25
+  startDelay: 0
   pos:
   - {fileID: 1636555660}
   - {fileID: 342580724}
@@ -74691,6 +74694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loopTime: 2
   standTime: 0.25
+  startDelay: 0
   pos:
   - {fileID: 1524931887}
   - {fileID: 308825762}
@@ -113082,6 +113086,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loopTime: 2
   standTime: 0.25
+  startDelay: 0
   pos:
   - {fileID: 144449659}
   - {fileID: 1132610028}
@@ -113820,6 +113825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loopTime: 2
   standTime: 0.25
+  startDelay: 0
   pos:
   - {fileID: 1074304419}
   - {fileID: 1311426184}
@@ -114793,6 +114799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loopTime: 2
   standTime: 0.25
+  startDelay: 0
   pos:
   - {fileID: 1492247876}
   - {fileID: 1275376264}
@@ -124170,6 +124177,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740739099938690451, guid: fdc3e54bdbc571d48b93234ce3ec885c,
+        type: 3}
+      propertyPath: ID
+      value: -13820_obstaculosParaOsRefugiados
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdc3e54bdbc571d48b93234ce3ec885c, type: 3}

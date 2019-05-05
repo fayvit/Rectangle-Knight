@@ -7990,7 +7990,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 0}
+  m_BackGroundColor: {r: 0.32156864, g: 0.32941177, b: 0.4, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -8030,7 +8030,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 637043757}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 153.84995, y: -196.57999, z: -10}
+  m_LocalPosition: {x: -144.16006, y: -134.59001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8735,12 +8735,12 @@ PrefabInstance:
     - target: {fileID: 1215035467913052043, guid: 1c976eed124ef8b45b88afe7f5b87352,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 144.41
+      value: -153.6
       objectReference: {fileID: 0}
     - target: {fileID: 1215035467913052043, guid: 1c976eed124ef8b45b88afe7f5b87352,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -201.29
+      value: -139.3
       objectReference: {fileID: 0}
     - target: {fileID: 1215035467913052043, guid: 1c976eed124ef8b45b88afe7f5b87352,
         type: 3}
@@ -15976,7 +15976,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9aeffae176e390744a5a9720afde4c75, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d32baab424c57a445ab517fb752918d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -38845,7 +38845,7 @@ PrefabInstance:
     - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
         type: 3}
       propertyPath: sceneDates.meusDados.Array.size
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
         type: 3}
@@ -38900,6 +38900,56 @@ PrefabInstance:
     - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
         type: 3}
       propertyPath: sceneDates.meusDados.Array.data[19].musicName.volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[20].nomeDaCena
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[20].limitantes.xMin
+      value: 133
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[20].limitantes.xMax
+      value: 159
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[20].limitantes.yMin
+      value: -203
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[20].limitantes.yMax
+      value: -191
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[20].bkColor.r
+      value: 0.15294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[20].bkColor.g
+      value: 0.15294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[20].bkColor.b
+      value: 0.15294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[20].musicName.musica
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[20].musicName.volume
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7624545097210461125, guid: b00c72a29f4d99f4dac657f432ec7fb5,

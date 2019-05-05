@@ -5226,6 +5226,9 @@ MonoBehaviour:
   particulaDaAcao: {fileID: 2773649372727360257}
   ePentagono: 1
   ID: 
+  hexBase:
+    painel: {fileID: 2773649372981427947}
+    particulaDaAcao: {fileID: 2773649372727360257}
 --- !u!1 &2773649372981427951
 GameObject:
   m_ObjectHideFlags: 0

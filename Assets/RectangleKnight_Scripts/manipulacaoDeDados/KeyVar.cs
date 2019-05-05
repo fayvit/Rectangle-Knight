@@ -185,7 +185,11 @@ public enum KeyShift
     conhecendoOtto,
     fascinadoPelasCapsulas,
     prazerEmConhecerCapsulas,
-    venceuCirculoImperfeito
+    venceuCirculoImperfeito,
+    escadaDasProfundezas,
+    conhecendoTales,
+    talescetico,
+    talesOuveChamado
 }
 
 public enum KeyCont

@@ -49,7 +49,7 @@ public class EmblemaColetavel : AtivadorDeBotao
         else
         {
             Time.timeScale = 1;
-            EventAgregator.Publish(EventKey.fechouPainelSuspenso, null);
+            EventAgregator.Publish(EventKey.fechouPainelSuspenso);
 
         }
 

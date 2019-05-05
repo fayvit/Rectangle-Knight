@@ -103,6 +103,6 @@ public class CapsulaDeTransporte : AtivadorDeBotao
         estado = EstadoDaqui.emEspera;
         menu.FinalizarHud();
         menuContainer.SetActive(false);
-        EventAgregator.Publish(EventKey.fechouPainelSuspenso, null);
+        EventAgregator.Publish(EventKey.fechouPainelSuspenso);
     }
 }

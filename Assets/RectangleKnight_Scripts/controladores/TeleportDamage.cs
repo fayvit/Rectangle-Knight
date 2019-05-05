@@ -32,6 +32,6 @@ public class TeleportDamage
     {
         
         agendado = false;
-        EventAgregator.Publish(EventKey.fechouPainelSuspenso, null);
+        EventAgregator.Publish(EventKey.fechouPainelSuspenso);
     }
 }

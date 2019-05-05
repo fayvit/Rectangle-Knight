@@ -39,8 +39,8 @@ public class MenuDeEncaixesDeEmblemas : MenusDeEmblemabase
         if (indice < emblemasEquipados.Count)
         {
             Emblema E = emblemasEquipados[indice];
-            Texture2D t2d = (Texture2D)Resources.Load(E.NomeId.ToString());
-            Sprite S = Sprite.Create(t2d, new Rect(0, 0, t2d.width, t2d.height), t2d.texelSize);
+           // Texture2D t2d = (Texture2D)Resources.Load(E.NomeId.ToString());
+            Sprite S = Resources.Load<Sprite>(E.NomeId.ToString());//Sprite.Create(t2d, new Rect(0, 0, t2d.width, t2d.height), t2d.texelSize);
 
             uma.SetarOpcoes(S,Acao);
             

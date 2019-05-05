@@ -8,14 +8,15 @@ public class Loja : MenuComInfo
     [SerializeField] private ItensAVenda[] itensParaVender = default;
 
     private ItensAVenda[] itensPossiveisDeVender;
-    
 
     public override void SetarComponenteAdaptavel(GameObject G, int indice)
     {
         UmaOpcaoComQuantidade uma = G.GetComponent<UmaOpcaoComQuantidade>();
         string titleTxt = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.nomeParaItensVendidos)[(int)itensPossiveisDeVender[indice].nome];
         string infoTxt = itensPossiveisDeVender[indice].valorDeVenda.ToString();
-        uma.SetarOpcao(titleTxt,infoTxt,null,ChangeOption);
+        uma.SetarOpcao(titleTxt,infoTxt,
+            Resources.Load<Sprite>(itensPossiveisDeVender[indice].nome.ToString())
+            ,ChangeOption);
     }
 
     protected override void ChangeOption(int qual)

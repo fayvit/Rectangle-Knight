@@ -45,7 +45,8 @@ public class TextosDosUpdatesPT_BR {
             {
                 "Você pode adicionar emblemas na sua espada enquanto tiver encaixes disponiveis",
                 "As moedas deixadas pelos inimigos são atraidas pelo personagem",
-                "Aumenta seu potencial de ataque"
+                "Aumenta seu potencial de ataque",
+                "Aumenta o tempo de invulnerabilidade ao ser atingido por um ataque."
             }
         },
         {
@@ -53,7 +54,8 @@ public class TextosDosUpdatesPT_BR {
             {
                 "Encaixe Disponivel",
                 "Dinheiro Magnetico",
-                "Ataque Aprimorado"
+                "Ataque Aprimorado",
+                "Suspiro Longo"
             }
         },
          {

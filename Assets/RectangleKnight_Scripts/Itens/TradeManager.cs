@@ -18,21 +18,33 @@ public static class TradeManager
             break;
             case NomeMercadoria.fragmentoDeHexagono:
             case NomeMercadoria.fragmentoDePentagono:
-                EventAgregator.Publish(new StandardSendGameEvent(EventKey.getUpdateGeometry,
-                    new HexagonoColetavel.DadosDaGeometriaColetavel()
-                    {
-                        ID="sempreTrue",
-                        ePentagono = n==NomeMercadoria.fragmentoDePentagono,
-                        velocidadeNaQuedaDaMusica = 2.5f
-                    }
-                    ));
+                new MyInvokeMethod().InvokeAoFimDoQuadro(() =>
+                {
+                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.buyUpdateGeometry, n == NomeMercadoria.fragmentoDePentagono));
+                });
             break;
             case NomeMercadoria.escadaParaProfundezas:
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestChangeShiftKey, KeyShift.escadaDasProfundezas));
             break;
             case NomeMercadoria.SeloPositivistaDoAmor:
                 EventAgregator.Publish(new StandardSendGameEvent(EventKey.getStamp, MercadoriaToSeloPositivistas(n)));
             break;
             
+        }
+
+        switch (n)
+        {
+            case NomeMercadoria.anelDeIntegridade:
+            case NomeMercadoria.CQD:
+            case NomeMercadoria.dinheiroMagnetico:
+            case NomeMercadoria.suspiroLongo:
+            case NomeMercadoria.escadaParaProfundezas:
+            case NomeMercadoria.SeloPositivistaDoAmor:
+                new MyInvokeMethod().InvokeAoFimDoQuadro(() =>
+                {
+                    EventAgregator.Publish(EventKey.compraConcluida);
+                });
+            break;
         }
     }
 

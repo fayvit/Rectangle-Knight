@@ -14,11 +14,11 @@ public class MenuDoInventario : MenuComInfo
     public override void SetarComponenteAdaptavel(GameObject G, int indice)
     {
         int itemDeInteresse = (int)Opcoes[indice];
-        Texture2D t2d = (Texture2D)Resources.Load(Opcoes[indice].ToString());
-        Sprite S = null;
+       // Texture2D t2d = (Texture2D)Resources.Load(Opcoes[indice].ToString());
+        Sprite S = Resources.Load<Sprite>(Opcoes[indice].ToString());
 
-        if (t2d!=null)
-            S = Sprite.Create(t2d, new Rect(0, 0, t2d.width, t2d.height), t2d.texelSize);
+      //  if (t2d!=null)
+        //    S = Sprite.Create(t2d, new Rect(0, 0, t2d.width, t2d.height), t2d.texelSize);
 
         UmaOpcaoComQuantidade uma = G.GetComponent<UmaOpcaoComQuantidade>();
         uma.SetarOpcao(BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.nomesItens)[indice],

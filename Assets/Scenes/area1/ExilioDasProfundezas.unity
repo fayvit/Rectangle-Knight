@@ -89184,5 +89184,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1902778942937195456, guid: fccc45ec1f5851b4da972425571c3884,
+        type: 3}
+      propertyPath: ID
+      value: -19200_ExilioDasProfundezas
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fccc45ec1f5851b4da972425571c3884, type: 3}

@@ -48,7 +48,7 @@ public abstract class ColetavelBasse : AtivadorDeBotao
     void OnClosePanel()
     {
         Time.timeScale = 1;
-        EventAgregator.Publish(EventKey.fechouPainelSuspenso, null);
+        EventAgregator.Publish(EventKey.fechouPainelSuspenso);
         Destroy(gameObject);
     }
 

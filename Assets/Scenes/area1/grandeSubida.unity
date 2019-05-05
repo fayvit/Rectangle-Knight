@@ -76886,6 +76886,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6344820866493723191, guid: c3e9b9d90da858341bac767975307d23,
+        type: 3}
+      propertyPath: ID
+      value: -14694_grandeSubida
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3e9b9d90da858341bac767975307d23, type: 3}
 --- !u!1 &1782445281
@@ -86596,6 +86601,11 @@ PrefabInstance:
       propertyPath: particulaDoSpawn
       value: 
       objectReference: {fileID: 1116223142}
+    - target: {fileID: 1095190190914491133, guid: a1c549a46a66c474ab7397068eb5cf83,
+        type: 3}
+      propertyPath: ID
+      value: -14838_grandeSubida
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1c549a46a66c474ab7397068eb5cf83, type: 3}
 --- !u!198 &7528690158859534688
