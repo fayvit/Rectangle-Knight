@@ -80,4 +80,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/area1/armadilhasAzuis.unity
     guid: 0525825ea5118724e9708bfa75194d75
+  - enabled: 1
+    path: Assets/Scenes/area2/IntroAquifero.unity
+    guid: 8a82cdaea3cf0d848971fe056c10933d
+  - enabled: 1
+    path: Assets/Scenes/area2/ApresentacaoInimigosAquifero.unity
+    guid: 4487d3d42c23e9943bbf34c8fe08a7f9
   m_configObjects: {}

@@ -26,6 +26,10 @@ public class MovimentacaoBasica
     const float k_GroundedRadius = .2f;
     const float k_CeilingRadius = .01f;
 
+    public Vector3 Velocity
+    {
+        get { return m_Rigidbody2D.velocity;}
+    }
     public bool NoChao
     {
         get {

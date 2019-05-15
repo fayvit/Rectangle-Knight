@@ -17,6 +17,7 @@ public class SeloPositivista : MensagemComPainel
 
     protected override void Start()
     {
+        base.Start();
         ActiveFalseForShift.StaticStart(Start, this, ID);
     }
 

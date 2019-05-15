@@ -91,7 +91,10 @@ public class GlobalController : MonoBehaviour
     private void OnRequest3dSound(IGameEvent e)
     {
         StandardSendGameEvent ssge = (StandardSendGameEvent)e;
-        sfx.Instantiate3dSound(e.Sender.transform.position,(SoundEffectID)ssge.MyObject[0],(float)ssge.MyObject[1]);
+        if(ssge.MyObject.Length>1)
+            sfx.Instantiate3dSound(e.Sender.transform.position,(SoundEffectID)ssge.MyObject[0],(float)ssge.MyObject[1]);
+        else
+            sfx.Instantiate3dSound(e.Sender.transform.position, (SoundEffectID)ssge.MyObject[0]);
     }
 
     private void OnCheckPointExit(IGameEvent e)

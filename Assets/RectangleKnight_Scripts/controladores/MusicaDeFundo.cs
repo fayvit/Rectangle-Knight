@@ -236,7 +236,8 @@ public enum NameMusic
     trapMusic,//2003_Battle1
     miniBoss,//XP006Boss02
     XPboss3,
-    HerikaTheme,//B->Marigold__QuincasMoreira_youtubeAudioLibrary//New_Year_s_Anthem_QuincasMoreira_youtubeAudioLIbarry
+    HerikaTheme,//New_Year_s_Anthem_QuincasMoreira_youtubeAudioLIbarry
+    TemaDoAquifero//B->Marigold__QuincasMoreira_youtubeAudioLibrary
 }
 
 public enum SoundEffectID
@@ -261,6 +262,10 @@ public enum SoundEffectID
     lancaProjetilInimigo,//Absorb1
     EnemySlash,//100-Attack12
     ItemImportante, //ROGM2003_JEnd of Battle 3
+    meuArbusto,
+    Darkness4,//RPGMAKER2003
+    Fire1,
+    Break
 }
 
 [System.Serializable]

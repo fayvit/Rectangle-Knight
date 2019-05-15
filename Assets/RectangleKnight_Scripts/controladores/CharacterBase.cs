@@ -18,7 +18,11 @@ public class CharacterBase : MonoBehaviour {
     {
         get { if (animator != null)
                 return animator;
-            else return GetComponent<Animator>();
+            else
+            {
+                animator = GetComponent<Animator>();
+                return animator;
+            }
         }
         set { animator = value; }
     }

@@ -142,6 +142,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\FalseWall.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\MagnetismoParaMoeda.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\SouUmLosanguloGerenciavel.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\TriggerDeParticulas.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\EventAgregator\EventAgregator.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\EventAgregator\IGameEvent.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\EventAgregator\SendMethodEvent.cs" />
@@ -190,7 +191,10 @@
     <Compile Include="Assets\RectangleKnight_Scripts\inicializadoresDoJogo\MenuDoNovoJogoCarregarDeletar.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\inicializadoresDoJogo\UmaOpcaoDoIniciarJogo.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\AccelerateEnemy.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\AquiferAccelerateEnemy.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\AquiferHiddenEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\BaseMoveRigidbody.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\BorrifadaFinal.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\BossCirculoImperfeito.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\BreederEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\DamageObject.cs" />
@@ -200,6 +204,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\EnemyDamageSender.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\EstocadaEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\FinalBossManager.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\FlyingInvestEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\FlyingPursuerEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\InimigoZigZag.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\InvestEnemy.cs" />
@@ -207,6 +212,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\NonRespawnOnLoadEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\RigidbodyMoveEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\ShooterEnemy.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\SprinklerEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\StrategyMovementEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\StrongerArea1Enemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\TargedEnemy.cs" />
@@ -227,6 +233,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\ScriptsDeConversa\AtivadorDoBotaoConversaAgendada.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ScriptsDeConversa\NpcDeConversa.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ScriptsDeConversa\NpcDeFalasAgendadas.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\ScriptTestador.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Textos\BancoDeTextos.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Textos\EN_Google\InterfaceTextListEN_G.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Textos\EN_Google\ListaDeTextosEN_G.cs" />

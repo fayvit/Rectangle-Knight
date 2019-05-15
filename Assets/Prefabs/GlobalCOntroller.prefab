@@ -2014,6 +2014,36 @@ MonoBehaviour:
       musicName:
         musica: 1
         volume: 1
+    - nomeDaCena: 21
+      limitantes:
+        xMin: 2
+        xMax: 97
+        yMin: -135
+        yMax: -93
+      bkColor: {r: 0.4627451, g: 0.4627451, b: 0.4627451, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 22
+      limitantes:
+        xMin: 133
+        xMax: 159
+        yMin: -203
+        yMax: -191
+      bkColor: {r: 0.15294118, g: 0.15294118, b: 0.15294118, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 23
+      limitantes:
+        xMin: -187.1
+        xMax: -48.33
+        yMin: -152
+        yMax: -108.8
+      bkColor: {r: 0.32156864, g: 0.32941177, b: 0.4, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
   emTeste: 0
 --- !u!114 &1598610332
 MonoBehaviour:

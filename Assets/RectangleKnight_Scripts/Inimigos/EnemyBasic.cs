@@ -24,7 +24,7 @@ public class EnemyBasic : TargedEnemy
         
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         tempoDecorrido += Time.deltaTime;
         switch (fase)

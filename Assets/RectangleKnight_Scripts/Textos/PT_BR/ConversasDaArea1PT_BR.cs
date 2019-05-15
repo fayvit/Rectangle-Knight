@@ -46,7 +46,7 @@ public class ConversasDaArea1PT_BR
                 "Logo a frente há uma fenda no chão",
                 "Algumas formas geometricas pularam lá",
                 "Não sei se é seguro... mas me aproximei da fenda algumas vezes...",
-                "Quando olho pra ela sinto uma enorme vontade de conhecer o que há lá ambaixo...",
+                "Quando olho pra ela sinto uma enorme vontade de conhecer o que há lá embaixo...",
                 "Eu luto contra essa vontade sempre lembrando do que me disseram...",
                 "Há um chamado nos convidando para as profundezas desse lugar e ele pode corromper nossa mente",
                 "Apesar do que tem me acontecido nos últimos tempos... Eu gosto de saber quem eu sou",

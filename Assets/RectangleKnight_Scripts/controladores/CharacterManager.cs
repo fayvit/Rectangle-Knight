@@ -242,7 +242,7 @@ public class CharacterManager : MonoBehaviour
     {
         StandardSendGameEvent ssge = (StandardSendGameEvent)e;
         dados.SetarVidaMax();
-        dados.SetarManaMax();
+        //dados.SetarManaMax();
         dados.ultimoCheckPoint = new UltimoCheckPoint()
         {
             nomesDasCenas = (NomesCenas[])ssge.MyObject[0],
@@ -305,14 +305,17 @@ public class CharacterManager : MonoBehaviour
 
     private void OnCureInvoke(IGameEvent obj)
     {
-        StandardSendGameEvent ssge = (StandardSendGameEvent)obj;
-        Dados.ConsomeMana((int)ssge.MyObject[0]);
-        Dados.AdicionarVida((int)ssge.MyObject[1]);
+        if (dados.PontosDeVida > 0)
+        {
+            StandardSendGameEvent ssge = (StandardSendGameEvent)obj;
+            Dados.ConsomeMana((int)ssge.MyObject[0]);
+            Dados.AdicionarVida((int)ssge.MyObject[1]);
 
-        estado = EstadoDePersonagem.aPasseio;
+            estado = EstadoDePersonagem.aPasseio;
 
-        EventAgregator.Publish(new StandardSendGameEvent(gameObject, EventKey.changeLifePoints, Dados.PontosDeVida, Dados.MaxVida));
-        EventAgregator.Publish(new StandardSendGameEvent(gameObject, EventKey.changeMagicPoints, Dados.PontosDeMana, Dados.MaxMana));
+            EventAgregator.Publish(new StandardSendGameEvent(gameObject, EventKey.changeLifePoints, Dados.PontosDeVida, Dados.MaxVida));
+            EventAgregator.Publish(new StandardSendGameEvent(gameObject, EventKey.changeMagicPoints, Dados.PontosDeMana, Dados.MaxMana));
+        }
     }
 
     private void OnCancelCure(IGameEvent obj)
@@ -538,7 +541,7 @@ public class CharacterManager : MonoBehaviour
                         {
                             transform.position = dados.ultimoCheckPoint.Pos;
                             dados.SetarVidaMax();
-                            dados.SetarManaMax();
+                            //dados.SetarManaMax();
 
                             GameController.g.MyKeys.ReviverInimigos();
 

@@ -390,7 +390,9 @@ public enum NomesCenas
     preparacaoParaChefe,
     zonaDoChefe,
     armadilhasAzuis,
-    barracaDeHerikaNoAcampamento
+    barracaDeHerikaNoAcampamento,
+    IntroAquifero,
+    ApresentacaoInimigosAquifero
 }
 
 public enum NomesCenasEspeciais

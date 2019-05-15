@@ -26,6 +26,8 @@ Assets/Scenes/area1/capsulaDaGargantaDasProfundezas.unity
 Assets/Scenes/area1/preparacaoParaChefe.unity
 Assets/Scenes/area1/zonaDoChefe.unity
 Assets/Scenes/area1/armadilhasAzuis.unity
+Assets/Scenes/area2/IntroAquifero.unity
+Assets/Scenes/area2/ApresentacaoInimigosAquifero.unity
 SceneListEnd?
 4806ef636c8dfacfbae26767c56e74d7 Assembly-CSharp.dll:.EncaixeColetavel
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.DanoQueTeleportaQuicavel
@@ -234,6 +236,7 @@ cf96e5f7b3d069bab453925bd41be04e UnityEngine.TestRunner.dll:UnityEngine.TestTool
 fb6a1ea36b4f6ef5948d283d93760765 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 5b0391b7e3d9ea9db6c0a8fbd0ca23f6 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
 5b0391b7e3d9ea9db6c0a8fbd0ca23f6 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
+cdf12675c47ee83e9d250d032636e694 Assembly-CSharp.dll:.AquiferHiddenEnemy
 931f489e44eadf809e9310429c99dde5 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioListenerExtension
 fb6a1ea36b4f6ef5948d283d93760765 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 5b0391b7e3d9ea9db6c0a8fbd0ca23f6 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
@@ -243,7 +246,9 @@ fe958521073fc27c7f98f90d053c9a3a Assembly-CSharp.dll:.GlobalController
 3a718f82f23078ca779edce7977b8fce Assembly-CSharp.dll:.DamageObject
 3ae480d918177db6e240b2ea31475aca Assembly-CSharp.dll:.PainelDeConfirmacao
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
+6f63df1832428e91f8e77f83272bb7c9 Assembly-CSharp.dll:.MensagemComPainelKey
 745fafd626ee48fff45c3e26daf68c04 Assembly-CSharp.dll:.InterfaceLanguageConverter
+b81251ae294cf5cfdcdd6751ad3a05c8 Assembly-CSharp.dll:.TriggerDeParticulas
 d9a5ee10dfd08e48e0764ffd88199d14 Assembly-CSharp.dll:.EmblemaColetavel
 b7468aec941b375a9c4b55a9141f2e18 Assembly-CSharp.dll:.ChangeCamLimits
 2784fa7fbfae38e9dc154079814ab30d Assembly-CSharp.dll:.HexagonoColetavel
@@ -251,6 +256,7 @@ b7468aec941b375a9c4b55a9141f2e18 Assembly-CSharp.dll:.ChangeCamLimits
 4c5131c411acc315e34dd76b272373b7 Assembly-CSharp.dll:.DefenderEnemy
 632407b3571001d9a6d69747d139dc00 Assembly-CSharp.dll:.PainelPentagonoHexagono
 53111b3a9b8ca37a5b9f89270ad67632 Assembly-CSharp.dll:.Movimentacao
+792e1d0981b1e1163be4a1d927e6a2a9 Assembly-CSharp.dll:.AquiferAccelerateEnemy
 26edc3d8bc04329f40f0828b676b9c7c Assembly-CSharp.dll:.EnemyBasic
 56169392f28d82d8868dc15e7a3bf0f4 Assembly-CSharp.dll:.UmaOpcao
 f2ffa81f6f129936ea2d264b23b92a63 Assembly-CSharp.dll:.CofreDosLosangulos
@@ -267,3 +273,4 @@ c053669ba527f34904fa035ead8d92f7 Assembly-CSharp.dll:.FinalBossManager
 caeec57703bbb7da34179892c8571eb8 Assembly-CSharp.dll:.MudeCenaComAcao
 ccf4afaf979d758ca12ab1e2af3c16da Assembly-CSharp.dll:.CharacterBase
 5c678da4b8227b111f6ce2bb3addf350 Assembly-CSharp.dll:.EspadaColetavel
+f8fd945a63eafc8e892a7ad734294d73 Assembly-CSharp.dll:.SprinklerEnemy
