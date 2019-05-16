@@ -18,14 +18,14 @@ public class SwordColorManager : MonoBehaviour
     {
         EventAgregator.AddListener(EventKey.colorChanged, OnColorChanged);
         EventAgregator.AddListener(EventKey.getColorSword, OnGetColorSword);
-        EventAgregator.AddListener(EventKey.requestToFillDates, OnRequestFillDates);
+        EventAgregator.AddListener(EventKey.colorSwordShow, OnRequestFillDates);
     }
 
     private void OnDestroy()
     {
         EventAgregator.RemoveListener(EventKey.colorChanged, OnColorChanged);
         EventAgregator.RemoveListener(EventKey.getColorSword, OnGetColorSword);
-        EventAgregator.RemoveListener(EventKey.requestToFillDates, OnRequestFillDates);
+        EventAgregator.RemoveListener(EventKey.colorSwordShow, OnRequestFillDates);
     }
 
     void OnRequestFillDates(IGameEvent e)
@@ -49,6 +49,7 @@ public class SwordColorManager : MonoBehaviour
                 colorButtons[i].GetComponent<Image>().sprite = doPadrao;
 
         }
+
     }
 
     IEnumerator EscolheQualCorMostrarNoProximoQuadro()
@@ -61,10 +62,11 @@ public class SwordColorManager : MonoBehaviour
     {
 
         bool foi = false;
+        DadosDoJogador d = GameController.g.Manager.Dados;
         for (int i = 1; i < colorButtons.Length; i++)
         {
             //Debug.Log(GameController.g.Manager.Dados.SwordAvailable((SwordColor)i)+" : "+(SwordColor)i);
-            if (GameController.g.Manager.Dados.SwordAvailable((SwordColor)i))
+            if (d.SwordAvailable((SwordColor)i))
             {
                 colorButtons[i].gameObject.SetActive(true);
                 foi = true;
@@ -77,8 +79,17 @@ public class SwordColorManager : MonoBehaviour
 
         
         colorButtons[0].gameObject.SetActive(foi);
-        
-            
+
+        if (foi)
+            for (int i = 0; i < colorButtons.Length; i++)
+            {
+                if (d.CorDeEspadaSelecionada == (SwordColor)i)
+                    colorButtons[i].GetComponent<Image>().sprite = DoSelecionado;
+                else
+                    colorButtons[i].GetComponent<Image>().sprite = doPadrao;
+            }
+
+
     }
 
     // Update is called once per frame

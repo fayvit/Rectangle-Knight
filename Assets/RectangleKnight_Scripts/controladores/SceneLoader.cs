@@ -392,7 +392,8 @@ public enum NomesCenas
     armadilhasAzuis,
     barracaDeHerikaNoAcampamento,
     IntroAquifero,
-    ApresentacaoInimigosAquifero
+    ApresentacaoInimigosAquifero,
+    PreparacaoParaSubirAquifero
 }
 
 public enum NomesCenasEspeciais

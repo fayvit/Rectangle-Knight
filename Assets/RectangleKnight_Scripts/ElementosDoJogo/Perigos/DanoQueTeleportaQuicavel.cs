@@ -11,6 +11,7 @@ public class DanoQueTeleportaQuicavel : DanoQueTelePorta
         if (collision.tag == "attackCollisor")
         {
             EventAgregator.Publish(new StandardSendGameEvent(EventKey.colisorNoQuicavel,collision.name));
+            SoundOnAttack.SoundAndAnimation(transform, collision.transform.position);
         }
     }
 }

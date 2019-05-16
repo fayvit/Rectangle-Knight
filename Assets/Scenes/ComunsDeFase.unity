@@ -8030,7 +8030,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 637043757}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -532.9, y: -118.3, z: -10}
+  m_LocalPosition: {x: -518.95996, y: -86.490005, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8735,12 +8735,12 @@ PrefabInstance:
     - target: {fileID: 1215035467913052043, guid: 1c976eed124ef8b45b88afe7f5b87352,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -542.34
+      value: -528.4
       objectReference: {fileID: 0}
     - target: {fileID: 1215035467913052043, guid: 1c976eed124ef8b45b88afe7f5b87352,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -123.009995
+      value: -91.2
       objectReference: {fileID: 0}
     - target: {fileID: 1215035467913052043, guid: 1c976eed124ef8b45b88afe7f5b87352,
         type: 3}
@@ -38790,12 +38790,12 @@ PrefabInstance:
     - target: {fileID: 4020780947147178537, guid: b00c72a29f4d99f4dac657f432ec7fb5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -411
+      value: -567.6
       objectReference: {fileID: 0}
     - target: {fileID: 4020780947147178537, guid: b00c72a29f4d99f4dac657f432ec7fb5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -145.01
+      value: -75.55
       objectReference: {fileID: 0}
     - target: {fileID: 4020780947147178537, guid: b00c72a29f4d99f4dac657f432ec7fb5,
         type: 3}
@@ -38845,7 +38845,7 @@ PrefabInstance:
     - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
         type: 3}
       propertyPath: sceneDates.meusDados.Array.size
-      value: 23
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
         type: 3}
@@ -38906,6 +38906,56 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneDates.meusDados.Array.data[21].musicName.musica
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[23].nomeDaCena
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[23].limitantes.xMin
+      value: -567.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[23].limitantes.xMax
+      value: -409.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[23].limitantes.yMin
+      value: -151.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[23].limitantes.yMax
+      value: -75.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[23].bkColor.r
+      value: 0.32156864
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[23].bkColor.g
+      value: 0.32941177
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[23].bkColor.b
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[23].musicName.musica
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020780947147178536, guid: b00c72a29f4d99f4dac657f432ec7fb5,
+        type: 3}
+      propertyPath: sceneDates.meusDados.Array.data[23].musicName.volume
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7624545097210461125, guid: b00c72a29f4d99f4dac657f432ec7fb5,
         type: 3}

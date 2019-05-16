@@ -6,13 +6,14 @@ public class InimigoZigZag : EnemyBase
 {
     [SerializeField] private float vel = 5;
     private Vector3 moveDirection;
+    private Vector3 guardadorDePosicao;
     
 
     // Start is called before the first frame update
      protected override void Start()
     {
-        
 
+        guardadorDePosicao = transform.position;
         if (gameObject.layer == 11)
         {
             moveDirection = new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), 0);
@@ -23,7 +24,43 @@ public class InimigoZigZag : EnemyBase
                 moveDirection = new Vector3(1, 0, 0);
         }
 
+        Invoke("VerifiqueConstancia",1);
         base.Start();
+    }
+
+    void VerifiqueConstancia()
+    {
+        if (gameObject != null)
+        {
+            if (Vector3.Distance(transform.position, guardadorDePosicao) < 0.25f)
+            {
+                moveDirection = BuscadorDeDirecao().normalized;
+            }
+
+            guardadorDePosicao = transform.position;
+            Invoke("VerifiqueConstancia", 1);
+        }
+    }
+
+    Vector3 BuscadorDeDirecao()
+    {
+        Vector3 retorno = default;
+        RaycastHit2D[] hit = new RaycastHit2D[4];
+        hit[0] = Physics2D.Raycast(transform.position, new Vector2(1, 1),100,511);
+        hit[1] = Physics2D.Raycast(transform.position, new Vector2(-1, 1),100,511);
+        hit[2] = Physics2D.Raycast(transform.position, new Vector2(-1, -1),100,511);
+        hit[3] = Physics2D.Raycast(transform.position, new Vector2(1, -1),100,511);
+
+        retorno = hit[1].point;
+
+        for (int i = 1; i < 4; i++)
+        {
+            if (Vector3.Distance(transform.position, retorno) < Vector3.Distance(transform.position, hit[i].point))
+            {
+                retorno = hit[i].point;
+            }
+        }
+        return retorno-transform.position;
     }
 
     protected override void OnReceivedDamageAmount(IGameEvent e)

@@ -77,6 +77,7 @@ public class CharacterManager : MonoBehaviour
         EventAgregator.AddListener(EventKey.getColorSword, OnGetColorSword);
         EventAgregator.AddListener(EventKey.getStamp, OnGetStamp);
         EventAgregator.AddListener(EventKey.getItem, OnGetItem);
+        EventAgregator.AddListener(EventKey.colorChanged, OnSwordColorChanged);
 
 
         GameController.g.Manager = this;
@@ -112,6 +113,13 @@ public class CharacterManager : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.getColorSword, OnGetColorSword);
         EventAgregator.RemoveListener(EventKey.getStamp, OnGetStamp);
         EventAgregator.RemoveListener(EventKey.getItem, OnGetItem);
+        EventAgregator.RemoveListener(EventKey.colorChanged, OnSwordColorChanged);
+    }
+
+    private void OnSwordColorChanged(IGameEvent e)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)e;
+        dados.CorDeEspadaSelecionada = (SwordColor)((int)ssge.MyObject[0]);
     }
 
     private void OnGetItem(IGameEvent e)
@@ -272,7 +280,11 @@ public class CharacterManager : MonoBehaviour
         particulaDoDanoMortal.SetActive(false);
         particulaDoMorrendo.SetActive(false);
         derrota.DesligarLosangulo();
+        atk.ChangeSwirdColor((int)dados.CorDeEspadaSelecionada); 
         EventAgregator.Publish(new StandardSendGameEvent(EventKey.changeMoneyAmount, Dados.Dinheiro));
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.changeLifePoints, Dados.PontosDeVida,Dados.MaxVida));
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.changeMagicPoints, Dados.PontosDeMana, Dados.MaxMana));
+        EventAgregator.Publish(EventKey.colorSwordShow);
     }
 
     private void OnColorButtonPressed(IGameEvent e)

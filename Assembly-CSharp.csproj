@@ -75,6 +75,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\PiscaInvunerabilidade.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\SendTriggerInfo.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\ShakeCam.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\SoundOnAttack.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\SpawnMoedas.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\UIParticleSystem.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\ZeroOneInterpolation.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\PorquinhoDeMoedas.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\RecuperadorDeMana.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\ActiveFalseForShift.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\AlavancaDaGrade.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\CollorBarrage.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\DestructibleWithAttack.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\FalseWall.cs" />
@@ -216,6 +218,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\StrategyMovementEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\StrongerArea1Enemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\TargedEnemy.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\XShooterEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Itens\ItemBase.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Itens\Loja.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Itens\LojaDeHerika.cs" />

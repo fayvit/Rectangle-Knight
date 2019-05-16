@@ -204,6 +204,7 @@ MonoBehaviour:
   distanciaParaAcionar: 4.6
   essePainel: {fileID: 4740739101754248323}
   tipo: 0
+  ID: 
 --- !u!1 &4740739099962189468
 GameObject:
   m_ObjectHideFlags: 0
@@ -5839,8 +5840,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4740739099938690451}
-        m_MethodName: FuncaoDoBotao
+      - m_Target: {fileID: 4740739101754248323}
+        m_MethodName: BotaoEntendi
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -20,6 +20,7 @@ public class CollorBarrage : DestructibleWithAttack
             }
             else if(collision.name!="magicAttack")
             {
+                /*
                 float difPosX = GameController.g.Manager.transform.position.x - transform.position.x;
                 Vector3 dir = forcaDeRepulsa * Mathf.Sign(difPosX) * Vector3.right;
 
@@ -27,7 +28,8 @@ public class CollorBarrage : DestructibleWithAttack
 
                 new MyInvokeMethod().InvokeNoTempoDeJogo(() => {
                     EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.rockFalseAttack));
-                },0.2f);
+                },0.2f);*/
+                SoundOnAttack.SoundAnimationAndRepulse(transform, forcaDeRepulsa, tempoNaRepulsao,collision.transform.position);
 
             }
         }
