@@ -120,9 +120,13 @@ public class GameController : MonoBehaviour
     private void OnRequestSumContShift(IGameEvent obj)
     {
         StandardSendGameEvent ssge = (StandardSendGameEvent)obj;
-        MyKeys.SomaCont((KeyCont)ssge.MyObject[0], (int)ssge.MyObject[1]);
-        Debug.Log((KeyCont)ssge.MyObject[0] + " : " + (int)ssge.MyObject[1] + " : " + MyKeys.VerificaCont((KeyCont)ssge.MyObject[0]));
-        Debug.Log(MyKeys.VerificaCont(KeyCont.losangulosConfirmados));
+
+        if (ssge.MyObject[0] is KeyCont)
+        {
+            MyKeys.SomaCont((KeyCont)ssge.MyObject[0], (int)ssge.MyObject[1]);
+            Debug.Log((KeyCont)ssge.MyObject[0] + " : " + (int)ssge.MyObject[1] + " : " + MyKeys.VerificaCont((KeyCont)ssge.MyObject[0]));
+        }else if(ssge.MyObject[0] is string)
+            MyKeys.SomaAutoCont((string)ssge.MyObject[0], (int)ssge.MyObject[1]);
     }
 
     private void OnRequestInfoEmbelmPanel(IGameEvent e)

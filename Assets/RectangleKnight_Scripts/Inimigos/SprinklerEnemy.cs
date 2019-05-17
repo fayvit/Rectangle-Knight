@@ -49,7 +49,7 @@ public class SprinklerEnemy : BaseMoveRigidbody
 
     protected override void OnActionRequest()
     {
-        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.Fire1));
+        EventAgregator.Publish(new StandardSendGameEvent(gameObject,EventKey.request3dSound, SoundEffectID.Fire1));
         UltimaAcelerada = Time.time;
         _Animator.SetTrigger("telegrafar");
         estado = EstadoDaqui.telegrafando;
@@ -77,7 +77,7 @@ public class SprinklerEnemy : BaseMoveRigidbody
                     Mov.AplicadorDeMovimentos(DirecaoNoPlano.NoUpNormalizado(transform.position, GameController.g.Manager.transform.position));
                     estado = EstadoDaqui.borrifando;
                     InstanciaLigando.Instantiate(particulaDoBorrifar, transform.position, 5);
-                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.Darkness4));
+                    EventAgregator.Publish(new StandardSendGameEvent(gameObject,EventKey.request3dSound, SoundEffectID.Darkness4));
                     TempoDecorrido = 0;
                 }
             break;

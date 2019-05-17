@@ -7,6 +7,7 @@ public class AquiferHiddenEnemy : EnemyBasic
     [SerializeField] private Transform posDoSalto = default;
     [SerializeField] private Transform retornoAoChao = default;
     [SerializeField] private GameObject particula = default;
+    [SerializeField] private float zAngleTarget = 0;
     [SerializeField] private SoundEffectID s = SoundEffectID.meuArbusto;
     
 
@@ -83,15 +84,16 @@ public class AquiferHiddenEnemy : EnemyBasic
             break;
             case EstadoDaqui.disparaPulo:
                 TempoDecorrido += Time.deltaTime;
+                Quaternion qAlvo = Quaternion.Euler(0, 0, zAngleTarget);
                 if (TempoDecorrido < TEMPO_SUBINDO)
                 {
                     transform.position = Vector3.Lerp(posOriginal, posDoSalto.position, ZeroOneInterpolation.PolinomialInterpolation(TempoDecorrido / TEMPO_SUBINDO, 2));
-                    transform.rotation = Quaternion.Lerp(rotOriginal, Quaternion.identity, TempoDecorrido / TEMPO_SUBINDO);
+                    transform.rotation = Quaternion.Lerp(rotOriginal, qAlvo, TempoDecorrido / TEMPO_SUBINDO);
                 }
                 else
                 {
                     PreviousMoveTarget = retornoAoChao.position;
-                    transform.rotation = Quaternion.identity;
+                    transform.rotation = qAlvo;
                     TempoDecorrido = 0;
                     estado = EstadoDaqui.descendoPulo;
                 }
@@ -109,7 +111,9 @@ public class AquiferHiddenEnemy : EnemyBasic
                 }
             break;
             case EstadoDaqui.baseUpdate:
-                FlipDirection.Flip(transform,PreviousMoveTarget.x-MovePoints[MoveTarget].position.x);
+                FlipDirection.Flip(transform,zAngleTarget==0 
+                    ? PreviousMoveTarget.x-MovePoints[MoveTarget].position.x
+                    : Mathf.Sign(zAngleTarget)*(PreviousMoveTarget.y - MovePoints[MoveTarget].position.y));
                 base.Update();
             break;
         }

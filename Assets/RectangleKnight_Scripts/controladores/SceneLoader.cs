@@ -393,7 +393,10 @@ public enum NomesCenas
     barracaDeHerikaNoAcampamento,
     IntroAquifero,
     ApresentacaoInimigosAquifero,
-    PreparacaoParaSubirAquifero
+    PreparacaoParaSubirAquifero,
+    SubidaDoAquifero,
+    checkPointDoAquifero,
+    DesafioX_Shooter
 }
 
 public enum NomesCenasEspeciais

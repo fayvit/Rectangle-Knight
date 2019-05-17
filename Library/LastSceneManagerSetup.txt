@@ -1,10 +1,16 @@
 sceneSetups:
-- path: Assets/Scenes/area2/ApresentacaoInimigosAquifero.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/Scenes/ComunsDeFase.unity
+- path: Assets/Scenes/area1/descidaDasProfundezas.unity
   isLoaded: 1
   isActive: 0
 - path: Assets/Scenes/area2/PreparacaoParaSubirAquifero.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scenes/area2/SubidaDoAquifero.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scenes/area2/DesafioX_Shooter.unity
   isLoaded: 1
   isActive: 1
+- path: Assets/Scenes/ComunsDeFase.unity
+  isLoaded: 1
+  isActive: 0

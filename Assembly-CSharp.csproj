@@ -127,6 +127,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Emblemas\EmblemaColetavel.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\LocalNameExibition.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\LosanguloManager.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\PedraPentagono.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Perigos\DanoQueTelePorta.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Perigos\DanoQueTeleportaQuicavel.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Perigos\EspinhosDoCirculoImperfeito.cs" />

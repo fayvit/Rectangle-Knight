@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AlavancaDaGrade : MonoBehaviour
 {
-    [SerializeField] private GameObject grade;
-    [SerializeField] private GameObject particulaDaAcao;
+    [SerializeField] private GameObject grade = default;
+    [SerializeField] private GameObject particulaDaAcao = default;
     [SerializeField] private string ID;
     [SerializeField] private float tempoDaAlavancaAaGrade = .5f;
     [SerializeField] private float tempoDaParticulaAaGrade = .5f;

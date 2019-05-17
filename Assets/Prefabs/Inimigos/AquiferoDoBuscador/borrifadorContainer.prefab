@@ -101,7 +101,7 @@ MonoBehaviour:
   particulaTelegrafista: {fileID: 755075003}
   somDasParticulas: {fileID: 8300000, guid: 838cb60fc37a2cb498c17a993fc1d15b, type: 3}
   colisorDeDano: {fileID: 1190428584}
-  tempoAteBorrifada: 4
+  tempoAteBorrifada: 2
   tempoAteTelegrafia: 1.25
   intervaloDeParticulas: 0.15
   tempoDoBorrifarAoDano: 0.05
@@ -19546,7 +19546,7 @@ GameObject:
   - component: {fileID: 1449406964048802351}
   m_Layer: 0
   m_Name: BorrifadorImage
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19589,7 +19589,7 @@ MonoBehaviour:
     ataqueMagico: 30
   premioEmDinheiro: 5
   damageEffect: 0
-  ID: -1366_ApresentacaoInimigosAquifero
+  ID: 
   movePoints:
   - {fileID: 1449406964414646059}
   - {fileID: 1449406963035063794}

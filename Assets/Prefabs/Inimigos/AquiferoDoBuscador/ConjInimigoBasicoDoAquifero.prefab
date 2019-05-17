@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 6992694448969013699}
   m_Layer: 0
   m_Name: InimigoBasicoAquifero
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -358,6 +358,7 @@ MonoBehaviour:
   retornoAoChao: {fileID: 6992694449021023763}
   particula: {fileID: 2254290571093107983, guid: 9800d5ade07505d49b8fa2aaf56c28a0,
     type: 3}
+  zAngleTarget: 0
   s: 19
 --- !u!70 &6992694448969013699
 CapsuleCollider2D:

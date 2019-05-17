@@ -12,7 +12,7 @@ public class FlyingInvestEnemy : EnemyBase
     private Quaternion qAlvo;
     private EstadoDaqui estado =EstadoDaqui.emEspera;
 
-    [SerializeField] private AudioClip impulso;
+    [SerializeField] private AudioClip impulso = default;
     [SerializeField] private float DISTANCIA_PERSEGUICAO = 30;
     //[SerializeField] private float DISTANCIA_ATIVACAO = 17;
     [SerializeField] private float VARIACAO_DA_DIRECAO = 0.5F;

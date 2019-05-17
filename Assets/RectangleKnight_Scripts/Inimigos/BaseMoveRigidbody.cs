@@ -47,7 +47,7 @@ public abstract class BaseMoveRigidbody : TargedEnemy
             TrocaMoveTarget();
         }
 
-        if (Mathf.Abs(GameController.g.Manager.transform.position.x - transform.position.x) < DISTANCIA_DE_ACELERACAO
+        if (Vector3.Distance(GameController.g.Manager.transform.position, transform.position) < DISTANCIA_DE_ACELERACAO
             &&
             Time.time - UltimaAcelerada > INTERVALO_ENTRE_INVESTIDAS
             )

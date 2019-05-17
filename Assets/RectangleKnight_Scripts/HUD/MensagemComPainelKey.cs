@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MensagemComPainelKey : MensagemComPainel
 {
-    [SerializeField] private ChaveDeTexto key;
+    [SerializeField] private ChaveDeTexto key = default;
 
     public override void FuncaoDoBotao()
     {

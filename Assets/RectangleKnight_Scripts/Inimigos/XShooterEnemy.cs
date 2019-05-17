@@ -9,8 +9,10 @@ public class XShooterEnemy : EnemyBase
     [SerializeField] private float tempoPosTiro = 0.5f;
     [SerializeField] private float intervaloDeTiro = 3;
     [SerializeField] private float distProjetilTransform = 1;
-    [SerializeField] private GameObject particulaTelegrafista;
-    [SerializeField] private GameObject projetil;
+    [SerializeField] private float disAtivacao = 10;
+    [SerializeField] private GameObject particulaTelegrafista = default;
+    [SerializeField] private GameObject projetil = default;
+    
 
     private Vector3 moveDirection;
     private Vector3 guardadorDePosicao;
@@ -44,7 +46,7 @@ public class XShooterEnemy : EnemyBase
 
     void VerifiqueAtivacao()
     {
-        if (Vector3.Distance(transform.position, GameController.g.Manager.transform.position) < 10)
+        if (Vector3.Distance(transform.position, GameController.g.Manager.transform.position) < disAtivacao)
         {
             estado = EstadoDaqui.padrao;
             Invoke("VerifiqueConstancia", 1);
@@ -63,7 +65,7 @@ public class XShooterEnemy : EnemyBase
             Invoke("TelegrafaTiro", intervaloDeTiro);
 
             estado = EstadoDaqui.preparandoTiro;
-            InstanciaLigando.Instantiate(particulaTelegrafista, transform.position);
+            InstanciaLigando.Instantiate(particulaTelegrafista, transform.position,5);
             EventAgregator.Publish(new StandardSendGameEvent(gameObject,EventKey.request3dSound, SoundEffectID.Wind1));
 
             new MyInvokeMethod().InvokeNoTempoDeJogo(gameObject, () =>

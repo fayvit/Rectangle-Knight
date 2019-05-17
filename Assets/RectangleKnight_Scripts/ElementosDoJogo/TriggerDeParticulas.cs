@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TriggerDeParticulas : MonoBehaviour
 {
-    [SerializeField] GameObject particula;
+    [SerializeField] GameObject particula = default;
     [SerializeField] SoundEffectID s = SoundEffectID.meuArbusto;
 
     private bool podeSpawnarParticula = true;

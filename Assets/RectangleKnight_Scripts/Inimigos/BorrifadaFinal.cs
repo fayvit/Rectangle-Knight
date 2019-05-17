@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BorrifadaFinal : MonoBehaviour
 {
-    [SerializeField] private GameObject particulaDaBorrifada;
-    [SerializeField] private GameObject particulaTelegrafista;
-    [SerializeField] private AudioClip somDasParticulas;
-    [SerializeField] private Collider2D colisorDeDano;
+    [SerializeField] private GameObject particulaDaBorrifada = default;
+    [SerializeField] private GameObject particulaTelegrafista = default;
+    [SerializeField] private AudioClip somDasParticulas = default;
+    [SerializeField] private Collider2D colisorDeDano = default;
     [SerializeField] private float tempoAteBorrifada=2;
     [SerializeField] private float tempoAteTelegrafia = .5f;
     [SerializeField] private float intervaloDeParticulas = .15f;
