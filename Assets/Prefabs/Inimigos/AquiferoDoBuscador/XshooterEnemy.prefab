@@ -10014,7 +10014,7 @@ GameObject:
   - component: {fileID: 8889397736684676437}
   m_Layer: 13
   m_Name: New Sprite
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10282,6 +10282,7 @@ MonoBehaviour:
   tempoPosTiro: 0.5
   intervaloDeTiro: 3
   distProjetilTransform: 1.25
+  disAtivacao: 14
   particulaTelegrafista: {fileID: 6687680347869874839}
   projetil: {fileID: 6687680347153458240}
 --- !u!1 &8889397737759980709

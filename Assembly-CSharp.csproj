@@ -73,7 +73,9 @@
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\MyInvokeMethod.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\OnOffAutoShiftAndShift.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\PiscaInvunerabilidade.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\Rotation2D.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\SendTriggerInfo.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\SendTriggerStayInfo.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\ShakeCam.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\SoundOnAttack.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Auxiliares\SpawnMoedas.cs" />
@@ -102,11 +104,14 @@
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\MovimentaProjetil.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\MudeCena.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\MudeCenaComAcao.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\controladores\MudeCenaLocal.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\MusicaDeFundo.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\N3ds\N3DS_KeysDic.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\N3ds\N3dsAxis.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\PauseMenu.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\ProjetilInimigo.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\controladores\ProjetilParabolico.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\controladores\ProjetilQuicavel.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\SceneLoader.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\SoundEffectsManager.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\SwordColorManager.cs" />
@@ -196,6 +201,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\AccelerateEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\AquiferAccelerateEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\AquiferHiddenEnemy.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\AquiferWarrior.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\BaseMoveRigidbody.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\BorrifadaFinal.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\BossCirculoImperfeito.cs" />
@@ -213,6 +219,9 @@
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\InvestEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\JumperStandardEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\NonRespawnOnLoadEnemy.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\OccultBiterEnemy.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\OcultFixedShooter.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\OcultInvestEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\RigidbodyMoveEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\ShooterEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\SprinklerEnemy.cs" />

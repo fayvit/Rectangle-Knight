@@ -98,7 +98,7 @@ public class SprinklerEnemy : BaseMoveRigidbody
                     estado = EstadoDaqui.emEspera;
                     new MyInvokeMethod().InvokeNoTempoDeJogo(() =>
                     {
-                        if (gameObject != null)
+                        if (this != null)
                         {
                             _Animator.SetTrigger("retornarAoPadrao");
                             colisorDeDano.enabled = false;

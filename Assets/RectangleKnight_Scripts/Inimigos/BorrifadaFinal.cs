@@ -74,7 +74,7 @@ public class BorrifadaFinal : MonoBehaviour
         if (gameObject != null)
             if (iniciarParticulas)
             {
-                EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, somDasParticulas));
+                EventAgregator.Publish(new StandardSendGameEvent(gameObject,EventKey.request3dSound, somDasParticulas));
                 InstanciaLigando.Instantiate(particulaTelegrafista, transform.position, 2);
                 new MyInvokeMethod().InvokeNoTempoDeJogo(Particularizar, intervaloDeParticulas);
             }

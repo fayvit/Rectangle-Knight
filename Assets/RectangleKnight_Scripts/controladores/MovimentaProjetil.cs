@@ -8,24 +8,25 @@ public class MovimentaProjetil : MonoBehaviour
     [SerializeField]private Vector3 dir = default;
 
     public GameObject Particle { get; set; }
+    public float Velocidade { get => velocidade; set => velocidade = value; }
+    public Vector3 Dir { get => dir; set => dir = value; }
 
     public void Iniciar(float dir, GameObject particle,float velocidade = 20)
     {
         
-        Iniciar(dir * Vector3.right, particle,20);
+        Iniciar(dir * Vector3.right, particle,velocidade);
     }
 
     public void Iniciar(Vector3 dir, GameObject particle,float velocidade)
     {
-        this.velocidade = velocidade;
-        this.dir = dir;
-        this.dir.Normalize();
+        this.Velocidade = velocidade;
+        this.Dir = (new Vector3(dir.x, dir.y, 0)).normalized;
         this.Particle = particle;
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-        transform.position += dir  * velocidade * Time.deltaTime;
+        transform.position += Dir  * Velocidade * Time.deltaTime;
     }
 }

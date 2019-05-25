@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 2851365648354261324}
   - component: {fileID: 2851365648354261314}
   - component: {fileID: 2851365648354261315}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,6 +275,7 @@ MonoBehaviour:
     ataqueBasico: 25
     ataqueMagico: 30
   premioEmDinheiro: 4
+  damageEffect: 0
   vel: 5
 --- !u!1 &2851365649201010062
 GameObject:
@@ -418,6 +419,7 @@ MonoBehaviour:
     ataqueBasico: 25
     ataqueMagico: 30
   premioEmDinheiro: 4
+  damageEffect: 0
   vel: 5
 --- !u!50 &2851365649201010061
 Rigidbody2D:

@@ -24733,7 +24733,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.22653249, y: 0.030000001}
   m_AnchorMax: {x: 0.76900005, y: 0.21400002}
-  m_AnchoredPosition: {x: 1.5, y: -15.9999695}
+  m_AnchoredPosition: {x: 1.5, y: -16}
   m_SizeDelta: {x: -248, y: -28.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &73309396
@@ -29130,7 +29130,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.22653249, y: 0.030000001}
   m_AnchorMax: {x: 0.76900005, y: 0.21400002}
-  m_AnchoredPosition: {x: 1.5, y: -15.9999695}
+  m_AnchoredPosition: {x: 1.5, y: -16}
   m_SizeDelta: {x: -248, y: -28.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &991208246
@@ -29828,7 +29828,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.22653249, y: 0.030000001}
   m_AnchorMax: {x: 0.76900005, y: 0.21400002}
-  m_AnchoredPosition: {x: 1.5, y: -15.9999695}
+  m_AnchoredPosition: {x: 1.5, y: -16}
   m_SizeDelta: {x: -248, y: -28.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1075829514
@@ -72756,7 +72756,7 @@ GameObject:
   - component: {fileID: 1352532171}
   m_Layer: 0
   m_Name: arbustoDoInimigo (2)
-  m_TagString: Untagged
+  m_TagString: triggerGeral
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78910,7 +78910,7 @@ GameObject:
   - component: {fileID: 1520885902}
   m_Layer: 0
   m_Name: foreground_IAq
-  m_TagString: Untagged
+  m_TagString: triggerGeral
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82941,7 +82941,7 @@ GameObject:
   - component: {fileID: 1524530558}
   m_Layer: 0
   m_Name: arbustoDoInimigo
-  m_TagString: Untagged
+  m_TagString: triggerGeral
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89379,7 +89379,7 @@ GameObject:
   - component: {fileID: 1873369008}
   m_Layer: 0
   m_Name: arbustoDoInimigo (1)
-  m_TagString: Untagged
+  m_TagString: triggerGeral
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

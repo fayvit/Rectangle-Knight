@@ -43,5 +43,6 @@ public enum SwordColor
     blue,
     green,
     gold,
-    red
+    red,
+    pink
 }

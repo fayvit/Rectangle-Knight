@@ -34,6 +34,7 @@ public class InimigoZigZag : EnemyBase
         {
             if (Vector3.Distance(transform.position, guardadorDePosicao) < 0.25f)
             {
+                Debug.Log("constancia identificada");
                 moveDirection = BuscadorDeDirecao().normalized;
             }
 
@@ -55,6 +56,7 @@ public class InimigoZigZag : EnemyBase
 
         for (int i = 1; i < 4; i++)
         {
+            Debug.Log("colidiu com: "+hit[i].collider.name);
             if (Vector3.Distance(transform.position, retorno) < Vector3.Distance(transform.position, hit[i].point))
             {
                 retorno = hit[i].point;

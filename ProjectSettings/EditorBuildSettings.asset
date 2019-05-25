@@ -95,4 +95,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/area2/SubidaDoAquifero.unity
     guid: 9d03f17e2a011ee41821ab78c8b9feed
+  - enabled: 1
+    path: Assets/Scenes/area2/DesafioX_Shooter.unity
+    guid: 75b14cb3f2edaa04aaa3c8dbcd03fe6e
+  - enabled: 1
+    path: Assets/Scenes/area2/checkPointDoAquifero.unity
+    guid: f53bed7f6b2401b428a8a3b768290177
+  - enabled: 1
+    path: Assets/Scenes/area2/PrimeiraDescidaDosEspinhos.unity
+    guid: 68c60e2989a47ab4bb30348c6fb7ff72
+  - enabled: 1
+    path: Assets/Scenes/area2/DesafioDoMordedorOculto.unity
+    guid: 190aa486194cc044092a16c10b79fea9
+  - enabled: 1
+    path: Assets/Scenes/area2/SegundaDescidaComEspinhos.unity
+    guid: e7ec2f165e4ce8644b7a5b39b7fb7872
+  - enabled: 1
+    path: Assets/Scenes/area2/DesafioDoDefensorDoAquifero.unity
+    guid: ccf4db15d3e19ba479e12f07c66d397e
+  - enabled: 1
+    path: Assets/Scenes/area2/DesafioDoInvestidorOculto.unity
+    guid: 2478f548282c87046bf205248f7d2929
+  - enabled: 1
+    path: Assets/Scenes/area2/SegundoCheckPointDoAquifero.unity
+    guid: 53a19701a8fe7b04b8956c54942822dc
   m_configObjects: {}

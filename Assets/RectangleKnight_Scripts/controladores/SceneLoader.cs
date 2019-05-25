@@ -396,7 +396,16 @@ public enum NomesCenas
     PreparacaoParaSubirAquifero,
     SubidaDoAquifero,
     checkPointDoAquifero,
-    DesafioX_Shooter
+    DesafioX_Shooter,
+    DesafioDoInvestidorOculto,
+    DesafioDoMordedorOculto,
+    PrimeiraDescidaDosEspinhos,
+    SegundoCheckPointDoAquifero,
+    DesafioDoDefensorDoAquifero,
+    SegundaDescidaComEspinhos,
+    PreludioDaIntervencao,
+    EntrocamentosDoAquifero,
+    CapsulaDoAquifero
 }
 
 public enum NomesCenasEspeciais

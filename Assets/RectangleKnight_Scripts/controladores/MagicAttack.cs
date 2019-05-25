@@ -197,6 +197,7 @@ public class MagicAttack
         tempoEmRecuperacao = coolDownMagic;
         GameObject G = MonoBehaviour.Instantiate(projetil, pos, projetil.transform.rotation);
         MonoBehaviour.Destroy(G, 3);
+        G.name = "MagicAttack";
 
         if (dir <= 0)
         {

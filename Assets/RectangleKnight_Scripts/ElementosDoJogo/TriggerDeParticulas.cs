@@ -6,6 +6,7 @@ public class TriggerDeParticulas : MonoBehaviour
 {
     [SerializeField] GameObject particula = default;
     [SerializeField] SoundEffectID s = SoundEffectID.meuArbusto;
+    [SerializeField] private float intervaloEntreSpawnParticulas = 3;
 
     private bool podeSpawnarParticula = true;
 
@@ -18,7 +19,7 @@ public class TriggerDeParticulas : MonoBehaviour
                 podeSpawnarParticula = false;
                 Destroy(Instantiate(particula, collision.transform.position, Quaternion.identity), 5);
 
-                new MyInvokeMethod().InvokeNoTempoDeJogo(() => { podeSpawnarParticula = true; }, 3);
+                new MyInvokeMethod().InvokeNoTempoDeJogo(() => { podeSpawnarParticula = true; }, intervaloEntreSpawnParticulas);
 
                 EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, s, .5f));
             }

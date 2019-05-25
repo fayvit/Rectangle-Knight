@@ -7,8 +7,10 @@ public class CapsulaDeTransporte : AtivadorDeBotao
     #region inspector
     [SerializeField] private MenuBasico menu = default;
     [SerializeField] private GameObject menuContainer = default;
+    [SerializeField] private CapsuleID minhaID = CapsuleID.gargantaDasProfundezas;
     #endregion
 
+    private CapsuleInfo infoSend;
     private KeyVar myKeys;
     private EstadoDaqui estado = EstadoDaqui.emEspera;
 
@@ -21,9 +23,11 @@ public class CapsulaDeTransporte : AtivadorDeBotao
     public override void FuncaoDoBotao()
     {
         estado = EstadoDaqui.menuAberto;
-        EventAgregator.Publish(EventKey.abriuPainelSuspenso, null);
         menuContainer.SetActive(true);
+        myKeys.ListaDeCapsulas.ChangeForActive(minhaID);
         menu.IniciarHud(EscolhaDeViagem, myKeys.ListaDeCapsulas.GetActiveCapsuleNames());
+        SaveDatesManager.SalvarAtualizandoDados();
+        EventAgregator.Publish(EventKey.abriuPainelSuspenso, null);
     }
 
     void FakeFadeOut()
@@ -36,8 +40,6 @@ public class CapsulaDeTransporte : AtivadorDeBotao
     {
         Time.timeScale = 1;
     }
-
-    CapsuleInfo infoSend;
 
     void OnFadeOut()
     {
@@ -75,9 +77,9 @@ public class CapsulaDeTransporte : AtivadorDeBotao
 
     protected override void Update()
     {
-        if(myKeys.VerificaAutoShift("-44366_capsulaDaGargantaDasProfundezas")// esse é o key do Otto, ficar atento a modificações
+        if((myKeys.VerificaAutoShift("-44366_capsulaDaGargantaDasProfundezas")// esse é o key do Otto, ficar atento a modificações
             &&
-            !myKeys.VerificaAutoShift(KeyShift.fascinadoPelasCapsulas))
+            !myKeys.VerificaAutoShift(KeyShift.fascinadoPelasCapsulas)) || GlobalController.g.EmTeste)
             base.Update();
 
         switch (estado)

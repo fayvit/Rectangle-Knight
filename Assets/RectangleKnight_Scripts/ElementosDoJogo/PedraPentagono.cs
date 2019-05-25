@@ -5,12 +5,12 @@ using UnityEngine;
 public class PedraPentagono : MonoBehaviour
 {
     [SerializeField] private string ID;
-    [SerializeField] private GameObject particulaDeCarregado;
-    [SerializeField] private GameObject particulaDeAcao;
-    [SerializeField] private SpriteRenderer meuSprite;
+    [SerializeField] private GameObject particulaDeCarregado = default;
+    [SerializeField] private GameObject particulaDeAcao = default;
+    [SerializeField] private SpriteRenderer meuSprite=default;
     [SerializeField] private int contCargasTotais = 5;
     [SerializeField] private int taxaDeRecuperacao = 10;
-    [SerializeField] private AudioClip som;
+    [SerializeField] private AudioClip som = default;
 
     private void OnValidate()
     {

@@ -17,7 +17,7 @@ public class ProjetilInimigo : MovimentaProjetil
         if (collision.tag == "Player")
         {
             bool sentidoPositivo = transform.position.x - collision.transform.position.x > 0;
-            EventAgregator.Publish(new StandardSendGameEvent(EventKey.heroDamage, sentidoPositivo, 25));
+            EventAgregator.Publish(new StandardSendGameEvent(gameObject,EventKey.heroDamage, sentidoPositivo, 25));
         }
 
         Debug.Log(collision.tag+" : "+collision.name);

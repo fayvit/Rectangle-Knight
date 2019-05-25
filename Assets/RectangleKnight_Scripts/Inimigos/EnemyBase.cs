@@ -74,7 +74,9 @@ public class EnemyBase : CharacterBase {
                 EventAgregator.Publish(new StandardSendGameEvent(gameObject, EventKey.heroDamage,sentidoPositivo,Dados.AtaqueBasico));
             }
         }
-        
+
+        //Debug.Log(collision.name + " : " + collision.tag);
+
         if (collision.tag == "attackCollisor")
         {
             EventAgregator.Publish(new StandardSendGameEvent(gameObject, EventKey.enemyContactDamage,collision.name));

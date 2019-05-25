@@ -20,7 +20,14 @@ public class CapsuleList
             ID = CapsuleID.acampamentoDosRejeitados,
             Pos = new Vector3(340,-36,0),
             Ativada = true
-        }
+        },
+        new CapsuleInfo()
+        {
+            Cena = NomesCenas.CapsulaDoAquifero,
+            ID = CapsuleID.aquiferoDoBuscador,
+            Pos = new Vector3(-1164,-14,0),
+            Ativada = false
+        },
     };
 
     private CapsuleInfo GetInnerCapsuleInfo(CapsuleID ID)
@@ -61,6 +68,13 @@ public class CapsuleList
         }
 
         return retorno;
+    }
+
+    public void ChangeForActive(CapsuleID minhaID)
+    {
+        for (int i = 0; i < lista.Count; i++)
+            if (lista[i].ID == minhaID)
+                lista[i].Ativada = true;
     }
 
     public string[] GetActiveCapsuleNames()

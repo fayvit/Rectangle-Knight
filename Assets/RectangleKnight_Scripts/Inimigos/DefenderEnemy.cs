@@ -63,7 +63,7 @@ public class DefenderEnemy : BaseMoveRigidbody
         {
             case EstadoDaqui.movendo:
                 UpdateMovendo();
-                break;
+            break;
             case EstadoDaqui.telegrafando:
                 TempoDecorrido += Time.deltaTime;
                 if (TempoDecorrido > tempoTelegrafando)
@@ -73,7 +73,7 @@ public class DefenderEnemy : BaseMoveRigidbody
                     TempoDecorrido = 0;
                     _Animator.SetTrigger("espada");
                 }
-                break;
+            break;
             case EstadoDaqui.esperandoMove:
                 TempoDecorrido += Time.deltaTime;
                 if (TempoDecorrido > TempoEsperando)
@@ -131,7 +131,7 @@ public class DefenderEnemy : BaseMoveRigidbody
         {
             case EstadoDaqui.movendo:
                 TestadorDePosicaoBase();
-                break;
+            break;
         }
 
         Invoke("TestadorDePosicao", 2);

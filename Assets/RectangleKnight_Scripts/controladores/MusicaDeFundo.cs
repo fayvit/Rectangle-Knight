@@ -242,7 +242,7 @@ public enum NameMusic
 
 public enum SoundEffectID
 {
-    nulo=-1,
+    nulo = -1,
     Damage3,
     Decision1,
     Book1,
@@ -265,7 +265,11 @@ public enum SoundEffectID
     meuArbusto,
     Darkness4,//RPGMAKER2003
     Fire1,
-    Break
+    Break,
+    avancoDoInimigo,//VXACE_Shot3
+    aparicaoSurpresaDeInimigo,//VXACE_Wind6
+    mordida,//XP089-Attack01 -> XP065-Swing04 -> XP052-Cannon01
+    naCachoeirinha//022-Dive02
 }
 
 [System.Serializable]
