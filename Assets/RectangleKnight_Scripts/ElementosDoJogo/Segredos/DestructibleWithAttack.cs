@@ -22,10 +22,17 @@ public class DestructibleWithAttack : ActiveFalseForShift
 
     public void Destruicao()
     {
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestChangeShiftKey, ID));
+        DestruicaoSemID();   
+    }
+
+    public void DestruicaoSemID()
+    {
+
         thisCollider.enabled = false;
         containerDasImagens.SetActive(false);
         particuladaAcao.SetActive(true);
-        EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestChangeShiftKey, ID));
+
         new MyInvokeMethod().InvokeNoTempoDeJogo(() =>
         {
             EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, somDaDestruicao));

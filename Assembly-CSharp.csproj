@@ -87,6 +87,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\AttackManager.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\Camera2D.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\ChangeCamLimits.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\controladores\ChangeCamLimitsWithRestrictor.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\CharacterBase.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\CharacterManager.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\CommandReader.cs" />
@@ -112,10 +113,12 @@
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\ProjetilInimigo.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\ProjetilParabolico.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\ProjetilQuicavel.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\controladores\RestritorDeCamLimits.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\SceneLoader.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\SoundEffectsManager.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\SwordColorManager.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\controladores\TeleportDamage.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\controladores\TemporizedForwardProjectle.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\CapsulaDeTransporte.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\CapsuleList.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\CofreDosLosangulos.cs" />
@@ -146,10 +149,12 @@
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\ActiveFalseForShift.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\AlavancaDaGrade.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\CollorBarrage.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\ColorBarrageSemID.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\DestructibleWithAttack.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\FalseWall.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\MagnetismoParaMoeda.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\SouUmLosanguloGerenciavel.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\SpawnerDeBarreiras.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\TriggerDeParticulas.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\EventAgregator\EventAgregator.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\EventAgregator\IGameEvent.cs" />
@@ -205,6 +210,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\BaseMoveRigidbody.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\BorrifadaFinal.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\BossCirculoImperfeito.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\BossSetaSombria.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\BreederEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\DamageObject.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\DefenderEnemy.cs" />

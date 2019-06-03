@@ -119,4 +119,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/area2/SegundoCheckPointDoAquifero.unity
     guid: 53a19701a8fe7b04b8956c54942822dc
+  - enabled: 1
+    path: Assets/Scenes/area2/CapsulaDoAquifero.unity
+    guid: b172e0108e6c2504b81a5fbc7f4d3af1
+  - enabled: 1
+    path: Assets/Scenes/area2/EntrocamentosDoAquifero.unity
+    guid: 154a2ba8c803f3b46954d32957d3b56a
+  - enabled: 1
+    path: Assets/Scenes/area2/PreludioDaIntervencao.unity
+    guid: f4e738be5a7e575458582e65f32b5295
   m_configObjects: {}

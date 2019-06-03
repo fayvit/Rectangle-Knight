@@ -189,7 +189,9 @@ public enum KeyShift
     escadaDasProfundezas,
     conhecendoTales,
     talescetico,
-    talesOuveChamado
+    talesOuveChamado,
+    ottoSobreAquifero,
+    conheceuOtto
 }
 
 public enum KeyCont

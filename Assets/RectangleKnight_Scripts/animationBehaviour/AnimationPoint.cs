@@ -22,7 +22,7 @@ public class AnimationPoint : StateMachineBehaviour
             EventAgregator.Publish(new StandardSendGameEvent(animator.gameObject,EventKey.animationPointCheck,
                 animator.GetCurrentAnimatorClipInfo(layerIndex)[0].clip.name,extraInfo));
 
-           // Debug.Log(animator.GetCurrentAnimatorClipInfo(layerIndex)[0].clip.name);
+            Debug.Log(animator.GetCurrentAnimatorClipInfo(layerIndex)[0].clip.name+" : "+extraInfo);
         }
         base.OnStateUpdate(animator, stateInfo, layerIndex);
     }

@@ -23,7 +23,7 @@ public class CapsuleList
         },
         new CapsuleInfo()
         {
-            Cena = NomesCenas.CapsulaDoAquifero,
+            Cena = NomesCenas.AbsolutamenteCapsulaDoAquifero,
             ID = CapsuleID.aquiferoDoBuscador,
             Pos = new Vector3(-1164,-14,0),
             Ativada = false

@@ -15,10 +15,10 @@ public class AquiferWarrior : NonRespawnOnLoadEnemy
     [SerializeField] private float distanciaDeEspadada = 2;
     [SerializeField] private float distanciaDeDesligar = 10;
 
-    [SerializeField] private GameObject particulaTelegrafista;
-    [SerializeField] private GameObject particulaDeAtaque;
-    [SerializeField] private MovimentacaoBasica mov;
-    [SerializeField] private Transform andador;
+    [SerializeField] private GameObject particulaTelegrafista=default;
+    [SerializeField] private GameObject particulaDeAtaque=default;
+    [SerializeField] private MovimentacaoBasica mov=default;
+    [SerializeField] private Transform andador=default;
 
     private float tempoDecorrido = 0;
     private Vector3 posOriginal;

@@ -970,7 +970,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1528146581}
         m_MethodName: FuncaoDoBotao
         m_Mode: 1
         m_Arguments:
@@ -1585,6 +1585,9 @@ MonoBehaviour:
     chaveDaConversa: 0
     fotoDoNPC: {fileID: 0}
     modificarIndiceDeInicio: 0
+  nameMusic:
+    musica: -1
+    volume: 1
   ID: -11282_barracaDeHerikaNoExilio
   esseNpc:
     pontosAlvo: []

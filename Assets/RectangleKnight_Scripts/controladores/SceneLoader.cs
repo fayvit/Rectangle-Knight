@@ -405,7 +405,10 @@ public enum NomesCenas
     SegundaDescidaComEspinhos,
     PreludioDaIntervencao,
     EntrocamentosDoAquifero,
-    CapsulaDoAquifero
+    CapsulaDoAquifero,
+    AbsolutamenteCapsulaDoAquifero,
+    CorredeirasParaOChefe,
+    ZonaDoChefeDoAquifero
 }
 
 public enum NomesCenasEspeciais

@@ -39,6 +39,8 @@ Assets/Scenes/area2/SegundaDescidaComEspinhos.unity
 Assets/Scenes/area2/DesafioDoDefensorDoAquifero.unity
 Assets/Scenes/area2/DesafioDoInvestidorOculto.unity
 Assets/Scenes/area2/SegundoCheckPointDoAquifero.unity
+Assets/Scenes/area2/CapsulaDoAquifero.unity
+Assets/Scenes/area2/EntrocamentosDoAquifero.unity
 SceneListEnd?
 58151b1993c51ed63c4b100aea66c20e Assembly-CSharp.dll:.FlyingInvestEnemy
 4806ef636c8dfacfbae26767c56e74d7 Assembly-CSharp.dll:.EncaixeColetavel
@@ -184,7 +186,7 @@ ebf2c018cedf7703bcd7b92c80a8a7ca Assembly-CSharp.dll:.DesativarRelativoAoContado
 ae9b9308116ceeb90084d6e324bb6e6a Assembly-CSharp.dll:.SeloPositivista
 5c7290eef589d76860f7b13d2093362c Assembly-CSharp.dll:.CharacterManager
 e30cbf322f14bc2a5939b88723a9a050 Assembly-CSharp.dll:.FalseWall
-c2b851318d328d11f2ac810d122685cc Assembly-CSharp.dll:.CapsulaDeTransporte
+4a5cc411995ee0e15b777a0b8d681025 Assembly-CSharp.dll:.CapsulaDeTransporte
 fff439074ed5bfc9075c8ac40c686f84 Assembly-CSharp.dll:.TargedEnemy
 114dfc1f2f872d7d65fc591261e63184 Assembly-CSharp.dll:.MensagemComPainel
 37c9cfcdd8dfcd7c070ae40e9d9b101e Assembly-CSharp.dll:.UmaOpcaoComQuantidade
@@ -220,7 +222,9 @@ ad9173d3a69d99153f38ed4b62226129 UnityEngine.Networking.dll:UnityEngine.Networki
 a6ddd485518e9ccd2c02775b74bafa21 Assembly-CSharp.dll:.MoedaDeDinheiro
 5dfd1a11781bcd6ce2ab571da5ffa023 Assembly-CSharp.dll:.EstocadaEnemy
 19b4b69b03c640d3938c5d92da9fe180 Assembly-CSharp.dll:.AtivadorDaLoja
+a2974817577a3d77fa8ec46628db1e8e Assembly-CSharp.dll:.ProjetilQuicavel
 7bed6d1ef392724d87cfbbc27d349ef0 Assembly-CSharp.dll:.NonRespawnOnLoadEnemy
+59e131f867a627a8f06964b37c5253b1 Assembly-CSharp.dll:.OcultFixedShooter
 dc5b03fed47b4049809e522b1c8f6376 Assembly-CSharp.dll:.AtivadorDoBotaoConversaAgendada
 466fd9cda44622e2a1d047523f333b64 Assembly-CSharp.dll:.MyButtonEvents
 7c68a273e9693942c97420a64a3bc5df Assembly-CSharp.dll:.LocalNameExibition
@@ -295,5 +299,6 @@ c053669ba527f34904fa035ead8d92f7 Assembly-CSharp.dll:.FinalBossManager
 caeec57703bbb7da34179892c8571eb8 Assembly-CSharp.dll:.MudeCenaComAcao
 ccf4afaf979d758ca12ab1e2af3c16da Assembly-CSharp.dll:.CharacterBase
 5c678da4b8227b111f6ce2bb3addf350 Assembly-CSharp.dll:.EspadaColetavel
+6b8da8ec874fb0d91a1aefc65d12071e Assembly-CSharp.dll:.MudeCenaLocal
 da04974af2f9bd5f8d77ac1226c23e2c Assembly-CSharp.dll:.SprinklerEnemy
 477699a7d7e1b02fb5d3398e188365d6 Assembly-CSharp.dll:.OccultBiterEnemy

@@ -36,6 +36,16 @@ public class ConversasDaArea2PT_BR
              " Tome cuidado pequenino, não deixe o chamado corromper sua mente."
         }
         },
+         { ChaveDeTexto.OttoSobreAquifero,new List<string>()
+        {
+            "Estou surpreso com sua coragem e determinação...",
+            "Você realmente se aventurou pelas profundezas e encontrou uma nova capsula de transporte.",
+            "Lugar interessante esse!!",
+            "Sinto uma umidade acima do normal no ar e acho que posso ouvir o barulho de agua ecoando pelos túneis.",
+            "Como eu imaginava existem mais capsulas espalhadas pelas profundezas",
+            "Assim que encontrar mais capsulas me chame, adorarei conhece-las e conhecer os diferentes locais nas profundezas."
+        }
+        },
          { ChaveDeTexto.placaUmaFiguraHeroica,new List<string>()
         {
             @"Uma figura geométrica aventurou-se para atender o chamado e no seu caminho heroico encontrou o aquífero. 
@@ -56,6 +66,19 @@ Graças ao aquífero a vida resiste entre os rejeitados das profundezas."
 
 Hoje o buscador transcendeu o chamado e sua presença é reconfortante para as geometrias rejeitadas, inspira coragem e confiança fazendo que todas saibam que existe um lugar onde elas são importantes."
         }
-        }
+        },
+         { ChaveDeTexto.antesDeEnfrentarMagoSetaSombria,new List<string>()
+        {
+            "Então... eis que me visita mais um buscador implacável.",
+            "Vocês são atraídos por um chamado que vem das profundezas mas não percebem que antes de ir fundo precisam conhecer o que há na superfice",
+            "Tenho comigo algo que vai te ajudar no caminho para saciar a sua busca,",
+            "mas antes precisa me mostrar que é merecedor."
+        } },
+         { ChaveDeTexto.depoisDeEnfrentarMagoSetaSombria,new List<string>()
+        {
+            "Vejo que tem muita determinação, mostrou mesmo que tem o seu valor",
+            "diante disso tenho um presente pra você.",
+            "Mas lembre-se, leve-o com você para que antes de desvendar as profundezas desvendem juntos o raso agora"
+        } }
     };
     }

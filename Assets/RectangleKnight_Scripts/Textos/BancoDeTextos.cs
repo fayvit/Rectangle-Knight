@@ -134,7 +134,10 @@ public enum ChaveDeTexto
     talesAindaNosVeremos,
     placaUmaFiguraHeroica,
     geometriaEscolhida,
-    buscadorTranscendeu
+    buscadorTranscendeu,
+    OttoSobreAquifero,
+    antesDeEnfrentarMagoSetaSombria,
+    depoisDeEnfrentarMagoSetaSombria
 }
 
 

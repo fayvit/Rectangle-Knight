@@ -22483,7 +22483,15 @@ MonoBehaviour:
     - chaveCondicionalDaConversa: 5
       chaveDeTextoDaConversa: 17
       repetir: 0
-  colocarTrue: 070000000600000005000000
+  colocarTrue: 
+  colocarTrueCondicional:
+  - condicao: 14
+    alvo: 7
+  - condicao: 14
+    alvo: 6
+  - condicao: 14
+    alvo: 5
+  condicoesComplementares: 0e000000
 --- !u!1 &2139293859
 GameObject:
   m_ObjectHideFlags: 0

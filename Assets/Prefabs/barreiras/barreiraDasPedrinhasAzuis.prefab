@@ -24400,4 +24400,5 @@ MonoBehaviour:
   particuladaAcao: {fileID: 6527284499893547529}
   containerDasImagens: {fileID: 6527284499182634022}
   thisCollider: {fileID: 6527284499966604366}
+  somDaDestruicao: 10
   sColor: 1
