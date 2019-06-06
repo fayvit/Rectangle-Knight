@@ -128,4 +128,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/area2/PreludioDaIntervencao.unity
     guid: f4e738be5a7e575458582e65f32b5295
+  - enabled: 1
+    path: Assets/Scenes/area2/ZonaDoChefeDoAquifero.unity
+    guid: dcab0a0b86b1cdc428bfed0f79fb466e
+  - enabled: 1
+    path: Assets/Scenes/area2/CorredeirasParaOChefe.unity
+    guid: 80fdc9201c0a78d4aa700c9555cd105c
   m_configObjects: {}

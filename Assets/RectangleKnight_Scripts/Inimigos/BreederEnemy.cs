@@ -9,11 +9,11 @@ public class BreederEnemy : StrategyMovementEnemy
     [SerializeField] private GameObject particulaDoSpawn = default;
     #endregion
 
-    [SerializeField] private Animator animador;
+    
 
     protected override void Start()
     {
-        animador = GetComponent<Animator>();
+        _Animator = GetComponent<Animator>();
         base.Start();
     }
 
@@ -21,6 +21,8 @@ public class BreederEnemy : StrategyMovementEnemy
 
     void VerifiqueVivos()
     {
+        spawnados.RemoveAll(u=>u==null); 
+        /*
         List<int> indicesMortos = new List<int>();
 
         for (int i = 0; i < spawnados.Count; i++)
@@ -31,16 +33,17 @@ public class BreederEnemy : StrategyMovementEnemy
 
         for (int i = indicesMortos.Count - 1; i >= 0; i++)
         {
-            spawnados.RemoveAt(i);
-        }
+            Debug.Log(indicesMortos.Count+": "+spawnados.Count+" : "+ i + " : " + indicesMortos[i]+" indices");
+            spawnados. RemoveAt(indicesMortos[i]);
+        }*/
     }
 
     protected override void RequestAction(Vector3 charPos)
     {
 
         FlipDirection.Flip(transform, charPos.x - transform.position.x);
-        GameObject G = InstanciaLigando.Instantiate(particulaDoSpawn, transform.position, 5);
-        InstanciaLigando.Instantiate(breed, transform.position);
+        InstanciaLigando.Instantiate(particulaDoSpawn, transform.position, 5);
+        GameObject G = InstanciaLigando.Instantiate(breed, transform.position);
         EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.lancaProjetilInimigo));
         spawnados.Add(G);        
         RetornarParaEsperaZerandoTempo();
@@ -49,9 +52,13 @@ public class BreederEnemy : StrategyMovementEnemy
 
     bool DecidaSpawnar()
     {
-        float f = Random.Range(0, 1);
+        float f = Random.Range(0, 1f);
+        
         int num = spawnados.Count;
-        if (f < 0.75f - (num - 3f) / num && num > 3)
+
+        Debug.Log(f + " : " + (0.75f - (num - 3f) / num) + " : " + num);
+
+        if (f < 0.75f - (num - 3f) / num && num >= 3)
             return true;
         else
             return false;
@@ -59,6 +66,7 @@ public class BreederEnemy : StrategyMovementEnemy
 
     protected override void Telegrafar(Vector3 charPos)
     {
+        VerifiqueVivos();
         Debug.Log("spawnados: "+spawnados.Count);
 
         if (spawnados.Count < 3)
@@ -69,9 +77,15 @@ public class BreederEnemy : StrategyMovementEnemy
         {
             if (DecidaSpawnar())
             {
+                Debug.Log("sim");
                 SimTelegrafar(charPos);
-            }else
+            }
+            else
+            {
                 RetornarParaEsperaZerandoTempo();
+                Debug.Log("nao");
+            }
+
 
         }
 
@@ -82,7 +96,7 @@ public class BreederEnemy : StrategyMovementEnemy
     void SimTelegrafar(Vector3 charPos)
     {
         FlipDirection.Flip(transform, charPos.x - transform.position.x);
-        animador.SetTrigger("action");
+        _Animator.SetTrigger("action");
        // RetornarParaEsperaZerandoTempo();
     }
 }

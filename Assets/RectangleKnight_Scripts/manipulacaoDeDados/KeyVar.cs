@@ -191,7 +191,8 @@ public enum KeyShift
     talescetico,
     talesOuveChamado,
     ottoSobreAquifero,
-    conheceuOtto
+    conheceuOtto,
+    venceuSetaSombria
 }
 
 public enum KeyCont

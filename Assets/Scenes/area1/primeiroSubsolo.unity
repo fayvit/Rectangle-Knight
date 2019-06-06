@@ -821,7 +821,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &276468382
 GameObject:
@@ -16220,13 +16220,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 539357456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84ebd8e8abfd4f2448ed5e5fa9798a95, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c6b93fdb4ad54d47892b4feb7a431f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grandeDestaque: {fileID: 1586188196}
-  nomeDiscreto: {fileID: 360371123}
-  ID: -24102_AcampamentoDosRejeitados
+  ID: -203622_primeiroSubsolo
   sempreDiscreto: 0
+  localName: 1
 --- !u!61 &539357458
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17003,15 +17002,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4918627866098960230, guid: c37c33e5d91646f42be22cb48808e5c0,
-        type: 3}
-      propertyPath: ID
-      value: -140976_primeiroSubsolo
-      objectReference: {fileID: 0}
     - target: {fileID: 4677107098819768264, guid: c37c33e5d91646f42be22cb48808e5c0,
         type: 3}
       propertyPath: ID
       value: -1694_primeiroSubsolo
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918627866098960230, guid: c37c33e5d91646f42be22cb48808e5c0,
+        type: 3}
+      propertyPath: ID
+      value: -140976_primeiroSubsolo
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c37c33e5d91646f42be22cb48808e5c0, type: 3}
@@ -17311,7 +17310,7 @@ Transform:
   - {fileID: 1114771115}
   - {fileID: 382244976}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &910846658
 GameObject:
@@ -85794,8 +85793,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grandeDestaque: {fileID: 1586188196}
   nomeDiscreto: {fileID: 360371123}
-  ID: -24024_AcampamentoDosRejeitados
-  sempreDiscreto: 0
 --- !u!114 &1264931294
 MonoBehaviour:
   m_ObjectHideFlags: 0

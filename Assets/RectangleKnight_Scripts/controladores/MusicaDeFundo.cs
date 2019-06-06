@@ -237,7 +237,8 @@ public enum NameMusic
     miniBoss,//XP006Boss02
     XPboss3,
     HerikaTheme,//New_Year_s_Anthem_QuincasMoreira_youtubeAudioLIbarry
-    TemaDoAquifero//B->Marigold__QuincasMoreira_youtubeAudioLibrary
+    TemaDoAquifero,//B->Marigold__QuincasMoreira_youtubeAudioLibrary
+    XPBoss4
 }
 
 public enum SoundEffectID

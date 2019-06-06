@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private PauseMenu pauseM = default;
     [SerializeField] private GameObject sacoDeDinheiro = default;
     [SerializeField] private PainelUmaMensagem painelDeInfoEmblema = default;
+    [SerializeField] private LocalNameExibition localName = default;
     #endregion
 
     private EstadoDoJogo estado = EstadoDoJogo.emGame;
@@ -25,6 +26,7 @@ public class GameController : MonoBehaviour
 
     public CharacterManager Manager { get; set; }
     public DisparaTexto DisparaT { get => disparaT; set => disparaT = value; }
+    public LocalNameExibition LocalName { get => localName; set => localName = value; }
 
     private void Awake()
     {
@@ -58,6 +60,7 @@ public class GameController : MonoBehaviour
         EventAgregator.AddListener(EventKey.getUpdateGeometry, OnGetUpdateGeometry);
         EventAgregator.AddListener(EventKey.emblemEquip, OnEquipEmblem);
         EventAgregator.AddListener(EventKey.emblemUnequip, OnUnequipEmblem);
+        EventAgregator.AddListener(EventKey.requestLocalnameExibition, OnRequestNameexibition);
 
         disparaT.IniciarDisparadorDeTextos();
         MyKeys.MudaShift(KeyShift.sempretrue, true);
@@ -79,6 +82,19 @@ public class GameController : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.getUpdateGeometry, OnGetUpdateGeometry);
         EventAgregator.RemoveListener(EventKey.emblemEquip, OnEquipEmblem);
         EventAgregator.RemoveListener(EventKey.emblemUnequip, OnUnequipEmblem);
+        EventAgregator.RemoveListener(EventKey.requestLocalnameExibition, OnRequestNameexibition);
+    }
+    void OnRequestNameexibition(IGameEvent e)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)e;
+
+        if (ssge.MyObject.Length < 3)
+        {
+            LocalName.RequestLocalNameExibition((string)ssge.MyObject[0], (bool)ssge.MyObject[1]);
+        }else if (ssge.MyObject.Length == 3)
+            LocalName.RequestLocalNameExibition((string)ssge.MyObject[0], (bool)ssge.MyObject[1],(float)ssge.MyObject[2]);
+        else if(ssge.MyObject.Length==4)
+            LocalName.RequestLocalNameExibition((string)ssge.MyObject[0], (bool)ssge.MyObject[1], (float)ssge.MyObject[2],(float)ssge.MyObject[3]);
     }
 
     private void OnUnequipEmblem(IGameEvent obj)

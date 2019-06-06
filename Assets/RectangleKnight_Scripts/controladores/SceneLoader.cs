@@ -408,7 +408,8 @@ public enum NomesCenas
     CapsulaDoAquifero,
     AbsolutamenteCapsulaDoAquifero,
     CorredeirasParaOChefe,
-    ZonaDoChefeDoAquifero
+    ZonaDoChefeDoAquifero,
+    posChefeSetaSombria
 }
 
 public enum NomesCenasEspeciais

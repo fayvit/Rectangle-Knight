@@ -467,7 +467,6 @@ MonoBehaviour:
   mark2: {fileID: 0}
   breed: {fileID: 1381670620}
   particulaDoSpawn: {fileID: 1116223142}
-  animador: {fileID: 0}
 --- !u!95 &154429392
 Animator:
   serializedVersion: 3
@@ -32131,7 +32130,6 @@ MonoBehaviour:
   mark2: {fileID: 0}
   breed: {fileID: 1179197510}
   particulaDoSpawn: {fileID: 1116223142}
-  animador: {fileID: 0}
 --- !u!50 &1168184167
 Rigidbody2D:
   serializedVersion: 4
@@ -33908,7 +33906,6 @@ MonoBehaviour:
   mark2: {fileID: 0}
   breed: {fileID: 638288889}
   particulaDoSpawn: {fileID: 1116223142}
-  animador: {fileID: 0}
 --- !u!95 &1356957169
 Animator:
   serializedVersion: 3
@@ -34568,7 +34565,6 @@ MonoBehaviour:
   mark2: {fileID: 0}
   breed: {fileID: 50780533}
   particulaDoSpawn: {fileID: 1116223142}
-  animador: {fileID: 0}
 --- !u!95 &1551534432
 Animator:
   serializedVersion: 3

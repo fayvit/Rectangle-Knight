@@ -78,6 +78,7 @@ public class CharacterManager : MonoBehaviour
         EventAgregator.AddListener(EventKey.getStamp, OnGetStamp);
         EventAgregator.AddListener(EventKey.getItem, OnGetItem);
         EventAgregator.AddListener(EventKey.colorChanged, OnSwordColorChanged);
+        EventAgregator.AddListener(EventKey.getMagicAttack, OnGetMagicAttack);
 
 
         GameController.g.Manager = this;
@@ -114,6 +115,12 @@ public class CharacterManager : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.getStamp, OnGetStamp);
         EventAgregator.RemoveListener(EventKey.getItem, OnGetItem);
         EventAgregator.RemoveListener(EventKey.colorChanged, OnSwordColorChanged);
+        EventAgregator.RemoveListener(EventKey.getMagicAttack, OnGetMagicAttack);
+    }
+
+    private void OnGetMagicAttack(IGameEvent e)
+    {
+        dados.TemMagicAttack = true;
     }
 
     private void OnSwordColorChanged(IGameEvent e)
@@ -481,7 +488,11 @@ public class CharacterManager : MonoBehaviour
                 break;
                 case EstadoDePersonagem.emAtk:
                     #region emAtk
-                    mov.AplicadorDeMovimentos(CommandReader.VetorDirecao(Control), CommandReader.ButtonDown(1, Control),dados.TemDoubleJump);
+                    if (!mov.NoChao)
+                        mov.AplicadorDeMovimentos(CommandReader.VetorDirecao(Control), CommandReader.ButtonDown(1, Control), dados.TemDoubleJump);
+                    else
+                        mov.AplicadorDeMovimentos(Vector3.Lerp(mov.Velocity.normalized,Vector3.zero,30*Time.deltaTime));
+
                     if (atk.UpdateAttack())
                         estado = EstadoDePersonagem.aPasseio;
                     #endregion

@@ -7,16 +7,14 @@ public class LocalNameExibition : MonoBehaviour
 {
     [SerializeField] private GameObject grandeDestaque = default;
     [SerializeField] private GameObject nomeDiscreto = default;
-    [SerializeField] private string ID;
-    [SerializeField] private bool sempreDiscreto = false;
 
     private Image[] imgs;
     private Text txt;
     private EstadoDaqui estado = EstadoDaqui.emEspera;
     private float tempoDecorrido = 0;
 
-    private const float TEMPO_DE_FADE = 1f;
-    private const float TEMPO_MOSTRANDO = 5;
+    private float TEMPO_DE_FADE = 1f;
+    private float TEMPO_MOSTRANDO = 5;
 
     private enum EstadoDaqui
     {
@@ -25,11 +23,6 @@ public class LocalNameExibition : MonoBehaviour
         mostrando,
         fadeOut,
         concluido
-    }
-
-    private void OnValidate()
-    {
-        BuscadorDeID.Validate(ref ID, this);
     }
 
     private void Update()
@@ -113,37 +106,53 @@ public class LocalNameExibition : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void RequestLocalNameExibition(string name,bool discreto,float tempoMostrando=5,float tempoDefade = 1)
     {
-        if (collision.tag == "Player" && estado==EstadoDaqui.emEspera)
+        TEMPO_DE_FADE = tempoDefade;
+        TEMPO_MOSTRANDO = tempoMostrando;
+        grandeDestaque.SetActive(false);
+        nomeDiscreto.SetActive(false);
+        if (discreto)
         {
-            if (UnicidadeDoPlayer.Verifique(collision))
-            {
-                if (sempreDiscreto || GameController.g.MyKeys.VerificaAutoShift(ID))
-                {
-                    imgs = nomeDiscreto.GetComponentsInChildren<Image>();
-                    txt = nomeDiscreto.GetComponentInChildren<Text>();
-                }
-                else
-                {
-                    imgs = grandeDestaque.GetComponentsInChildren<Image>();
-                    txt = grandeDestaque.GetComponentInChildren<Text>();
-                }
-
-                foreach (Image img in imgs)
-                {
-                    Color C = img.color;
-                    C.a = 0;
-                    img.color = C;
-                }
-
-                Color Cc = txt.color;
-                Cc.a = 0;
-                txt.color = Cc;
-
-                estado = EstadoDaqui.fadeIn;
-                EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestChangeShiftKey, ID));
-            }
+            nomeDiscreto.SetActive(true);
+            imgs = nomeDiscreto.GetComponentsInChildren<Image>();
+            txt = nomeDiscreto.GetComponentInChildren<Text>();
+            
         }
+        else
+        {
+            grandeDestaque.SetActive(true);
+            imgs = grandeDestaque.GetComponentsInChildren<Image>();
+            txt = grandeDestaque.GetComponentInChildren<Text>();
+            
+        }
+
+        foreach (Image img in imgs)
+        {
+            Color C = img.color;
+            C.a = 0;
+            img.color = C;
+        }
+
+        Color Cc = txt.color;
+        Cc.a = 0;
+        txt.color = Cc;
+
+        txt.text = name;
+        estado = EstadoDaqui.fadeIn;
+        
     }
+
+    
+}
+
+public enum SceneNamesForExibitions
+{
+    acampamentoDosRejeitados,
+    gargantaDasProfundezas,
+    acampamentoDosExilados,
+    oAquiferoDoBuscador,
+    caminhoDasCorredeiras,
+    asGrandesCorredeiras,
+    pontalDoAnteTeorema
 }

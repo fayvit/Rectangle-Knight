@@ -29,24 +29,38 @@ public class AtivadorDoBotaoConversa : AtivadorDeBotao
 
         if (npc.Update())
         {
-            EventAgregator.Publish(EventKey.returnRememberedMusic,null);
-            //GameController.g.Manager.AoHeroi();
+            OnFinishTalk();
         }
+    }
+
+    protected virtual void OnFinishTalk()
+    {
+        EventAgregator.Publish(EventKey.returnRememberedMusic, null);
+        //GameController.g.Manager.AoHeroi();
     }
 
     void BotaoConversa()
     {
-        if (nameMusic.Musica != NameMusic.nula)
+        if (gameObject.activeSelf)
         {
-            EventAgregator.Publish(new StandardSendGameEvent(EventKey.changeMusicWithRecovery, nameMusic));
+            if (nameMusic.Musica != NameMusic.nula)
+            {
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.changeMusicWithRecovery, nameMusic));
+            }
+            FluxoDeBotao();
+
+            //Transform T = TransformPosDeConversa.MeAjude(transform);
+
+            npc.IniciaConversa();
+
+            //AplicadorDeCamera.cam.InicializaCameraExibicionista(T, 1, true);
+            OnStartTalk();
         }
-        FluxoDeBotao();
+    }
 
-        //Transform T = TransformPosDeConversa.MeAjude(transform);
+    protected virtual void OnStartTalk()
+    {
 
-        npc.IniciaConversa();
-
-        //AplicadorDeCamera.cam.InicializaCameraExibicionista(T, 1, true);
     }
 
     public override void FuncaoDoBotao()

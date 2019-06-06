@@ -102,7 +102,6 @@ public static class StaticMudeCena
             
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(cenaAtiva.ToString()));
 
-               
 
         }
     }
@@ -117,6 +116,11 @@ public static class StaticMudeCena
         GlobalController.g.FadeV.IniciarFadeInComAction(OnFadeInComplete);
         MonoBehaviour.FindObjectOfType<Camera2D>().AposMudarDeCena(posAlvo + new Vector3(0, 0, -10));
         EventAgregator.Publish(EventKey.changeActiveScene, null);
+
+        new MyInvokeMethod().InvokeAoFimDoQuadro(() =>
+        {
+            EventAgregator.Publish(EventKey.localNameExibition);
+        });
     }
 
     static void OnFadeInComplete()

@@ -137,7 +137,8 @@ public enum ChaveDeTexto
     buscadorTranscendeu,
     OttoSobreAquifero,
     antesDeEnfrentarMagoSetaSombria,
-    depoisDeEnfrentarMagoSetaSombria
+    depoisDeEnfrentarMagoSetaSombria,
+    nomesParaCenarios
 }
 
 

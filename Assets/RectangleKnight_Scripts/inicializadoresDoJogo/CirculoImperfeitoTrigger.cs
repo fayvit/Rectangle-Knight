@@ -76,6 +76,7 @@ public class CirculoImperfeitoTrigger : MonoBehaviour
                 {
                     InstanciaLigando.Instantiate(particulaEnfaseDoBoss, boss.transform.position, 5);
                     EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, somEnfaseDoBoss));
+                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestLocalnameExibition,"O Grande Círculo Imperfeito",false,2f));
 
                     new MyInvokeMethod().InvokeNoTempoDeJogo(
                         () => {

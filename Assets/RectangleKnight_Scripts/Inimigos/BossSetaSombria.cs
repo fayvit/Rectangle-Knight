@@ -49,7 +49,6 @@ public class BossSetaSombria : EnemyBase
     private float tempoDoUltimoEspecial = 0;
     private int cont = 0;
     private int contadorDeAcionamentos = 0;
-    private int especiaisAcionados = 0;
 
 
     private enum EstadoDaqui
@@ -65,7 +64,8 @@ public class BossSetaSombria : EnemyBase
         executandoMagiaMultipla,
         preparandoAtkEspecial,
         executandoAtkEspecial,
-        dash
+        dash,
+        derrotado
     }
 
     private enum BossAttack
@@ -95,7 +95,7 @@ public class BossSetaSombria : EnemyBase
 
     protected override void Start()
     {
-        new MyInvokeMethod().InvokeNoTempoDeJogo(gameObject, IniciaBoss, 0.3f);
+       // new MyInvokeMethod().InvokeNoTempoDeJogo(gameObject, IniciaBoss, 0.3f);
         tempoDoUltimoEspecial = tempoMinimoEntreEspeciais;
         EventAgregator.AddListener(EventKey.animationPointCheck, OnReceivedAnimationPoint);
         base.Start();
@@ -105,6 +105,12 @@ public class BossSetaSombria : EnemyBase
     {
         EventAgregator.RemoveListener(EventKey.animationPointCheck, OnReceivedAnimationPoint);
         base.OnDestroy();
+    }
+
+    protected override void OnDefeated()
+    {
+        estado = EstadoDaqui.derrotado;
+        FindObjectOfType<FinalDoSetaSombria>().IniciarFinalDoSetaSombria(this);
     }
 
     void OnReceivedAnimationPoint(IGameEvent e)
@@ -122,7 +128,7 @@ public class BossSetaSombria : EnemyBase
                 case "reta":
                     estado = EstadoDaqui.emDescidaReta;
                     posInicial = transform.position;
-                    posFinal = new Vector3(transform.position.x, posNoChao[0].position.y, transform.position.z);
+                    posFinal = new Vector3(transform.position.x, posNoChao[0].position.y-1, transform.position.z);
                     distanciaEntrePontos = Vector2.Distance(posInicial, posFinal);
                     downArrow.SetActive(true);
                     tempoDecorrido = 0;
@@ -540,7 +546,7 @@ public class BossSetaSombria : EnemyBase
                     posInicial = new Vector3(HeroPosition.x - posAereas[0].position.y + posNoChao[0].position.y, posAereas[0].position.y, 0);
 
             transform.position = posInicial;
-            posFinal = new Vector3(HeroPosition.x, posNoChao[0].position.y, transform.position.z);//será usado posteriormente
+            posFinal = new Vector3(HeroPosition.x, posNoChao[0].position.y-2, transform.position.z);//será usado posteriormente
 
             PreparaAttack(false, AnimKey.diagonal);
         }
@@ -571,7 +577,7 @@ public class BossSetaSombria : EnemyBase
             return uaDoMago;
     }
 
-    public void IniciaBoss()
+    void IniciaBoss()
     {
         if (estado == EstadoDaqui.emEspera)
         {
@@ -584,10 +590,40 @@ public class BossSetaSombria : EnemyBase
         }
     }
 
-    void InvocaTeleportProps(bool ligar)
+    public void InvocaTeleportProps(bool ligar)
     {
         EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.aparicaoSurpresaDeInimigo));
         InstanciaLigando.Instantiate(particulaDoTeleport, transform.position, 5);
         gameObject.SetActive(ligar);
+    }
+
+    public void IniciaApresentacaoDoBoss(Vector3 posParaParticulaDeOrigem)
+    {
+        GameController.g.LocalName.RequestLocalNameExibition("O mago Seta Sombria", false,3);
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.aparicaoSurpresaDeInimigo));
+        EventAgregator.Publish(EventKey.abriuPainelSuspenso);
+        InstanciaLigando.Instantiate(particulaDoTeleport, posParaParticulaDeOrigem, 5);
+        new MyInvokeMethod().InvokeNoTempoDeJogo(AparicaoPreRisada, .5f);
+    }
+
+    void AparicaoPreRisada()
+    {
+        gameObject.SetActive(true);
+        InstanciaLigando.Instantiate(particulaDoTeleport, transform.position, 5);
+        new MyInvokeMethod().InvokeNoTempoDeJogo(RisadaDeApresentacao, .5f);
+    }
+
+    void RisadaDeApresentacao()
+    {
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, risada));
+        InstanciaLigando.Instantiate(enfaseDoBoss, transform.position, 10);
+        new MyInvokeMethod().InvokeNoTempoDeJogo(gameObject, IniciarLuta, tempoDoGritoAoEspecial);
+    }
+
+    void IniciarLuta()
+    {
+        EventAgregator.Publish(EventKey.fechouPainelSuspenso);
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.changeMusicWithRecovery,new NameMusicaComVolumeConfig() { Musica = NameMusic.XPBoss4, Volume = 1 }));
+        IniciaBoss();
     }
 }

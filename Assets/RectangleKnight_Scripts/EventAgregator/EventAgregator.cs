@@ -143,5 +143,8 @@ public enum EventKey
     hexCloseSecondPanel,
     compraConcluida,
     buyUpdateGeometry,
-    colorSwordShow
+    colorSwordShow,
+    getMagicAttack,
+    localNameExibition,
+    requestLocalnameExibition
 }
