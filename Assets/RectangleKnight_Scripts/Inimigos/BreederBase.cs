@@ -69,7 +69,7 @@ public class BreederBase : EnemyBase
 
     void SimTelegrafar(Vector3 charPos)
     {
-        new MyInvokeMethod().InvokeNoTempoDeJogo(
+        new MyInvokeMethod().InvokeNoTempoDeJogo(gameObject,
             () => {
                 RequestAction(charPos);
                 }, tempoTelegrafando);

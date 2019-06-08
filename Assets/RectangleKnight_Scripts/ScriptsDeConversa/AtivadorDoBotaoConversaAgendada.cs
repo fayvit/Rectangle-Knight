@@ -31,14 +31,14 @@ public class AtivadorDoBotaoConversaAgendada : AtivadorDoBotaoConversa
             {
                 myKeys.MudaShift(colocarTrue[i], true);
             }
+        }
 
-            if(colocarTrueCondicional!=null)
+        if (colocarTrueCondicional != null)
             for (int i = 0; i < colocarTrueCondicional.Length; i++)
             {
-                if(!myKeys.VerificaAutoShift(colocarTrueCondicional[i].condicao))
+                if (!myKeys.VerificaAutoShift(colocarTrueCondicional[i].condicao))
                     myKeys.MudaShift(colocarTrueCondicional[i].alvo, true);
             }
-        }
 
         myKeys.MudaAutoShift(ID, true);
         myKeys.MudaShift(KeyShift.sempretrue, true);

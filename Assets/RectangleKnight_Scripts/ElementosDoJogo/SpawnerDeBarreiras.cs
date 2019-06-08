@@ -26,16 +26,20 @@ public class SpawnerDeBarreiras : MonoBehaviour
 
     void OnReceivedTriggerInfo(IGameEvent e)
     {
-        Collider2D c = (Collider2D)(((StandardSendGameEvent)e).MyObject[0]);
-        if (e.Sender.transform.IsChildOf(transform)&&c.tag=="Player")
+        if (e.Sender.transform.IsChildOf(transform))
         {
-            if (e.Sender.name == "ligador")
+            Collider2D c = (Collider2D)(((StandardSendGameEvent)e).MyObject[0]);
+
+            if (c.tag == "Player")
             {
-                ligado = true;
-            }
-            else if (e.Sender.name == "desligador")
-            {
-                ligado = false;
+                if (e.Sender.name == "ligador")
+                {
+                    ligado = true;
+                }
+                else if (e.Sender.name == "desligador")
+                {
+                    ligado = false;
+                }
             }
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class BridgeBreederEnemy : BreederBase
 {
     [SerializeField] private float tempoDeSpawn = 1;
+    [SerializeField] private float distanciaParaAtiar=25;
     private const float forcaDeRepulsa = 850;
     private const float tempoNaRepulsao = .15f;
 
@@ -17,9 +18,20 @@ public class BridgeBreederEnemy : BreederBase
 
     void VerifiqueSpawn()
     {
-        Telegrafar(transform.position);
+        float dist = Vector2.Distance(transform.position, GameController.g.Manager.transform.position);
+        Debug.Log(dist);
+        if (dist<distanciaParaAtiar)
+            Telegrafar(transform.position);
+
         Invoke("VerifiqueSpawn", tempoDeSpawn);
     }
+
+    protected override void OnDefeated()
+    {
+        EventAgregator.Publish(new StandardSendGameEvent(gameObject,EventKey.triggerInfo));
+        base.OnDefeated();
+    }
+
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")

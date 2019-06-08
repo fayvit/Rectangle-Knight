@@ -12,17 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/menuInicial.unity
     guid: 4eebdb8029865394abc65c12b9f14e72
   - enabled: 1
-    path: Assets/Scenes/area1/ExilioDasProfundezas.unity
-    guid: 2783e542863e947468295ce3956c9eda
+    path: Assets/Scenes/ComunsDeFase.unity
+    guid: 4622e66c3df62d14792775b7ebf399db
   - enabled: 1
     path: Assets/Scenes/CenaDeCarregamento.unity
     guid: 281b3f203a7299f45af274e6984abc8a
   - enabled: 1
+    path: Assets/Scenes/area1/ExilioDasProfundezas.unity
+    guid: 2783e542863e947468295ce3956c9eda
+  - enabled: 1
     path: Assets/Scenes/area1/barracaDeHerikaNoExilio.unity
     guid: aea89416b423deb47976bcd50255a8bc
-  - enabled: 1
-    path: Assets/Scenes/ComunsDeFase.unity
-    guid: 4622e66c3df62d14792775b7ebf399db
   - enabled: 1
     path: Assets/Scenes/area1/TutoScene.unity
     guid: c70c620a3d64ed2429855afab82527c0
@@ -132,6 +132,18 @@ EditorBuildSettings:
     path: Assets/Scenes/area2/ZonaDoChefeDoAquifero.unity
     guid: dcab0a0b86b1cdc428bfed0f79fb466e
   - enabled: 1
+    path: Assets/Scenes/area2/AbsolutamenteCapsulaDoAquifero.unity
+    guid: 3e613732f9189ec48a3d48e8a6eca244
+  - enabled: 1
+    path: Assets/Scenes/area2/ConexaoDeCaminhosnoAquifero.unity
+    guid: a128d9961723cea4bbf08c9a7cda9dab
+  - enabled: 1
     path: Assets/Scenes/area2/CorredeirasParaOChefe.unity
     guid: 80fdc9201c0a78d4aa700c9555cd105c
+  - enabled: 1
+    path: Assets/Scenes/area2/DesafioDoCarapassaNadadora.unity
+    guid: 49e7f7c9b76c8ae4ea86f49d344847d9
+  - enabled: 1
+    path: Assets/Scenes/area2/posChefeSetaSombria.unity
+    guid: a088acbf3041e894ba5b51f13ab2ec37
   m_configObjects: {}

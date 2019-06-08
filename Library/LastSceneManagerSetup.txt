@@ -1,13 +1,31 @@
 sceneSetups:
-- path: Assets/Scenes/area2/ZonaDoChefeDoAquifero.unity
-  isLoaded: 1
+- path: Assets/Scenes/area2/SubidaDoAquifero.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scenes/area2/checkPointDoAquifero.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scenes/area2/DesafioX_Shooter.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scenes/area2/DesafioDoInvestidorOculto.unity
+  isLoaded: 0
   isActive: 0
 - path: Assets/Scenes/ComunsDeFase.unity
   isLoaded: 1
   isActive: 0
+- path: Assets/Scenes/area2/DesafioDoCarapassaNadadora.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scenes/area2/ConexaoDeCaminhosnoAquifero.unity
+  isLoaded: 0
+  isActive: 0
 - path: Assets/Scenes/area2/posChefeSetaSombria.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scenes/area2/AbsolutamenteCapsulaDoAquifero.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scenes/area2/CorredeirasParaOChefe.unity
   isLoaded: 1
   isActive: 1
-- path: Assets/Scenes/area1/grandeSubida.unity
-  isLoaded: 1
-  isActive: 0

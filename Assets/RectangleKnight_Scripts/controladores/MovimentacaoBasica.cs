@@ -140,8 +140,6 @@ public class MovimentacaoBasica
     {
         aplicandoForca = true;
 
-        Debug.Log("aplicou");
-
         m_Rigidbody2D.AddForce(f);
         GameController.g.StartCoroutine(RetornaAplicandoForca(tempoAplicando));
     }
