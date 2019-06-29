@@ -10,8 +10,12 @@ public class SpawnerDeBarreiras : MonoBehaviour
 
     [SerializeField]private bool ligado;
     [SerializeField]private float tempoDecorrido = 0;
+//    [SerializeField] private float resquestColorInterval = 1;
+    [SerializeField] private int requestColor = 0;
+
     [SerializeField]private List<GameObject> spawnados = new List<GameObject>();
 
+    //private float requestColorTime = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +44,36 @@ public class SpawnerDeBarreiras : MonoBehaviour
                 {
                     ligado = false;
                 }
+                else if (e.Sender.name == "requestColor")
+                {
+
+                    VerifiqueSpawnarCorChave();
+
+                }
+            }
+        }
+    }
+
+    void VerifiqueSpawnarCorChave()
+    {
+        ligado = true;
+      //  if (requestColorTime == 0 || Time.time - requestColorTime > resquestColorInterval)
+        {
+            bool foi = false;
+            if (spawnados.Count > 0)
+                if (spawnados[spawnados.Count - 1] != null)
+                {
+                    spawnados[spawnados.Count - 1].SetActive(false);
+                    GameObject G = InstanciaLigando.Instantiate(barreiraSpawnavel[requestColor], spawnados[spawnados.Count - 1].transform.position);
+                    Destroy(spawnados[spawnados.Count - 1]);
+                    spawnados.Add(G);
+                    foi = true;
+                }
+
+            if (!foi)
+            {
+                GameObject G = InstanciaLigando.Instantiate(barreiraSpawnavel[requestColor], transform.position);
+                spawnados.Add(G);
             }
         }
     }
@@ -54,14 +88,13 @@ public class SpawnerDeBarreiras : MonoBehaviour
             {
                 tempoDecorrido = 0;
                 int sorteio = Random.Range(0, barreiraSpawnavel.Length);
-                Debug.Log(sorteio);
+                
                 GameObject G = InstanciaLigando.Instantiate(barreiraSpawnavel[sorteio],transform.position);
-                Debug.Log(G);
+                
                 spawnados.Add(G);
-
-                Debug.Log("ola???");
             }
         }
+
 
         
         List<int> indicesParaRemover = new List<int>();

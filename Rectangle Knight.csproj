@@ -693,6 +693,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\DestructibleWithAttack.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\FalseWall.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\MagnetismoParaMoeda.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\Segredos\PonteAcorrentadaParaMagias.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\SouUmLosanguloGerenciavel.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\SpawnerDeBarreiras.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\ElementosDoJogo\SpriteFinalizadorDeBoss.cs" />
@@ -756,6 +757,7 @@
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\BreederBase.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\BreederEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\BridgeBreederEnemy.cs" />
+    <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\CarapaceTargetEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\DamageObject.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\DefenderEnemy.cs" />
     <Compile Include="Assets\RectangleKnight_Scripts\Inimigos\EnemyBase.cs" />

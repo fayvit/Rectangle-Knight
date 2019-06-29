@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class BancoDeTextos
 {
-    public static idioma linguaChave = idioma.pt_br;
+    public static idioma linguaChave = idioma.en_google;
     public static readonly Dictionary<idioma, Dictionary<ChaveDeTexto, List<string>>> falacoesComChave
     = new Dictionary<idioma, Dictionary<ChaveDeTexto, List<string>>>() {
         { idioma.pt_br,
@@ -96,7 +96,8 @@ public enum ChaveDeTextoDosUpdates
     blueSword,
     greenSword,
     goldSword,
-    redSword
+    redSword,
+    movimentacaoPC
 }
 
 public enum ChaveDeTexto
@@ -138,7 +139,14 @@ public enum ChaveDeTexto
     OttoSobreAquifero,
     antesDeEnfrentarMagoSetaSombria,
     depoisDeEnfrentarMagoSetaSombria,
-    nomesParaCenarios
+    nomesParaCenarios,
+    textosDaLojaDeHerika,
+    corredeirasComtemplacao,
+    frasesParaTutoPlacas,
+    desafioDasCarapassas,
+    updateSetaSombria,
+    updateBlueSword,
+    complementosDoMenuDePause
 }
 
 

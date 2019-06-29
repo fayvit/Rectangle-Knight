@@ -20,7 +20,8 @@ public class TextosDosUpdatesPT_BR {
             "Espada azul",
             "Espada verde",
             "Espada dourada",
-            "Espada Vermelha"
+            "Espada Vermelha",
+            "Movimentação"
         } },
         { ChaveDeTexto.androidUpdateInfo,new List<string>()
         {
@@ -37,7 +38,8 @@ public class TextosDosUpdatesPT_BR {
             "Você pode quebrar barreiras azuis com essa espada, selecione a espada pressionando ",
             "Você pode quebrar barreiras verdes com essa espada, selecione a espada pressionando ",
             "Você pode quebrar barreiras douradas com essa espada, selecione a espada pressionando ",
-            "Você pode quebrar barreiras vermelhas com essa espada, selecione a espada pressionando "
+            "Você pode quebrar barreiras vermelhas com essa espada, selecione a espada pressionando ",
+            "Para movimentar-se pressione"
         }
         },
         {
@@ -64,7 +66,10 @@ public class TextosDosUpdatesPT_BR {
                 "Você colocou na espada o emblema {0}",
                 "São necessários {0} espaços de emblemas para equipar {1}. Você não tem espaço suficiente",
                 "Este emblema já está na espada",
-                "Isso é um espaço vazio para inserir um emblema"
+                "Isso é um espaço vazio para inserir um emblema",
+                "Nenhum emblema disponivel",
+                "Você não tem nenhum emblema disponivel para encaixar na espada",
+                "Ocupa {0} espaços"
             }
         },
          {
@@ -127,6 +132,35 @@ Esse emblema faz com que as moedas sejam atraidas por você.",
                 "Emblema do Suspiro Longo",
                 "Fragmento de Hexagono",
                 "Fragmento de Pentagono"
+            }
+        },
+          {
+            ChaveDeTexto.frasesParaTutoPlacas,new List<string>()
+            {
+                "Você pode recuperar seus pontos de vida segurando",
+                "Recuperar pontos de vida custa pontos de magia. Você recupera pontos de magia atacando os inimigos",
+                "Você coletou um encaixe para emblema",
+                "Agora você tem um espaço a mais para colocar emblemas na espada",
+                "Você pode colocar emblemas na sua espada enquanto está num checkPoint",
+                "Quando em um checkpoint utilize o menu de pause para colocar emblemas na espada"
+            }
+        },
+        {
+            ChaveDeTexto.updateSetaSombria, new List<string>()
+            {
+                "Você aprendeu a usar a Seta Magica",
+                "Usar a seta magica custa pontos de magia. Você recupera pontos de magia atacando inimigos",
+                "Para usar a seta magica pressione",
+                "Pressionando rapidamente o botão de magia você disparará uma seta magica."
+            }
+        },
+        {
+            ChaveDeTexto.updateBlueSword, new List<string>()
+            {
+                "Você coletou a espada Azul",
+                "Com a Espada Azul você pode quebrar barreiras azuis",
+                "Alterna a cor da Espada",
+                "Você pode alternar a cor da sua espada pressionando os botões coloridos"
             }
         }
     };

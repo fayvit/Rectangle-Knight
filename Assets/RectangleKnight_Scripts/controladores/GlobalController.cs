@@ -67,6 +67,7 @@ public class GlobalController : MonoBehaviour
         EventAgregator.AddListener(EventKey.getUpdateGeometry, OnGetUpdateGeometry);
         EventAgregator.AddListener(EventKey.request3dSound, OnRequest3dSound);
         EventAgregator.AddListener(EventKey.startSceneMusic, OnChangeActiveScene);
+        EventAgregator.AddListener(EventKey.allAbilityOn, OnRequestAllAbility);
 
     }
 
@@ -86,6 +87,12 @@ public class GlobalController : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.checkPointExit, OnCheckPointExit);
         EventAgregator.RemoveListener(EventKey.request3dSound, OnRequest3dSound);
         EventAgregator.RemoveListener(EventKey.startSceneMusic, OnChangeActiveScene);
+        EventAgregator.RemoveListener(EventKey.allAbilityOn, OnRequestAllAbility);
+    }
+
+    private void OnRequestAllAbility(IGameEvent e)
+    {
+        EmTeste = true;
     }
 
     private void OnRequest3dSound(IGameEvent e)

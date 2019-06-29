@@ -12,6 +12,7 @@ public class MenuOrganizadorDeEmblemas
     [SerializeField] private Text numEncaixes = default;
     [SerializeField] private Text infoTitle = default;
     [SerializeField] private Text infoArea = default;
+    [SerializeField] private Text custoDeEspacos = default;
     #endregion
 
     private EstadoDaqui estado = EstadoDaqui.sobreDisponiveis;
@@ -38,16 +39,32 @@ public class MenuOrganizadorDeEmblemas
 
         emblemasE.RetirarDestaques();
 
-        ColocaInfoTexts((int)dj.MeusEmblemas[0].NomeId);
+        if (dj.MeusEmblemas.Count > 0)
+            ColocaInfoTexts(dj.MeusEmblemas[0]);
+        else
+        {
+            InfoDeNaoTemEmblema();
+        }
+
         numEncaixes.text =  Emblema.NumeroDeEspacosOcupados(dj.MeusEmblemas)+" / " + dj.EspacosDeEmblemas;
 
         EventAgregator.AddListener(EventKey.UiDeEmblemasChange, OnChangeOption);
     }
 
-    void ColocaInfoTexts(int indice)
+    void ColocaInfoTexts(Emblema E)
     {
+        int indice = (int)E.NomeId;
+
         infoTitle.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.emblemasTitle)[indice];
         infoArea.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.emblemasInfo)[indice];
+
+        if (E.EspacosNecessarios > 0)
+        {
+            custoDeEspacos.text = string.Format(BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.frasesDeEmblema)[6],
+                E.EspacosNecessarios.ToString());
+        }
+        else
+            custoDeEspacos.text = "";
     }
 
     void OnChangeOption(IGameEvent e)
@@ -59,14 +76,16 @@ public class MenuOrganizadorDeEmblemas
             if (!(bool)ssge.MyObject[1])
             {
                 int I = (int)ssge.MyObject[2];
-                ColocaInfoTexts((int)dj.MeusEmblemas[I].NomeId);
+                ColocaInfoTexts(dj.MeusEmblemas[I]);
             }
             else
             {
-                emblemasD.RetirarDestaques();
+                if(dj.MeusEmblemas.Count>0)
+                    emblemasD.RetirarDestaques();
+
                 emblemasE.ColocarDestaqueNoSelecionado();
                 estado = EstadoDaqui.sobreEncaixes;
-                ColocaInfoTexts((int)Emblema.VerificarOcupacaoDoEncaixe(dj.MeusEmblemas, emblemasE.OpcaoEscolhida));
+                ColocaInfoTexts(Emblema.VerificarOcupacaoDoEncaixe(dj.MeusEmblemas, emblemasE.OpcaoEscolhida));
             }
         }
         else if ((string)ssge.MyObject[0] == "encaixes")
@@ -74,17 +93,32 @@ public class MenuOrganizadorDeEmblemas
             if (!(bool)ssge.MyObject[1])
             {
                 int I = (int)ssge.MyObject[2];
-                I = (int)Emblema.VerificarOcupacaoDoEncaixe(dj.MeusEmblemas, I);
-                ColocaInfoTexts(I);
+                ColocaInfoTexts(Emblema.VerificarOcupacaoDoEncaixe(dj.MeusEmblemas, I));
             }
             else
             {
-                emblemasE.RetirarDestaques();
-                emblemasD.ColocarDestaqueNoSelecionado();
                 estado = EstadoDaqui.sobreDisponiveis;
-                ColocaInfoTexts((int)dj.MeusEmblemas[emblemasD.OpcaoEscolhida].NomeId);
+
+                emblemasE.RetirarDestaques();
+
+                if (dj.MeusEmblemas.Count > 0)
+                {
+                    emblemasD.ColocarDestaqueNoSelecionado();
+                    ColocaInfoTexts(dj.MeusEmblemas[emblemasD.OpcaoEscolhida]);
+                }
+                else
+                {
+                    InfoDeNaoTemEmblema();
+                }
             }
         }
+    }
+
+    private void InfoDeNaoTemEmblema()
+    {
+        infoTitle.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.frasesDeEmblema)[4];
+        infoArea.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.frasesDeEmblema)[5];
+        custoDeEspacos.text = "";
     }
 
     public void FinalizarHud()
@@ -120,7 +154,7 @@ public class MenuOrganizadorDeEmblemas
                     ReiniciarVisaoDaHud();
                     emblemasD.SelecionarOpcaoEspecifica(opcaoGuardada);
 
-                    ColocaInfoTexts((int)dj.MeusEmblemas[0].NomeId);
+                    ColocaInfoTexts(dj.MeusEmblemas[0]);
                     numEncaixes.text = Emblema.NumeroDeEspacosOcupados(dj.MeusEmblemas) + " / " + dj.EspacosDeEmblemas;
 
                 }
@@ -156,7 +190,7 @@ public class MenuOrganizadorDeEmblemas
         {
             int opcaoGuardada = qual;
 
-            if (Emblema.VerificarOcupacaoDoEncaixe(dj.MeusEmblemas, opcaoGuardada) != NomesEmblemas.nulo)
+            if (Emblema.VerificarOcupacaoDoEncaixe(dj.MeusEmblemas, opcaoGuardada).NomeId != NomesEmblemas.nulo)
             {
 
                 Emblema E = Emblema.ListaDeEncaixados(dj.MeusEmblemas)[opcaoGuardada];
@@ -167,7 +201,7 @@ public class MenuOrganizadorDeEmblemas
 
                 emblemasE.SelecionarOpcaoEspecifica(opcaoGuardada);
 
-                ColocaInfoTexts((int)dj.MeusEmblemas[0].NomeId);
+                ColocaInfoTexts(dj.MeusEmblemas[0]);
                 numEncaixes.text = Emblema.NumeroDeEspacosOcupados(dj.MeusEmblemas) + " / " + dj.EspacosDeEmblemas;
             }
             else
@@ -190,11 +224,18 @@ public class MenuOrganizadorDeEmblemas
         switch (estado)
         {
             case EstadoDaqui.sobreDisponiveis:
-                emblemasD.MudarOpcao();
-
-                if (ActionManager.ButtonUp(0, GlobalController.g.Control))
+                if (dj.MeusEmblemas.Count > 0)
                 {
-                    EmblemaDisponivelSelecionado(emblemasD.OpcaoEscolhida);
+                    emblemasD.MudarOpcao();
+
+                    if (ActionManager.ButtonUp(0, GlobalController.g.Control))
+                    {
+                        EmblemaDisponivelSelecionado(emblemasD.OpcaoEscolhida);
+                    }
+                }
+                else
+                {
+                    estado = EstadoDaqui.sobreEncaixes;
                 }
             break;
             case EstadoDaqui.sobreEncaixes:

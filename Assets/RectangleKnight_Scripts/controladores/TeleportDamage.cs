@@ -11,6 +11,7 @@ public class TeleportDamage
     {
         Time.timeScale = 0;
         GlobalController.g.FadeV.IniciarFadeOutComAction(OnFadeOutComplet);
+        EventAgregator.Publish(EventKey.requestHideControllers);
     }
 
     void OnFadeOutComplet()
@@ -33,5 +34,6 @@ public class TeleportDamage
         
         agendado = false;
         EventAgregator.Publish(EventKey.fechouPainelSuspenso);
+        EventAgregator.Publish(EventKey.requestShowControllers);
     }
 }

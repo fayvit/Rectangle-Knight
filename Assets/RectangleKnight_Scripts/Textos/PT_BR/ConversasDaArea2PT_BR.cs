@@ -79,6 +79,16 @@ Hoje o buscador transcendeu o chamado e sua presença é reconfortante para as g
             "Vejo que tem muita determinação, mostrou mesmo que tem o seu valor",
             "diante disso tenho um presente pra você.",
             "Mas lembre-se, leve-o com você para que antes de desvendar as profundezas desvendem juntos o raso agora"
+        } },
+         { ChaveDeTexto.corredeirasComtemplacao,new List<string>()
+        {
+            "Comtemplem as grandes corredeiras do Aquífero do Buscador"
+        } },
+         { ChaveDeTexto.desafioDasCarapassas,new List<string>()
+        {
+            @"Para sentir-se melhor e mais poderoso é necessário vencer desafios maiores e mais dificeis. 
+
+Um delta mal calculado em um pulo pode dar um epsolon de erro fatal no resultado."
         } }
     };
     }

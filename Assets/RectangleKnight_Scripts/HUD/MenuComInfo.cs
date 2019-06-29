@@ -17,8 +17,13 @@ public abstract class MenuComInfo : UiDeOpcoes
     public virtual void IniciarHud()
     {
         TitleUpdate.transform.parent.gameObject.SetActive(true);
-        
-        IniciarHUD(SetarOpcoes(), TipoDeRedimensionamento.vertical);
+        int quantidade = SetarOpcoes();
+
+        if (quantidade > 0)
+            IniciarHUD(quantidade, TipoDeRedimensionamento.vertical);
+        else
+            itemDoContainer.SetActive(false);
+
         EventAgregator.AddListener(EventKey.UiDeOpcoesChange, OnChangeOption);
     }
 

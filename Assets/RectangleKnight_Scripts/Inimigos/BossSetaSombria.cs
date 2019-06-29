@@ -148,12 +148,12 @@ public class BossSetaSombria : EnemyBase
                             SpawnarMagia(transform.position - 1.5f * Vector3.up);
                             estado = EstadoDaqui.emEspera;
                             new MyInvokeMethod().InvokeNoTempoDeJogo(gameObject, IniciaBoss, tempoPosMagiaSimples);
-                            break;
+                        break;
                         case EstadoDaqui.preparandoMagiaMultipla:
                             estado = EstadoDaqui.executandoMagiaMultipla;
                             posInicial = transform.position;
                             VerificaDisparo();
-                            break;
+                        break;
                     }
 
                     _Animator.SetTrigger(AnimKey.sairDaMagia.ToString());
@@ -167,7 +167,7 @@ public class BossSetaSombria : EnemyBase
                     distanciaEntrePontos = Vector2.Distance(posInicial, posFinal);
                     tempoDecorrido = 0;
                     particulaDoDash.SetActive(true);
-                    break;
+                break;
             }
 
 
@@ -186,7 +186,7 @@ public class BossSetaSombria : EnemyBase
 
 
                 SpawnarMagia(transform.position - 1.5f * Vector3.up);
-                break;
+            break;
             case 1:
                 if (Vector3.Distance(posInicial, posDeSalto[0].position) < Vector3.Distance(posInicial, posDeSalto[1].position))
                     posFinal = posAereas[0].position;
@@ -195,7 +195,7 @@ public class BossSetaSombria : EnemyBase
 
 
                 SpawnarMagia(transform.position - 1.5f * Vector3.up);
-                break;
+            break;
             case 2:
                 if (Vector3.Distance(posInicial, posAereas[0].position) < Vector3.Distance(posInicial, posAereas[1].position))
                     posFinal = posNoChao[0].position;
@@ -203,17 +203,21 @@ public class BossSetaSombria : EnemyBase
                     posFinal = posNoChao[1].position;
 
                 SpawnarMagia(transform.position - 1.5f * Vector3.up, HeroPosition - transform.position);
-                break;
+            break;
             case 3:
                 SpawnarMagia(transform.position - 1.5f * Vector3.up);
 
                 new MyInvokeMethod().InvokeNoTempoDeJogo(gameObject,
                     () =>
                     {
-                        estado = EstadoDaqui.emEspera;
-                        IniciaBoss();
+                        Debug.Log(estado);
+                        if (estado == EstadoDaqui.executandoMagiaMultipla || estado == EstadoDaqui.preparandoMagiaMultipla)
+                        {
+                            estado = EstadoDaqui.emEspera;
+                            IniciaBoss();
+                        }
                     }, tempoPosMagiaSimples);
-                break;
+            break;
 
         }
 

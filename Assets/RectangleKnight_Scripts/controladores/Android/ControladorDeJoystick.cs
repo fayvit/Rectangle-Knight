@@ -65,6 +65,9 @@ public class ControladorDeJoystick : MonoBehaviour, IDragHandler, IPointerUpHand
         EventAgregator.AddListener(EventKey.requestHideControllers, OnStartTalk);
         EventAgregator.AddListener(EventKey.requestShowControllers, OnFinishTalk);
         EventAgregator.AddListener(EventKey.startCheckPoint, OnStartCheckPoint);
+        EventAgregator.AddListener(EventKey.requestToFillDates, OnRequestFillDates);
+        EventAgregator.AddListener(EventKey.starterHudForTest, VerifiqueBtnDash);
+        EventAgregator.AddListener(EventKey.allAbilityOn, VerifiqueBtnDash);
     }
 
     private void OnDestroy()
@@ -74,6 +77,39 @@ public class ControladorDeJoystick : MonoBehaviour, IDragHandler, IPointerUpHand
         EventAgregator.RemoveListener(EventKey.requestHideControllers, OnStartTalk);
         EventAgregator.RemoveListener(EventKey.requestShowControllers, OnFinishTalk);
         EventAgregator.RemoveListener(EventKey.startCheckPoint, OnStartCheckPoint);
+        EventAgregator.RemoveListener(EventKey.requestToFillDates, OnRequestFillDates);
+        EventAgregator.RemoveListener(EventKey.allAbilityOn, VerifiqueBtnDash);
+    }
+
+    private void VerifiqueBtnDash(IGameEvent e)
+    {
+        new MyInvokeMethod().InvokeAoFimDoQuadro(() =>
+        {
+            MostrarBotaoDash(GameController.g.Manager.Dados.TemDash);
+        });
+    }
+
+    private void OnRequestFillDates(IGameEvent e)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)e;
+        SaveDates S = (SaveDates)ssge.MyObject[0];
+
+        if (S == null)
+        {
+            MostrarBotaoDash(false);
+        }
+        else
+        {
+            MostrarBotaoDash(S.Dados.TemDash);
+        }
+
+    }
+
+    void MostrarBotaoDash(bool mostrar)
+    {
+        if(buttons!=null)
+            if(buttons[3]!=null)
+                buttons[3].gameObject.SetActive(mostrar);
     }
 
     void OnStartCheckPoint(IGameEvent e)
@@ -140,7 +176,6 @@ public class ControladorDeJoystick : MonoBehaviour, IDragHandler, IPointerUpHand
         inputVector = Vector3.zero;
         joystickKnobImage.rectTransform.anchoredPosition = Vector3.zero;
     }
-
 
     public Vector3 GetInputDirection()
     {

@@ -7,18 +7,27 @@ using UnityEngine.UI;
 public class MenuDosUpdates : MenuComInfo
 {
     #region inspector
-    [SerializeField] private ImagemDeUpdate[] imgU = default;
+    // [SerializeField] private ImagemDeUpdate[] imgU = default;
+    [SerializeField] private VectorOfImagensDeUpdates[] imgUu = default;
     [SerializeField] private Image imgRodape = default;
     #endregion
 
     private ChaveDeTextoDosUpdates[] Opcoes { get; set; }
 
     [System.Serializable]
-    private struct ImagemDeUpdate
+    private struct VectorOfImagensDeUpdates
     {
-        [SerializeField]private Sprite img;
-        [SerializeField]private Sprite rodaPeInfo;
-        [SerializeField]private ChaveDeTextoDosUpdates chave;
+        [SerializeField] private ImagemDeUpdate[] imgU;
+
+        public ImagemDeUpdate[] ImgU { get => imgU; set => imgU = value; }
+    }
+
+    [System.Serializable]
+    public struct ImagemDeUpdate
+    {
+        [SerializeField] private Sprite img;
+        [SerializeField] private Sprite rodaPeInfo;
+        [SerializeField] private ChaveDeTextoDosUpdates chave;
 
         public Sprite Img { get => img; set => img = value; }
         public Sprite RodaPeInfo { get => rodaPeInfo; set => rodaPeInfo = value; }
@@ -48,9 +57,9 @@ public class MenuDosUpdates : MenuComInfo
             }
         }
 
-        
+
         Opcoes = new ChaveDeTextoDosUpdates[cont];
-        
+
 
         int localCont = 0;
         for (int i = 0; i < cont; i++)
@@ -62,8 +71,11 @@ public class MenuDosUpdates : MenuComInfo
 
             Opcoes[i] = (ChaveDeTextoDosUpdates)localCont;
             localCont++;
+
             //Opcoes[i] = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.androidUpdateMenu)[localCont];
         }
+
+
 
         ChangeOption(0);
         return Opcoes.Length;
@@ -74,13 +86,41 @@ public class MenuDosUpdates : MenuComInfo
         int indiceDeInteresse = (int)Opcoes[indice];
         UmaOpcaoDeUpdates uma = G.GetComponent<UmaOpcaoDeUpdates>();
         uma.SetarOpcao(BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.androidUpdateMenu)[indiceDeInteresse],
-            imgU[indiceDeInteresse].Img,ChangeOption);
+            imgU[indiceDeInteresse].Img, ChangeOption);
     }
 
     protected override void ChangeOption(int qual)
     {
-        TitleUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.androidUpdateMenu)[(int)imgU[qual].Chave];
-        InfoUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.androidUpdateInfo)[(int)imgU[qual].Chave];
-        imgRodape.sprite = imgU[qual].RodaPeInfo;
+        int indiceDaMensagem = (int)imgU[(int)Opcoes[qual]].Chave;
+        TitleUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.androidUpdateMenu)[indiceDaMensagem];
+        InfoUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.androidUpdateInfo)[indiceDaMensagem];
+
+        imgRodape.sprite = imgU[(int)Opcoes[qual]].RodaPeInfo;
+
+        if (painelDeTamanhoVariavel.childCount > qual + 1)
+        {
+            MudarSelecaoParaEspecifico(qual);
+        }
+    }
+
+    private ImagemDeUpdate[] imgU { get => imgUu[IndexOfControlInfos()].ImgU; }
+
+    private int IndexOfControlInfos()
+    {
+        int retorno = 0;
+        switch (GlobalController.g.Control)
+        {
+            case Controlador.Android:
+                retorno = 0;
+            break;
+            case Controlador.teclado:
+                retorno = 1;
+            break;
+            default:
+                retorno = 0;
+            break;
+        }
+
+        return retorno;
     }
 }

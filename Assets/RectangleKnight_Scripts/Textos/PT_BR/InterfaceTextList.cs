@@ -180,6 +180,38 @@ public class InterfaceTextList
         {
             InterfaceTextKey.jogosSalvos,
             "Jogos Salvos"
+        },
+        {
+            InterfaceTextKey.coletar,
+            "Coletar"
+        },
+        {
+            InterfaceTextKey.sair,
+            "Sair"
+        },
+        {
+            InterfaceTextKey.entrar,
+            "Entrar"
+        },
+        {
+            InterfaceTextKey.ouvir,
+            "Ouvir"
+        },
+        {
+            InterfaceTextKey.interagir,
+            "Interagir"
+        },
+        {
+            InterfaceTextKey.examinar,
+            "Examinar"
+        },
+        {
+            InterfaceTextKey.descansar,
+            "Descansar"
+        },
+        {
+            InterfaceTextKey.espacosOcupados,
+            "Espaços ocupados"
         }
     };
 

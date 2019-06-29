@@ -15,6 +15,12 @@ public class LojaDeHerika : Loja
         base.IniciarHud();
     }
 
+    protected override void TextosDoNadaParaVender()
+    {
+        InfoUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.textosDaLojaDeHerika)[1];
+        TitleUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.textosDaLojaDeHerika)[0];
+    }
+
     protected override void FinalizarEspecifico()
     {
         EventAgregator.RemoveListener(EventKey.buyUpdateGeometry, OnBuyUpdateGeometry);
@@ -24,7 +30,9 @@ public class LojaDeHerika : Loja
 
     void OnCloseHexSecondPanel(IGameEvent e)
     {
+        Time.timeScale = 1;
         EventAgregator.Publish(EventKey.compraConcluida);
+        //EventAgregator.Publish(EventKey.musi)
     }
 
     void OnBuyUpdateGeometry(IGameEvent e)

@@ -93,6 +93,13 @@ public abstract class UiDeOpcoes
         }
     }
 
+    public void MudarSelecaoParaEspecifico(int qual)
+    {
+        UmaOpcao[] umaS = painelDeTamanhoVariavel.GetComponentsInChildren<UmaOpcao>();
+        RetirarTodosOsDestaques(umaS);
+        SelecionarOpcaoEspecifica(qual);
+    }
+
     public void RetirarTodosOsDestaques(UmaOpcao[] umaS)
     {
         for (int i = 0; i < umaS.Length; i++)
@@ -198,9 +205,12 @@ public abstract class UiDeOpcoes
 
     public void SelecionarOpcaoEspecifica(int qual)
     {
-        OpcaoEscolhida = qual;
-        UmaOpcao uma = painelDeTamanhoVariavel.GetChild(qual + 1).GetComponent<UmaOpcao>();
-        ColocarDestaqueNoSelecionado(uma);
+        if (painelDeTamanhoVariavel.childCount > qual + 1)
+        {
+            OpcaoEscolhida = qual;
+            UmaOpcao uma = painelDeTamanhoVariavel.GetChild(qual + 1).GetComponent<UmaOpcao>();
+            ColocarDestaqueNoSelecionado(uma);
+        }
     }
 
     protected virtual IEnumerator MovendoScroll(UmaOpcao[] umaS, int rowCellCount)

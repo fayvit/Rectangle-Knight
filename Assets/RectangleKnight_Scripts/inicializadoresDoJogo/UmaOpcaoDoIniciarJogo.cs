@@ -20,7 +20,6 @@ public class UmaOpcaoDoIniciarJogo : UmaOpcao
         this.acaoDoIniciar += acaoDoIniciar;
         this.acaoDoDeletar += acaoDoDeletar;
         txtdaqui.text = txt;
-        
     }
 
     public override void FuncaoDoBotao()

@@ -146,5 +146,8 @@ public enum EventKey
     colorSwordShow,
     getMagicAttack,
     localNameExibition,
-    requestLocalnameExibition
+    requestLocalnameExibition,
+    starterHudForTest,
+    updateGeometryComplete,
+    allAbilityOn
 }

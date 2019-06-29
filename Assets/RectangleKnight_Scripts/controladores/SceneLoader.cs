@@ -122,6 +122,8 @@ public class SceneLoader : MonoBehaviour
             }
             else
             {
+                Debug.Log("contador do mapa: "+S.VariaveisChave.MapDates.Count);
+
                 NomesCenas[] N2 = DescarregarCenasDesnecessarias(S.VariaveisChave.CenasAtivas.ToArray());
 
                 numCarregador = 0;
@@ -410,7 +412,17 @@ public enum NomesCenas
     CorredeirasParaOChefe,
     ZonaDoChefeDoAquifero,
     posChefeSetaSombria,
-    ConexaoDeCaminhosnoAquifero
+    ConexaoDeCaminhosnoAquifero,
+    DesafioDoCarapassaNadadora,
+    DesafioDoCarapassaVoador,
+    ItensPosDesafioDosCarapassa,
+    EntroncamentoComAsGrandesCorredeiras,
+    GrandesCorredeiras,
+    GrandesCorredeiras_d,
+    GrandesCorredeiras_b,
+    GrandesCorredeiras_c,
+    CaminhoDoAquiferoParaPontal,
+    CaminhoDaGargantaParaPOntal
 }
 
 public enum NomesCenasEspeciais

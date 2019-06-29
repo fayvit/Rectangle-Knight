@@ -38,12 +38,17 @@ public class SprinklerEnemy : BaseMoveRigidbody
     void OnReceivedTrigerInfo(IGameEvent e)
     {
         StandardSendGameEvent ssge = (StandardSendGameEvent)e;
-        Collider2D collision = (Collider2D)ssge.MyObject[0];
 
-        if (ssge.Sender.transform.IsChildOf(transform) && collision.tag == "Player" && colisorDeDano.enabled)
-        {
-            OnTriggerEnter2D(collision);
-        }
+        if (ssge.MyObject.Length > 0)
+            if (ssge.MyObject[0] is Collider2D)
+            {
+                Collider2D collision = (Collider2D)ssge.MyObject[0];
+
+                if (ssge.Sender.transform.IsChildOf(transform) && collision.tag == "Player" && colisorDeDano.enabled)
+                {
+                    OnTriggerEnter2D(collision);
+                }
+            }
 
     }
 

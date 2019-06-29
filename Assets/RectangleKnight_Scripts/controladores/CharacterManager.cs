@@ -46,8 +46,8 @@ public class CharacterManager : MonoBehaviour
 
         emDano = new EstouEmDano(GetComponent<Rigidbody2D>());
 
-        EventAgregator.Publish(new StandardSendGameEvent(gameObject, EventKey.changeLifePoints, Dados.PontosDeVida, Dados.MaxVida));
-        EventAgregator.Publish(new StandardSendGameEvent(gameObject, EventKey.changeMagicPoints, Dados.PontosDeMana, Dados.MaxMana));
+        EventAgregator.Publish(new StandardSendGameEvent(gameObject, EventKey.starterHudForTest, dados));
+        
 
         EventAgregator.AddListener(EventKey.heroDamage, OnHeroDamage);
         EventAgregator.AddListener(EventKey.enemyContactDamage, OnEnemyContactDamage);
@@ -79,6 +79,8 @@ public class CharacterManager : MonoBehaviour
         EventAgregator.AddListener(EventKey.getItem, OnGetItem);
         EventAgregator.AddListener(EventKey.colorChanged, OnSwordColorChanged);
         EventAgregator.AddListener(EventKey.getMagicAttack, OnGetMagicAttack);
+        EventAgregator.AddListener(EventKey.updateGeometryComplete, OnUpdateGeometryComplete);
+        EventAgregator.AddListener(EventKey.allAbilityOn, OnRequestAllAbility);
 
 
         GameController.g.Manager = this;
@@ -116,6 +118,44 @@ public class CharacterManager : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.getItem, OnGetItem);
         EventAgregator.RemoveListener(EventKey.colorChanged, OnSwordColorChanged);
         EventAgregator.RemoveListener(EventKey.getMagicAttack, OnGetMagicAttack);
+        EventAgregator.RemoveListener(EventKey.updateGeometryComplete, OnUpdateGeometryComplete);
+        EventAgregator.RemoveListener(EventKey.allAbilityOn, OnRequestAllAbility);
+    }
+
+    private void OnRequestAllAbility(IGameEvent e)
+    {
+        dados.TemMagicAttack = true;
+        dados.EspadaAzul = true;
+        dados.EspadaDourada = true;
+        dados.EspadaVerde = true;
+        dados.EspadaVermelha = true;
+        dados.TemDash = true;
+        dados.TemDoubleJump = true;
+        dados.TemDownArrowJump = true;
+
+    }
+
+    private void OnUpdateGeometryComplete(IGameEvent e)
+    {
+        StandardSendGameEvent ssge = (StandardSendGameEvent)e;
+
+        if ((bool)ssge.MyObject[0])
+        {
+            dados.PentagonosCompletados++;
+            dados.MaxMana = dados.BaseMaxMana + dados.PentagonosCompletados * dados.AddMagicBarAmount;
+            dados.PontosDeMana = dados.MaxMana;
+            dados.PartesDePentagonosObtidas = 0;
+            
+        }
+        else
+        {
+            dados.PartesDeHexagonoObtidas = 0;
+            dados.HexagonosCompletados++;
+            dados.MaxVida = dados.BaseMaxLife + dados.HexagonosCompletados * dados.AddLifeBarAmount;
+            dados.PontosDeVida = dados.MaxVida;
+        }
+
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.starterHudForTest, dados));
     }
 
     private void OnGetMagicAttack(IGameEvent e)
@@ -288,9 +328,11 @@ public class CharacterManager : MonoBehaviour
         particulaDoMorrendo.SetActive(false);
         derrota.DesligarLosangulo();
         atk.ChangeSwirdColor((int)dados.CorDeEspadaSelecionada); 
+        /*
         EventAgregator.Publish(new StandardSendGameEvent(EventKey.changeMoneyAmount, Dados.Dinheiro));
         EventAgregator.Publish(new StandardSendGameEvent(EventKey.changeLifePoints, Dados.PontosDeVida,Dados.MaxVida));
         EventAgregator.Publish(new StandardSendGameEvent(EventKey.changeMagicPoints, Dados.PontosDeMana, Dados.MaxMana));
+        */
         EventAgregator.Publish(EventKey.colorSwordShow);
     }
 
@@ -386,7 +428,11 @@ public class CharacterManager : MonoBehaviour
 
             if (dados.PontosDeVida > 0)
             {
-                piscaI.Start(1);
+                if (GameController.g.MyKeys.VerificaAutoShift("equiped_" + NomesEmblemas.suspiroLongo))
+                    piscaI.Start(2);
+                else
+                    piscaI.Start(1);
+
                 estado = EstadoDePersonagem.emDano;
                 EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom,somDoDano));
 
@@ -506,8 +552,11 @@ public class CharacterManager : MonoBehaviour
                             mov.AplicadorDeMovimentos(Vector3.zero);
                             estado = EstadoDePersonagem.parado;
                             tDamage.Iniciar();
-                        }else
+                        }
+                        else
+                        {
                             estado = EstadoDePersonagem.aPasseio;
+                        }
                     }
                     #endregion
                 break;

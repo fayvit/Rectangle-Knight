@@ -9943,7 +9943,7 @@ MonoBehaviour:
   rotTarget: -90
   tempoDaParticulaAteAcao: 0.5
   tempoDaRotacao: 1
-  ID: -15092_posChefeSetaSombria
+  ID: 
 --- !u!1 &6548948353238855725
 GameObject:
   m_ObjectHideFlags: 0

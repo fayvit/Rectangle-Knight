@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3011656917589255835}
   m_Layer: 9
   m_Name: moedaPrateada
-  m_TagString: Untagged
+  m_TagString: triggerGeral
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 3011656918255490864}
   m_Layer: 0
   m_Name: containerMoeda
-  m_TagString: Untagged
+  m_TagString: triggerGeral
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

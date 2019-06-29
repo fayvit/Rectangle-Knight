@@ -200,7 +200,40 @@ public class InterfaceTextListEN_G
         {
             InterfaceTextKey.obrigadoMas,
             "Thanks, but I'm in a hurry"
+        },
+        {
+            InterfaceTextKey.coletar,
+            "Collect"
+        },
+        {
+            InterfaceTextKey.sair,
+            "Exit"
+        },
+        {
+            InterfaceTextKey.entrar,
+            "Enter"
+        },
+        {
+            InterfaceTextKey.ouvir,
+            "Listen"
+        },
+        {
+            InterfaceTextKey.interagir,
+            "Interact"
+        },
+        {
+            InterfaceTextKey.examinar,
+            "Examine"
+        },
+        {
+            InterfaceTextKey.descansar,
+            "Rest"
+        },
+        {
+            InterfaceTextKey.espacosOcupados,
+            "Occupied Spaces"
         }
+        
     };
 
 }

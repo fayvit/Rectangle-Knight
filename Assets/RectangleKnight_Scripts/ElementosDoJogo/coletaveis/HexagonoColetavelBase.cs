@@ -7,6 +7,12 @@ public class HexagonoColetavelBase
 {
     [SerializeField] private PainelPentagonoHexagono painel = default;
     [SerializeField] private GameObject particulaDaAcao = default;
+    [SerializeField] private GameObject particulaDaGeometriaCompleto = default;
+    [SerializeField] private GameObject particulaDaFinalizacaoDoUpdate = default;
+    [SerializeField] private float tempoDaParticulaDeCompletude = 2;
+    [SerializeField] private float tempoParaRetornoAposCompletude = 0.75f;
+
+    private int repeticoesDoSomDeUpdateConcluido = 0;
 
     private bool ePentagono;    
     private string ID = "";
@@ -29,9 +35,33 @@ public class HexagonoColetavelBase
         }
         else
         {
-            Debug.LogError("falta fazer a parte do hexagono completo");
-          //  MonoBehaviour.Destroy(G);
+            particulaDaGeometriaCompleto.SetActive(true);
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.Fire3));
+            new MyInvokeMethod().InvokeNoTempoReal(FinalDaCompletude,tempoDaParticulaDeCompletude);
+            new MyInvokeMethod().InvokeNoTempoReal(SomDaAcaoDeUpdate, .25f);
         }
+    }
+
+    void SomDaAcaoDeUpdate()
+    {
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.XP010_System10));
+        repeticoesDoSomDeUpdateConcluido++;
+
+        if(repeticoesDoSomDeUpdateConcluido<7)
+            new MyInvokeMethod().InvokeNoTempoReal(SomDaAcaoDeUpdate, .25f);
+
+    }
+
+    void FinalDaCompletude()
+    {
+        particulaDaGeometriaCompleto.SetActive(false);
+        particulaDaFinalizacaoDoUpdate.SetActive(true);
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.XP049_Explosion02));
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.updateGeometryComplete,ePentagono));
+        new MyInvokeMethod().InvokeNoTempoReal(OnCloseSecondPanel, tempoParaRetornoAposCompletude);
+        new MyInvokeMethod().InvokeNoTempoReal(()=> {
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.ItemImportante));
+        }, 1f);
     }
 
     void OnCloseSecondPanel()

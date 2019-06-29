@@ -14,6 +14,10 @@ public class ListaDeTextosEN_G
                 txt = new Dictionary<ChaveDeTexto, List<string>>();
 
                 ColocaTextos(ref txt, TextosChaveEN_G.txt);
+                ColocaTextos(ref txt, TextosDosUpdatesEN_G.txt);
+                ColocaTextos(ref txt, ConversasDaArea1EN_G.txt);
+                ColocaTextos(ref txt, ConversasDaArea2EN_G.txt);
+                ColocaTextos(ref txt, LocalSceneNamesEN_G.txt);
                 /*
                 ColocaTextos(ref txt, TextosDeBarreirasPT_BR.txt);
                 ColocaTextos(ref txt, TextosDaCavernaInicialPT_BR.txt);

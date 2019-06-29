@@ -25,6 +25,11 @@ public class HexagonoColetavel : AtivadorDeBotao
         EventAgregator.AddListener(EventKey.hexCloseSecondPanel,OnHexCloseSecondPanel);
     }
 
+    private void OnDestroy()
+    {
+        EventAgregator.RemoveListener(EventKey.hexCloseSecondPanel, OnHexCloseSecondPanel);
+    }
+
     void OnHexCloseSecondPanel(IGameEvent e)
     {
         StandardSendGameEvent ssge = (StandardSendGameEvent)e;

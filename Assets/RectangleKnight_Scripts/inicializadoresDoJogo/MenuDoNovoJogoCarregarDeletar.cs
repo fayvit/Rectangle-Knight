@@ -19,6 +19,13 @@ public class MenuDoNovoJogoCarregarDeletar : UiDeOpcoes
         IniciarHUD(quantidade);
 
         RedimensionarUI.NaVertical(painelDeTamanhoVariavel, itemDoContainer, quantidade+1);
+
+        UmaOpcaoDoIniciarJogo[] umaS = painelDeTamanhoVariavel.GetComponentsInChildren<UmaOpcaoDoIniciarJogo>();
+
+        for (int i = 0; i < umaS.Length; i++)
+        {
+            umaS[i].ColocarTotalAlpha();
+        }
     }
 
     public override void SetarComponenteAdaptavel(GameObject G, int indice)

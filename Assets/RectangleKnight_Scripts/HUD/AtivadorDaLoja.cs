@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AtivadorDaLoja : AtivadorDeBotao
 {
+    [SerializeField] public string ID;
     private EstadoDaqui estado = EstadoDaqui.emEspera;
 
     protected Loja EssaLoja { get; set; }
@@ -16,11 +17,17 @@ public class AtivadorDaLoja : AtivadorDeBotao
 
     }
 
+    private void OnValidate()
+    {
+        BuscadorDeID.Validate(ref ID, this);
+    }
+
     public override void FuncaoDoBotao()
     {
         EventAgregator.Publish(EventKey.abriuPainelSuspenso, null);
         EventAgregator.Publish(EventKey.requestHideControllers, null);
-        EssaLoja.IniciarHud();
+        EssaLoja.ID = ID;
+        EssaLoja.IniciarHud();        
         estado = EstadoDaqui.mudandoOpcao;
     }
 
@@ -68,16 +75,18 @@ public class AtivadorDaLoja : AtivadorDeBotao
 
     public void BtnComprar()
     {
-
-        if (EssaLoja.VerifiqueCompra())
+        if (estado==EstadoDaqui.mudandoOpcao)
         {
+            if (EssaLoja.VerifiqueCompra())
+            {
 
-        }else
-        {
-            GlobalController.g.UmaMensagem.ConstroiPainelUmaMensagem(RetornoDeMensagem,"Você não tem dinheiro suficiente");
+            } else
+            {
+                GlobalController.g.UmaMensagem.ConstroiPainelUmaMensagem(RetornoDeMensagem, "Você não tem dinheiro suficiente");
+            }
+
+            estado = EstadoDaqui.mensagemSuspensa;
         }
-
-        estado = EstadoDaqui.mensagemSuspensa;
     }
 
     public void BtnVoltar()
@@ -85,5 +94,6 @@ public class AtivadorDaLoja : AtivadorDeBotao
         EssaLoja.FinalizarHud();
         estado = EstadoDaqui.emEspera;
         EventAgregator.Publish(EventKey.fechouPainelSuspenso);
+        EventAgregator.Publish(EventKey.requestShowControllers, null);
     }
 }

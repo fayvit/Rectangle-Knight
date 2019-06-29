@@ -14,6 +14,7 @@ public class PauseMenu
     [SerializeField] private MenuOrganizadorDeEmblemas menuOE = default;
     [SerializeField] private MenuPentagonosHexagonos pentagonosHexagonos = default;
     [SerializeField] private MenuDoInventario menuI = default;
+    [SerializeField] private MapPanel mapPanel = default;
     [SerializeField] private Image[] abas = default;
     [SerializeField] private Sprite destaque = default;
     [SerializeField] private Sprite padrao = default;
@@ -58,6 +59,7 @@ public class PauseMenu
             Time.timeScale = 0;
             estadoAoPausar = GameController.g.Manager.Estado;
             EventAgregator.Publish(new StandardSendGameEvent(EventKey.enterPause));
+            EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestHideControllers));
             containerDoMenuDePause.SetActive(true);
             IniciarQualMenu(qualMenu);
 
@@ -145,7 +147,12 @@ public class PauseMenu
         FinalizarTodasAsAbas();
         Time.timeScale = 1;
         containerDoMenuDePause.SetActive(false);
+
+        mapPanel.OnUnpausedGame();
+
+
         EventAgregator.Publish(new StandardSendGameEvent(EventKey.exitPause,estadoAoPausar));
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.requestShowControllers));
 
         EventAgregator.RemoveListener(EventKey.returnToMainMenu, OnReturnToMainMenu);
         EventAgregator.RemoveListener(EventKey.triedToChangeEmblemNoSuccessfull, OnTriedEmblem);
@@ -169,6 +176,7 @@ public class PauseMenu
         menuU.FinalizarHud();
         menuOE.FinalizarHud();
         menuI.FinalizarHud();
+        mapPanel.OnExitMapaPanel();
         pentagonosHexagonos.FinalizarHud();
     }
 
@@ -195,6 +203,10 @@ public class PauseMenu
             case 4:
                 menuU.IniciarHud();
                 estado = EstadoDaqui.updatesAberto;
+            break;
+            case 5:
+                mapPanel.IniciarVisualizacaoDoMapa();
+                estado = EstadoDaqui.mapaAberto;
             break;
         }
     }
@@ -224,6 +236,9 @@ public class PauseMenu
             break;
             case EstadoDaqui.inventarioAberto:
                 menuI.MudarOpcao();
+            break;
+            case EstadoDaqui.mapaAberto:
+                mapPanel.Update();
             break;
         }
     }

@@ -94027,15 +94027,15 @@ PrefabInstance:
       propertyPath: ID
       value: -142280_ConexaoDeCaminhosnoAquifero
       objectReference: {fileID: 0}
-    - target: {fileID: 6992694448910145755, guid: 2d0c1ada3b86d26409c69fb7f52ab890,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 15.02
-      objectReference: {fileID: 0}
     - target: {fileID: 6992694449270749914, guid: 2d0c1ada3b86d26409c69fb7f52ab890,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6992694448910145755, guid: 2d0c1ada3b86d26409c69fb7f52ab890,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d0c1ada3b86d26409c69fb7f52ab890, type: 3}
@@ -125754,7 +125754,7 @@ MonoBehaviour:
   rotTarget: 90
   tempoDaParticulaAteAcao: 0.5
   tempoDaRotacao: 1
-  ID: -15092_posChefeSetaSombria
+  ID: 490632_ConexaoDeCaminhosnoAquifero
 --- !u!4 &6734491837207314137
 Transform:
   m_ObjectHideFlags: 0

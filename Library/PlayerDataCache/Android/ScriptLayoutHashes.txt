@@ -3,10 +3,10 @@ PlayerPath?
 D:/root/forMyGames/pastaDeCompilar/rectangleKnight.apk
 SceneListBegin?
 Assets/Scenes/menuInicial.unity
-Assets/Scenes/area1/ExilioDasProfundezas.unity
-Assets/Scenes/CenaDeCarregamento.unity
-Assets/Scenes/area1/barracaDeHerikaNoExilio.unity
 Assets/Scenes/ComunsDeFase.unity
+Assets/Scenes/CenaDeCarregamento.unity
+Assets/Scenes/area1/ExilioDasProfundezas.unity
+Assets/Scenes/area1/barracaDeHerikaNoExilio.unity
 Assets/Scenes/area1/TutoScene.unity
 Assets/Scenes/GreyScaleScene.unity
 Assets/Scenes/area1/grandeSubida.unity
@@ -41,14 +41,32 @@ Assets/Scenes/area2/DesafioDoInvestidorOculto.unity
 Assets/Scenes/area2/SegundoCheckPointDoAquifero.unity
 Assets/Scenes/area2/CapsulaDoAquifero.unity
 Assets/Scenes/area2/EntrocamentosDoAquifero.unity
+Assets/Scenes/area2/PreludioDaIntervencao.unity
+Assets/Scenes/area2/ZonaDoChefeDoAquifero.unity
+Assets/Scenes/area2/AbsolutamenteCapsulaDoAquifero.unity
+Assets/Scenes/area2/ConexaoDeCaminhosnoAquifero.unity
+Assets/Scenes/area2/CorredeirasParaOChefe.unity
+Assets/Scenes/area2/DesafioDoCarapassaNadadora.unity
+Assets/Scenes/area2/posChefeSetaSombria.unity
+Assets/Scenes/area2/DesafioDoCarapassaVoador.unity
+Assets/Scenes/area2/ItensPosDesafioDosCarapassa.unity
+Assets/Scenes/area2/EntroncamentoComAsGrandesCorredeiras.unity
+Assets/Scenes/area2/GrandesCorredeiras_recall.unity
+Assets/Scenes/area2/GrandesCorredeiras.unity
+Assets/Scenes/area2/GrandesCorredeiras_b.unity
+Assets/Scenes/area2/GrandesCorredeiras_c.unity
+Assets/Scenes/area2/GrandesCorredeiras_d.unity
+Assets/Scenes/area2/CaminhoDoAquiferoParaPontal.unity
 SceneListEnd?
 58151b1993c51ed63c4b100aea66c20e Assembly-CSharp.dll:.FlyingInvestEnemy
 4806ef636c8dfacfbae26767c56e74d7 Assembly-CSharp.dll:.EncaixeColetavel
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.DanoQueTeleportaQuicavel
 5ab3019db73e561d4d660ef968672104 Assembly-CSharp.dll:.XShooterEnemy
 a7e44cce6d20ac0f212557f5cacc34af Assembly-CSharp.dll:.ShooterEnemy
+ba291b49f813918f38ff806c265dd513 Assembly-CSharp.dll:.PonteAcorrentadaParaMagias
 3dc9b9bd1af1558992187d0bd12cbcae Assembly-CSharp.dll:.PrimeiraArmadilhaDoJogo
 353d6051593316bd489f854cd3aa7a6d Assembly-CSharp.dll:.MyFadeView
+26aaae98c4e3920d2b46b0b7824e6379 Assembly-CSharp.dll:.BreederBase
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 06f0fef534ca4c1d6064fd77a26bf722 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 780e8f682b3221346c034a6712a0fd25 UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -67,7 +85,7 @@ d50d269aeaf7b9d3e2d8e196dc0f2473 Assembly-CSharp.dll:.DestructibleWithAttack
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.DanoQueTelePorta
 0def9a2d298459789237e1a176260517 Assembly-CSharp.dll:.BossCirculoImperfeito
 20e56771cc1343b541592ef85c3a76fd Assembly-CSharp.dll:.TimedMotionTrap
-62848e7b0c0bda377371ff60dcc61910 Assembly-CSharp.dll:.AtivadorDaLojaDeHerika
+78b3b5030d899f11b1b8eaa5c64e57a5 Assembly-CSharp.dll:.AtivadorDaLojaDeHerika
 14f1b413353e0b3b076e77efa459b80a Assembly-CSharp.dll:.AccelerateEnemy
 cf9f5cf2c3145a37ac07f00e50e460f9 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
@@ -145,7 +163,7 @@ abf1930d8126d0b2e00e9449129a0190 UnityEngine.UI.dll:UnityEngine.EventSystems.Tou
 81e7fb9f4fc97c69dfc5aba4bc0799d7 Assembly-CSharp.dll:.MudeCena
 5b52aeecbc07652f2990053c86519353 Assembly-CSharp.dll:.Camera2D
 ae7950579125895d1ab61cc9233eafaf Assembly-CSharp.dll:.ProjetilParabolico
-79e3cdd77738b16c84e0ce7844970f73 Assembly-CSharp.dll:.GameHudManager
+b80dc7b06ab843f1c98a090b3fc79b1b Assembly-CSharp.dll:.GameHudManager
 5b0ce168a2c4177f82a81efeff108044 Assembly-CSharp.dll:.EspinhosDoCirculoImperfeito
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 06f0fef534ca4c1d6064fd77a26bf722 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
@@ -183,17 +201,21 @@ f2be3d5292b09de5ff997e776d43a697 Assembly-CSharp.dll:.AquiferWarrior
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 a0460b64d6e1f4716e81122362289a98 Assembly-CSharp.dll:.InimigoZigZag
 ebf2c018cedf7703bcd7b92c80a8a7ca Assembly-CSharp.dll:.DesativarRelativoAoContador
+14352737365cc0a5d1108d12123f3267 Assembly-CSharp.dll:.ChangeCamLimitsWithRestrictor
 ae9b9308116ceeb90084d6e324bb6e6a Assembly-CSharp.dll:.SeloPositivista
-5c7290eef589d76860f7b13d2093362c Assembly-CSharp.dll:.CharacterManager
+084af5104057dd76c1cf0c557ea1d41c Assembly-CSharp.dll:.CharacterManager
 e30cbf322f14bc2a5939b88723a9a050 Assembly-CSharp.dll:.FalseWall
 4a5cc411995ee0e15b777a0b8d681025 Assembly-CSharp.dll:.CapsulaDeTransporte
+3df47bfdc8910052e72eae48b2a71b9f Assembly-CSharp.dll:.FinalDoSetaSombria
 fff439074ed5bfc9075c8ac40c686f84 Assembly-CSharp.dll:.TargedEnemy
 114dfc1f2f872d7d65fc591261e63184 Assembly-CSharp.dll:.MensagemComPainel
 37c9cfcdd8dfcd7c070ae40e9d9b101e Assembly-CSharp.dll:.UmaOpcaoComQuantidade
 bd5411ee03302a489e975ddaf36e1aff Assembly-CSharp.dll:.AndroidController
 c421fec0d72201513177025bf4fcc2f0 Assembly-CSharp.dll:.CustomLimitantes
 aad36b4c475053e011233e8b0e37a06d Assembly-CSharp.dll:.OcultInvestEnemy
+a08a168903b50b5dfacf689ba9570ef7 Assembly-CSharp.dll:.BridgeBreederEnemy
 a2527f5338f4dae52d632ff97d1efe6d Assembly-CSharp.dll:.SceneLoader
+26edc3d8bc04329f40f0828b676b9c7c Assembly-CSharp.dll:.CarapaceTargetEnemy
 f51e59a10dfa0b8ed50569d602870cf0 Assembly-CSharp.dll:.UmaOpcaoDoIniciarJogo
 58be6094e450c1456765fd35bf627fe8 Assembly-CSharp.dll:.EstalactiteQueCai
 dca00438540fa0874a2b3eb87f831f55 Assembly-CSharp.dll:.ActiveFalseForShift
@@ -225,10 +247,11 @@ a6ddd485518e9ccd2c02775b74bafa21 Assembly-CSharp.dll:.MoedaDeDinheiro
 a2974817577a3d77fa8ec46628db1e8e Assembly-CSharp.dll:.ProjetilQuicavel
 7bed6d1ef392724d87cfbbc27d349ef0 Assembly-CSharp.dll:.NonRespawnOnLoadEnemy
 59e131f867a627a8f06964b37c5253b1 Assembly-CSharp.dll:.OcultFixedShooter
-dc5b03fed47b4049809e522b1c8f6376 Assembly-CSharp.dll:.AtivadorDoBotaoConversaAgendada
+44a18531786161bb0edcdd545c350966 Assembly-CSharp.dll:.AtivadorDoBotaoConversaAgendada
 466fd9cda44622e2a1d047523f333b64 Assembly-CSharp.dll:.MyButtonEvents
-7c68a273e9693942c97420a64a3bc5df Assembly-CSharp.dll:.LocalNameExibition
+a765db2ad6345115712f2b3d464b75ae Assembly-CSharp.dll:.LocalNameExibition
 ebc45b754227362fa5ad9d424c751c4d Assembly-CSharp.dll:.SacoDeDinheiro
+4df22752a9217059eb46d0dfabdd45e8 Assembly-CSharp.dll:.ColorBarrageSemID
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 1dcb82730d983b77cec736c6ef19f814 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -266,8 +289,11 @@ fb6a1ea36b4f6ef5948d283d93760765 UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 5b0391b7e3d9ea9db6c0a8fbd0ca23f6 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
 22ea54a32c884f7b1cce2244ec0bb47c Assembly-CSharp.dll:.FlyingPursuerEnemy
 fe958521073fc27c7f98f90d053c9a3a Assembly-CSharp.dll:.GlobalController
+bb53a6a1e8a1ac3ebde06ee0b6e7d77b Assembly-CSharp.dll:.SpawnerDeBarreiras
+c2fcd18f266f7da9a842c3441f912768 Assembly-CSharp.dll:.BossSetaSombria
 3a718f82f23078ca779edce7977b8fce Assembly-CSharp.dll:.DamageObject
 3ae480d918177db6e240b2ea31475aca Assembly-CSharp.dll:.PainelDeConfirmacao
+c6ecb357dda18e8e438089cb7f133adc Assembly-CSharp.dll:.TemporizedForwardProjectle
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 6f63df1832428e91f8e77f83272bb7c9 Assembly-CSharp.dll:.MensagemComPainelKey
 745fafd626ee48fff45c3e26daf68c04 Assembly-CSharp.dll:.InterfaceLanguageConverter
@@ -275,8 +301,8 @@ d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.Spa
 d9a5ee10dfd08e48e0764ffd88199d14 Assembly-CSharp.dll:.EmblemaColetavel
 b7468aec941b375a9c4b55a9141f2e18 Assembly-CSharp.dll:.ChangeCamLimits
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.SoundOnAttack
-2784fa7fbfae38e9dc154079814ab30d Assembly-CSharp.dll:.HexagonoColetavel
-8b251110b7a04c4ba5292d07f7cdfed9 Assembly-CSharp.dll:.GameController
+889b84fc94dae2813c2bd6f71a50ce0b Assembly-CSharp.dll:.HexagonoColetavel
+f32a98c62d3e32af2d8908ad49f6fea9 Assembly-CSharp.dll:.GameController
 4c5131c411acc315e34dd76b272373b7 Assembly-CSharp.dll:.DefenderEnemy
 632407b3571001d9a6d69747d139dc00 Assembly-CSharp.dll:.PainelPentagonoHexagono
 53111b3a9b8ca37a5b9f89270ad67632 Assembly-CSharp.dll:.Movimentacao
@@ -284,11 +310,13 @@ b7468aec941b375a9c4b55a9141f2e18 Assembly-CSharp.dll:.ChangeCamLimits
 26edc3d8bc04329f40f0828b676b9c7c Assembly-CSharp.dll:.EnemyBasic
 56169392f28d82d8868dc15e7a3bf0f4 Assembly-CSharp.dll:.UmaOpcao
 f2ffa81f6f129936ea2d264b23b92a63 Assembly-CSharp.dll:.CofreDosLosangulos
+50a5be8dede5f3dcb48401512a7e932c Assembly-CSharp.dll:.RequestLocalNameExibition
 cb77d6c0f69db55e442498d68cdb3c09 Assembly-CSharp.dll:.AlavancaDaGrade
+1c9118842bb03bf0290486b3c178da5b Assembly-CSharp.dll:.SetaSombriaTrigger
 dca00438540fa0874a2b3eb87f831f55 Assembly-CSharp.dll:.CheckConclusionOfID
 7e9782040b4941e14a6436e4c491236a Assembly-CSharp.dll:.UmaOpcaoDeImage
 564c415be9d5385b48f79e1bcaac36b0 Assembly-CSharp.dll:.CreditosDoJogo
-c0395cabddd8b041db2e919c53a953ed Assembly-CSharp.dll:.BreederEnemy
+abbf2571c156066cafab2f43caa034f5 Assembly-CSharp.dll:.BreederEnemy
 caeae2e7891d53e0e44c5547f5cb0585 Assembly-CSharp.dll:.PedraPentagono
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.MagnetismoParaMoeda
 2552a81b294a4d5a4e452d31a1799be4 Assembly-CSharp.dll:.EstalactiteTrigger
@@ -299,6 +327,6 @@ c053669ba527f34904fa035ead8d92f7 Assembly-CSharp.dll:.FinalBossManager
 caeec57703bbb7da34179892c8571eb8 Assembly-CSharp.dll:.MudeCenaComAcao
 ccf4afaf979d758ca12ab1e2af3c16da Assembly-CSharp.dll:.CharacterBase
 5c678da4b8227b111f6ce2bb3addf350 Assembly-CSharp.dll:.EspadaColetavel
-6b8da8ec874fb0d91a1aefc65d12071e Assembly-CSharp.dll:.MudeCenaLocal
+1c68ef499f60fcc43cd4235bd07d6002 Assembly-CSharp.dll:.MudeCenaLocal
 da04974af2f9bd5f8d77ac1226c23e2c Assembly-CSharp.dll:.SprinklerEnemy
 477699a7d7e1b02fb5d3398e188365d6 Assembly-CSharp.dll:.OccultBiterEnemy

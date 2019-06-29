@@ -10,8 +10,26 @@ public class KeyVar
     private Dictionary<KeyShift, bool> shift = new Dictionary<KeyShift, bool>();
     private Dictionary<string, bool> autoShift = new Dictionary<string, bool>();
     private Dictionary<string, bool> enemyShift = new Dictionary<string, bool>();
+    private Dictionary<MyVector2Int, MyColor> mapDates = new Dictionary<MyVector2Int, MyColor>();
 
+    public Dictionary<MyVector2Int, MyColor> MapDates
+    {
+        get
+        {
 
+            if (mapDates != null)
+            {
+                return mapDates;
+            }
+            else
+            {
+                mapDates = new Dictionary<MyVector2Int, MyColor>();
+                return mapDates;
+            }
+        }
+
+        set => mapDates = value;
+    }
 
     public  CapsuleList ListaDeCapsulas { get; private set; } = new CapsuleList();    
 

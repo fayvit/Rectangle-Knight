@@ -6,9 +6,15 @@ using UnityEngine;
 public class Loja : MenuComInfo
 {
     [SerializeField] private ItensAVenda[] itensParaVender = default;
+    [SerializeField] public string ID { get; set; }
 
     private ItensAVenda[] itensPossiveisDeVender;
 
+    public override void IniciarHud()
+    {
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.painelAbrindo));
+        base.IniciarHud();
+    }
     public override void SetarComponenteAdaptavel(GameObject G, int indice)
     {
         UmaOpcaoComQuantidade uma = G.GetComponent<UmaOpcaoComQuantidade>();
@@ -21,17 +27,44 @@ public class Loja : MenuComInfo
 
     protected override void ChangeOption(int qual)
     {
-        InfoUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.descricaoDosItensVendidos)[(int)itensPossiveisDeVender[qual].nome];
-        TitleUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.nomeParaItensVendidos)[(int)itensPossiveisDeVender[qual].nome];
+        if (itensPossiveisDeVender.Length > 0)
+        {
+            MudarSelecaoParaEspecifico(qual);
+            InfoUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.descricaoDosItensVendidos)[(int)itensPossiveisDeVender[qual].nome];
+            TitleUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.nomeParaItensVendidos)[(int)itensPossiveisDeVender[qual].nome];
+        }
+        else
+        {
+            TextosDoNadaParaVender();
+        }
+    }
+
+    protected virtual void TextosDoNadaParaVender()
+    {
+        InfoUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.textosDaLojaDeHerika)[1];
+        TitleUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.textosDaLojaDeHerika)[0];
     }
 
     protected override int SetarOpcoes()
     {
         List<ItensAVenda> I = new List<ItensAVenda>();
+        KeyVar myKeys = GameController.g.MyKeys;
 
         for (int i = 0; i < itensParaVender.Length; i++)
         {
-            if (GameController.g.MyKeys.VerificaAutoShift(itensParaVender[i].preRequisito) 
+            Debug.Log("Id daqui: " + ID);
+
+            if (myKeys.VerificaAutoShift("concluido, loja " + ID + " item " + i))
+            {
+                itensParaVender[i].quantidadeDisponivel = 0;
+            }
+            else if (myKeys.VerificaAutoCont("quantidade disponivel, loja " + ID + " item " + i) > 0)
+                itensParaVender[i].quantidadeDisponivel = myKeys.VerificaAutoCont("quantidade disponivel, loja " + ID + " item " + i);
+        }
+
+        for (int i = 0; i < itensParaVender.Length; i++)
+        {
+            if (myKeys.VerificaAutoShift(itensParaVender[i].preRequisito) 
                 && (itensParaVender[i].quantidadeDisponivel > 0 || itensParaVender[i].quantidadeDisponivel == -1))
             {
                 I.Add(itensParaVender[i]);
@@ -40,36 +73,66 @@ public class Loja : MenuComInfo
 
         itensPossiveisDeVender = I.ToArray();
 
+        
         ChangeOption(0);
+        
         return I.Count;
     }
 
     protected override void FinalizarEspecifico()
     {
         TitleUpdate.transform.parent.gameObject.SetActive(false);
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.Book1));
         RemoverEventos();
     }
 
     public bool VerifiqueCompra()
     {
-        DadosDoJogador d = GameController.g.Manager.Dados;
-
-        if (d.Dinheiro >= itensPossiveisDeVender[OpcaoEscolhida].valorDeVenda)
+        if (itensPossiveisDeVender.Length > 0)
         {
-            EventAgregator.Publish(new StandardSendGameEvent(EventKey.getCoin, -itensPossiveisDeVender[OpcaoEscolhida].valorDeVenda));
-            TradeManager.OnBuy(itensPossiveisDeVender[OpcaoEscolhida].nome);
-            itensPossiveisDeVender[OpcaoEscolhida].quantidadeDisponivel--;
+            DadosDoJogador d = GameController.g.Manager.Dados;
 
-            if (itensPossiveisDeVender.Length > 1)
+            if (d.Dinheiro >= itensPossiveisDeVender[OpcaoEscolhida].valorDeVenda)
             {
+                EventAgregator.Publish(new StandardSendGameEvent(EventKey.getCoin, -itensPossiveisDeVender[OpcaoEscolhida].valorDeVenda));
+                new MyInvokeMethod().InvokeNoTempoReal(() =>
+                {
+                    EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.Shop));
+                }, .5f);
+                TradeManager.OnBuy(itensPossiveisDeVender[OpcaoEscolhida].nome);
+
+                // itens possivel de vender vs itens para vender
+
+
+                itensPossiveisDeVender[OpcaoEscolhida].quantidadeDisponivel--;
+
+                
+                KeyVar myKeys = GameController.g.MyKeys;
+                int val = itensPossiveisDeVender[OpcaoEscolhida].quantidadeDisponivel;
+                int index = (new List<ItensAVenda>(itensParaVender)).IndexOf(itensPossiveisDeVender[OpcaoEscolhida]);
+
+                myKeys.MudaAutoCont("quantidade disponivel, loja " + ID + " item " + index,val);
+
+                if (val == 0)
+                    myKeys.MudaAutoShift("concluido, loja " + ID + " item " + index, true);
+
                 FinalizarHud();
                 IniciarHud();
-            }
 
-            return true;
+
+                return true;
+            }
+            else
+                return false;
         }
         else
-            return false;
+        {
+            new MyInvokeMethod().InvokeAoFimDoQuadro(() =>
+            {
+                EventAgregator.Publish(EventKey.compraConcluida);
+            });
+            return true;
+        }
     }
 
 

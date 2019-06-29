@@ -25,10 +25,13 @@ public class MusicaDeFundo
     public float VolumeBase {
         get => volumeBase;
         set {
+            float voltransitorio = volumeAlvo / volumeBase;
             volumeBase = value;
+            volumeAlvo = volumeBase * voltransitorio;
             for (int i = 0; i<audios.Length; i++)
             {
-                audios[i].volume = MusicaAtualAtiva.Volume * volumeBase;
+                if(MusicaAtualAtiva!=null)
+                    audios[i].volume = MusicaAtualAtiva.Volume * volumeBase;
             }
         }
     }
@@ -182,7 +185,7 @@ public class MusicaDeFundo
 
 
                     if (audios[inicia].volume < 0.9f * volumeAlvo)
-                        audios[inicia].volume = Mathf.Lerp(audios[inicia].volume, volumeAlvo, Time.deltaTime * VelocidadeAtiva);
+                        audios[inicia].volume = Mathf.Lerp(audios[inicia].volume, volumeAlvo, Time.fixedDeltaTime * VelocidadeAtiva);
                     else
                         audios[inicia].volume = volumeAlvo;
 
@@ -192,7 +195,7 @@ public class MusicaDeFundo
                         audios[termina].Stop();
                     }
                     else
-                        audios[termina].volume = Mathf.Lerp(audios[termina].volume, 0, Time.deltaTime * 3 * VelocidadeAtiva);
+                        audios[termina].volume = Mathf.Lerp(audios[termina].volume, 0, Time.fixedDeltaTime * 3 * VelocidadeAtiva);
 
                 }
             }
@@ -270,7 +273,11 @@ public enum SoundEffectID
     avancoDoInimigo,//VXACE_Shot3
     aparicaoSurpresaDeInimigo,//VXACE_Wind6
     mordida,//XP089-Attack01 -> XP065-Swing04 -> XP052-Cannon01
-    naCachoeirinha//022-Dive02
+    naCachoeirinha,//022-Dive02
+    Fire3,// usado para update geometry complete
+    XP010_System10,// usado para update geometry complete
+    XP049_Explosion02,// usado para update geometry complete
+    Shop//VXACE
 }
 
 [System.Serializable]

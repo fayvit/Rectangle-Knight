@@ -2,8 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class ScriptTestador : MonoBehaviour
 {
+    /*
+    [SerializeField] private GameController g;
+    [SerializeField] private bool foi;
+    private void Update()
+    {
+        if (foi)
+        {
+            g.MenuU.CopyMyVector();
+            foi = false;
+        }
+    }
+
+    */
     AreaEffector2D a2d;
     Rigidbody2D r2;
     bool foi = false;

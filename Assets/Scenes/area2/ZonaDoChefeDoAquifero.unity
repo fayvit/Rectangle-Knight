@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 45310827}
   - component: {fileID: 45310826}
   - component: {fileID: 45310824}
+  - component: {fileID: 45310828}
   m_Layer: 0
   m_Name: painelDoMagicAttack
   m_TagString: Untagged
@@ -476,6 +477,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 45310823}
   m_CullTransparentMesh: 0
+--- !u!114 &45310828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45310823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc463bff93db5a34c9f681081e7d269e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textForExibition:
+  - uiText: {fileID: 1697648059}
+    messageKey: 42
+    indiceDoMessage: 0
+  - uiText: {fileID: 1154418198}
+    messageKey: 42
+    indiceDoMessage: 1
+  - uiText: {fileID: 427442963}
+    messageKey: 42
+    indiceDoMessage: 2
+  - uiText: {fileID: 151377454}
+    messageKey: 42
+    indiceDoMessage: 3
 --- !u!1001 &109487685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1125,6 +1151,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 134809690590119907, guid: c40dffd2eaad5bf46b22a02d290ff4c2,
+        type: 3}
+      propertyPath: ID
+      value: -103050_ZonaDoChefeDoAquifero
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c40dffd2eaad5bf46b22a02d290ff4c2, type: 3}
@@ -48820,7 +48851,7 @@ PrefabInstance:
     - target: {fileID: 134809690590119907, guid: c40dffd2eaad5bf46b22a02d290ff4c2,
         type: 3}
       propertyPath: ID
-      value: -33298_ZonaDoChefeDoAquifero
+      value: -103622_ZonaDoChefeDoAquifero
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c40dffd2eaad5bf46b22a02d290ff4c2, type: 3}
@@ -104896,7 +104927,7 @@ Tilemap:
   - m_RefCount: 70
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 0.3537736, b: 0.3537736, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -490, y: -157, z: 0}
   m_Size: {x: 956, y: 220, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -132967,6 +132998,7 @@ GameObject:
   - component: {fileID: 1857103784}
   - component: {fileID: 1857103783}
   - component: {fileID: 1857103782}
+  - component: {fileID: 1857103787}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
@@ -133118,6 +133150,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1857103780}
   m_CullTransparentMesh: 0
+--- !u!114 &1857103787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857103780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2e7e8c07a036f44a40c5de734fb619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 50
 --- !u!1 &1862095150 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7078321822804828287, guid: 9f8e2ea6b65c4514baa2ceec761e64b9,

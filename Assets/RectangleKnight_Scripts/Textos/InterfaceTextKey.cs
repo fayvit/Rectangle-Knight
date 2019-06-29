@@ -48,5 +48,13 @@
     valor,
     selecionar,
     idioma,
-    obrigadoMas
+    obrigadoMas,
+    coletar,
+    ouvir,
+    sair,
+    entrar,
+    interagir,
+    examinar,
+    descansar,
+    espacosOcupados
 }

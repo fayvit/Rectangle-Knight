@@ -16,6 +16,7 @@ public class MenuDeOpcoes : MonoBehaviour
 
     private int opcaoSelecionada = 0;
     private const float velDaModificacao = 0.15f;
+    private bool podeMudar = true;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -29,6 +30,8 @@ public class MenuDeOpcoes : MonoBehaviour
         txtEfeitos.text = Mathf.RoundToInt(sEfeitos.value * 100) + "%";
 
         ColocarDestaqueSelecionado();
+
+        podeMudar = true;
     }
 
     void ColocarDestaqueSelecionado()
@@ -45,36 +48,46 @@ public class MenuDeOpcoes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float quanto =  CommandReader.GetAxis("horizontal", GlobalController.g.Control) 
-            + CommandReader.GetAxis("HDpad", GlobalController.g.Control);
+        if (podeMudar)
+        {
+            float quanto = CommandReader.GetAxis("horizontal", GlobalController.g.Control)
+                + CommandReader.GetAxis("HDpad", GlobalController.g.Control);
 
-        if (quanto > 0)
-        {
-            VerificaModificacao(true);
-        }
-        else if (quanto < 0)
-        {
-            VerificaModificacao(false);
-        }
-        else
-        {
-            
-            quanto = UiDeOpcoes.VerificaMudarOpcao(true);
-            
             if (quanto > 0)
-                opcaoSelecionada = ContadorCiclico.AlteraContador(1, opcaoSelecionada, destaques.Length);
-            else if(quanto<0)
-                opcaoSelecionada = ContadorCiclico.AlteraContador(-1, opcaoSelecionada, destaques.Length);
+            {
+                VerificaModificacao(true);
+            }
+            else if (quanto < 0)
+            {
+                VerificaModificacao(false);
+            }
+            else
+            {
 
-            if (quanto != 0)
-                ColocarDestaqueSelecionado();
-        }
+                quanto = UiDeOpcoes.VerificaMudarOpcao(true);
 
-        if (CommandReader.ButtonDown(2, GlobalController.g.Control)
-            ||
-            (ActionManager.ButtonUp(0, GlobalController.g.Control)&&opcaoSelecionada==destaques.Length-1))
-        {
-            BotaoVoltar();
+                if (quanto > 0)
+                    opcaoSelecionada = ContadorCiclico.AlteraContador(1, opcaoSelecionada, destaques.Length);
+                else if (quanto < 0)
+                    opcaoSelecionada = ContadorCiclico.AlteraContador(-1, opcaoSelecionada, destaques.Length);
+
+                if (quanto != 0)
+                    ColocarDestaqueSelecionado();
+            }
+
+            bool foi = ActionManager.ButtonUp(0, GlobalController.g.Control);
+
+            if (CommandReader.ButtonDown(2, GlobalController.g.Control)
+                ||
+                ( foi && opcaoSelecionada == destaques.Length - 1))
+            {
+                BotaoVoltar();
+            }else
+
+            if (foi && opcaoSelecionada == 2)
+            {
+                BotaoTodasHabilidades();
+            }
         }
 
 
@@ -109,5 +122,25 @@ public class MenuDeOpcoes : MonoBehaviour
     {
         EventAgregator.Publish(EventKey.returnToMainMenu, null);
         gameObject.SetActive(false);
+    }
+
+    public void BotaoTodasHabilidades()
+    {
+        Debug.Log("habilidade");
+        podeMudar = false;
+        GlobalController.g.Confirmacao.AtivarPainelDeConfirmacao(LigarTodasHabilidades, NaoLigarTodasHabilidades,
+            "Gostaria de ligar todas as habilidades? Isso desabilitará o salvamento do progresso");
+    }
+
+    void LigarTodasHabilidades()
+    {
+        podeMudar = true;
+        EventAgregator.Publish(EventKey.allAbilityOn);
+    }
+
+    void NaoLigarTodasHabilidades()
+    {
+        podeMudar = true;
+
     }
 }

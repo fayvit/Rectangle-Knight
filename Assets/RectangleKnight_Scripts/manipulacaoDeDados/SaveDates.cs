@@ -32,7 +32,6 @@ public class SaveDates
     {
         CharacterManager manager = GameController.g.Manager;
         VariaveisChave = GameController.g.MyKeys;
-
         Dados = manager.Dados;
 
         //Debug.Log(Dados + " : " + Dados.DinheiroCaido);

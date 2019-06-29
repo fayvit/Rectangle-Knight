@@ -14,6 +14,12 @@ public class DadosDoJogador : DadosDoPersonagem
     [SerializeField] private bool _espadaDourada = false;
     [SerializeField] private bool _espadaVermelha = false;
     [SerializeField] private int _dinheiro = 0;
+    [SerializeField] private int _hexagonosCompletos = 0;
+    [SerializeField] private int _pentagonosCompletos = 0;
+    [SerializeField] private int _baseMaxLife = 100;
+    [SerializeField] private int _baseMaxMana = 50;
+    [SerializeField] private int _addLifeBarAmount = 25;
+    [SerializeField] private int _addMagicBarAmount = 10;
 
     public bool TemDash { get => _temDash; set => _temDash = value; }
     public bool TemDoubleJump { get => _temDoubleJump; set => _temDoubleJump = value; }
@@ -27,18 +33,24 @@ public class DadosDoJogador : DadosDoPersonagem
     public int EspacosDeEmblemas { get; set; } = 2;
     public int PartesDeHexagonoObtidas { get; set; } = 0;
     public int PartesDePentagonosObtidas { get; set; } = 0;
-    public int HexagonosCompletados { get; set; } = 0;
-    public int PentagonosCompletados { get; set; } = 0;
+    public int HexagonosCompletados { get => _hexagonosCompletos; set => _hexagonosCompletos = value; }
+    public int PentagonosCompletados { get => _pentagonosCompletos; set => _pentagonosCompletos = value; }
+    public int BaseMaxLife { get => _baseMaxLife; set => _baseMaxLife = value; }
+    public int BaseMaxMana { get => _baseMaxMana; set => _baseMaxMana = value; }
+    public int AddLifeBarAmount { get => _addLifeBarAmount; set => _addLifeBarAmount = value; }
+    public int AddMagicBarAmount { get => _addMagicBarAmount; set => _addMagicBarAmount = value; }
     public int SeloDoProgresso { get; set; } = 0;
     public int SeloDoAmor { get; set; } = 0;
     public int SeloDoOrdem { get; set; } = 0;
     public SwordColor CorDeEspadaSelecionada { get; set; } = SwordColor.grey;
-    public List<ItemBase> MeusItens { get; set; } = new List<ItemBase>()
-    {
-        new ItemBase(){ Nome=NomeItem.anelDeIntegridade,Quantidade=1},
-        new ItemBase(){ Nome=NomeItem.CQD,Quantidade=1}
-    };
+    public List<ItemBase> MeusItens { get; set; } = new List<ItemBase>();
     public DinheiroCaido DinheiroCaido { get; set; } = new DinheiroCaido();
+
+    public DadosDoJogador()
+    {
+        PontosDeVida = BaseMaxLife;
+        PontosDeMana = BaseMaxMana;
+    }
 
     public override int AtaqueBasico {
         get {
@@ -56,11 +68,10 @@ public class DadosDoJogador : DadosDoPersonagem
         set => base.AtaqueBasico = value;
     }
 
-    public List<Emblema> MeusEmblemas{get;set;} = new List<Emblema>() { new Emblema(NomesEmblemas.dinheiroMagnetico,1),
-        new Emblema(NomesEmblemas.dinheiroMagnetico,1),
-        new Emblema(NomesEmblemas.ataqueAprimorado,1)
-    };
-
+    public List<Emblema> MeusEmblemas{get;set;} = new List<Emblema>() {
+        new Emblema(NomesEmblemas.ataqueAprimorado,2),
+        new Emblema(NomesEmblemas.dinheiroMagnetico,1)};
+    
     public UltimoCheckPoint ultimoCheckPoint = new UltimoCheckPoint()
     {
         nomesDasCenas = new NomesCenas[1] { NomesCenas.TutoScene},

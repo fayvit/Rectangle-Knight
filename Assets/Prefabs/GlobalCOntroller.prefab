@@ -1818,6 +1818,7 @@ MonoBehaviour:
     audios:
     - {fileID: 4020780946318341443}
     - {fileID: 4020780946340176721}
+    volumeBase: 0.75
   fadeV: {fileID: 1598610332}
   confirmacao: {fileID: 5903262317457788338}
   umaMensagem: {fileID: 289898105}
@@ -2164,13 +2165,123 @@ MonoBehaviour:
       musicName:
         musica: 1
         volume: 1
+    - nomeDaCena: 37
+      limitantes:
+        xMin: -1133.3
+        xMax: -1071.88
+        yMin: -73.6
+        yMax: 34.48
+      bkColor: {r: 0.32156864, g: 0.32941177, b: 0.4, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
     - nomeDaCena: 36
       limitantes:
         xMin: -1071.88
         xMax: -924.53
         yMin: -194.51
         yMax: -63.99
-      bkColor: {r: 0.42745098, g: 0.38431373, b: 0.34117648, a: 0}
+      bkColor: {r: 0.32156864, g: 0.32941177, b: 0.4, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 38
+      limitantes:
+        xMin: -1177.16
+        xMax: -1144.13
+        yMin: -18.03
+        yMax: -1.37
+      bkColor: {r: 0.32156864, g: 0.32941177, b: 0.4, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 39
+      limitantes:
+        xMin: -1324.99
+        xMax: -1071.22
+        yMin: -128.07
+        yMax: -22.65
+      bkColor: {r: 0.32156864, g: 0.32941177, b: 0.4, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 40
+      limitantes:
+        xMin: -1381.4
+        xMax: -1321.76
+        yMin: -45
+        yMax: -5.9
+      bkColor: {r: 0.32156864, g: 0.32941177, b: 0.4, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 41
+      limitantes:
+        xMin: -1453.3
+        xMax: -1382.5
+        yMin: -112
+        yMax: -26.5
+      bkColor: {r: 0.32156864, g: 0.32941177, b: 0.4, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 42
+      limitantes:
+        xMin: -714.24
+        xMax: -559.66
+        yMin: -103.9
+        yMax: -78.58
+      bkColor: {r: 0.32156864, g: 0.32941177, b: 0.4, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 43
+      limitantes:
+        xMin: -701.4
+        xMax: -422.22
+        yMin: 66.29
+        yMax: 94.26
+      bkColor: {r: 0.32156864, g: 0.32941177, b: 0.4, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 44
+      limitantes:
+        xMin: -1069.1
+        xMax: -706.98
+        yMin: 74.68
+        yMax: 122.8
+      bkColor: {r: 0.32156864, g: 0.32941177, b: 0.4, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 45
+      limitantes:
+        xMin: -1156.8
+        xMax: -1064.59
+        yMin: 57.8
+        yMax: 125.74
+      bkColor: {r: 0.32156864, g: 0.32941177, b: 0.4, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 47
+      limitantes:
+        xMin: -1069.4
+        xMax: -380.02
+        yMin: 161.7
+        yMax: 323.6
+      bkColor: {r: 0.32156864, g: 0.32941177, b: 0.4, a: 0}
+      musicName:
+        musica: 1
+        volume: 1
+    - nomeDaCena: 46
+      limitantes:
+        xMin: -380.02
+        xMax: -328.06
+        yMin: 61.5
+        yMax: 192.81
+      bkColor: {r: 0.32156864, g: 0.32941177, b: 0.4, a: 0}
       musicName:
         musica: 1
         volume: 1

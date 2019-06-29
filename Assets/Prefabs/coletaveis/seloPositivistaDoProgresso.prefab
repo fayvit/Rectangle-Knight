@@ -6072,6 +6072,7 @@ GameObject:
   - component: {fileID: 4740739101862506298}
   - component: {fileID: 4740739101862506293}
   - component: {fileID: 4740739101862506292}
+  - component: {fileID: 2397526992908621099}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
@@ -6210,7 +6211,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4740739099938690451}
         m_MethodName: FuncaoDoBotao
         m_Mode: 1
         m_Arguments:
@@ -6223,3 +6224,16 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &2397526992908621099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4740739101862506294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2e7e8c07a036f44a40c5de734fb619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 49

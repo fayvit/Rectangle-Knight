@@ -39,13 +39,13 @@ public class Emblema
         return cont;
     }
 
-    public static NomesEmblemas VerificarOcupacaoDoEncaixe(List<Emblema> L,int indice)
+    public static Emblema VerificarOcupacaoDoEncaixe(List<Emblema> L,int indice)
     {
         List<Emblema> encaixados = ListaDeEncaixados(L);
         if (encaixados.Count > indice)
-            return encaixados[indice].NomeId;
+            return encaixados[indice];
         else
-            return NomesEmblemas.nulo;
+            return new Emblema(NomesEmblemas.nulo,0);
         
     }
 
@@ -82,6 +82,9 @@ public class Emblema
             break;
             case NomesEmblemas.ataqueAprimorado:
                 retorno = new Emblema(nome, 2);
+            break;
+            case NomesEmblemas.suspiroLongo:
+                retorno = new Emblema(nome, 1);
             break;
             default:
                 Debug.LogError("o valor de emblema não está no switch case");

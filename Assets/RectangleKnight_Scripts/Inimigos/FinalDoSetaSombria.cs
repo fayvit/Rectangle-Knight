@@ -98,7 +98,7 @@ public class FinalDoSetaSombria : MonoBehaviour
     void PainelPosSumicoDois()
     {
         estado = EstadoDaqui.emEspera;
-        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.painelAbrindo));
+        EventAgregator.Publish(new StandardSendGameEvent(EventKey.disparaSom, SoundEffectID.ItemImportante));
         pMensagemDois.ConstroiPainelUmaMensagem(RetornoDoPainel);
     }
 

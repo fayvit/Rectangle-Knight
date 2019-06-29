@@ -18,7 +18,7 @@ public class CollorBarrage : DestructibleWithAttack
             {
                 base.OnTriggerEnter2D(collision);
             }
-            else if(collision.name!="magicAttack")
+            else if(collision.name!= "MagicAttack")
             {
                 /*
                 float difPosX = GameController.g.Manager.transform.position.x - transform.position.x;

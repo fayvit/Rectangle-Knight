@@ -43,6 +43,20 @@ public class TextosChaveEmPT_BR
                "Acampamento dos Rejeitados",
                "Aquifero do buscador"
             }
+        },
+        {
+            ChaveDeTexto.textosDaLojaDeHerika, new List<string>()
+            {
+               "Estoque vazio",
+               "Parece que você comprou tudo que tinha na loja. Volte mais tarde, talvez tenha novas mercadorias para vender"
+            }
+        },
+        {
+            ChaveDeTexto.complementosDoMenuDePause, new List<string>()
+            {
+               "Inventario Vazio",
+               "Você não possui nenhum item no seu inventário no momento"
+            }
         }
 
     };

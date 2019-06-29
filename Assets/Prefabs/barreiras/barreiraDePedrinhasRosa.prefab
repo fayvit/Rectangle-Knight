@@ -14287,7 +14287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783860c3a7e52244d8a58ca9f24f7787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -20904_DesafioDoDefensorDoAquifero
+  ID: 
   particuladaAcao: {fileID: 393191305266358539}
   containerDasImagens: {fileID: 393191304517705508}
   thisCollider: {fileID: 393191305335877452}

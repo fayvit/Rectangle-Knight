@@ -58,7 +58,7 @@ public static class StaticMudeCena
 
     public static void OnFadeOutComplete(NomesCenas[] cenasAlvo,NomesCenas estaCenaAtiva,Vector3 pos)
     {
-        Debug.Log("iniciaou");
+        
 
         posAlvo = pos;
 

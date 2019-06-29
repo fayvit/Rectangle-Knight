@@ -195,7 +195,7 @@ public class MagicAttack
     public void InstanciaProjetil(Vector3 pos,float dir)
     {
         tempoEmRecuperacao = coolDownMagic;
-        GameObject G = MonoBehaviour.Instantiate(projetil, pos, projetil.transform.rotation);
+        GameObject G = MonoBehaviour.Instantiate(projetil, pos+Vector3.right*dir, projetil.transform.rotation);
         MonoBehaviour.Destroy(G, 3);
         G.name = "MagicAttack";
 

@@ -95,7 +95,12 @@ public static class CommandReader
             case Controlador.N3DS:
                 return Input.GetKey(N3DS_KeysDic.dicKeys[numButton]);
             case Controlador.Android:
-                MyButtonEvents b = ControladorDeJoystick.cj.GetButton(numButton);
+
+                MyButtonEvents b = null;
+
+                if (ControladorDeJoystick.cj!=null)
+                    b = ControladorDeJoystick.cj.GetButton(numButton);
+
                 if (b != null)
                     return b.buttonPress;
                 else
@@ -290,6 +295,10 @@ public static class CommandReader
             case Controlador.N3DS:
                 val = N3dsAxis.GetAxis(esseGatilho);
             break;
+            case Controlador.Android:
+                if (ControladorDeJoystick.cj != null)
+                    val = ControladorDeJoystick.cj.GetInputVal(esseGatilho);
+            break;                
             default:
                 esseGatilho = "joy " + numControlador + " " + esseGatilho;
                 val = Input.GetAxisRaw(esseGatilho);

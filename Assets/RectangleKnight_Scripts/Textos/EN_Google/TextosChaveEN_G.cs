@@ -25,6 +25,36 @@ public class TextosChaveEN_G
             {
                "Are you sure you want to delete the game {0}?"
             }
+        },
+        {
+            ChaveDeTexto.menuDePause, new List<string>()
+            {
+               "Return to Game",
+               "Options",
+               "Return to main menu"
+            }
+        },
+        {
+            ChaveDeTexto.nomesParaViagensDeCapsula, new List<string>()
+            {
+               "Throat of the deep",
+               "Rejected Camp",
+               "Aquifer of the Seeker"
+            }
+        },
+        {
+            ChaveDeTexto.textosDaLojaDeHerika, new List<string>()
+            {
+               "Empty stock",
+               "Looks like you bought everything you had in the store, come back later, maybe have new goods to sell"
+            }
+        },
+        {
+            ChaveDeTexto.complementosDoMenuDePause, new List<string>()
+            {
+               "Empty Inventory",
+               "You do not currently have any items in your inventory"
+            }
         }
     };
 }

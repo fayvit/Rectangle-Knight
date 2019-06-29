@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private LocalNameExibition localName = default;
     #endregion
 
+    private MapConstruct mapConstruct = new MapConstruct();
+
     private EstadoDoJogo estado = EstadoDoJogo.emGame;
 
     private enum EstadoDoJogo
@@ -27,6 +29,7 @@ public class GameController : MonoBehaviour
     public CharacterManager Manager { get; set; }
     public DisparaTexto DisparaT { get => disparaT; set => disparaT = value; }
     public LocalNameExibition LocalName { get => localName; set => localName = value; }
+    public Texture2D MapTexture{ get => mapConstruct.TexturaDeMapaAtual(); }
 
     private void Awake()
     {
@@ -46,7 +49,6 @@ public class GameController : MonoBehaviour
         transform.parent = null;
         DontDestroyOnLoad(gameObject);
 
-
         EventAgregator.AddListener(EventKey.requestToFillDates, OnRequestFillDates);
         EventAgregator.AddListener(EventKey.enemyDefeatedCheck, OnEnemyDefeatedCheck);
         EventAgregator.AddListener(EventKey.destroyFixedShiftCheck, OnIdDestroyCheck);
@@ -61,6 +63,7 @@ public class GameController : MonoBehaviour
         EventAgregator.AddListener(EventKey.emblemEquip, OnEquipEmblem);
         EventAgregator.AddListener(EventKey.emblemUnequip, OnUnequipEmblem);
         EventAgregator.AddListener(EventKey.requestLocalnameExibition, OnRequestNameexibition);
+        EventAgregator.AddListener(EventKey.changeActiveScene, OnChangeActiveScene);
 
         disparaT.IniciarDisparadorDeTextos();
         MyKeys.MudaShift(KeyShift.sempretrue, true);
@@ -83,8 +86,18 @@ public class GameController : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.emblemEquip, OnEquipEmblem);
         EventAgregator.RemoveListener(EventKey.emblemUnequip, OnUnequipEmblem);
         EventAgregator.RemoveListener(EventKey.requestLocalnameExibition, OnRequestNameexibition);
+        EventAgregator.RemoveListener(EventKey.changeActiveScene, OnChangeActiveScene);
     }
-    void OnRequestNameexibition(IGameEvent e)
+
+    private void OnChangeActiveScene(IGameEvent e)
+    {
+        if (mapConstruct == null)
+            mapConstruct = new MapConstruct();
+        mapConstruct.AtualizarMapa();
+        MyKeys.MapDates = mapConstruct.GetMapDates;
+    }
+
+    private void OnRequestNameexibition(IGameEvent e)
     {
         StandardSendGameEvent ssge = (StandardSendGameEvent)e;
 
@@ -104,8 +117,7 @@ public class GameController : MonoBehaviour
         NomesEmblemas nomeID = (NomesEmblemas)ssge.MyObject[0];
         switch (nomeID)
         {
-            case NomesEmblemas.dinheiroMagnetico:
-            case NomesEmblemas.ataqueAprimorado:
+            default:
                 MyKeys.MudaAutoShift("equiped_" + nomeID.ToString(), false);
             break;
         }
@@ -118,8 +130,7 @@ public class GameController : MonoBehaviour
         NomesEmblemas nomeID = (NomesEmblemas)ssge.MyObject[0];
         switch (nomeID)
         {
-            case NomesEmblemas.dinheiroMagnetico:
-            case NomesEmblemas.ataqueAprimorado:
+            default:
                 MyKeys.MudaAutoShift("equiped_" + nomeID.ToString(), true);
             break;
         }
@@ -219,7 +230,22 @@ public class GameController : MonoBehaviour
 
             MyKeys = S.VariaveisChave;
         }
-        
+
+
+        new MyInvokeMethod().InvokeAoFimDoQuadro(() => {
+            new MyInvokeMethod().InvokeAoFimDoQuadro(() => {
+                //new MyInvokeMethod().InvokeAoFimDoQuadro(() =>{
+                new MyInvokeMethod().InvokeAoFimDoQuadro(() =>
+                {
+//                    Debug.Log(mapConstruct+" : "+MyKeys.MapDates);
+
+                    mapConstruct.GetMapDates = MyKeys.MapDates;
+                    OnChangeActiveScene(null);
+                });
+            });
+            // });
+        });
+
     }
 
     public void VerifiqueDinheiroCaido(DinheiroCaido d)

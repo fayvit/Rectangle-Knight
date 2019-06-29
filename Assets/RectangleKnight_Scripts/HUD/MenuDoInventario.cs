@@ -11,25 +11,34 @@ public class MenuDoInventario : MenuComInfo
 
     private NomeItem[] Opcoes;
 
+    public override void IniciarHud()
+    {
+        itemDoContainer.SetActive(false);
+        base.IniciarHud();
+    }
+
     public override void SetarComponenteAdaptavel(GameObject G, int indice)
     {
         int itemDeInteresse = (int)Opcoes[indice];
-       // Texture2D t2d = (Texture2D)Resources.Load(Opcoes[indice].ToString());
+       
         Sprite S = Resources.Load<Sprite>(Opcoes[indice].ToString());
-
-      //  if (t2d!=null)
-        //    S = Sprite.Create(t2d, new Rect(0, 0, t2d.width, t2d.height), t2d.texelSize);
 
         UmaOpcaoComQuantidade uma = G.GetComponent<UmaOpcaoComQuantidade>();
         uma.SetarOpcao(BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.nomesItens)[indice],
             GameController.g.Manager.Dados.QuantidadeNoInventarioDoItem(Opcoes[indice]).ToString(),
             S, ChangeOption);
+
     }
 
     protected override void ChangeOption(int qual)
     {
         TitleUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.nomesItens)[(int)Opcoes[qual]];
         InfoUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.descricaoDosItensNoInventario)[(int)Opcoes[qual]];
+
+        if (painelDeTamanhoVariavel.childCount > qual + 1)
+        {
+            MudarSelecaoParaEspecifico(qual);
+        }
     }
 
     public override void MudarOpcao()
@@ -58,6 +67,11 @@ public class MenuDoInventario : MenuComInfo
 
         if (Opcoes.Length > 0)
             ChangeOption(0);
+        else
+        {
+            TitleUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.complementosDoMenuDePause)[0];
+            InfoUpdate.text = BancoDeTextos.RetornaListaDeTextoDoIdioma(ChaveDeTexto.complementosDoMenuDePause)[1];
+        }
         
         return Opcoes.Length;
     }

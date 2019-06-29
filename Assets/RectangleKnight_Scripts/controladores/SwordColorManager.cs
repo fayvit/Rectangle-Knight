@@ -19,6 +19,8 @@ public class SwordColorManager : MonoBehaviour
         EventAgregator.AddListener(EventKey.colorChanged, OnColorChanged);
         EventAgregator.AddListener(EventKey.getColorSword, OnGetColorSword);
         EventAgregator.AddListener(EventKey.colorSwordShow, OnRequestFillDates);
+        EventAgregator.AddListener(EventKey.allAbilityOn, VerifiqueEspadasAtivas);
+        EventAgregator.AddListener(EventKey.starterHudForTest, VerifiqueEspadasAtivas);
     }
 
     private void OnDestroy()
@@ -26,6 +28,16 @@ public class SwordColorManager : MonoBehaviour
         EventAgregator.RemoveListener(EventKey.colorChanged, OnColorChanged);
         EventAgregator.RemoveListener(EventKey.getColorSword, OnGetColorSword);
         EventAgregator.RemoveListener(EventKey.colorSwordShow, OnRequestFillDates);
+        EventAgregator.RemoveListener(EventKey.allAbilityOn, VerifiqueEspadasAtivas);
+        EventAgregator.RemoveListener(EventKey.starterHudForTest, VerifiqueEspadasAtivas);
+    }
+
+    private void VerifiqueEspadasAtivas(IGameEvent e)
+    {
+        new MyInvokeMethod().InvokeAoFimDoQuadro(() =>
+        {
+            OnGetColorSword(null);
+        });
     }
 
     void OnRequestFillDates(IGameEvent e)
@@ -35,7 +47,7 @@ public class SwordColorManager : MonoBehaviour
 
     void OnGetColorSword(IGameEvent e)
     {
-        StartCoroutine(EscolheQualCorMostrarNoProximoQuadro());
+        GlobalController.g.StartCoroutine(EscolheQualCorMostrarNoProximoQuadro());
     }
 
     void OnColorChanged(IGameEvent e)
@@ -73,12 +85,13 @@ public class SwordColorManager : MonoBehaviour
             }
             else
             {
-                colorButtons[i].gameObject.SetActive(false);
+                if(colorButtons[i])
+                    colorButtons[i].gameObject.SetActive(false);
             }
         }
 
-        
-        colorButtons[0].gameObject.SetActive(foi);
+        if (colorButtons[0])
+            colorButtons[0].gameObject.SetActive(foi);
 
         if (foi)
             for (int i = 0; i < colorButtons.Length; i++)

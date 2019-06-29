@@ -12,7 +12,10 @@ public class MenuDeEmblemasDisponiveis : MenusDeEmblemabase
         Acao += acaoDeFora;
         DadosDoJogador dj = GameController.g.Manager.Dados;
 
-        IniciarHUD(dj.MeusEmblemas.Count, TipoDeRedimensionamento.emGrade);
+        if(dj.MeusEmblemas.Count>0)
+            IniciarHUD(dj.MeusEmblemas.Count, TipoDeRedimensionamento.emGrade);
+        else
+            itemDoContainer.SetActive(false);
     }
 
     public override void SetarComponenteAdaptavel(GameObject G, int indice)
